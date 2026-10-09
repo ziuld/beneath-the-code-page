@@ -24,6 +24,8 @@ python3 scripts/test-planning-rules.py
 
 The verification script runs `./mvnw --batch-mode --no-transfer-progress verify`, uses an ignored repository-local dependency cache, redacts the generated development password and returns Maven's actual exit status. Additional Maven arguments can be supplied for targeted verification. It does not suppress errors or accept failed tests. The smoke script starts the actual JAR on loopback and stops its child process.
 
+The wrapper pins the Maven ZIP's SHA-256. To verify the archive against Maven Central's published SHA-512 and exercise correct/incorrect checksum enforcement with fresh isolated caches, run `python3 scripts/check-maven-wrapper.py`. This downloads the distribution for each check and keeps temporary output under target/. A warm wrapper cache skips download validation, so a normal cached version/build command is not checksum-enforcement evidence. Use unzip for the configured ZIP; the tar.gz fallback is a different archive.
+
 When changing canonical planning, regenerate first:
 
 ```sh

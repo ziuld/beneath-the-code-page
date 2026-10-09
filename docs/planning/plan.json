@@ -189,7 +189,7 @@
       "blocker": "",
       "actual_start": "2026-10-09",
       "actual_finish": null,
-      "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-java-ci.md"],
+      "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-java-ci.md", "harness/evidence/F01-wrapper-checksum.md"],
       "parent_id": "EPIC-MVP",
       "kind": "enabler",
       "stories": [
@@ -210,7 +210,7 @@
           "actual_hours": 0,
           "actual_start": "2026-10-09",
           "actual_finish": "2026-10-09",
-          "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md"],
+          "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-wrapper-checksum.md"],
           "commits": ["57f2c79e6d5d5f1cfebbb4a3bf50f12f21dbf4c5"],
           "requirements": [
             {
@@ -287,7 +287,7 @@
                 "F01-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": ["harness/evidence/F00-F01-java-baseline.md"],
+              "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-wrapper-checksum.md"],
               "commits": [],
               "actual_start": "2026-10-09",
               "actual_finish": "2026-10-09"
@@ -309,7 +309,7 @@
                 "F01-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": ["harness/evidence/F00-F01-java-baseline.md"],
+              "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-wrapper-checksum.md"],
               "commits": [],
               "actual_start": "2026-10-09",
               "actual_finish": "2026-10-09"
