@@ -1,6 +1,6 @@
 # Task — F01 Maven wrapper checksum gap
 
-Status / owner / date: checksum pin and local positive/negative verification complete; integration pending / Ziuld with AI assistance / 2026-10-09.
+Status / owner / date: checksum pin, local positive/negative verification and approved integration accepted / Ziuld with AI assistance / 2026-10-09. Final local closure record: ../evidence/F01-closure.md.
 
 User outcome and authorised scope: add and locally verify the Maven distribution checksum identified during the post-merge F01 audit. No commit, push or repository setting change is authorised by this step.
 
@@ -16,4 +16,4 @@ Verification commands/manual checks: script print-sha256 provenance check; scrip
 
 Results/evidence/actual effort: ../evidence/F01-wrapper-checksum.md. Owner effort remains unreported.
 
-Open issues/next action: local changes need separate commit/publication approval; F01 closure and broader repository-governance follow-ups remain open.
+Open issues/next action: PR #2 is merged and main CI passed; final closure metadata needs separate commit/publication approval. Broader governance follow-ups remain unfinished under the owner-approved scope disposition.

@@ -45,7 +45,7 @@
 <text x="20" y="76">F00 Manual Initializr import</text>
 <rect x="365.00" y="60" width="4.81" height="22" fill="#9bb7a1"><title>F00 Manual Initializr import: 2h, done</title></rect>
 <text x="20" y="110">F01 Java baseline and boundaries</text>
-<rect x="369.81" y="94" width="24.03" height="22" fill="#92908b"><title>F01 Java baseline and boundaries: 10h, in_review</title></rect>
+<rect x="369.81" y="94" width="24.03" height="22" fill="#9bb7a1"><title>F01 Java baseline and boundaries: 10h, done</title></rect>
 <text x="20" y="144">F02 Frontend asset pipeline</text>
 <rect x="393.83" y="128" width="28.83" height="22" fill="#92908b"><title>F02 Frontend asset pipeline: 12h, planned</title></rect>
 <text x="20" y="178">F03 Home and shared EN/ES/FR shell</text>
@@ -78,5 +78,5 @@
 <rect x="1032.97" y="604" width="48.06" height="22" fill="#92908b"><title>F16 Full Phase 1 acceptance: 20h, planned</title></rect>
 <text x="20" y="654">Shared contingency · 59.6h</text>
 <rect x="1081.03" y="638" width="143.21" height="22" fill="#45433f"/>
-<text x="20" y="712">Gray = scheduled effort, not completion. Accepted: 1/17 features. Milestone timing excludes shared contingency.</text>
+<text x="20" y="712">Gray = scheduled effort, not completion. Accepted: 2/17 features. Milestone timing excludes shared contingency.</text>
 </g></svg>

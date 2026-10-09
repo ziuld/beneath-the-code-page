@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: Spring Initializr imported; Java baseline established; product features have not started.**
+**Stage: F00/F01 Java baseline and initial CI accepted; product features have not started.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -53,4 +53,4 @@ The executable is `target/beneath-the-code-0.1.0-SNAPSHOT.jar`. The smoke script
 
 Architecture tests import only production output. Absent capability packages produce explicit skipped checks, while compiled test-only fixtures verify the same strict rules against forbidden and permitted dependencies and cycles. New production packages activate their corresponding rules automatically. No production placeholders are required.
 
-See [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for actual results and acceptance limitations. CI and product features remain pending. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).
+See [final F01 acceptance](harness/evidence/F01-closure.md) and [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for executed checks, integration and limitations. Java CI is integrated and verified; product features and broader governance/security/release work remain planned. [Unfinished follow-ups](docs/planning/risks-and-decisions.md) are explicitly retained in the owner-approved closure scope. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).

@@ -1,6 +1,6 @@
 # Task — F01-UH02 initial Java CI
 
-Status / owner / date: implementation, local verification and remote T04 acceptance complete; integration review pending / Ziuld with AI assistance / 2026-10-09.
+Status / owner / date: implementation, verification and integration accepted / Ziuld with AI assistance / 2026-10-09. Final local closure record: ../evidence/F01-closure.md.
 
 User outcome and authorised scope: T02 implementation, T03 local verification and T04 separately approved PR pass/fail/restoration proof; record actual acceptance in this authorised documentation commit/push. Merge requires separate owner approval.
 
@@ -16,4 +16,4 @@ Verification commands/manual checks: YAML parse and workflow permission/pinning 
 
 Results/evidence/actual effort: ../evidence/F01-java-ci.md. Owner hours remain unreported.
 
-Open issues/next action: T05 integration review and separately authorised merge; no repository settings change is included. The pinned actions' Node.js runtime warning is documented. F02 remains gated by F01 closure.
+Open issues/next action: T05 review of the approved merges/main checks is complete; local closure metadata awaits commit/publication approval. The pinned actions' Node.js runtime maintenance and broader governance follow-ups remain unfinished. F02 has not started.
