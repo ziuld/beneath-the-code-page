@@ -39,6 +39,8 @@ These commands validate documentation and planning data only.
 
 ## Java baseline
 
+Contributor and initial CI conventions: [CONTRIBUTING.md](CONTRIBUTING.md).
+
 Verified local toolchain: Arch Linux OpenJDK/java/javac `25.0.4.1`, Maven `3.10.0` via Wrapper `3.3.4`, Spring Boot `4.1.1`. The wrapper's actual Maven version supersedes the architecture document's provisional `3.9.16`; Boot manages the generated starter/test versions. ArchUnit is explicitly pinned to `1.4.1` in test scope.
 
 ```sh
