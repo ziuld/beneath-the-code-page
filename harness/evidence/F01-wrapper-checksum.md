@@ -56,3 +56,9 @@ Planning checks after evidence updates: `python3 scripts/render-backlog.py` and 
 ## Local commit handoff
 
 The owner subsequently approved creating feature/F01-wrapper-checksum and committing the verified correction. `git switch -c feature/F01-wrapper-checksum` succeeded; planning validation and all 10 planning-rule tests passed again, and Git whitespace checks passed. The coherent commit's actual hash will be reported in the final handoff, avoiding recursive metadata. Remote branch publication remains a separate approval step; no push or PR creation is included in this local commit approval.
+
+## Subsequent approved integration
+
+Separate owner approvals authorised publication of commit `f3c8c4da1965ca91210bbf3beb48a0dd7b6e8db2`, [PR #2](https://github.com/ziuld/beneath-the-code-page/pull/2), and squash merge to main `487220a8eb7f0f5df2a08686c9442007a7e19a4e` at 2026-10-09T17:06:43Z. [PR CI 37963702012](https://github.com/ziuld/beneath-the-code-page/actions/runs/37963702012) passed for the original head; [main CI 37963939987](https://github.com/ziuld/beneath-the-code-page/actions/runs/37963939987) passed for the merged SHA (job 113933439951, 2026-10-09T17:06:49Z–17:07:28Z). Both verified 34 tests, zero failures/errors, 8 explicit skips, actual executable health UP and planning/10-rule-test checks. The separate checksum-enforcement script remains locally executed evidence; no remote script execution is claimed.
+
+Reviewed PR and main trees are identical, and temporary mutation sources are absent. The earlier local/unpublished observations above are historical. The checksum gate is now integrated and accepted; [final F01 closure evidence](F01-closure.md) records owner-approved scope disposition and unfinished governance follow-ups.

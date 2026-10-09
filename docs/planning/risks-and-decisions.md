@@ -29,3 +29,17 @@ Review weekly. Likelihood/impact are qualitative planning judgements, not measur
 | Actual baseline reference device/browser | F05 | Record chosen device and browser versions with benchmark evidence |
 
 Resolved: target folder, public GitHub repository, approved architecture, logo meaning, manual Initializr responsibility, ten hours/week with AI. Do not ask those questions again.
+
+## F01 closure disposition — 2026-10-09
+
+The owner explicitly approved Java-baseline F01 closure after its code/checksum integration and passing CI, retaining the following findings as unfinished follow-up work. This is a recorded scope disposition, not evidence that repository settings or these deliverables exist. The canonical F01 requirements/scenarios are unchanged; later security/release gates remain in force. See [closure evidence](../../harness/evidence/F01-closure.md).
+
+| Follow-up | Status | Owner | Next decision / gate |
+|---|---|---|---|
+| Security-reporting guidance and real private contact/channel | Unfinished | Ziuld | Confirm contact/channel, then author reporting guidance before treating the repository security-reporting baseline as complete |
+| Issue templates | Unfinished | Ziuld with AI assistance | Agree actionable bug/feature intake fields and implement templates before structured external issue intake |
+| Dependency-update configuration | Unfinished | Ziuld | Choose update tool, cadence and maintenance responsibility; automation needs explicit approval |
+| Main protection and required Java check enforcement | Unfinished; main observed unprotected during audit | Ziuld | Agree solo-compatible merge/ruleset policy and explicitly authorise settings changes before claiming enforcement |
+| Pinned actions' Node.js 20 runtime maintenance | Unfinished | Ziuld with AI assistance | Review supported replacement action revisions and verify them in a separate change; current runner forces Node.js 24 and CI passes |
+
+Dependency/secret/SAST scans and their exact tool versions remain planned delivery work, not passing F01 results. Preserve integrated security/release evidence gates in F12/F16. No licence, reporting contact, permission escalation or repository setting is selected implicitly by this disposition.
