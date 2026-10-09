@@ -20,7 +20,7 @@ Add contributor guidance, security-reporting method with real contact, PR templa
 
 Pin action SHAs; default token read-only; no secrets/elevated token for untrusted PR execution; avoid privileged pull_request_target checkout. Use Gitleaks, Trivy and CodeQL (public repository eligibility/configuration verified during setup) or a documented SAST substitute. Choose exact tool/ruleset versions at installation. Critical/high exploitable findings block release; triage disputed/non-applicable findings with owner and expiry rather than silent suppression.
 
-CI workflow files are deliberately not present before the app exists: a green documentation-only workflow would not prove the application builds.
+The initial Java workflow is now defined in `.github/workflows/java.yml`: real Maven verification, executable-JAR smoke and planning integrity checks on pull requests and main pushes. Its action revisions are SHA-pinned; the token is read-only and checkout credentials are not persisted. See [contributor guidance](../../CONTRIBUTING.md) for branch/review conventions, runtime pin and the intended required check. Remote execution and failure-reporting acceptance are still pending; a local pass is not a GitHub run.
 
 ## Local container acceptance
 
