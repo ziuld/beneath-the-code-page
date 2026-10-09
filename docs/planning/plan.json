@@ -185,8 +185,8 @@
       "depends_on": [
         "F00"
       ],
-      "status": "blocked",
-      "blocker": "Initial Java CI workflow and review conventions are implemented and locally verified; F01-UH02-AC02 requires authorised remote failure/pass runs and integration review.",
+      "status": "in_review",
+      "blocker": "",
       "actual_start": "2026-10-09",
       "actual_finish": null,
       "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-java-ci.md"],
@@ -369,8 +369,8 @@
           "description": "As a maintainer, I want to detect invalid dependencies before integration, so that the agreed architecture remains enforceable.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "blocked",
-          "blocker": "Java CI implementation and local boundary checks pass; remote failure-reporting acceptance and committed integration review remain pending.",
+          "status": "in_review",
+          "blocker": "",
           "depends_on": [
             "F01-UH01"
           ],
@@ -380,7 +380,7 @@
           "actual_start": "2026-10-09",
           "actual_finish": null,
           "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-java-ci.md"],
-          "commits": [],
+          "commits": ["ff16f070f0c375888aaf8f4836794bed5df069ea", "5d4fcf39ff03fd81da2c08aa1eb155953c1a5b7e", "ee14bd8e4b43dad348234063ba99645341943355"],
           "requirements": [
             {
               "id": "F01-UH02-R01",
@@ -457,7 +457,7 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F00-F01-java-baseline.md", "harness/evidence/F01-acceptance-review.md", "harness/evidence/F01-java-ci.md"],
-              "commits": [],
+              "commits": ["ff16f070f0c375888aaf8f4836794bed5df069ea"],
               "actual_start": "2026-10-09",
               "actual_finish": "2026-10-09"
             },
@@ -491,8 +491,8 @@
               "baseline_hours": 1.0,
               "forecast_hours": 1.0,
               "actual_hours": 0,
-              "status": "blocked",
-              "blocker": "Workflow permissions reviewed locally; remote failing/restored PR runs require authorised publication and actual GitHub execution evidence.",
+              "status": "done",
+              "blocker": "",
               "depends_on": [
                 "F01-UH02-T03"
               ],
@@ -501,9 +501,9 @@
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
               "evidence": ["harness/evidence/F01-java-ci.md"],
-              "commits": [],
+              "commits": ["ff16f070f0c375888aaf8f4836794bed5df069ea", "5d4fcf39ff03fd81da2c08aa1eb155953c1a5b7e", "ee14bd8e4b43dad348234063ba99645341943355"],
               "actual_start": "2026-10-09",
-              "actual_finish": null
+              "actual_finish": "2026-10-09"
             },
             {
               "id": "F01-UH02-T05",
@@ -513,7 +513,7 @@
               "baseline_hours": 0.25,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "ready",
               "blocker": "",
               "depends_on": [
                 "F01-UH02-T04"
