@@ -1,0 +1,427 @@
+I am continuing the design and implementation of a project called “Beneath the Code”.
+
+I have already completed the product/MVP definition and visual direction. I will attach the Beneath the Code Brand Guidelines and, if available, the project handover/specification document.
+
+Treat those documents as the source of truth. Do not redesign the product or change agreed architectural decisions unless you identify a concrete technical, security, maintainability, or scalability problem. If you recommend changing an existing decision, explain the trade-off first.
+
+PROJECT CONTEXT
+
+Beneath the Code is a developer platform connected to a future YouTube/software-education brand.
+
+Its purpose is to combine:
+1. Practical developer tools.
+2. Deep software-engineering education.
+3. Professional Java architecture.
+4. Strong security and privacy.
+5. A distinctive calm, cinematic developer experience.
+
+The brand philosophy is:
+- Understanding over memorisation.
+- Clarity over spectacle.
+- Calm, precise, premium technical communication.
+- Systems thinking rather than shallow tutorials.
+
+MVP
+
+No users/accounts in Phase 1.
+
+Initial developer tools:
+- JSON Formatter
+- JSON Validator
+- JSON Minifier
+- JSON → YAML
+- YAML → JSON
+- Base64 Encoder/Decoder
+- UUID Generator
+- JWT Decoder
+
+These tools should execute in the browser whenever that is safer and more efficient.
+
+Tool payloads such as JSON, YAML and JWTs must not normally be transmitted to the backend, persisted, logged, or sent to analytics.
+
+The site also contains a Learn section.
+
+The first free course is:
+Java Fundamentals
+
+The course should teach mental models and explain what happens beneath Java rather than being only a syntax tutorial.
+
+INTERNATIONALISATION
+
+MVP languages:
+- English
+- Spanish
+- French
+
+No user-facing text should be hard-coded.
+
+Locale resolution should consider:
+1. Explicit user selection.
+2. Persisted preference.
+3. Browser language.
+4. Configured country default where appropriate.
+5. English fallback.
+
+Spain should default appropriately to Spanish, France to French, and English is the general fallback. Multilingual countries must not be handled with simplistic assumptions.
+
+ARCHITECTURE
+
+The agreed server stack is:
+
+Java
+Spring Boot
+Spring MVC
+Thymeleaf
+Spring Security
+
+Spring Boot is the deployable application.
+
+Spring MVC is the web adapter used by Spring Boot.
+
+Thymeleaf performs server-side HTML rendering.
+
+Typical request:
+
+Browser
+→ HTTP GET/POST
+→ Spring Boot
+→ Spring MVC controller
+→ application/use case where required
+→ view model
+→ Thymeleaf
+→ HTML
+→ Browser
+
+This is NOT a React/Vue SPA.
+
+TypeScript is used selectively for:
+- browser-local developer tools;
+- CodeMirror integration;
+- reusable interactive behaviour;
+- browser-side functionality where Java/server interaction is unnecessary.
+
+HTMX may be used for targeted server interactions and HTML-fragment replacement when useful, but should not be introduced without a reason.
+
+The system should initially be one deployable Spring Boot application.
+
+It should remain stateless where practical so that future horizontal scaling can be:
+
+Internet
+→ Load Balancer
+→ N identical Spring Boot instances
+
+Do NOT introduce microservices in the MVP.
+
+If a future capability genuinely requires independent scaling, isolation, lifecycle, runtime requirements, or ownership, it may later be extracted into a service.
+
+The Spring Boot application can then operate as the browser-facing BFF and orchestrate those services.
+
+Microservices are an evolutionary option, not a target architecture by themselves.
+
+ARCHITECTURAL STYLE
+
+Use:
+- Hexagonal Architecture
+- Clean Architecture principles
+- SOLID
+- capability-oriented/modular organisation
+- explicit dependency direction
+- pragmatic abstractions
+
+Do not create interfaces or layers merely to make the project appear “hexagonal”.
+
+Domain code must not depend on Spring or infrastructure.
+
+Infrastructure may depend inward.
+
+Controllers should remain thin.
+
+Business/application logic must not accumulate in controllers.
+
+Folder names alone do not constitute architecture; dependency direction and responsibility boundaries matter.
+
+FRONTEND / SSR
+
+The project is server-rendered first and browser-enhanced where appropriate.
+
+Thymeleaf builds pages on the server.
+
+TypeScript does not own global application routing or replace server-side rendering.
+
+For example:
+
+GET /tools/json-formatter
+→ Spring Boot
+→ Thymeleaf
+→ HTML
+→ browser
+
+Then:
+
+User pastes JSON
+→ browser TypeScript
+→ local processing
+→ result
+
+No POST containing the user's JSON is required.
+
+DESIGN SYSTEM
+
+There must be one central BTC Design System.
+
+Do not create independent CSS/UI implementations per page.
+
+Centralise:
+- colours
+- typography
+- spacing
+- breakpoints
+- borders
+- radii
+- motion
+- component states
+- accessibility behaviour
+
+Reusable components should include:
+- buttons
+- links
+- inputs
+- selects
+- alerts
+- dialogs
+- toasts
+- cards
+- tool cards
+- course cards
+- CodeMirror/editor wrapper
+- tool workspace
+- navbar
+- footer
+- breadcrumbs
+- language selector
+- tabs
+- badges
+- course/lesson navigation
+
+A warning dialog, for example, must be defined once and reused everywhere.
+
+The design-system component should own its visual style and common UX/accessibility behaviour.
+
+VISUAL DIRECTION
+
+The initial visual direction has been approved.
+
+It combines:
+- cinematic editorial identity;
+- precise developer workspace;
+- near-black backgrounds;
+- warm ivory/off-white typography;
+- graphite surfaces/borders;
+- restrained monochrome presentation;
+- large negative space;
+- wireframe software/system structures;
+- subtle flowing contour/data lines.
+
+Avoid:
+- cyberpunk;
+- gaming UI;
+- excessive glow;
+- purple SaaS gradients;
+- generic glassmorphism;
+- visual clutter.
+
+Use three typography roles:
+1. Editorial/display serif for major brand/course statements.
+2. Sans-serif for interface/product UI.
+3. Monospace for code and technical metadata.
+
+Marketing/learning areas can be more cinematic.
+
+Tool/editor areas should become visually quiet and functional.
+
+Initial palette direction:
+
+Canvas          #050505
+Surface         #0B0B0B
+Raised surface  #111111
+Primary text    #EDEAE4
+Secondary text  #92908B
+Muted text      #66645F
+Border          #292927
+Strong border   #45433F
+Bright text     #F7F7F5
+
+Semantic success/warning/error/info colours should be restrained and used for meaning rather than branding.
+
+ACCESSIBILITY
+
+Target WCAG 2.2 AA.
+
+Include:
+- keyboard navigation;
+- focus-visible states;
+- semantic HTML;
+- accessible dialogs;
+- appropriate ARIA where required;
+- reduced-motion support;
+- contrast compliance;
+- no colour-only status indicators.
+
+SECURITY
+
+Security is part of the architecture from the beginning.
+
+Use Spring Security even though Phase 1 has no authentication.
+
+Design towards applicable OWASP ASVS controls.
+
+Important areas:
+- HTTPS for production
+- restrictive CSP
+- secure HTTP headers
+- output encoding
+- input validation
+- safe YAML processing
+- request/resource limits
+- rate limiting where relevant
+- secure errors
+- dependency scanning
+- secret detection
+- SAST
+- container hardening
+- secure logging
+- supply-chain awareness
+
+Never expose stack traces to users.
+
+Never log developer-tool payloads, JWTs, secrets or similar sensitive input.
+
+PRIVACY
+
+Browser-first processing is a formal architectural principle.
+
+The UI should make local processing clear where appropriate:
+“Processed locally in your browser. Your content is not sent to Beneath the Code.”
+
+LOCAL DEVELOPMENT / DEPLOYMENT
+
+Phase 1 is local-first.
+
+Use:
+- Git
+- GitHub
+- Docker Desktop
+- Docker / Docker Compose where useful
+
+Do not design the cloud infrastructure yet.
+
+Cloud hosting, production infrastructure and broader deployment architecture are Phase 2 decisions.
+
+DATABASE
+
+No database is required merely for architectural completeness.
+
+Introduce PostgreSQL when a real persistence requirement exists, likely with Phase 2 user/account/course-progress capabilities.
+
+REPOSITORY DIRECTION
+
+One repository and one primary deployable application.
+
+Preferred conceptual structure:
+
+beneath-the-code/
+├── docs/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   ├── frontend/
+│   │   └── resources/
+│   │       ├── templates/
+│   │       ├── static/
+│   │       └── i18n/
+│   └── test/
+├── docker/
+├── compose.yaml
+├── pom.xml
+├── package.json
+├── tsconfig.json
+└── Dockerfile
+
+src/main/java:
+Java/backend source.
+
+src/main/frontend:
+TypeScript/design-system/browser source.
+
+src/main/resources/templates:
+Thymeleaf templates.
+
+src/main/resources/static:
+Browser-ready/compiled assets rather than arbitrary raw frontend source.
+
+The exact structure should now be validated and refined as part of the technical architecture.
+
+PHASE 2
+
+Potential future capabilities:
+- authentication
+- profiles
+- course progress
+- saved preferences
+- saved snippets
+- favourites
+- additional courses
+- APIs
+- cloud deployment
+- horizontally scaled Spring Boot instances
+- specialised microservices only when justified
+
+CURRENT TASK
+
+We are now ready to move from product definition into technical architecture.
+
+Do NOT start implementing the whole application immediately.
+
+First produce the “Beneath the Code Technical Architecture & Repository Bootstrap Specification v1”.
+
+Work through:
+
+1. Validate the architecture above.
+2. Select exact stable/LTS Java and Spring Boot versions appropriate at implementation time.
+3. Define Maven project/module strategy.
+4. Define exact Java package structure.
+5. Define the Hexagonal Architecture boundaries and dependency rules.
+6. Define Spring Boot/Spring MVC/Thymeleaf request flow.
+7. Define frontend source/build architecture.
+8. Decide the TypeScript build tooling with minimal unnecessary complexity.
+9. Define the Design System physical structure.
+10. Define i18n implementation.
+11. Define Spring Security baseline.
+12. Define CSP/security-header strategy.
+13. Define testing stack and test locations.
+14. Define ArchUnit architecture rules.
+15. Define Docker/local development approach.
+16. Define GitHub repository conventions.
+17. Define CI pipeline.
+18. Define observability/logging baseline.
+19. Produce the final repository tree.
+20. Produce the first implementation backlog.
+
+Then define Sprint 0 and Sprint 1.
+
+The first full vertical functional slice after the foundations should be JSON Formatter:
+- server-rendered page;
+- reusable design-system components;
+- EN/ES/FR;
+- CodeMirror;
+- local TypeScript JSON processing;
+- accessibility;
+- Spring Security headers;
+- tests;
+- architecture checks.
+
+When making technical decisions, prefer the simplest architecture that preserves security, maintainability and future evolution.
+
+Before asking me questions, inspect the supplied documentation and determine whether the answer already exists.
+
+For substantial technical decisions, explain the trade-off briefly and give a recommendation.

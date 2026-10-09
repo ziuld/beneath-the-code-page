@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1260 722" role="img" aria-labelledby="title desc">
+<title id="title">Beneath the Code feature Gantt</title>
+<desc id="desc">Serial plan at 10 owner hours per week. All status and hours are also available in the adjacent feature table. No committed start date.</desc>
+<rect width="100%" height="100%" fill="#0b0b0b"/>
+<g font-family="system-ui,sans-serif" font-size="13" fill="#edeae4">
+<text x="20" y="25" font-size="17">Feature schedule · relative weeks · AI-assisted</text>
+<path d="M365.0 48 V687" stroke="#292927"/>
+<text x="365.0" y="43" text-anchor="middle">W1</text>
+<path d="M413.1 48 V687" stroke="#292927"/>
+<text x="413.1" y="43" text-anchor="middle">W3</text>
+<path d="M461.1 48 V687" stroke="#292927"/>
+<text x="461.1" y="43" text-anchor="middle">W5</text>
+<path d="M509.2 48 V687" stroke="#292927"/>
+<text x="509.2" y="43" text-anchor="middle">W7</text>
+<path d="M557.2 48 V687" stroke="#292927"/>
+<text x="557.2" y="43" text-anchor="middle">W9</text>
+<path d="M605.3 48 V687" stroke="#292927"/>
+<text x="605.3" y="43" text-anchor="middle">W11</text>
+<path d="M653.3 48 V687" stroke="#292927"/>
+<text x="653.3" y="43" text-anchor="middle">W13</text>
+<path d="M701.4 48 V687" stroke="#292927"/>
+<text x="701.4" y="43" text-anchor="middle">W15</text>
+<path d="M749.4 48 V687" stroke="#292927"/>
+<text x="749.4" y="43" text-anchor="middle">W17</text>
+<path d="M797.5 48 V687" stroke="#292927"/>
+<text x="797.5" y="43" text-anchor="middle">W19</text>
+<path d="M845.6 48 V687" stroke="#292927"/>
+<text x="845.6" y="43" text-anchor="middle">W21</text>
+<path d="M893.6 48 V687" stroke="#292927"/>
+<text x="893.6" y="43" text-anchor="middle">W23</text>
+<path d="M941.7 48 V687" stroke="#292927"/>
+<text x="941.7" y="43" text-anchor="middle">W25</text>
+<path d="M989.7 48 V687" stroke="#292927"/>
+<text x="989.7" y="43" text-anchor="middle">W27</text>
+<path d="M1037.8 48 V687" stroke="#292927"/>
+<text x="1037.8" y="43" text-anchor="middle">W29</text>
+<path d="M1085.8 48 V687" stroke="#292927"/>
+<text x="1085.8" y="43" text-anchor="middle">W31</text>
+<path d="M1133.9 48 V687" stroke="#292927"/>
+<text x="1133.9" y="43" text-anchor="middle">W33</text>
+<path d="M1181.9 48 V687" stroke="#292927"/>
+<text x="1181.9" y="43" text-anchor="middle">W35</text>
+<path d="M1230.0 48 V687" stroke="#292927"/>
+<text x="1230.0" y="43" text-anchor="middle">W37</text>
+<text x="20" y="76">F00 Manual Initializr import</text>
+<rect x="365.00" y="60" width="4.81" height="22" fill="#9bb7a1"><title>F00 Manual Initializr import: 2h, done</title></rect>
+<text x="20" y="110">F01 Java baseline and boundaries</text>
+<rect x="369.81" y="94" width="24.03" height="22" fill="#92908b"><title>F01 Java baseline and boundaries: 10h, in_progress</title></rect>
+<text x="20" y="144">F02 Frontend asset pipeline</text>
+<rect x="393.83" y="128" width="28.83" height="22" fill="#92908b"><title>F02 Frontend asset pipeline: 12h, planned</title></rect>
+<text x="20" y="178">F03 Home and shared EN/ES/FR shell</text>
+<rect x="422.67" y="162" width="43.25" height="22" fill="#92908b"><title>F03 Home and shared EN/ES/FR shell: 18h, planned</title></rect>
+<text x="20" y="212">F04 Security and locale flow</text>
+<rect x="465.92" y="196" width="33.64" height="22" fill="#92908b"><title>F04 Security and locale flow: 14h, planned</title></rect>
+<text x="20" y="246">F05 Editor and CSP proof</text>
+<rect x="499.56" y="230" width="33.64" height="22" fill="#92908b"><title>F05 Editor and CSP proof: 14h, planned</title></rect>
+<text x="20" y="280">F06 JSON Formatter</text>
+<rect x="533.19" y="264" width="57.67" height="22" fill="#92908b"><title>F06 JSON Formatter: 24h, planned</title></rect>
+<text x="20" y="314">F07 JSON Validator and Minifier</text>
+<rect x="590.86" y="298" width="24.03" height="22" fill="#92908b"><title>F07 JSON Validator and Minifier: 10h, planned</title></rect>
+<text x="20" y="348">F08 Base64 Encoder/Decoder</text>
+<rect x="614.89" y="332" width="14.42" height="22" fill="#92908b"><title>F08 Base64 Encoder/Decoder: 6h, planned</title></rect>
+<text x="20" y="382">F09 UUID Generator</text>
+<rect x="629.31" y="366" width="9.61" height="22" fill="#92908b"><title>F09 UUID Generator: 4h, planned</title></rect>
+<text x="20" y="416">F10 JWT Decoder</text>
+<rect x="638.92" y="400" width="19.22" height="22" fill="#92908b"><title>F10 JWT Decoder: 8h, planned</title></rect>
+<text x="20" y="450">F11 JSON and YAML converters</text>
+<rect x="658.14" y="434" width="57.67" height="22" fill="#92908b"><title>F11 JSON and YAML converters: 24h, planned</title></rect>
+<text x="20" y="484">F12 Tool suite and local runtime</text>
+<rect x="715.81" y="468" width="33.64" height="22" fill="#92908b"><title>F12 Tool suite and local runtime: 14h, planned</title></rect>
+<text x="20" y="518">F13 Learning pages and navigation</text>
+<rect x="749.44" y="502" width="38.44" height="22" fill="#92908b"><title>F13 Learning pages and navigation: 16h, planned</title></rect>
+<text x="20" y="552">F14 Course outline and pilot</text>
+<rect x="787.89" y="536" width="43.25" height="22" fill="#92908b"><title>F14 Course outline and pilot: 18h, planned</title></rect>
+<text x="20" y="586">F15 Complete Java Fundamentals</text>
+<rect x="831.14" y="570" width="201.83" height="22" fill="#92908b"><title>F15 Complete Java Fundamentals: 84h, planned</title></rect>
+<text x="20" y="620">F16 Full Phase 1 acceptance</text>
+<rect x="1032.97" y="604" width="48.06" height="22" fill="#92908b"><title>F16 Full Phase 1 acceptance: 20h, planned</title></rect>
+<text x="20" y="654">Shared contingency · 59.6h</text>
+<rect x="1081.03" y="638" width="143.21" height="22" fill="#45433f"/>
+<text x="20" y="712">Gray = scheduled effort, not completion. Accepted: 1/17 features. Milestone timing excludes shared contingency.</text>
+</g></svg>
