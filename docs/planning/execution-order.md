@@ -29,7 +29,7 @@ One active task at a time. The order includes owner capacity, not only technical
 | 21 | [F02-UH02-T02](features/F02.md#f02-uh02) | implementation | 1.25 | done | F02-UH02-T01 |
 | 22 | [F02-UH02-T03](features/F02.md#f02-uh02) | verification | 1.25 | done | F02-UH02-T02 |
 | 23 | [F02-UH02-T04](features/F02.md#f02-uh02) | verification | 1 | done | F02-UH02-T03 |
-| 24 | [F02-UH02-T05](features/F02.md#f02-uh02) | closure | 0.25 | in_review | F02-UH02-T04 |
+| 24 | [F02-UH02-T05](features/F02.md#f02-uh02) | closure | 0.25 | done | F02-UH02-T04 |
 | 25 | [F03-UH01-T01](features/F03.md#f03-uh01) | analysis | 0.5 | planned | F02 |
 | 26 | [F03-UH01-T02](features/F03.md#f03-uh01) | implementation | 2.5 | planned | F03-UH01-T01 |
 | 27 | [F03-UH01-T03](features/F03.md#f03-uh01) | verification | 2.25 | planned | F03-UH01-T02 |

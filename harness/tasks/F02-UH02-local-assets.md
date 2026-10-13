@@ -35,3 +35,10 @@ in [evidence](../evidence/F02-UH02-local-assets.md). Owner effort unreported.
 Next action: owner accepted the slice and authorised local commits, post-commit
 verification and F02 closure. Record actual integration/commit evidence, regenerate
 planning views and commit closure metadata. No push or new OpenSpec migration.
+
+Completion: integrated on local main in `b1fb149`; post-commit clean verification
+and executable health smoke passed with a clean tracked tree. Owner acceptance
+recorded in evidence; T01–T05, F02-UH02 and F02 are done. Both renderers, planning
+integrity, 15 planning-rule tests, strict existing main-spec validation and whitespace
+checks passed. Closure metadata is ready for the authorised local commit;
+no F03 implementation authorised.

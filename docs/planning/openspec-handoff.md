@@ -1,5 +1,12 @@
 # OpenSpec handoff — F02-UH01 behaviour adopted
 
+F02 closure update, 2026-10-13: F02-UH02 is owner-accepted and locally integrated
+in `b1fb149`, with clean post-commit verification and health smoke. Both stories
+and F02 are done. F02-UH02 remains plan-owned; this slice did not create an OpenSpec
+change or migrate its behaviour. The existing UH01 main spec/archive are unchanged.
+See [local-assets evidence](../../harness/evidence/F02-UH02-local-assets.md).
+No remote publication occurred; this supersedes the earlier UH02-planned note.
+
 Final update, 2026-10-13: F02-UH01 is done, owner-accepted and locally integrated
 in `938b97c`, with clean post-commit verification. The change is archived at
 `openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/`; its two requirements

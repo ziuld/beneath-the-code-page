@@ -89,3 +89,26 @@ evidence. Nothing will be pushed. F02-UH02's behavioural requirements remain in
 plan.json; no new OpenSpec change or migration was requested for this slice.
 This supersedes the earlier pending-acceptance observation; integration evidence
 will be added after the actual implementation commit and verification.
+
+## Final local integration and feature closure
+
+Accepted implementation committed directly on the existing local main branch as
+`b1fb149`. Post-commit `python3 scripts/verify-java-baseline.py clean` exited 0:
+15 frontend tests, 65 Java unit/context/architecture cases (7 explicit skips),
+15 packaged cases, zero failures/errors. The tracked working tree was clean before
+and after verification. Post-commit executable health smoke exited 0, HTTP 200/UP,
+child stopped with expected status 143. Artifact SHA-256 remains
+`84bde68e5c90c4979262e226956a575e84a38aac41ee977602028fae1aff4f32`.
+
+T05/story and parent F02 close with explicit owner acceptance, reviewed complete
+tasks, actual evidence, fulfilled prerequisites and the real implementation commit.
+Both F02 stories are done. Closure metadata is committed separately. No remote
+publication/CI is claimed; F03 is not started. Actual effort remains unreported,
+not filled using estimates. F02-UH01 remains OpenSpec-owned and archived;
+F02-UH02 remains plan-owned as explicitly agreed by the owner.
+
+Closure verification: both planning renderers executed; planning integrity passed,
+all 15 planning-rule tests passed, strict existing main-spec validation passed and
+whitespace checks passed. Read-only comparison confirmed original behaviour/IDs,
+effort, UH01 and unrelated features preserved; all F02 story/task states done with
+actual evidence and commit references, with no leftover fixture JAR copies.

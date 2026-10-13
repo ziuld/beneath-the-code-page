@@ -1,5 +1,18 @@
 # Current handoff
 
+F02 final handoff, 2026-10-13: **F02 is done**. F02-UH02/T01–T05 were explicitly
+accepted by the owner and integrated on local main in `b1fb149`; F02-UH01 remains
+accepted/integrated in `938b97c` and archived. Post-commit clean verification passed
+15 frontend tests, 65 Java cases (7 explicit absent-capability skips), 15 packaged
+cases; original executable health smoke passed. Both requirements/scenarios and
+pure-layer import boundaries are evidenced in `harness/evidence/F02-UH02-local-assets.md`.
+Local watch uses a single Spring origin, per-render manifest reload and direct
+generated files, without HMR. Non-local/mixed-profile filesystem configurations
+fail safely before startup binding. Owner-approved VS Code workspace auto-build
+is disabled; explicit Maven owns builds. F02-UH01 behaviour is OpenSpec-owned;
+F02-UH02 stays plan-owned. No push/remote CI/publication or F03 start. Next feature
+is F03 only when requested. Earlier handoffs below are historical.
+
 F02-UH02 implementation update, 2026-10-13: local build-watch serving and
 per-render manifest reload are implemented; production/mixed-profile filesystem
 rejection and pure algorithm/domain lint checks are verified. Clean verification
