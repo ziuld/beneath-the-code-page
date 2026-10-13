@@ -17,4 +17,11 @@ Plan and results:
    story/T05 with the real commit reference, archive, regenerate/check and commit
    closure records. Do not mark F02 done or start F02-UH02.
 
+Result: implementation integrated on local main in `938b97c`; clean post-commit
+verification and health smoke passed. Owner acceptance recorded; story/T05 closed.
+Main-spec synchronisation verified exactly, then change archived with 12/12 tasks.
+Closure metadata and regenerated views passed planning integrity, all 15 planning
+tests, strict main-spec validation and whitespace checks; ready for the final local
+closure commit. No scope beyond F02-UH01 was completed or started.
+
 Evidence: [integration results](../evidence/F02-UH01-integration.md).

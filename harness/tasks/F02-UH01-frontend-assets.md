@@ -6,7 +6,7 @@ User outcome and authorised scope: Build hashed JS/CSS into the executable appli
 
 Prerequisites and files read: F01 is done in the canonical plan and supported by existing integration evidence. Read current handoff, technical architecture/feasibility, hierarchy, F02 dossier, canonical F01/F02 entries, EARS/Gherkin, all CLI-returned OpenSpec context files, POM, root entry point, architecture tests, build/smoke scripts and task template. Existing uncommitted setup/proposal work is preserved.
 
-Acceptance criteria (link, do not drift): [F02-UH01-R01/R02 and AC01/AC02](../../openspec/changes/f02-uh01-frontend-assets/specs/packaged-browser-assets/spec.md); canonical authority remains `docs/planning/plan.json`.
+Acceptance criteria (link, do not drift): [F02-UH01-R01/R02 and AC01/AC02](../../openspec/specs/packaged-browser-assets/spec.md); current behaviour is OpenSpec-owned (ADR 004), tracking remains in `docs/planning/plan.json`.
 
 Implementation steps:
 1. Confirm tool publication/compatibility and exact pins; build a minimal CSS-importing site entry with local frontend checks.

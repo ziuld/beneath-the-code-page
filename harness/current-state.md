@@ -1,5 +1,16 @@
 # Current handoff
 
+Final handoff, 2026-10-13: F02-UH01 and T01–T05 are **done**, explicitly accepted
+by the owner and integrated on local main in `938b97c`. Clean post-commit checks
+passed: 1 frontend, 54 Java cases (7 explicit absent-capability skips), 9 packaged
+cases; health smoke passed. The main OpenSpec specification owns this story's
+behaviour (ADR 004); plan.json owns tracking. Change archived under
+`openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/` after verifying
+exact synchronisation and all 12 task checkboxes. F02 remains in_progress;
+F02-UH02 remains planned. Next authorised work has not been requested; do not start
+F02-UH02 automatically. No push/remote CI/publication occurred. Evidence:
+`harness/evidence/F02-UH01-integration.md`. Earlier updates below are historical.
+
 Integration update, 2026-10-13: owner accepted F02-UH01 and authorised local
 commits including related OpenSpec setup/proposal, synchronisation and archival.
 The role-validation review finding is fixed and regression-tested. Clean verify

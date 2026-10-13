@@ -4,10 +4,10 @@ Date: 2026-10-13. Scope: authorised planning only, prepared with AI assistance f
 
 ## Delivered artifacts
 
-- [Proposal](../../openspec/changes/f02-uh01-frontend-assets/proposal.md): bounded F02-UH01 scope and new `packaged-browser-assets` capability.
-- [Delta specification](../../openspec/changes/f02-uh01-frontend-assets/specs/packaged-browser-assets/spec.md): R01/R02 and AC01/AC02 with unchanged EARS and Given/When/Then semantics, apart from the required uppercase SHALL keyword.
-- [Design](../../openspec/changes/f02-uh01-frontend-assets/design.md): Maven-owned assets, private manifest resolution, test-only packaged rendering and safe startup rejection.
-- [Tasks](../../openspec/changes/f02-uh01-frontend-assets/tasks.md): five canonical task IDs, subdivided into 12 unfinished checklist items, preserving the 8h story estimate without additional effort.
+- [Proposal](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/proposal.md): bounded F02-UH01 scope and new `packaged-browser-assets` capability.
+- [Delta specification](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/specs/packaged-browser-assets/spec.md): R01/R02 and AC01/AC02 with unchanged EARS and Given/When/Then semantics, apart from the required uppercase SHALL keyword.
+- [Design](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/design.md): Maven-owned assets, private manifest resolution, test-only packaged rendering and safe startup rejection.
+- [Tasks](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/tasks.md): five canonical task IDs, subdivided into 12 checklist items (unfinished at proposal time), preserving the 8h story estimate without additional effort. Links updated after authorised archival.
 
 ## Executed checks
 

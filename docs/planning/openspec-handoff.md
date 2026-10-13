@@ -1,4 +1,11 @@
-# OpenSpec handoff — initialised, behavioural adoption pending
+# OpenSpec handoff — F02-UH01 behaviour adopted
+
+Final update, 2026-10-13: F02-UH01 is done, owner-accepted and locally integrated
+in `938b97c`, with clean post-commit verification. The change is archived at
+`openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/`; its two requirements
+are synchronised into the main `packaged-browser-assets` specification.
+F02-UH02 remains planned and F02 stays open. No remote publication occurred.
+See [integration evidence](../../harness/evidence/F02-UH01-integration.md).
 
 Current ownership (2026-10-13): F02-UH01 now uses
 `openspec/specs/packaged-browser-assets/spec.md` as its sole editable behavioural
@@ -9,7 +16,7 @@ is not authorised. This supersedes the historical observations below.
 
 Implementation update, 2026-10-13: F02-UH01 is locally implemented and verified, with [execution evidence](../../harness/evidence/F02-UH01-frontend-assets.md). Canonical T01–T04 are done; story/T05 remain in_review pending integration/final acceptance. No commit, publication, sync/archive or behavioural ownership migration occurred. plan.json remains authoritative; this supersedes the earlier proposal-only implementation observation below.
 
-Proposal update, 2026-10-13: [f02-uh01-frontend-assets](../../openspec/changes/f02-uh01-frontend-assets/proposal.md) has been prepared and strictly validated for F02-UH01, retaining the existing requirement, scenario and task IDs. See [proposal evidence](../../harness/evidence/F02-UH01-openspec-proposal.md). Implementation and behavioural adoption remain pending; plan.json stays authoritative. The setup account below describes the earlier initialisation state, not the current change inventory.
+Historical proposal update, 2026-10-13: [f02-uh01-frontend-assets](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/proposal.md) was prepared and strictly validated for F02-UH01, retaining the existing requirement, scenario and task IDs. See [proposal evidence](../../harness/evidence/F02-UH01-openspec-proposal.md). Implementation and behavioural adoption were pending at that time. The setup account below describes the earlier initialisation state, not the current change inventory.
 
 On 2026-10-13, the owner authorised project initialisation with OpenCode integration. The existing OpenSpec CLI 1.14.1 was used without a global update. Initialisation created `openspec/`, its English `spec-driven` configuration, and six skills and six commands under `.opencode/`. See `../../harness/evidence/openspec-setup.md`. No proposed change or behavioural ownership migration has been created yet.
 

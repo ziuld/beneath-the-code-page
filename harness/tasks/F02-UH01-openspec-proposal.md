@@ -6,7 +6,7 @@ User outcome and authorised scope: Create `f02-uh01-frontend-assets` and all spe
 
 Prerequisites and files read: Current handoff, architecture and feasibility review, hierarchy/F02 dossier, canonical F01/F02 tracker entries, F02-UH01 Gherkin, OpenSpec handoff/configuration and installed artifact instructions; existing POM, application YAML, context/ArchUnit tests, Java CI/build script, F01 closure evidence and ignore rules. F01 is accepted; no frontend implementation exists.
 
-Acceptance criteria (link, do not drift): [Proposed delta](../../openspec/changes/f02-uh01-frontend-assets/specs/packaged-browser-assets/spec.md), translated from the canonical tracker with unchanged R01/R02 and AC01/AC02.
+Acceptance criteria (link, do not drift): [Proposed delta](../../openspec/changes/archive/2026-10-13-f02-uh01-frontend-assets/specs/packaged-browser-assets/spec.md), translated from the canonical tracker with unchanged R01/R02 and AC01/AC02. Link updated after authorised archival; historical planning results below are preserved.
 
 Implementation steps: Inspect baseline and capability inventory; create proposal, delta specification, design and ordered tasks; validate artifacts and repository planning integrity. This is proposal preparation, not F02 implementation.
 
