@@ -8,7 +8,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
@@ -19,22 +18,24 @@ public final class AssetManifest {
 
 	static final String SITE_ENTRY = "entries/site.ts";
 	private final AssetReferences site;
+	private final AssetSource source;
 
-	public AssetManifest() {
+	public AssetManifest(AssetSource source) {
+		this.source = source;
 		this.site = loadManifest();
 	}
 
 	public AssetReferences site() {
-		return site;
+		return source.local() ? loadManifest() : site;
 	}
 
-	private static AssetReferences loadManifest() {
-		var manifest = new ClassPathResource("asset-manifest.json");
+	private AssetReferences loadManifest() {
+		var manifest = source.resource("asset-manifest.json");
 		if (!manifest.exists()) {
 			throw failure("MANIFEST_MISSING");
 		}
 		try (var input = manifest.getInputStream()) {
-			return resolve(input, path -> new ClassPathResource(path).exists());
+			return resolve(input, path -> source.resource(path).exists());
 		}
 		catch (IllegalStateException exception) {
 			throw exception;

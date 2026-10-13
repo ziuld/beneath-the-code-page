@@ -58,19 +58,7 @@ class PackagedAssetsIT {
 	@Test
 	void packagedFixtureRendersAndServesTheMatchingScriptAndStylesheet() throws Exception {
 		byte[] before = digest(JAR);
-		var extras = new LinkedHashMap<String, byte[]>();
-		for (var type : new String[] { "AssetFixtureApplication", "AssetFixtureController" }) {
-			var name = "btc/fixtures/" + type + ".class";
-			extras.put("BOOT-INF/classes/" + name, Files.readAllBytes(CLASSES.resolve(name)));
-		}
-		extras.put("BOOT-INF/classes/templates/asset-fixture.html", Files.readAllBytes(CLASSES.resolve("asset-fixture/page.html")));
-		String executableManifest;
-		try (var archive = new ZipFile(JAR.toFile())) {
-			executableManifest = new String(bytes(archive, "META-INF/MANIFEST.MF"), StandardCharsets.UTF_8)
-					.replace("Start-Class: dev.beneaththecode.BeneathTheCodeApplication", "Start-Class: btc.fixtures.AssetFixtureApplication");
-		}
-		extras.put("META-INF/MANIFEST.MF", executableManifest.getBytes(StandardCharsets.UTF_8));
-		var fixture = fixture("render", extras, false);
+		var fixture = renderingFixture();
 		try (var running = new RunningJar(fixture)) {
 			running.awaitReady();
 			var response = running.get("/__asset-fixture");
@@ -87,6 +75,136 @@ class PackagedAssetsIT {
 		}
 		assertThat(digest(JAR)).isEqualTo(before);
 		Files.delete(fixture);
+	}
+
+	private static Path renderingFixture() throws Exception {
+		var extras = new LinkedHashMap<String, byte[]>();
+		for (var type : new String[] { "AssetFixtureApplication", "AssetFixtureController" }) {
+			var name = "btc/fixtures/" + type + ".class";
+			extras.put("BOOT-INF/classes/" + name, Files.readAllBytes(CLASSES.resolve(name)));
+		}
+		extras.put("BOOT-INF/classes/templates/asset-fixture.html", Files.readAllBytes(CLASSES.resolve("asset-fixture/page.html")));
+		String executableManifest;
+		try (var archive = new ZipFile(JAR.toFile())) {
+			executableManifest = new String(bytes(archive, "META-INF/MANIFEST.MF"), StandardCharsets.UTF_8)
+					.replace("Start-Class: dev.beneaththecode.BeneathTheCodeApplication", "Start-Class: btc.fixtures.AssetFixtureApplication");
+		}
+		extras.put("META-INF/MANIFEST.MF", executableManifest.getBytes(StandardCharsets.UTF_8));
+		return fixture("render", extras, false);
+	}
+
+	/** F02-UH02-AC01: a real watcher, one running server, and successive page loads. */
+	@Test
+	void localPageServesTwoSuccessiveWatcherRebuildsWithoutRestart() throws Exception {
+		Files.createDirectories(OUTPUT);
+		var workspace = Files.createTempDirectory(OUTPUT, "watch-").toAbsolutePath();
+		var entries = Files.createDirectories(workspace.resolve("entries"));
+		var output = workspace.resolve("built");
+		writeWatchInputs(entries, "FIRST");
+		var mapper = JsonMapper.builder().build();
+		var config = workspace.resolve("vite.config.mjs");
+		Files.writeString(config, "import config from " + mapper.writeValueAsString(Path.of("src/main/frontend/vite.config.ts").toAbsolutePath().toUri().toString())
+				+ "; export default {...config, root: " + mapper.writeValueAsString(workspace.toString())
+				+ ", build: {...config.build, outDir: " + mapper.writeValueAsString(output.toString())
+				+ ", rollupOptions: {input: {site: " + mapper.writeValueAsString(entries.resolve("site.ts").toString()) + "}}}};");
+		var watcher = new ProcessBuilder(Path.of("target/frontend-tooling/node/node").toAbsolutePath().toString(),
+				Path.of("src/main/frontend/node_modules/vite/bin/vite.js").toAbsolutePath().toString(),
+				"build", "--watch", "--config", config.toString()).redirectErrorStream(true)
+				.redirectOutput(workspace.resolve("watch.log").toFile()).start();
+		Path fixture = null;
+		byte[] before = digest(JAR);
+		try {
+			var first = awaitWatchAssets(output, watcher, "FIRST");
+			fixture = renderingFixture();
+			try (var running = new RunningJar(fixture, "--spring.profiles.active=local", "--btc.assets.directory=" + output)) {
+				running.awaitReady();
+				assertLocalPage(running, output, first, "FIRST");
+				for (String version : new String[] { "SECOND", "THIRD" }) {
+					writeWatchInputs(entries, version);
+					var rebuilt = awaitWatchAssets(output, watcher, version);
+					assertThat(rebuilt.script()).isNotEqualTo(first.script());
+					assertThat(rebuilt.stylesheets()).isNotEqualTo(first.stylesheets());
+					assertLocalPage(running, output, rebuilt, version);
+					first = rebuilt;
+				}
+				assertThat(running.get("/asset-manifest.json").statusCode()).isEqualTo(404);
+				assertThat(running.get("/assets/asset-manifest.json").statusCode()).isEqualTo(404);
+			}
+		}
+		finally {
+			watcher.destroy();
+			if (!watcher.waitFor(5, TimeUnit.SECONDS)) {
+				watcher.destroyForcibly();
+				assertThat(watcher.waitFor(5, TimeUnit.SECONDS)).isTrue();
+			}
+			if (fixture != null) {
+				Files.deleteIfExists(fixture);
+			}
+		}
+		assertThat(digest(JAR)).isEqualTo(before);
+	}
+
+	private static void writeWatchInputs(Path entries, String version) throws IOException {
+		Files.writeString(entries.resolve("site.ts"), "import './site.css'; document.body.dataset.assetFixture = '" + version + "_JS';");
+		Files.writeString(entries.resolve("site.css"), "body { --asset-fixture: " + version + "_CSS; }");
+	}
+
+	private static AssetManifest.AssetReferences awaitWatchAssets(Path output, Process watcher, String version) throws Exception {
+		long deadline = System.nanoTime() + Duration.ofSeconds(30).toNanos();
+		while (System.nanoTime() < deadline) {
+			assertThat(watcher.isAlive()).as("Vite watcher remains alive").isTrue();
+			try (var input = Files.newInputStream(output.resolve("asset-manifest.json"))) {
+				var references = AssetManifest.resolve(input, path -> Files.isRegularFile(output.resolve(path)));
+				if (Files.readString(output.resolve("static" + references.script())).contains(version + "_JS")
+						&& Files.readString(output.resolve("static" + references.stylesheets().getFirst())).contains(version + "_CSS")) {
+					return references;
+				}
+			}
+			catch (IOException | IllegalStateException exception) {
+				// Watch output may be between writes; wait for the completed expected build.
+			}
+			Thread.sleep(100);
+		}
+		throw new AssertionError("Watcher did not emit expected assets; inspect " + output.getParent().resolve("watch.log"));
+	}
+
+	private static void assertLocalPage(RunningJar running, Path output, AssetManifest.AssetReferences references, String version) throws Exception {
+		var page = running.get("/__asset-fixture");
+		assertThat(page.statusCode()).isEqualTo(200);
+		assertThat(new String(page.body(), StandardCharsets.UTF_8)).contains(references.script(), references.stylesheets().getFirst());
+		for (String url : new String[] { references.script(), references.stylesheets().getFirst() }) {
+			var response = running.get(url);
+			assertThat(response.statusCode()).isEqualTo(200);
+			assertThat(response.body()).isEqualTo(Files.readAllBytes(output.resolve("static" + url)));
+			assertThat(new String(response.body(), StandardCharsets.UTF_8)).contains(version);
+			assertThat(response.headers().firstValue("cache-control")).hasValueSatisfying(value -> assertThat(value).contains("no-store"));
+			assertThat(response.headers().firstValue("content-type")).hasValueSatisfying(value ->
+					assertThat(value).contains(url.endsWith(".css") ? "text/css" : "javascript"));
+		}
+	}
+
+	/** F02-UH02-AC02: reject actual executable startup configuration, not just properties in isolation. */
+	@ParameterizedTest
+	@ValueSource(strings = { "directory", "static-location", "indexed-location", "malformed-index", "mixed-profile" })
+	void productionRejectsDeveloperFilesystemAssetsBeforeReadiness(String configuration) throws Exception {
+		String[] arguments = switch (configuration) {
+			case "directory" -> new String[] { "--spring.profiles.active=prod", "--btc.assets.directory=" + SENTINEL };
+			case "static-location" -> new String[] { "--spring.profiles.active=prod", "--spring.web.resources.static-locations=file:/" + SENTINEL + "/" };
+			case "indexed-location" -> new String[] { "--spring.profiles.active=prod", "--spring.web.resources.static-locations[0]=file:/" + SENTINEL + "/" };
+			case "malformed-index" -> new String[] { "--spring.profiles.active=prod", "--spring.web.resources.static-locations[1]=file:/" + SENTINEL + "/" };
+			default -> new String[] { "--spring.profiles.active=local,prod" };
+		};
+		String code = switch (configuration) {
+			case "directory" -> "FILESYSTEM_FORBIDDEN";
+			case "mixed-profile" -> "LOCAL_PROFILE_INVALID";
+			default -> "RESOURCE_LOCATION_FORBIDDEN";
+		};
+		try (var running = new RunningJar(JAR, arguments)) {
+			assertThat(running.process.waitFor(30, TimeUnit.SECONDS)).isTrue();
+			assertThat(running.process.exitValue()).isNotZero();
+			assertThat(Files.readString(running.log)).contains("BTC_ASSETS_" + code)
+					.doesNotContain(SENTINEL, "Tomcat started on port", "Started BeneathTheCodeApplication in");
+		}
 	}
 
 	@Test
@@ -220,13 +338,15 @@ class PackagedAssetsIT {
 				.followRedirects(HttpClient.Redirect.NEVER).build();
 		private int port;
 
-		RunningJar(Path jar) throws IOException {
+		RunningJar(Path jar, String... arguments) throws IOException {
 			Files.createDirectories(OUTPUT);
 			log = OUTPUT.resolve("process-" + UUID.randomUUID() + ".log");
 			String password = UUID.randomUUID().toString();
 			authentication = "Basic " + Base64.getEncoder().encodeToString(("asset-fixture:" + password).getBytes(StandardCharsets.UTF_8));
-			var builder = new ProcessBuilder(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
-					"-jar", jar.toAbsolutePath().toString(), "--server.address=127.0.0.1", "--server.port=0");
+			var command = new java.util.ArrayList<>(java.util.List.of(Path.of(System.getProperty("java.home"), "bin", "java").toString(),
+					"-jar", jar.toAbsolutePath().toString(), "--server.address=127.0.0.1", "--server.port=0"));
+			command.addAll(java.util.List.of(arguments));
+			var builder = new ProcessBuilder(command);
 			builder.environment().put("SPRING_SECURITY_USER_NAME", "asset-fixture");
 			builder.environment().put("SPRING_SECURITY_USER_PASSWORD", password);
 			process = builder.redirectErrorStream(true).redirectOutput(log.toFile()).start();

@@ -1,5 +1,15 @@
 # Current handoff
 
+F02-UH02 implementation update, 2026-10-13: local build-watch serving and
+per-render manifest reload are implemented; production/mixed-profile filesystem
+rejection and pure algorithm/domain lint checks are verified. Clean verification
+passed 15 frontend tests, 65 Java cases (7 explicit skips) and 15 packaged cases.
+The real watcher served FIRST/SECOND/THIRD matching JS/CSS bytes through one
+unchanged server. T01–T04 done; story/T05 in_review pending acceptance and local
+integration. F02 remains in_progress. No new commit/push/OpenSpec migration yet;
+F02-UH02 behaviour stays plan-owned. Evidence:
+`harness/evidence/F02-UH02-local-assets.md`. Supersedes earlier UH02-planned handoffs.
+
 Final handoff, 2026-10-13: F02-UH01 and T01–T05 are **done**, explicitly accepted
 by the owner and integrated on local main in `938b97c`. Clean post-commit checks
 passed: 1 frontend, 54 Java cases (7 explicit absent-capability skips), 9 packaged

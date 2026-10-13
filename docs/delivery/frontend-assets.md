@@ -68,3 +68,66 @@ Run `python3 scripts/verify-java-baseline.py` for redacted Maven output and
 `python3 scripts/smoke-java-baseline.py` for the original packaged health check.
 For a clean acceptance run, use `python3 scripts/verify-java-baseline.py clean`;
 it invokes Maven `clean verify` and redacts generated development passwords.
+
+## Local build-watch — F02-UH02
+
+Run these commands from the repository root. First build and package once:
+
+```bash
+./mvnw clean package
+```
+
+Then use two terminals, with project-local tooling (no Vite dev server or HMR):
+
+```bash
+# Terminal 1: keep the Vite build watcher running.
+./mvnw frontend:npm -Dfrontend.npm.arguments="run watch"
+```
+
+```bash
+# Terminal 2: Spring serves the single browser origin on loopback.
+java -jar target/beneath-the-code-0.1.0-SNAPSHOT.jar --spring.profiles.active=local
+```
+
+Wait for each watcher build to finish, then reload the page. The `local` profile
+reads `target/frontend/asset-manifest.json` per render and serves `/assets/**`
+directly from `target/frontend/static/assets/` with `no-store` and no resource-chain
+cache. It does not fall back to packaged assets for missing local URLs or invalid
+local manifests. The manifest stays outside the public handler's root. Changes to
+Java/templates still require the usual application rebuild/restart; this watcher
+only rebuilds browser assets. No product page exists yet, so the current executable
+has health/static resources only; packaged tests supply an isolated rendering fixture.
+
+The frontend plugin has an `m2e ignore` lifecycle instruction: Eclipse/VS Code
+Java auto-builds must not reinstall Node dependencies or clear watcher output.
+Explicit Maven CLI/CI still executes every frontend check and build. If an IDE
+already imported the old POM, refresh its Maven project configuration before
+starting watch. The instruction is documented in
+[m2e lifecycle mapping](https://eclipse.dev/m2e/documentation/release-notes-17.html).
+The owner-approved workspace setting `java.autobuild.enabled=false` also keeps
+VS Code Java compilation from racing Maven in `target/classes`. Use explicit
+Maven verification/builds; refresh or manually rebuild IDE diagnostics when needed.
+Outside VS Code, ensure other build processes are not writing the same target tree.
+
+`btc.assets.directory` can select a different generated output root **only** with
+the sole active profile `local` and `server.address=127.0.0.1`. Additional active
+profiles are rejected deliberately to prevent local configuration leaking into
+production. Non-local configurations reject any `btc.assets.directory` setting;
+standard `spring.web.resources.static-locations` must be classpath locations,
+including indexed YAML lists. Failures use bounded `BTC_ASSETS_*` codes.
+No Security policy is relaxed; existing development authentication remains.
+
+The pure layers are `tools/<tool>/algorithms/` and `tools/<tool>/domain/`. Their
+lint rules reject relative imports/re-exports outside that capability's pure
+layers, editor/Node imports, DOM/network/storage globals and dynamic imports.
+Pure third-party libraries remain possible but require normal dependency review;
+lint is a boundary check, not a transitive dependency/security audit. No empty
+algorithm package was added merely to make a check pass: virtual lint fixtures
+exercise both allowed and forbidden dependencies.
+
+Verification starts the pinned Vite watcher with the real build configuration and
+an isolated source/output root, serves FIRST, SECOND and THIRD JS/CSS versions
+through one unchanged packaged server, and compares rendered URLs, HTTP bytes,
+media types and no-store headers. It verifies private-manifest 404s and stops both
+processes. Production/mixed-profile startup tests reject developer paths before
+readiness and omit synthetic path sentinels from captured logs.

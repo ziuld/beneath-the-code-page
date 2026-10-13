@@ -109,6 +109,8 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
+				<!-- Explicit Maven builds own frontend work; IDE auto-build must not race npm ci/watch. -->
+				<?m2e ignore?>
 				<version>${frontend-maven-plugin.version}</version>
 				<configuration>
 					<workingDirectory>src/main/frontend</workingDirectory>
