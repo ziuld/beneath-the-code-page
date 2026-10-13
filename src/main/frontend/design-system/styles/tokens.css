@@ -1,0 +1,34 @@
+@layer btc-base {
+  :root {
+    color-scheme: dark;
+    --canvas: #050505;
+    --surface: #0b0b0b;
+    --text: #edeae4;
+    --secondary: #92908b;
+    --border: #292927;
+    --focus: #f7f7f5;
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-display: Georgia, "Times New Roman", serif;
+    --type-small: 0.875rem;
+    --type-intro: 1.125rem;
+    --type-heading: 2rem;
+    --type-hero: clamp(2.5rem, 5vw, 4.5rem);
+    --leading-body: 1.6;
+    --leading-heading: 1.15;
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-section: 4rem;
+    --page-width: 72rem;
+    --border-width: 1px;
+    --focus-width: 2px;
+    --focus-offset: 4px;
+    font-family: var(--font-body);
+    line-height: var(--leading-body);
+    color: var(--text);
+    background: var(--canvas);
+  }
+}

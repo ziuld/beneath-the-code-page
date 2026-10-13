@@ -10,6 +10,7 @@ import dev.beneaththecode.platform.web.assets.AssetManifest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
@@ -18,6 +19,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,13 +82,74 @@ class HomeRenderingTests {
 		Properties english = catalogue("");
 		for (String suffix : List.of("_es", "_fr")) {
 			Properties translated = catalogue(suffix);
-			assertThat(translated.stringPropertyNames()).isEqualTo(english.stringPropertyNames());
-			for (String key : english.stringPropertyNames()) {
-				assertThat(translated.getProperty(key)).isNotBlank();
-				assertThat(placeholders(translated.getProperty(key))).isEqualTo(placeholders(english.getProperty(key)));
-			}
+			assertCatalogueParity(english, translated);
 		}
 		assertThat(messages.getMessage("home.tools.title", null, Locale.GERMAN)).isEqualTo("Tools");
+	}
+
+	/** F03-UH02-R01/AC01: exact shared visible and accessibility labels, including fallback. */
+	@ParameterizedTest
+	@ValueSource(strings = { "en", "es", "fr", "de" })
+	void rendersExactSharedLabelsFromResolvedResources(String requested) throws Exception {
+		when(navigation.sections()).thenReturn(new HomeNavigation().sections());
+		String html = home(requested);
+		Locale locale = Locale.forLanguageTag(requested.equals("de") ? "en" : requested);
+		for (String key : List.of("navigation.skip", "navigation.home", "brand.name", "footer.statement",
+				"home.tools.title", "home.learn.title", "home.tools.description", "home.learn.description")) {
+			assertThat(html).as(key).contains(">" + escapedMessage(key, locale) + "<");
+		}
+		assertThat(html).contains("lang=\"" + locale.getLanguage() + "\"",
+				"aria-label=\"" + escapedMessage("navigation.label", locale) + "\"",
+				"aria-label=\"" + escapedMessage("home.sections", locale) + "\"",
+				"alt=\"" + escapedMessage("brand.logo.alt", locale) + "\"",
+				"<title>" + escapedMessage("home.title", locale) + "</title>",
+				"content=\"" + escapedMessage("home.description", locale) + "\"")
+				.doesNotContain("??", "th:", "action.continue", "navigation.label", "brand.logo.alt");
+	}
+
+	@Test
+	void catalogueGuardDetectsMissingBlankAndMismatchedPlaceholders() {
+		var english = new Properties();
+		english.setProperty("sample", "{0}: {1,number} / {0}");
+		var translated = new Properties();
+		translated.setProperty("sample", "{1,number}: {0} / {0}");
+		assertCatalogueParity(english, translated);
+		assertThatThrownBy(() -> assertCatalogueParity(english, new Properties())).isInstanceOf(AssertionError.class);
+		translated.setProperty("sample", "{0}: {1,number}");
+		assertThatThrownBy(() -> assertCatalogueParity(english, translated)).isInstanceOf(AssertionError.class);
+		translated.setProperty("sample", "{0}: {1,date} / {0}");
+		assertThatThrownBy(() -> assertCatalogueParity(english, translated)).isInstanceOf(AssertionError.class);
+		translated.setProperty("sample", " ");
+		assertThatThrownBy(() -> assertCatalogueParity(english, translated)).isInstanceOf(AssertionError.class);
+	}
+
+	private void assertCatalogueParity(Properties english, Properties translated) {
+		assertThat(translated.stringPropertyNames()).isEqualTo(english.stringPropertyNames());
+		for (String key : english.stringPropertyNames()) {
+			assertThat(translated.getProperty(key)).as(key).isNotBlank();
+			assertThat(placeholders(translated.getProperty(key))).as(key)
+					.isEqualTo(placeholders(english.getProperty(key)));
+		}
+	}
+
+	private String escapedMessage(String key, Locale locale) {
+		return org.springframework.web.util.HtmlUtils.htmlEscape(messages.getMessage(key, null, locale), "UTF-8");
+	}
+
+	@Test
+	void sharedFragmentsRetainLandmarksCurrentPageAndSemanticCards() throws Exception {
+		when(navigation.sections()).thenReturn(new HomeNavigation(true, true).sections());
+		String html = home("fr");
+		assertThat(Pattern.compile("<header\\b").matcher(html).results().count()).isEqualTo(1);
+		assertThat(Pattern.compile("<footer\\b").matcher(html).results().count()).isEqualTo(1);
+		assertThat(Pattern.compile("<nav\\b").matcher(html).results().count()).isEqualTo(1);
+		assertThat(Pattern.compile("aria-current=\"page\"").matcher(html).results().count()).isEqualTo(2);
+		assertThat(html).contains("href=\"/\" aria-current=\"page\"", "Navigation principale",
+				"aria-labelledby=\"tools-heading\"", "aria-labelledby=\"learn-heading\"",
+				"id=\"tools-heading\"", "id=\"learn-heading\"", "Outils", "Apprendre")
+				.doesNotContain("th:", "<button", "<form", "Not yet available");
+		assertThat(Pattern.compile("<article\\b").matcher(html).results().count()).isEqualTo(2);
+		assertThat(Pattern.compile("<a\\b[^>]*>[^<]*<a\\b").matcher(html).find()).isFalse();
 	}
 
 	private String home(String language) throws Exception {

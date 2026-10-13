@@ -11,7 +11,7 @@
 </head>
 <body>
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
-<header th:replace="~{fragments/shell :: header}"></header>
+<header th:replace="~{fragments/shell :: header('/')}"></header>
 <main id="main" class="page" tabindex="-1">
     <section class="hero" aria-labelledby="home-heading">
         <div>
@@ -22,14 +22,9 @@
         <img class="brand-composition" src="/brand/b-composition.png" width="1024" height="1024" th:alt="#{brand.logo.alt}">
     </section>
     <section class="section-grid" th:aria-label="#{home.sections}">
-        <article class="section-card" th:each="section : ${sections}" th:aria-labelledby="${section.id + '-heading'}">
-            <h2 th:id="${section.id + '-heading'}">
-                <a th:if="${section.published}" th:href="${section.path}" th:text="#{${section.titleKey()}}"></a>
-                <span th:unless="${section.published}" th:text="#{${section.titleKey()}}"></span>
-            </h2>
-            <p th:text="#{${section.descriptionKey()}}"></p>
-            <p class="status" th:unless="${section.published}" th:text="#{home.unavailable}"></p>
-        </article>
+        <th:block th:each="section : ${sections}">
+            <article th:replace="~{fragments/components :: sectionCard(${section})}"></article>
+        </th:block>
     </section>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>

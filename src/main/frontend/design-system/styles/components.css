@@ -1,0 +1,149 @@
+@layer btc-base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.3em;
+  }
+
+  a:hover {
+    text-decoration-thickness: 0.15em;
+  }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--focus);
+    outline-offset: var(--focus-offset);
+  }
+
+  .page {
+    width: min(var(--page-width), calc(100% - var(--space-xl)));
+    margin-inline: auto;
+  }
+
+  .skip-link {
+    position: absolute;
+    inset: var(--space-sm) auto auto var(--space-md);
+    padding: var(--space-sm);
+    background: var(--surface);
+    transform: translateY(-150%);
+    z-index: 1;
+  }
+
+  .skip-link:focus {
+    transform: none;
+  }
+
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md) var(--space);
+    padding-block: var(--space);
+    border-bottom: var(--border-width) solid var(--border);
+  }
+
+  .wordmark {
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) var(--space);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .navigation a,
+  .unavailable {
+    display: inline-block;
+    padding-block: var(--space-xs);
+  }
+
+  .unavailable {
+    color: var(--secondary);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: var(--leading-heading);
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: var(--type-heading);
+    margin-top: 0;
+  }
+
+  .status {
+    color: var(--secondary);
+    font-size: var(--type-small);
+  }
+
+  .section-card {
+    padding: var(--space-lg);
+    background: var(--surface);
+    border: var(--border-width) solid var(--border);
+  }
+
+  .section-card p {
+    overflow-wrap: anywhere;
+  }
+
+  .site-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 var(--space);
+    border-top: var(--border-width) solid var(--border);
+    padding-block: var(--space);
+    color: var(--secondary);
+    font-size: var(--type-small);
+  }
+
+  .button {
+    display: inline-block;
+    max-width: 100%;
+    padding: var(--space-sm) var(--space);
+    border: var(--border-width) solid var(--secondary);
+    border-radius: 0;
+    font: inherit;
+    overflow-wrap: anywhere;
+    color: var(--text);
+    background: var(--surface);
+    cursor: pointer;
+  }
+
+  .button:hover:not(:disabled) {
+    border-color: var(--focus);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  .button:active:not(:disabled) {
+    background: var(--canvas);
+  }
+
+  .button:disabled {
+    color: var(--secondary);
+    border-color: var(--border);
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 48rem) {
+    .section-card {
+      padding: var(--space);
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<article th:fragment="sectionCard(section)" class="section-card" th:aria-labelledby="${section.id + '-heading'}">
+    <h2 th:id="${section.id + '-heading'}">
+        <a th:if="${section.published}" th:href="${section.path}" th:text="#{${section.titleKey()}}"></a>
+        <span th:unless="${section.published}" th:text="#{${section.titleKey()}}"></span>
+    </h2>
+    <p th:text="#{${section.descriptionKey()}}"></p>
+    <p class="status" th:unless="${section.published}" th:text="#{home.unavailable}"></p>
+</article>
+<button th:fragment="button(labelKey, disabled)" class="button" type="button" th:disabled="${disabled}" th:text="#{${labelKey}}"></button>
+</body>
+</html>
