@@ -1,5 +1,15 @@
 # Current handoff
 
+F03 archival handoff, 2026-10-13: owner requested F03-UH02 archive, confirmed
+spec synchronisation (without behavioural ownership migration), clarified “close
+F03” and authorised committing all remaining project changes locally. F03 remains
+done (`0246b37` implementation, `968fc35` closure). All 11 tasks/artifacts complete;
+shared-interface main spec contains exact delta behaviour and canonical headings.
+Archived at `openspec/changes/archive/2026-10-13-f03-uh02-localised-shared-shell/`.
+The previously approved F03-UH01 archive/main-spec ownership migration is included
+in this archival commit too. F03-UH02 remains plan-owned; F04 unchanged. No application
+changes, push or release. Earlier uncommitted/active-change statements are historical.
+
 F03 accepted local closure, 2026-10-13: owner authorised finishing local commits and
 closure. F03-UH02 implemented/integrated on local main in `0246b37`; canonical
 T01–T05/story and F03 done against both accepted stories, passing clean verification
@@ -80,6 +90,15 @@ Proposed next action is rename the fixture-only bean method and repeat verificat
 workflow paused awaiting guidance. Evidence: `harness/evidence/F03-UH02-shared-shell.md`.
 No new acceptance, commit, push or ownership migration. Prior F03-UH01 archival work
 preserved; F04 excluded. Earlier handoffs below are historical.
+
+F03-UH01 archive handoff, 2026-10-13: accepted/integrated F03-UH01 remains done
+(`f2a3e3c`, closure `baf975c`). Owner requested archive and explicitly selected sync
+and incremental ownership migration. `openspec/specs/home-page/spec.md` now owns
+its two requirements/scenarios; plan.json retains IDs/verification/tracking. Complete
+13-task change archived at `openspec/changes/archive/2026-10-13-f03-uh01-home-page/`.
+No application changes or push. Archival metadata remains uncommitted. F03 remains
+in_progress, F03-UH02/F04 remain planned and plan-owned. Next is an F03-UH02-only
+proposal, not automatic implementation. Earlier handoffs below are historical.
 
 F03-UH01 accepted local closure, 2026-10-13: **F03-UH01 and T01–T05 are done**.
 The owner accepted the Home result and explicitly authorised local commits/closure.

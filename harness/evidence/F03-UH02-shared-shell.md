@@ -1,5 +1,29 @@
 # F03-UH02 shared-shell evidence
 
+## Authorised specification synchronisation and archival — 2026-10-13
+
+The owner requested archival and committing all remaining project changes, selected
+“Sync now” with plan.json ownership unchanged, and confirmed that “clone F03” meant
+“close F03”. F03 was already closed. All artifacts and 11/11 tasks were complete.
+Created `openspec/specs/shared-interface/spec.md`, preserving the delta Purpose and
+both R01/R02 requirement and AC01/AC02 scenario blocks verbatim, changing only the
+title and Requirements heading. Exact comparison confirmed no remaining sync
+operation; strict validation passed for all three main specifications. Moved the
+complete change, including `.openspec.yaml`, to
+`openspec/changes/archive/2026-10-13-f03-uh02-localised-shared-shell/`.
+No behavioural-ownership migration for F03-UH02, application edit or push occurred.
+Prior statements about pending archive/uncommitted Home work are historical; the
+owner now authorises including the previously approved Home archive/migration in
+the same local archival commit.
+
+Archive checks executed: all archived files for both Home and shared-interface are
+byte-identical to their committed active-change counterparts; strict validation of
+all three main specs, all 15 planning-rule tests, regenerated-view planning integrity
+and whitespace checks passed. The first planning check found the task record's old
+active-change link; updated it to the archive path and reran successfully. CLI lists
+no active changes. F04 matches HEAD; F03-UH02 remains done and plan-owned. No runtime
+rerun was needed or claimed for this documentation-only archival change.
+
 Date: 2026-10-13. Accepted and locally integrated in `0246b37`; F03-UH02 and F03 closed against the passing evidence and owner's explicit instruction to finish local commit/closure. Owner effort unreported. Canonical R01/R02, AC01/AC02 and T01–T05 remain unchanged (10h baseline). No push, archive or ownership migration for this story.
 
 ## Accepted local closure

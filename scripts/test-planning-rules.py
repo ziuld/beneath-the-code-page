@@ -45,9 +45,14 @@ class PlanningRulesTest(unittest.TestCase):
     def test_main_spec_changes_flow_to_views_and_unsupported_steps_fail(self):
         with tempfile.TemporaryDirectory(dir=ROOT/'target') as directory:
             root=Path(directory)
+            for feature in BASE['features']:
+                for migrated in feature['stories']:
+                    if spec:=migrated.get('behaviour_spec'):
+                        fixture=root/spec
+                        fixture.parent.mkdir(parents=True,exist_ok=True)
+                        fixture.write_text((ROOT/spec).read_text())
             source='openspec/specs/packaged-browser-assets/spec.md'
             path=root/source
-            path.parent.mkdir(parents=True)
             original=(ROOT/source).read_text()
             path.write_text(original.replace('matching built assets','updated built assets'))
             story=next(f for f in resolve_behaviour(BASE,root)['features'] if f['id']=='F02')['stories'][0]

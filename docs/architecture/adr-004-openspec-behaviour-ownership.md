@@ -8,7 +8,13 @@ For F02-UH01, the main `openspec/specs/packaged-browser-assets/spec.md` owns
 requirements and acceptance scenarios. `plan.json` retains stable requirement and
 scenario IDs, verification links, task descriptions, dependencies, effort, status,
 dates, evidence and commit references. It must not retain editable behavioural text
-for this migrated story. Other stories remain unchanged and plan-owned.
+for this migrated story. Other stories remain unchanged and plan-owned unless
+explicitly opted in as recorded below.
+
+F03-UH01 was subsequently opted in by the owner's explicit “Sync and migrate”
+choice on 2026-10-13. `openspec/specs/home-page/spec.md` now owns its requirements
+and acceptance scenarios; plan.json retains IDs, verification links and tracking.
+F03-UH02 and F02-UH02 remain plan-owned. No repository-wide migration is implied.
 
 Planning scripts resolve opted-in `behaviour_spec` references before generating
 read-only EARS/Gherkin views or checking traceability. Invalid references, ID drift

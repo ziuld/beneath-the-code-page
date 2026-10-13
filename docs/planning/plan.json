@@ -923,37 +923,19 @@
           ],
           "requirements": [
             {
-              "id": "F03-UH01-R01",
-              "pattern": "event",
-              "text": "When a visitor requests the Home page, Beneath the Code shall return semantic server-rendered content describing its tools and learning purpose."
+              "id": "F03-UH01-R01"
             },
             {
-              "id": "F03-UH01-R02",
-              "pattern": "unwanted",
-              "text": "If a section has no published destination, then the Home page shall present that section without a broken actionable link."
+              "id": "F03-UH01-R02"
             }
           ],
           "scenarios": [
             {
               "id": "F03-UH01-AC01",
-              "name": "Read Home without JavaScript",
-              "requirement_ids": [
-                "F03-UH01-R01"
-              ],
-              "given": "JavaScript is disabled",
-              "when": "a visitor opens the Home page",
-              "then": "the response contains the brand identity, a main heading and the tools and learning descriptions",
               "verification": "MockMvc rendered HTML and browser JavaScript-disabled check"
             },
             {
               "id": "F03-UH01-AC02",
-              "name": "Avoid advertising an unavailable destination",
-              "requirement_ids": [
-                "F03-UH01-R02"
-              ],
-              "given": "a tools or learning destination has not been published in the current increment",
-              "when": "a visitor inspects the Home navigation",
-              "then": "the section is described without a link to a missing page",
               "verification": "Route/catalogue fixture; after publication verify the real link replaces the unavailable state"
             }
           ],
@@ -1082,7 +1064,8 @@
               "actual_finish": "2026-10-13"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied.",
+          "behaviour_spec": "openspec/specs/home-page/spec.md"
         },
         {
           "id": "F03-UH02",
