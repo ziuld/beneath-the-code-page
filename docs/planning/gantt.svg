@@ -49,7 +49,7 @@
 <text x="20" y="144">F02 Frontend asset pipeline</text>
 <rect x="393.83" y="128" width="28.83" height="22" fill="#9bb7a1"><title>F02 Frontend asset pipeline: 12h, done</title></rect>
 <text x="20" y="178">F03 Home and shared EN/ES/FR shell</text>
-<rect x="422.67" y="162" width="43.25" height="22" fill="#92908b"><title>F03 Home and shared EN/ES/FR shell: 18h, planned</title></rect>
+<rect x="422.67" y="162" width="43.25" height="22" fill="#92908b"><title>F03 Home and shared EN/ES/FR shell: 18h, in_progress</title></rect>
 <text x="20" y="212">F04 Security and locale flow</text>
 <rect x="465.92" y="196" width="33.64" height="22" fill="#92908b"><title>F04 Security and locale flow: 14h, planned</title></rect>
 <text x="20" y="246">F05 Editor and CSP proof</text>

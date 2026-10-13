@@ -1,5 +1,30 @@
 # Current handoff
 
+F03-UH01 verified review handoff, 2026-10-13: SSR Home, approved unchanged B
+composition, resource-backed EN/ES/FR copy, publication-aware navigation and bounded
+anonymous read security are implemented. Canonical T01–T04 done; T05/story in_review
+pending owner acceptance/local integration. Clean verification passed 15 frontend
+tests, 90 Java cases (four explicit absent-capability skips), 15 packaged cases,
+original executable health smoke and six real Chromium cases. Both unavailable
+navigation and mapped/public fixture transitions pass; no tools/learning placeholders
+ship. Chromium verifies JavaScript-disabled rendering, keyboard/reflow/contrast and
+200% CSS layout zoom; independent owner translation/visual, browser-UI zoom and
+assistive-technology review are not claimed. No commit/push/archive/ownership migration
+or remote CI. F03 remains in_progress; F03-UH02/F04 remain planned. Owner effort
+unreported. Evidence: `harness/evidence/F03-UH01-home-page.md`; local reproduction:
+`docs/delivery/home-page.md`. Supersedes the historical compile-error pause below.
+
+F03-UH01 apply pause, 2026-10-13: `f03-uh01-home-page` is 4/13 checkboxes
+complete. T01 inspection and first rendered Home/navigation/resource slice passed
+10 MVC and 15 frontend tests. Minimum shared styling/logo and bounded security
+wiring are prepared but unverified. The next focused run failed test compilation:
+`HomeSecurityTests` uses a nonexistent `MockHttpServletRequestBuilder.dispatcherType`
+method. Proposed correction is a request post-processor calling `setDispatcherType`.
+Paused awaiting guidance as required by apply; T02/story blocked, T03–T05 unfinished.
+No browser/packaged/security acceptance, commit, push, archive or ownership migration.
+F03-UH02/F04 remain planned; F02 remains done. Evidence:
+`harness/evidence/F03-UH01-home-page.md`. Earlier handoffs below are historical.
+
 F02 final handoff, 2026-10-13: **F02 is done**. F02-UH02/T01–T05 were explicitly
 accepted by the owner and integrated on local main in `b1fb149`; F02-UH01 remains
 accepted/integrated in `938b97c` and archived. Post-commit clean verification passed

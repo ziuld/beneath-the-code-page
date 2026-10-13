@@ -79,7 +79,7 @@ class PackagedAssetsIT {
 
 	private static Path renderingFixture() throws Exception {
 		var extras = new LinkedHashMap<String, byte[]>();
-		for (var type : new String[] { "AssetFixtureApplication", "AssetFixtureController" }) {
+		for (var type : new String[] { "AssetFixtureApplication", "AssetFixtureController", "AssetFixtureSecurity" }) {
 			var name = "btc/fixtures/" + type + ".class";
 			extras.put("BOOT-INF/classes/" + name, Files.readAllBytes(CLASSES.resolve(name)));
 		}
@@ -215,9 +215,10 @@ class PackagedAssetsIT {
 			var health = running.get("/actuator/health");
 			assertThat(health.statusCode()).isEqualTo(200);
 			assertThat(new String(health.body(), StandardCharsets.UTF_8)).contains("\"status\":\"UP\"");
-			for (var path : new String[] { "/asset-manifest.json", "/assets/asset-manifest.json", "/__asset-fixture" }) {
-				assertThat(running.get(path).statusCode()).as("authenticated request to %s", path).isEqualTo(404);
+			for (var path : new String[] { "/asset-manifest.json", "/__asset-fixture" }) {
+				assertThat(running.get(path).statusCode()).as("unpublished route %s is denied", path).isEqualTo(403);
 			}
+			assertThat(running.get("/assets/asset-manifest.json").statusCode()).isEqualTo(404);
 		}
 	}
 

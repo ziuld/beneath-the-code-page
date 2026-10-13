@@ -30,11 +30,11 @@ One active task at a time. The order includes owner capacity, not only technical
 | 22 | [F02-UH02-T03](features/F02.md#f02-uh02) | verification | 1.25 | done | F02-UH02-T02 |
 | 23 | [F02-UH02-T04](features/F02.md#f02-uh02) | verification | 1 | done | F02-UH02-T03 |
 | 24 | [F02-UH02-T05](features/F02.md#f02-uh02) | closure | 0.25 | done | F02-UH02-T04 |
-| 25 | [F03-UH01-T01](features/F03.md#f03-uh01) | analysis | 0.5 | planned | F02 |
-| 26 | [F03-UH01-T02](features/F03.md#f03-uh01) | implementation | 2.5 | planned | F03-UH01-T01 |
-| 27 | [F03-UH01-T03](features/F03.md#f03-uh01) | verification | 2.25 | planned | F03-UH01-T02 |
-| 28 | [F03-UH01-T04](features/F03.md#f03-uh01) | verification | 2.25 | planned | F03-UH01-T03 |
-| 29 | [F03-UH01-T05](features/F03.md#f03-uh01) | closure | 0.5 | planned | F03-UH01-T04 |
+| 25 | [F03-UH01-T01](features/F03.md#f03-uh01) | analysis | 0.5 | done | F02 |
+| 26 | [F03-UH01-T02](features/F03.md#f03-uh01) | implementation | 2.5 | done | F03-UH01-T01 |
+| 27 | [F03-UH01-T03](features/F03.md#f03-uh01) | verification | 2.25 | done | F03-UH01-T02 |
+| 28 | [F03-UH01-T04](features/F03.md#f03-uh01) | verification | 2.25 | done | F03-UH01-T03 |
+| 29 | [F03-UH01-T05](features/F03.md#f03-uh01) | closure | 0.5 | in_review | F03-UH01-T04 |
 | 30 | [F03-UH02-T01](features/F03.md#f03-uh02) | analysis | 0.5 | planned | F03-UH01 |
 | 31 | [F03-UH02-T02](features/F03.md#f03-uh02) | implementation | 3 | planned | F03-UH02-T01 |
 | 32 | [F03-UH02-T03](features/F03.md#f03-uh02) | verification | 3 | planned | F03-UH02-T02 |

@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 public final class AssetFixtureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(new Class<?>[] { BeneathTheCodeApplication.class, AssetFixtureController.class }, args);
+		SpringApplication.run(new Class<?>[] { BeneathTheCodeApplication.class, AssetFixtureController.class,
+				AssetFixtureSecurity.class }, args);
 	}
 }
