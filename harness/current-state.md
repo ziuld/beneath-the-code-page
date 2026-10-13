@@ -1,5 +1,86 @@
 # Current handoff
 
+F03 accepted local closure, 2026-10-13: owner authorised finishing local commits and
+closure. F03-UH02 implemented/integrated on local main in `0246b37`; canonical
+T01–T05/story and F03 done against both accepted stories, passing clean verification
+(15 frontend, 100 Java with four explicit skips, 15 packaged), 36 Chromium cases,
+health smoke and recorded owner review decision. No source change after that test run.
+Earlier F03-UH01 archival/migration edits remain preserved and uncommitted; closure
+stages only F03-UH02 tracking in shared files. No push or automatic F03-UH02 sync/archive.
+F04 remains planned; owner effort unreported. Next is separately authorised archival
+or F04 planning, not automatic implementation. Evidence: `harness/evidence/F03-UH02-shared-shell.md`.
+Earlier handoffs below are historical.
+
+F03-UH02 verified apply handoff, 2026-10-13: shared-interface implementation and
+acceptance checks pass under the owner's confirmed review decision (Home walkthrough
+steps 1–3 passed; automated component coverage accepted instead of repeated manual
+fixture review; browser/version/viewport details unreported). Final clean Maven passed
+15 frontend tests, 100 Java cases (four existing explicit skips), 15 packaged cases
+including F02 startup/watch regressions; original health smoke and all 36 Chromium
+cases passed. Normal JAR excludes fixtures and preserves B bytes; scoped integration
+review found no issues. Evidence: `harness/evidence/F03-UH02-shared-shell.md`.
+Canonical T01–T04 done; story/T05 in_review pending formal local integration/closure.
+No commit, push, archive or behavioural-ownership migration authorised/performed.
+F03 remains in_progress, F04 unchanged, prior F03-UH01 archival changes preserved.
+Owner effort remains unreported. Earlier handoffs below are historical.
+
+F03-UH02 documentation check repaired, 2026-10-13: user authorised doc-only fixture
+command correction; planning integrity, all 15 planning-rule tests, strict OpenSpec
+validation and whitespace checks now pass. Progress remains 8/11. Next blocker is
+actual browser-UI 200% zoom and human keyboard/visual/EN/ES/FR copy review under
+checklist 4.2; instructions in `docs/delivery/shared-interface.md`. Final integration,
+acceptance/closure and any authorised local commit remain open. No push or ownership
+migration. Earlier handoffs below are historical.
+
+Pause-time planning check, 2026-10-13: strict OpenSpec, 15 planning-rule tests and
+whitespace checks passed. Planning integrity flags the Python fixture command in
+`docs/delivery/shared-interface.md` as a Markdown link (dictionary-index/call syntax
+false positive). Proposed doc-only fix is `module.get` call syntax; not applied yet.
+Progress remains 8/11; actual manual review still required. Earlier handoffs follow.
+
+F03-UH02 manual-review gate, 2026-10-13: checklist 1.1–4.1 complete (8/11);
+canonical T01/T02/T03 done, T04 blocked on unexecuted actual browser-UI 200% zoom
+and human keyboard/visual/EN/ES/FR copy review. All prior test harness failures repaired.
+Latest non-clean Maven verification passed 15 frontend tests, 100 Java cases (four
+explicit architecture skips), 15 packaged cases including F02 startup/watch regressions;
+36 Chromium Home/component/locale/keyboard cases passed. Shared styles/fragments/native
+button/resources implemented; focused skip link inset avoids clipped outline.
+No final clean verification, health smoke, owner acceptance/integration/commit/push or
+ownership migration claimed. Final checklist 4.2/5.1/5.2 remain open. Prior Home
+archival changes preserved and F04 excluded. Evidence/manual instructions:
+`harness/evidence/F03-UH02-shared-shell.md`, `docs/delivery/shared-interface.md`.
+Earlier handoffs below are historical.
+
+F03-UH02 locale-test pause, 2026-10-13: user authorised no-JS oracle correction;
+all 12 Chromium Home/component cases now pass, including six component cases across
+EN/ES/FR with JavaScript on/off. Checklist 2.3 complete; progress 4/11.
+New checklist 2.4 assertions: 20 Java cases ran, four exact-locale cases failed because
+the test helper entity-encodes Unicode whereas Thymeleaf emits correct UTF-8.
+Synthetic parity and button escaping checks passed; integration tests did not run.
+Proposed fix: explicitly UTF-8-aware test escaping, no production change. Apply paused
+awaiting guidance. No acceptance/commit/push; earlier handoffs below are historical.
+
+F03-UH02 resumed verification, 2026-10-13: user authorised fixture-only bean rename;
+startup collision resolved with `shellFixtureFilterChain`. Targeted Maven verification
+again passed 15 frontend, 14 Java rendering/component and 15 packaged cases.
+Browser verification now runs: nine passed, three JavaScript-disabled component cases
+failed on a test-only JavaScript click-counter oracle that cannot execute callbacks
+when JavaScript is disabled. Apply paused at 3/11 checklist tasks complete; proposed
+next action is separate JS-enabled event counting from native state/no-submission
+assertions in JS-disabled cases, retaining all locales/cases and scope.
+No acceptance/commit/push; prior archival work preserved. Earlier handoffs are historical.
+
+F03-UH02 apply paused, 2026-10-13: `f03-uh02-localised-shared-shell` has 3/11
+checklist tasks complete (1.1, 2.1, 2.2). Shared tokens/styles and real Home card/header
+fragment extraction are verified; native button and isolated component fixture are
+partially implemented. Targeted Maven verification passed 15 frontend tests, 14 Java
+rendering/component cases and 15 packaged cases. Browser runner failed before tests:
+fixture configuration class/method collide on `shellFixtureSecurity` bean name.
+Proposed next action is rename the fixture-only bean method and repeat verification;
+workflow paused awaiting guidance. Evidence: `harness/evidence/F03-UH02-shared-shell.md`.
+No new acceptance, commit, push or ownership migration. Prior F03-UH01 archival work
+preserved; F04 excluded. Earlier handoffs below are historical.
+
 F03-UH01 accepted local closure, 2026-10-13: **F03-UH01 and T01–T05 are done**.
 The owner accepted the Home result and explicitly authorised local commits/closure.
 Implementation integrated on local main in `f2a3e3c`. Post-commit clean verification

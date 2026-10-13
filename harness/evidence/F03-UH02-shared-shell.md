@@ -1,6 +1,14 @@
 # F03-UH02 shared-shell evidence
 
-Date: 2026-10-13. Implementation authorised; acceptance/integration not yet complete. Owner effort unreported. Canonical R01/R02, AC01/AC02 and T01–T05 remain unchanged (10h baseline). No commit/push or ownership migration performed.
+Date: 2026-10-13. Accepted and locally integrated in `0246b37`; F03-UH02 and F03 closed against the passing evidence and owner's explicit instruction to finish local commit/closure. Owner effort unreported. Canonical R01/R02, AC01/AC02 and T01–T05 remain unchanged (10h baseline). No push, archive or ownership migration for this story.
+
+## Accepted local closure
+
+The owner explicitly authorised local commit and closure after the verified apply handoff. Implementation commit `0246b37` is on local main and contains only F03-UH02 code/tests/artifacts/delivery/evidence. Prior F03-UH01 archival/migration work remains uncommitted and is not included in that implementation commit. No code changed between the successful final clean verification and the implementation commit. Both F03 stories now meet their acceptance gates and prerequisites, so F03 may close; F04 remains planned and unchanged. This does not imply release, remote CI, broader browser or omitted manual-component acceptance.
+
+Closure metadata records `0246b37`, marks canonical T05/story/feature done and preserves unreported effort. The separate metadata commit stages only this closure; prior Home migration changes in shared files are preserved in the working tree rather than silently committed. Historical in_review/blocker statements below describe earlier stages, not the current closure.
+
+Closure checks passed: regenerated both planning views, working-tree planning integrity and 15 rule tests, strict OpenSpec validation and whitespace checks. Exported the exact staged snapshot to a disposable project under `/tmp/opencode` to verify isolation from uncommitted Home migration: planning integrity and all 15 rule tests passed there too. The first supplemental snapshot test run lacked the fixture's expected `target` directory; after creating that directory in the disposable snapshot, it passed without changing project code or tests. No application source changed after the previously successful clean/runtime verification. Closure commit can be identified by its `docs(F03-UH02): record accepted local closure` message following `0246b37`.
 
 ## Final apply verification — 2026-10-13
 

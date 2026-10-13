@@ -1,6 +1,6 @@
 # Task — F03-UH02 shared shell
 
-Status / owner / date: implementation verified, in_review; Ziuld with AI assistance; 2026-10-13.
+Status / owner / date: accepted and locally integrated, done; Ziuld with AI assistance; 2026-10-13.
 
 User outcome and authorised scope: implement `f03-uh02-localised-shared-shell` only. No F04 locale selection/persistence/security expansion, product destinations, commit, push or automatic ownership migration.
 
@@ -16,4 +16,4 @@ Verification commands and manual checks to run: frontend check/build, MVC tests,
 
 Results / evidence links / actual effort: `harness/evidence/F03-UH02-shared-shell.md` records successful final clean verification (15 frontend, 100 Java with four skips, 15 packaged), original health smoke, 36 Chromium cases and the owner's review decision. Owner effort unreported. No commit/push or ownership migration.
 
-Open issues and next action: all prior harness failures repaired and owner review decision recorded. Implementation/verification complete; canonical story/T05 remain in_review pending formal local integration/closure. Preserve pre-existing Home archival changes; commit, push, sync and archive only when authorised. Do not invent effort or claim omitted manual reviews ran.
+Open issues and next action: local commit/closure explicitly authorised and implementation integrated in `0246b37`; F03-UH02/F03 done with evidence. Preserve pre-existing Home archival changes. F03-UH02 behavioural sync/archive and any push require separate authorisation; do not invent effort or claim omitted manual reviews ran.
