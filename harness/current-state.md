@@ -1,5 +1,18 @@
 # Current handoff
 
+F03-UH01 accepted local closure, 2026-10-13: **F03-UH01 and T01–T05 are done**.
+The owner accepted the Home result and explicitly authorised local commits/closure.
+Implementation integrated on local main in `f2a3e3c`. Post-commit clean verification
+passed 15 frontend tests, 90 Java cases (four explicit skips), 15 packaged cases,
+six Chromium cases and the original executable health smoke, with no failures/errors.
+The working tree was clean before/after verification. Closure metadata is recorded
+separately. Owner acceptance does not invent individual manual-test results; disclosed
+browser-UI/assistive-technology limitations remain. F03 is still in_progress;
+F03-UH02/F04 remain planned. No push, remote CI, OpenSpec sync/migration or archive.
+The completed OpenSpec change remains active; F03-UH01 behaviour stays plan-owned.
+Actual owner effort unreported. Evidence: `harness/evidence/F03-UH01-home-page.md`.
+Next story is F03-UH02 only when requested. Earlier handoffs below are historical.
+
 F03-UH01 verified review handoff, 2026-10-13: SSR Home, approved unchanged B
 composition, resource-backed EN/ES/FR copy, publication-aware navigation and bounded
 anonymous read security are implemented. Canonical T01–T04 done; T05/story in_review

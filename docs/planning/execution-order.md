@@ -34,7 +34,7 @@ One active task at a time. The order includes owner capacity, not only technical
 | 26 | [F03-UH01-T02](features/F03.md#f03-uh01) | implementation | 2.5 | done | F03-UH01-T01 |
 | 27 | [F03-UH01-T03](features/F03.md#f03-uh01) | verification | 2.25 | done | F03-UH01-T02 |
 | 28 | [F03-UH01-T04](features/F03.md#f03-uh01) | verification | 2.25 | done | F03-UH01-T03 |
-| 29 | [F03-UH01-T05](features/F03.md#f03-uh01) | closure | 0.5 | in_review | F03-UH01-T04 |
+| 29 | [F03-UH01-T05](features/F03.md#f03-uh01) | closure | 0.5 | done | F03-UH01-T04 |
 | 30 | [F03-UH02-T01](features/F03.md#f03-uh02) | analysis | 0.5 | planned | F03-UH01 |
 | 31 | [F03-UH02-T02](features/F03.md#f03-uh02) | implementation | 3 | planned | F03-UH02-T01 |
 | 32 | [F03-UH02-T03](features/F03.md#f03-uh02) | verification | 3 | planned | F03-UH02-T02 |

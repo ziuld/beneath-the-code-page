@@ -55,3 +55,11 @@ Final tracking checks: regenerated backlog and roadmap; planning integrity, all 
 The owner reported liking the result after receiving the run/review instructions and explicitly approved recording acceptance, local commits and F03-UH01 closure. This supersedes the earlier pending-acceptance observations. It records acceptance of the implemented Home slice, not a claim that each suggested manual test was executed or that full shared-shell/F04 acceptance passed. Actual owner effort remains unreported.
 
 Authorised scope: commit the reviewed implementation/planning artifacts locally on existing main, verify the committed result and close this story with evidence. No push, external publication, OpenSpec sync/ownership migration or archive was requested. Behaviour remains plan-owned; the completed change remains available for a separately authorised archive/ownership decision.
+
+## Final local integration and closure
+
+Accepted implementation integrated on existing local main in `f2a3e3c`. Post-commit `python3 scripts/verify-java-baseline.py clean` exited 0: 15 frontend tests, 90 Java cases (four explicit absent-capability skips), 15 packaged cases, zero failures/errors. Post-clean `python3 scripts/verify-home-browser.py --install` exited 0 with all six Chromium cases passing. Original executable health smoke exited 0, HTTP 200/UP, child stopped with expected 143. The working tree was clean before and after verification.
+
+F03-UH01 and canonical T01–T05 close with owner acceptance, completed prerequisite F02, reviewed implementation, integration commit and post-commit evidence. Closure metadata is a separate local documentation commit. F03 remains in_progress because F03-UH02 remains planned; F04 and other features are unchanged. Actual effort remains unreported, not inferred from baseline hours. No remote publication/CI, broader security/shared-shell acceptance, main-spec synchronisation or OpenSpec archive occurred. The 13-task completed change remains active and behaviour remains plan-owned.
+
+Closure checks: both planning renderers ran; planning integrity, all 15 planning-rule tests, strict change validation and whitespace checks passed. Reviewed plan diff: only F03-UH01/T05 status, actual finish date and implementation commit references changed; original behaviour, all effort values and unrelated stories/features are preserved.

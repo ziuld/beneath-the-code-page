@@ -1,6 +1,6 @@
 # Task — F03-UH01 Home page
 
-Status / owner / date: in_review / Ziuld with AI assistance / 2026-10-13.
+Status / owner / date: done / Ziuld with AI assistance / 2026-10-13.
 
 User outcome and authorised scope: implement `f03-uh01-home-page`; semantic SSR Home, approved B composition, EN/ES/FR copy and publication-aware navigation. Exclude F03-UH02, F04, product destinations and remote publication. No commit or behavioural ownership migration authorised.
 
@@ -21,4 +21,4 @@ Verification commands and manual checks to run: focused Maven rendered MVC tests
 
 Results / evidence links / actual effort: T01–T04 complete with actual evidence. Authorised test correction resolved the initial compilation failure. Full clean verification passed 15 frontend tests, 90 Java cases (four explicit skips), 15 packaged cases; original health smoke and six Chromium cases passed. Effort unreported. Actual evidence: `harness/evidence/F03-UH01-home-page.md`.
 
-Open issues and next action: owner review/acceptance and local integration authorisation. Independent visual/translation, browser-UI zoom and assistive-technology reviews are disclosed limitations; no wider F03-UH02/F04 acceptance. No commit, push or archive.
+Open issues and next action: owner accepted the Home result and authorised local integration/closure. Implementation committed on main in `f2a3e3c`; post-commit clean/health/browser checks passed. No wider F03-UH02/F04 acceptance or individual unreported manual-test result is claimed. No push or archive; behaviour remains plan-owned. Await the next authorised story or separate archive/ownership decision.
