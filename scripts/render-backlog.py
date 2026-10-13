@@ -3,6 +3,7 @@
 import json
 import html
 from pathlib import Path
+from planning_specs import resolve_behaviour
 
 ROOT=Path(__file__).resolve().parents[1]
 PLAN=ROOT/'docs/planning'
@@ -14,6 +15,7 @@ def gherkin(story, feature):
     return '\n'.join(lines)
 
 def render(data):
+    data = resolve_behaviour(data, ROOT)
     outputs={}
     index=['# Epic → Feature → User Story → Task','',
            f'**{data["epic"]["id"]}: {data["epic"]["title"]}**','',data['epic']['description'],'',
@@ -62,7 +64,7 @@ def render(data):
             lines += ['', 'Record test versions, actual results, manual reviews, limitations and the related commit in evidence. All tasks must be done; failed criteria keep this story open. Feature-wide quality requirements also apply. No result is claimed by this document.','']
         outputs[f'features/{fid}.md']='\n'.join(lines)
     index += ['', '## Ownership and progress','',
-              'Edit plan.json for scope, EARS, scenarios, task descriptions and statuses, then run both renderers and the planning validator. Do not hand-edit generated feature/Gherkin/queue/traceability views. Feature estimates are distributed into child work; never add parent and child hours together.','',
+               'Edit plan.json for tracking and unmigrated behaviour. For stories with behaviour_spec, edit the referenced main OpenSpec specification for requirements/scenarios; plan.json holds IDs and verification links only. Run both renderers and the planning validator. Generated views are read-only. Never add parent and child hours together.','',
               '[EARS/Gherkin conventions and Jira mapping](story-workflow.md) · [OpenSpec handoff](openspec-handoff.md) · [Traceability](traceability.md)','']
     outputs.update({'hierarchy.md':'\n'.join(index),'execution-order.md':'\n'.join(queue)+'\n','traceability.md':'\n'.join(trace)+'\n'})
     e=html.escape

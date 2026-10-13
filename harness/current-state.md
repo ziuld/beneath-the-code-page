@@ -1,5 +1,23 @@
 # Current handoff
 
+Integration update, 2026-10-13: owner accepted F02-UH01 and authorised local
+commits including related OpenSpec setup/proposal, synchronisation and archival.
+The role-validation review finding is fixed and regression-tested. Clean verify
+passed 1 frontend test, 54 Java cases (7 explicit skips) and 9 packaged cases;
+health smoke passed. Fifteen planning tests and strict main-spec validation pass.
+F02-UH01's main OpenSpec spec now owns behaviour; plan.json retains IDs/tracking
+(ADR 004). Local integration/closure is being recorded; F02-UH02 remains planned,
+F02 remains open. No remote publication authorised. See
+`harness/evidence/F02-UH01-integration.md`. This supersedes prior handoff statements.
+
+F02-UH01 local verification update, 2026-10-13: both owner-approved corrections are implemented, and the frontend/Maven/private-manifest slice is locally verified. Repeated `clean verify` passed: 1 frontend test, 51 Java tests (0 failures/errors, 7 explicit absent-capability skips) and 7 packaged integration tests (0 failures/errors/skips). Packaged SSR/HTTP assets, authenticated private-manifest 404s, four safe startup-failure mutations and the original health smoke all passed. T01–T04 are done; F02-UH01/T05 are in_review because the slice is uncommitted/unintegrated and final acceptance is not claimed. F02 is in_progress; F02-UH02 remains planned. All 12 OpenSpec checklist items are complete, including evidence-backed status updates without claiming integrated closure. Both renderers, planning integrity, 11 planning-rule tests, strict OpenSpec validation and whitespace checks passed. See `harness/evidence/F02-UH01-frontend-assets.md` and `docs/delivery/frontend-assets.md`. No commit/publication/archive or behavioural-ownership migration is authorised/performed; plan.json remains authoritative. This update supersedes the historical pause/proposal observations below. Next action is integration/owner review of this verified slice, not automatic F02-UH02 implementation.
+
+F02-UH01 apply update, 2026-10-13: explicit implementation authorised for `f02-uh01-frontend-assets`; T01 is done and OpenSpec progress is 1/12. Exact frontend pins/lockfile, local tooling, minimal source/build test and initial Maven wiring are prepared. Type/lint/format checks passed, but the Vite-build test and Maven returned exit 1 because Vite 8 rejects `../asset-manifest.json`. Apply is paused as required by the workflow; F02/F02-UH01/T02 are blocked, remaining tasks/stories are unfinished. Recommended correction is to emit from `target/frontend/`, place assets under `static/assets/` and keep the manifest at the output root, updating test/path mapping coherently. A second blocker is the planning validator's unrestricted Markdown scan of downloaded `target/`/`node_modules` documentation; generated/dependency-tree exclusions need regression coverage. Both renderers, strict OpenSpec validation, 10 planning-rule tests and whitespace checks passed, but full planning integrity failed on those third-party links. See `harness/evidence/F02-UH01-frontend-assets.md`. No resolver, packaged acceptance, commit, publication or behavioural migration is claimed; this update supersedes the proposal-only observations below.
+
+OpenSpec proposal update, 2026-10-13: `f02-uh01-frontend-assets` now contains the proposal, `packaged-browser-assets` delta, design and tasks for F02-UH01. Strict validation and planning checks passed; see `harness/evidence/F02-UH01-openspec-proposal.md`. This supersedes the setup-only observation below that no change exists. No application implementation or behavioural-ownership migration occurred; plan.json remains authoritative, F02 remains planned and all implementation checkboxes are unfinished. Review the artifacts before explicitly requesting `/opsx-apply f02-uh01-frontend-assets`.
+
+OpenSpec setup update, 2026-10-13: existing CLI 1.14.1 verified; project initialised with OpenCode integration (six skills and six commands), English artifacts and the spec-driven schema. See `harness/evidence/openspec-setup.md`. No proposed change or behavioural migration has been created; plan.json remains authoritative and F02 remains planned.
+
 As of 2026-10-09: F00 import accepted; F01 Java baseline implemented, integrated and accepted. Final closure metadata is prepared on feature/F01-close-baseline with owner approval for the local commit; publication needs separate approval. Product features have not been implemented.
 
 - F00 and F00-UH01 accepted by current import/preservation review; all four tasks done. Historical pre-import hashes and the original archive were not supplied; see evidence limitations.

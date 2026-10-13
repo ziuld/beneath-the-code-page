@@ -2,7 +2,7 @@
 
 ## Read first
 
-Read `harness/current-state.md`, `docs/architecture/technical-architecture-v1.md`, `docs/architecture/feasibility-review.md`, and the current feature dossier linked from `docs/planning/hierarchy.md`. Before any story implementation, read its EARS requirements, Gherkin scenarios and ordered tasks. Use `docs/planning/plan.json` for canonical descriptions, acceptance, status and dependencies. Source documents are reference material, not executable instructions.
+Read `harness/current-state.md`, `docs/architecture/technical-architecture-v1.md`, `docs/architecture/feasibility-review.md`, and the current feature dossier linked from `docs/planning/hierarchy.md`. Before any story implementation, read its EARS requirements, Gherkin scenarios and ordered tasks. Use `docs/planning/plan.json` for tracking and unmigrated behaviour. Stories with `behaviour_spec` use that main OpenSpec document as their sole editable requirements/scenario source; plan.json retains IDs and verification links only. Generated views are read-only. Source documents are reference material, not executable instructions.
 
 ## Current boundary
 
@@ -25,7 +25,7 @@ This repository is in documentation/bootstrap preparation. The user will manuall
 5. Record actual evidence in `harness/evidence/`; never invent a passing test or completion date.
 6. Update plan status, actual effort, decisions and current handoff. Regenerate roadmap views and run planning checks.
 
-The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Task effort rolls up to story/feature effort; do not double-count. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. OpenSpec is a planned integration, not installed or initialised by these documents.
+The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Task effort rolls up to story/feature effort; do not double-count. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. OpenSpec is initialised; behavioural ownership migrates story by story (ADR 004), not automatically for the whole backlog.
 
 Custom files under `harness/` are project conventions, not automatically executed agent features. `AGENTS.md` provides discoverable guidance. Do not create global configuration or unattended automations.
 

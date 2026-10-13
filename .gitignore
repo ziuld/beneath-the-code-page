@@ -1,5 +1,6 @@
 HELP.md
 target/
+src/main/frontend/node_modules/
 .mvn/local-repository/
 __pycache__/
 .mvn/wrapper/maven-wrapper.jar

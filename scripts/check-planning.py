@@ -9,6 +9,7 @@ from pathlib import Path
 
 sys.dont_write_bytecode = True
 from planning_rules import validate_hierarchy
+from planning_documents import markdown_documents
 
 ROOT = Path(__file__).resolve().parents[1]
 data = json.loads((ROOT / 'docs/planning/plan.json').read_text())
@@ -56,9 +57,7 @@ for m in data['milestones']:
         errors.append(f'{m["id"]}: invalid milestone prerequisites')
 if sum(f['status'] == 'in_progress' for f in features) > 1:
     errors.append('More than one feature in progress exceeds baseline WIP limit')
-for path in ROOT.rglob('*.md'):
-    if 'reference' in path.parts:
-        continue  # Supplied source text is preserved, not rewritten by link validation.
+for path in markdown_documents(ROOT):
     for link in re.findall(r'\[[^\]]*\]\(([^)]+)\)', path.read_text()):
         if '://' in link or link.startswith(('#', 'mailto:')):
             continue
