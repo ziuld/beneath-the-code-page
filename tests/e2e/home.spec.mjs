@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
+import { addTestStyle } from "./test-styles.mjs";
 
 const languages = [
   { locale: "en", tools: "Tools", learn: "Learn" },
@@ -27,7 +28,8 @@ for (const language of languages) {
       const logo = await context.request.get(`${baseURL}/brand/b-composition.png`);
       expect(logo.status()).toBe(200);
       expect(await logo.body()).toEqual(readFileSync(new URL("../../docs/reference/logo-composition-original.png", import.meta.url)));
-      await expect(page.locator('a[href="/tools"], a[href="/learn"], form, [onclick]')).toHaveCount(0);
+      await expect(page.locator('a[href="/tools"], a[href="/learn"], [onclick]')).toHaveCount(0);
+      await expect(page.locator('form[action="/preferences/language"]')).toHaveCount(1);
       for (const href of await page.locator("nav a").evaluateAll(links => links.map(link => link.getAttribute("href")))) {
         expect((await context.request.get(new URL(href, baseURL).href)).status()).toBe(200);
       }
@@ -40,7 +42,9 @@ for (const language of languages) {
         expect(request.method).toBe("GET");
         expect(request.body).toBeNull();
       }
-      expect(await context.cookies()).toEqual([]);
+      const cookies = await context.cookies();
+      expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
+      expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
     } finally {
       await context.close();
     }
@@ -56,7 +60,7 @@ for (const language of languages) {
       expect(await page.locator(".skip-link").evaluate(element => element.getBoundingClientRect().top)).toBeGreaterThanOrEqual(0);
       await page.keyboard.press("Enter");
       await expect(page.locator("main")).toBeFocused();
-      await page.goto(baseURL);
+      const response = await page.goto(baseURL);
       for (const selector of [".skip-link", ".wordmark", "nav a"]) {
         await page.keyboard.press("Tab");
         const link = page.locator(selector);
@@ -71,15 +75,15 @@ for (const language of languages) {
       await page.screenshot({ path: `../../target/home-${language.locale}-narrow-default.png`, fullPage: true });
       // Actual CSS layout zoom doubles all rendered sizes, unlike deviceScaleFactor.
       await page.setViewportSize({ width: 1280, height: 900 });
-      await page.addStyleTag({ content: ":root { zoom: 2; }" });
+      await addTestStyle(page, response, ":root { zoom: 2; }");
       expect(await page.locator("html").evaluate(element => getComputedStyle(element).zoom)).toBe("2");
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       await page.screenshot({ path: `../../target/home-${language.locale}-zoom.png`, fullPage: true });
-      await page.addStyleTag({ content: ":root { zoom: 1; }" });
+      await addTestStyle(page, response, ":root { zoom: 1; }");
       await page.setViewportSize({ width: 320, height: 800 });
       // 200% text enlargement plus 320 CSS-pixel reflow; not device-scale-factor zoom.
-      await page.addStyleTag({ content: ":root { font-size: 200%; }" });
+      await addTestStyle(page, response, ":root { font-size: 200%; }");
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
       const first = await page.locator(".section-card").first().boundingBox();
       const last = await page.locator(".section-card").last().boundingBox();

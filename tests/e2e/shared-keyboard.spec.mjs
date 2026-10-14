@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { addTestStyle } from "./test-styles.mjs";
 
 async function visualStates(page, selector, focus = false) {
   return page.locator(selector).evaluateAll((elements, focus) => {
@@ -50,9 +51,9 @@ for (const locale of ["en", "es", "fr"]) {
         try {
           const page = await context.newPage();
           const url = fixture ? `${process.env.BTC_COMPONENT_URL}/__shell-fixture` : `${baseURL}/`;
-          await page.goto(url);
-          const controls = page.locator("a[href], button:not(:disabled)");
-          await expect(controls).toHaveCount(fixture ? 6 : 3);
+          const response = await page.goto(url);
+          const controls = page.locator("a[href], select, button:not(:disabled)");
+          await expect(controls).toHaveCount(fixture ? 8 : 5);
           for (let index = 0; index < await controls.count(); index++) {
             await page.keyboard.press("Tab");
             await visibleFocus(controls.nth(index));
@@ -66,17 +67,17 @@ for (const locale of ["en", "es", "fr"]) {
           await expect(page.locator("main")).toBeFocused();
           await page.keyboard.press("Tab");
           // Skip moves past the navigation, with no focus trap in the main landmark.
-          if (fixture) await expect(page.locator("button:not(:disabled)")).toBeFocused();
+          if (fixture) await expect(page.locator("main button:not(:disabled)")).toBeFocused();
           await expect(page.locator(".unavailable:focus, button:disabled:focus")).toHaveCount(0);
 
-          const text = "p, h1, h2, .wordmark, .navigation a, .unavailable, button";
+          const text = "p, h1, h2, .wordmark, .navigation a, .unavailable, button, label, select";
           for (const state of await visualStates(page, text)) {
             expect(state.ratio).toBeGreaterThanOrEqual(state.threshold);
             expect(state.animation).toBe("none");
             expect(state.transition).toBe("0s");
           }
           if (fixture) {
-            const button = page.locator("button:not(:disabled)");
+            const button = page.locator("main button:not(:disabled)");
             await button.hover();
             expect(await button.evaluate(element => getComputedStyle(element).textDecorationLine)).toBe("underline");
             for (const state of await visualStates(page, "button")) expect(state.ratio).toBeGreaterThanOrEqual(4.5);
@@ -87,9 +88,9 @@ for (const locale of ["en", "es", "fr"]) {
           }
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
           await page.setViewportSize({ width: 1280, height: 900 });
-          await page.addStyleTag({ content: ":root { zoom: 2; }" });
+          await addTestStyle(page, response, ":root { zoom: 2; }");
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-          await page.addStyleTag({ content: ":root { zoom: 1; font-size: 200%; }" });
+          await addTestStyle(page, response, ":root { zoom: 1; font-size: 200%; }");
           await page.setViewportSize({ width: 320, height: 900 });
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
           for (const button of await page.locator("button").all()) {

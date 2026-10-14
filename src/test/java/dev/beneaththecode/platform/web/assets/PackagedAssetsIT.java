@@ -93,6 +93,96 @@ class PackagedAssetsIT {
 		return fixture("render", extras, false);
 	}
 
+	@Test
+	void packagedErrorsAreSafeAndFailureFixtureNeverChangesOriginalJar() throws Exception {
+		byte[] before = digest(JAR);
+		var extras = new LinkedHashMap<String, byte[]>();
+		for (String type : new String[] { "HttpFailureApplication", "HttpFailureController" }) {
+			String name = "btc/fixtures/" + type + ".class";
+			extras.put("BOOT-INF/classes/" + name, Files.readAllBytes(CLASSES.resolve(name)));
+		}
+		try (var archive = new ZipFile(JAR.toFile())) {
+			extras.put("META-INF/MANIFEST.MF", new String(bytes(archive, "META-INF/MANIFEST.MF"), StandardCharsets.UTF_8)
+					.replace("Start-Class: dev.beneaththecode.BeneathTheCodeApplication", "Start-Class: btc.fixtures.HttpFailureApplication")
+					.getBytes(StandardCharsets.UTF_8));
+			assertThat(archive.stream().map(ZipEntry::getName).toList()).noneMatch(name -> name.contains("btc/fixtures"));
+		}
+		Path isolated = fixture("http-failure", extras, false);
+		try (var running = new RunningJar(isolated)) {
+			running.awaitReady();
+			for (String language : new String[] { "en", "es", "fr" }) {
+				var response = running.client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + running.port
+						+ "/assets/__http-failure?lang=" + language)).header("Accept", "text/html").GET().build(),
+						HttpResponse.BodyHandlers.ofString());
+				assertThat(response.statusCode()).isEqualTo(500);
+				assertThat(response.body()).contains("lang=\"" + language + "\"", "<h1", "href=\"/\"")
+						.doesNotContain("SYNTHETIC_HTTP_PRIVATE_SENTINEL", "Exception", "<form", "_csrf");
+				assertThat(response.headers().firstValue("cache-control")).hasValue("no-store");
+				assertThat(response.headers().firstValue("content-security-policy")).isPresent();
+			}
+			assertThat(Files.readString(running.log)).doesNotContain("SYNTHETIC_HTTP_PRIVATE_SENTINEL", "IllegalStateException");
+		}
+		finally { Files.deleteIfExists(isolated); }
+		assertThat(digest(JAR)).isEqualTo(before);
+		try (var running = new RunningJar(JAR)) {
+			running.awaitReady();
+			assertThat(running.get("/assets/__http-failure").statusCode()).isEqualTo(404);
+		}
+	}
+
+	@Test
+	void packagedPreferenceBoundaryRejectsStreamsWithoutPrivateResponseOrLogData() throws Exception {
+		String sentinel = "SYNTHETIC_HTTP_PRIVATE_SENTINEL";
+		try (var running = new RunningJar(JAR, "--spring.profiles.active=local")) {
+			running.awaitReady();
+			for (boolean chunked : new boolean[] { false, true }) {
+				String body = "x=" + sentinel + "a".repeat(5000) + sentinel;
+				var publisher = chunked ? HttpRequest.BodyPublishers.ofInputStream(() ->
+						new java.io.ByteArrayInputStream(body.getBytes(StandardCharsets.UTF_8))) : HttpRequest.BodyPublishers.ofString(body);
+				var response = running.client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + running.port
+						+ "/preferences/language?private=" + sentinel)).timeout(Duration.ofSeconds(5))
+						.header("Content-Type", "application/x-www-form-urlencoded").POST(publisher).build(), HttpResponse.BodyHandlers.ofString());
+				assertThat(response.statusCode()).isEqualTo(413);
+				assertThat(response.body()).doesNotContain(sentinel);
+				assertThat(response.headers().allValues("set-cookie")).isEmpty();
+			}
+			var home = running.get("/");
+			var token = Pattern.compile("name=\"_csrf\"[^>]*value=\"([^\"]+)\"").matcher(new String(home.body(), StandardCharsets.UTF_8));
+			assertThat(token.find()).isTrue();
+			String cookie = home.headers().allValues("set-cookie").stream().filter(value -> value.startsWith("XSRF-TOKEN="))
+					.findFirst().orElseThrow().split(";", 2)[0];
+			String body = "language=es&_csrf=" + java.net.URLEncoder.encode(token.group(1), StandardCharsets.UTF_8) + "&padding=";
+			body += "a".repeat(4096 - body.getBytes(StandardCharsets.UTF_8).length);
+			var success = running.client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + running.port + "/preferences/language"))
+					.header("Content-Type", "application/x-www-form-urlencoded").header("Cookie", cookie)
+					.POST(HttpRequest.BodyPublishers.ofString(body)).build(), HttpResponse.BodyHandlers.ofString());
+			assertThat(success.statusCode()).isEqualTo(303);
+			assertThat(success.headers().allValues("set-cookie")).anyMatch(value -> value.startsWith("BTC_LANGUAGE=es;"));
+			var unsupported = running.client.send(HttpRequest.newBuilder(URI.create("http://127.0.0.1:" + running.port + "/preferences/language"))
+					.header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(sentinel)).build(), HttpResponse.BodyHandlers.ofString());
+			assertThat(unsupported.statusCode()).isEqualTo(415);
+			assertThat(unsupported.body()).doesNotContain(sentinel);
+			assertThat(unsupported.headers().allValues("set-cookie")).isEmpty();
+			// No terminal chunk: a response proves rejection without draining the entire stream.
+			String chunk = "x=" + "a".repeat(4095);
+			String partial = "POST /preferences/language HTTP/1.1\r\nHost: localhost\r\nContent-Type: application/x-www-form-urlencoded\r\n"
+					+ "Transfer-Encoding: chunked\r\n\r\n" + Integer.toHexString(chunk.length()) + "\r\n" + chunk + "\r\n";
+			assertThat(rawStatus(running.port, partial)).startsWith("HTTP/1.1 413");
+			String headers = "GET / HTTP/1.1\r\nHost: localhost\r\nX-Private: " + sentinel + "a".repeat(17000) + "\r\n\r\n";
+			assertThat(rawStatus(running.port, headers)).startsWith("HTTP/1.1 400");
+			assertThat(Files.readString(running.log)).doesNotContain(sentinel, token.group(1), cookie);
+		}
+	}
+
+	private static String rawStatus(int port, String request) throws IOException {
+		try (var socket = new java.net.Socket("127.0.0.1", port)) {
+			socket.setSoTimeout(5000);
+			socket.getOutputStream().write(request.getBytes(StandardCharsets.UTF_8));
+			socket.getOutputStream().flush();
+			return new java.io.BufferedReader(new java.io.InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8)).readLine();
+		}
+	}
+
 	/** F02-UH02-AC01: a real watcher, one running server, and successive page loads. */
 	@Test
 	void localPageServesTwoSuccessiveWatcherRebuildsWithoutRestart() throws Exception {

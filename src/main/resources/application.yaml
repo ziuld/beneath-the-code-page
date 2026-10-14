@@ -5,3 +5,25 @@ spring:
     basename: i18n/messages
     encoding: UTF-8
     fallback-to-system-locale: false
+
+server:
+  forward-headers-strategy: none
+  max-http-request-header-size: 16KB
+  tomcat:
+    max-http-form-post-size: 4KB
+    max-swallow-size: 4KB
+    accesslog:
+      enabled: false
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+    include-exception: false
+
+# These framework diagnostics can interpolate raw client URLs or exception details.
+logging:
+  level:
+    org.springframework.web: OFF
+    org.springframework.security.web: OFF
+    org.apache.coyote: OFF
+    org.apache.catalina: OFF

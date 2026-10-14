@@ -20,7 +20,7 @@ for (const locale of ["en", "es", "fr"]) {
           page.on("request", request => requests.push(request));
           const response = await page.goto(url);
           expect(response.status()).toBe(200);
-          expect(response.headers()["set-cookie"]).toBeUndefined();
+          expect((await response.allHeaders())["set-cookie"]).toContain("XSRF-TOKEN=");
           await expect(page.locator("html")).toHaveAttribute("lang", locale);
           await expect(page).toHaveTitle(copy["home.title"]);
           await expect(page.getByRole("navigation", { name: copy["navigation.label"], exact: true })).toHaveCount(1);
@@ -39,7 +39,9 @@ for (const locale of ["en", "es", "fr"]) {
           expect(await page.content()).not.toMatch(/\?\?[^?]+\?\?|\bth:/);
           expect(requests.every(request => request.method() === "GET" && request.postData() === null
             && new URL(request.url()).origin === new URL(url).origin)).toBe(true);
-          expect(await context.cookies()).toEqual([]);
+          const cookies = await context.cookies();
+          expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
+          expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
           expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length })))
             .toEqual({ local: 0, session: 0 });
         } finally {

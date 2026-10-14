@@ -70,7 +70,8 @@ class HomeRenderingTests {
 		for (var section : descriptors) {
 			assertThat(html.contains("href=\"" + section.path() + "\"")).isEqualTo(section.published());
 		}
-		assertThat(html).doesNotContain("href=\"#\"", "onclick", "aria-disabled", "<form");
+		assertThat(html).doesNotContain("href=\"#\"", "onclick", "aria-disabled");
+		assertThat(html).contains("action=\"/preferences/language\"", "method=\"post\"");
 		assertThat(Pattern.compile(">Not yet available<").matcher(html).results().count())
 				.isEqualTo((tools ? 0 : 1) + (learn ? 0 : 1));
 		assertThat(descriptors).hasSize(2);
@@ -147,7 +148,8 @@ class HomeRenderingTests {
 		assertThat(html).contains("href=\"/\" aria-current=\"page\"", "Navigation principale",
 				"aria-labelledby=\"tools-heading\"", "aria-labelledby=\"learn-heading\"",
 				"id=\"tools-heading\"", "id=\"learn-heading\"", "Outils", "Apprendre")
-				.doesNotContain("th:", "<button", "<form", "Not yet available");
+				.doesNotContain("th:", "Not yet available");
+		assertThat(html).contains("name=\"language\"", "type=\"submit\"");
 		assertThat(Pattern.compile("<article\\b").matcher(html).results().count()).isEqualTo(2);
 		assertThat(Pattern.compile("<a\\b[^>]*>[^<]*<a\\b").matcher(html).find()).isFalse();
 	}

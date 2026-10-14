@@ -25,7 +25,7 @@ for (const { locale, label } of [
         if (javaScriptEnabled) {
           await page.evaluate(() => {
             window.activations = 0;
-            document.querySelector("button").addEventListener("click", () => window.activations++);
+            document.querySelector("main button").addEventListener("click", () => window.activations++);
           });
         }
         await buttons.nth(0).focus();
@@ -45,7 +45,9 @@ for (const { locale, label } of [
         await expect(buttons.nth(1)).not.toBeFocused();
         expect(requests.every(request => request.method === "GET")).toBe(true);
         expect(requests.filter(request => request.url.includes("/__shell-fixture"))).toHaveLength(1);
-        expect((await context.cookies())).toEqual([]);
+        const cookies = await context.cookies();
+        expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
+        expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
       } finally {
         await context.close();
       }

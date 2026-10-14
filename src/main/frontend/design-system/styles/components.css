@@ -54,6 +54,25 @@
     text-decoration: none;
   }
 
+  .language-preference {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-sm);
+    max-width: 100%;
+  }
+
+  .language-preference select {
+    max-width: 100%;
+    min-height: 2.75rem;
+    padding: var(--space-sm);
+    border: var(--border-width) solid var(--secondary);
+    border-radius: 0;
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+  }
+
   .navigation {
     display: flex;
     flex-wrap: wrap;

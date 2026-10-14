@@ -12,6 +12,16 @@
             </li>
         </ul>
     </nav>
+    <form class="language-preference" th:action="@{/preferences/language}" method="post">
+        <label for="interface-language" th:text="#{language.label}"></label>
+        <select id="interface-language" name="language">
+            <option value="en" th:selected="${language == 'en'}" th:text="#{language.en}"></option>
+            <option value="es" th:selected="${language == 'es'}" th:text="#{language.es}"></option>
+            <option value="fr" th:selected="${language == 'fr'}" th:text="#{language.fr}"></option>
+        </select>
+        <input type="hidden" name="returnTo" th:value="${currentPath}">
+        <button class="button" type="submit" th:text="#{language.apply}"></button>
+    </form>
 </header>
 <footer th:fragment="footer" class="site-footer page">
     <p th:text="#{brand.name}"></p>
