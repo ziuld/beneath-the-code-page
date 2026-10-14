@@ -6,7 +6,7 @@ User outcome and authorised scope: One planning-only change covering F04-UH01 an
 
 Prerequisites and files read: F03 accepted/archived; `harness/current-state.md`, architecture/feasibility review, F04 dossier/canonical plan, quality plan, existing main specs, locale/security/Home/shell/resource configuration, security and packaged tests, browser runner and task template inspected.
 
-Acceptance criteria (link, do not drift): [F04 dossier](../../docs/planning/features/F04.md); [proposal](../../openspec/changes/f04-security-and-locale-flow/proposal.md). Preserve F04's four requirement and four acceptance IDs.
+Acceptance criteria (link, do not drift): [F04 dossier](../../docs/planning/features/F04.md); [proposal](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/proposal.md). Preserve F04's four requirement and four acceptance IDs.
 
 Implementation steps: Not executed. Planning sequence was proposal, two delta specifications, design and implementation checklist. Apply requires a separate request.
 

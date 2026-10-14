@@ -1,12 +1,12 @@
 # F04-UH02 secure HTTP execution evidence
 
-Date: 2026-10-14. Status: accepted; required commit/closure pending. Earlier execution pauses are historical.
+Date: 2026-10-14. Status: accepted and done. Earlier execution/closure pauses are historical.
 
 ## Prerequisite and integration inspection
 
 UH01's implemented native flow is evidenced by 46 passing Chromium cases and the preceding Maven run (15 frontend, 156 Java cases with four explicit skips, 15 packaged). Owner confirmed actual browser 200% zoom and language/visual review. UH01 closure remains pending combined integration; this is not an invented commit/dependency completion.
 
-Read the F04-UH02 EARS/Gherkin/tasks and [delta/design](../../openspec/changes/f04-security-and-locale-flow/design.md). Focused read-only inspection of pinned Spring Security 7.1.1 bytecode confirms: the CSRF request handler exposes a deferred token supplier, CsrfFilter materialises it only when required, then resolves the submitted value through parameter access. The bounded preference filter therefore must precede the security chain and supply all parameter accessors, not just a replayable input stream. Locale resolution already avoids servlet parameter/body access. Framework debug logs can interpolate raw request URLs, so defaults and scoped logging controls must remain safe.
+Read the F04-UH02 EARS/Gherkin/tasks and [delta/design](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/design.md). Focused read-only inspection of pinned Spring Security 7.1.1 bytecode confirms: the CSRF request handler exposes a deferred token supplier, CsrfFilter materialises it only when required, then resolves the submitted value through parameter access. The bounded preference filter therefore must precede the security chain and supply all parameter accessors, not just a replayable input stream. Locale resolution already avoids servlet parameter/body access. Framework debug logs can interpolate raw request URLs, so defaults and scoped logging controls must remain safe.
 
 Filter responsibilities: a global response-header/nonce filter must cover normal, early rejection and internal error dispatch; preference byte/media-type/parameter handling runs after that filter but before the security chain; one safe error renderer handles boundary/security/MVC errors without rendering token-bearing forms. No unsafe CSP relaxation, new runtime dependency or generic middleware framework is proposed.
 
@@ -117,3 +117,11 @@ Canonical tracking/handoff updated to the acceptance-pending state; both plannin
 ## Owner acceptance and closure — 2026-10-14
 
 Owner explicitly accepted both F04 stories after the integrated checks and authorised tracking closure. F04-UH02-AC01/AC02 have actual Java/packaged/browser/privacy/header evidence above and ASVS mapping with explicit limitations. Closure attempt failed `check-planning.py` and the baseline planning-rule test: both done stories require a real commit reference. Strict OpenSpec and whitespace passed, but this did not establish valid closure. Restored acceptance-recorded pending-commit tracking and reopened checklist 3.2/3.3 (14/16); no validator relaxation or fabricated commit. UH01 accepted but not formally done, so dependent canonical statuses remain blocked until closure. Owner effort unreported; actual hours unchanged. No commit authorised/made, push/archive/spec sync/behavioural migration; F05 unchanged. Request authorisation for one coherent local F04 commit excluding unrelated VS Code edits, then record its real hash and rerun closure checks.
+
+Owner subsequently authorised one coherent local F04 commit. Created `3ea174f` (`feat: implement F04 security and locale flow`), excluding `.vscode/settings.json`; recorded real hash on both stories/all tasks. UH01 prerequisite accepted/closed; UH02 and F04 now done against technical evidence and owner acceptance. No fabricated effort, validator exception or unrelated F05 work. Post-commit closure bookkeeping remains uncommitted, since only one local commit was authorised. No push/archive/spec sync/migration.
+
+After committed closure, both planning renderers executed; planning integrity passed with real commit references, planning-rule tests passed 15/15, strict OpenSpec validation and whitespace checks passed. Checklist 3.3 complete: 16/16. No application code changed after final build/browser evidence.
+
+## Archive — 2026-10-14
+
+Owner requested archive and selected spec sync. Created both main specifications, preserving delta purpose/requirements/scenarios exactly; strict validation passed all five main specs. Archived complete spec-driven change to `openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/`, preserving `.openspec.yaml` and 16/16 task completion. Updated external evidence links; story behavioural ownership remains plan-owned, no automatic migration. Archive/sync/closure bookkeeping uncommitted; no new commit or push authorised.

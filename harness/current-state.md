@@ -1,5 +1,27 @@
 # Current handoff
 
+F04 archived, 2026-10-14: owner requested archive and selected main-spec sync.
+Archived complete spec-driven change to
+`openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/` (16/16 tasks).
+Main `locale-preferences` and `secure-http-responses` specifications created with
+verbatim purpose/requirements/scenarios; strict validation passed all five specs.
+Evidence links updated. F04 remains accepted/done, implementation commit 3ea174f;
+behavioural ownership remains plan-owned, F05 unchanged. Archive/sync/post-commit
+closure bookkeeping remains uncommitted; unrelated VS Code work preserved.
+No new commit or push authorised. Earlier pre-archive handoffs below historical.
+
+F04 committed closure, 2026-10-14: owner accepted both stories and explicitly
+authorised one local F04 commit. Created 3ea174f, excluding unrelated VS Code work.
+Recorded real hash on both stories/tasks; F04/UH01/UH02 done against owner acceptance
+and final technical evidence. Post-commit closure bookkeeping remains uncommitted,
+not silently included in a second commit. No push/archive/spec-sync/migration;
+F05 unchanged. Clean build/17 packaged/46 installed Chrome/smoke/logo/fixture
+checks passed; four explicit Java skips and ASVS limitations documented. Owner
+effort unreported. Earlier failed-closure/approval handoffs below are historical.
+
+Post-commit closure validation passed: planning integrity, 15 rule tests, strict
+OpenSpec and whitespace. Checklist 16/16; no remaining technical/acceptance blocker.
+
 F04 accepted, required-commit pause, 2026-10-14: owner explicitly accepted both
 stories and authorised tracking closure. Attempted done state failed planning
 validator/rule baseline because both stories require real commit references. Restored

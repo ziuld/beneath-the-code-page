@@ -2,7 +2,7 @@
 
 Baseline date: 2026-10-09.
 
-4/17 features accepted; 42/298 baseline hours accepted (14%). Forecast 298 owner hours + 59.6h contingency = 357.6h, approximately 36 weeks at 10h/week. No start date committed.
+5/17 features accepted; 56/298 baseline hours accepted (19%). Forecast 298 owner hours + 59.6h contingency = 357.6h, approximately 36 weeks at 10h/week. No start date committed.
 
 Initial estimating envelope: 194–552h before contingency. These are judgement ranges, not confidence intervals. AI assistance is already assumed.
 
@@ -14,7 +14,7 @@ Week 1 begins at project start. Fractional weeks show capacity, not exact appoin
 | F01 | Java baseline and boundaries | 10 | 0.2–1.2 | done | F00 |
 | F02 | Frontend asset pipeline | 12 | 1.2–2.4 | done | F01 |
 | F03 | Home and shared EN/ES/FR shell | 18 | 2.4–4.2 | done | F02 |
-| F04 | Security and locale flow | 14 | 4.2–5.6 | in_review | F03 |
+| F04 | Security and locale flow | 14 | 4.2–5.6 | done | F03 |
 | F05 | Editor and CSP proof | 14 | 5.6–7.0 | planned | F04 |
 | F06 | JSON Formatter | 24 | 7.0–9.4 | planned | F05 |
 | F07 | JSON Validator and Minifier | 10 | 9.4–10.4 | planned | F06 |

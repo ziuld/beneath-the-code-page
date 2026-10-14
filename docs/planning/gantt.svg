@@ -51,7 +51,7 @@
 <text x="20" y="178">F03 Home and shared EN/ES/FR shell</text>
 <rect x="422.67" y="162" width="43.25" height="22" fill="#9bb7a1"><title>F03 Home and shared EN/ES/FR shell: 18h, done</title></rect>
 <text x="20" y="212">F04 Security and locale flow</text>
-<rect x="465.92" y="196" width="33.64" height="22" fill="#92908b"><title>F04 Security and locale flow: 14h, in_review</title></rect>
+<rect x="465.92" y="196" width="33.64" height="22" fill="#9bb7a1"><title>F04 Security and locale flow: 14h, done</title></rect>
 <text x="20" y="246">F05 Editor and CSP proof</text>
 <rect x="499.56" y="230" width="33.64" height="22" fill="#92908b"><title>F05 Editor and CSP proof: 14h, planned</title></rect>
 <text x="20" y="280">F06 JSON Formatter</text>
@@ -78,5 +78,5 @@
 <rect x="1032.97" y="604" width="48.06" height="22" fill="#92908b"><title>F16 Full Phase 1 acceptance: 20h, planned</title></rect>
 <text x="20" y="654">Shared contingency · 59.6h</text>
 <rect x="1081.03" y="638" width="143.21" height="22" fill="#45433f"/>
-<text x="20" y="712">Gray = scheduled effort, not completion. Accepted: 4/17 features. Milestone timing excludes shared contingency.</text>
+<text x="20" y="712">Gray = scheduled effort, not completion. Accepted: 5/17 features. Milestone timing excludes shared contingency.</text>
 </g></svg>

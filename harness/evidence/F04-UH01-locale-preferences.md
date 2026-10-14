@@ -1,10 +1,10 @@
 # F04-UH01 locale-preferences execution evidence
 
-Date: 2026-10-14. Status: accepted; required commit/closure pending. Earlier execution pauses are historical.
+Date: 2026-10-14. Status: accepted and done. Earlier execution/closure pauses are historical.
 
 ## Prerequisite and scope
 
-F03 and both accepted stories are done and archived. Owner requested apply of the complete `f04-security-and-locale-flow` change. [Task record](../tasks/F04-security-and-locale-flow.md) and [delta](../../openspec/changes/f04-security-and-locale-flow/specs/locale-preferences/spec.md) retain the canonical F04-UH01-AC01/AC02 criteria. F04 remains plan-owned; no commit/push/archive authorised.
+F03 and both accepted stories are done and archived. Owner requested apply of the complete `f04-security-and-locale-flow` change. [Task record](../tasks/F04-security-and-locale-flow.md) and [delta](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/specs/locale-preferences/spec.md) retain the canonical F04-UH01-AC01/AC02 criteria. F04 remains plan-owned; no commit/push/archive authorised at apply time.
 
 ## Locale-resolution slice
 
@@ -60,3 +60,5 @@ Owner requested installed Google Chrome rather than a Chromium download. Execute
 ## Owner acceptance and closure — 2026-10-14
 
 Owner explicitly accepted both F04 stories after the passing integrated result and authorised closing their tracking. F04-UH01-AC01/AC02 are evidenced above and F03 prerequisite done. Closure attempt failed planning validation: each done story requires a real commit reference. Corrected tracking to acceptance recorded/in_review pending commit authorisation, not falsely done. Owner effort remains unreported; no commit authorised or created. No push/archive/spec sync/behavioural migration; F05 unchanged. Checklist 3.2/3.3 remain open until valid committed closure.
+
+Owner subsequently authorised one coherent local F04 commit. Created `3ea174f` (`feat: implement F04 security and locale flow`), excluding unrelated `.vscode/settings.json`; real reference recorded on story/tasks. Acceptance and passing integrated evidence establish UH01/F04 closure. Post-commit bookkeeping records the resulting hash and remains uncommitted; no second commit, push, archive, sync or migration implied. Owner effort still unreported.

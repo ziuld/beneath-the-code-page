@@ -4,11 +4,11 @@ Date: 2026-10-14. Scope: planning only, requested as one proposal for complete F
 
 ## Delivered artifacts
 
-- [Proposal](../../openspec/changes/f04-security-and-locale-flow/proposal.md).
-- [Locale-preferences delta](../../openspec/changes/f04-security-and-locale-flow/specs/locale-preferences/spec.md): F04-UH01-R01/R02 and AC01/AC02, with architectural edge-case scenarios.
-- [Secure-HTTP-responses delta](../../openspec/changes/f04-security-and-locale-flow/specs/secure-http-responses/spec.md): F04-UH02-R01/R02 and AC01/AC02, with security/privacy scenarios.
-- [Design](../../openspec/changes/f04-security-and-locale-flow/design.md): repository-grounded choices and risks; exact ASVS 5.0.0 release selected from the official tagged source.
-- [Tasks](../../openspec/changes/f04-security-and-locale-flow/tasks.md): 16 unchecked implementation/verification/closure items mapped to the ten canonical tasks.
+- [Proposal](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/proposal.md).
+- [Locale-preferences delta](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/specs/locale-preferences/spec.md): F04-UH01-R01/R02 and AC01/AC02, with architectural edge-case scenarios.
+- [Secure-HTTP-responses delta](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/specs/secure-http-responses/spec.md): F04-UH02-R01/R02 and AC01/AC02, with security/privacy scenarios.
+- [Design](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/design.md): repository-grounded choices and risks; exact ASVS 5.0.0 release selected from the official tagged source.
+- [Tasks](../../openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/tasks.md): 16 implementation/verification/closure items mapped to the ten canonical tasks, unchecked at proposal time.
 - [Planning task record](../tasks/F04-openspec-proposal.md).
 
 ## Executed planning checks
