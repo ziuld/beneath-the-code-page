@@ -8,6 +8,12 @@ This is the user's requested conceptual hierarchy. Jira's default has Epic → S
 
 ## Two complementary specification forms
 
+Ownership update (ADR 004): stories with `behaviour_spec` use that main OpenSpec
+document as the sole editable behavioural source. `plan.json` keeps IDs and
+verification links, not requirement/scenario text. Other stories remain plan-owned.
+The historical instructions below apply to plan-owned stories; for migrated
+stories, edit OpenSpec and regenerate the read-only EARS/Gherkin views.
+
 EARS states the requirement; Gherkin illustrates acceptance. Every requirement has a stable ID and at least one scenario; each scenario references the requirement it verifies. Do not maintain two conflicting behaviours. When changing behaviour, update both representations in the canonical plan and regenerate their views.
 
 EARS patterns, following [Alistair Mavin's official guide](https://alistairmavin.com/ears/):

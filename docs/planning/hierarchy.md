@@ -30,6 +30,6 @@ Read [the epic](epic-mvp.md), then a feature below. Every story contains EARS re
 
 ## Ownership and progress
 
-Edit plan.json for scope, EARS, scenarios, task descriptions and statuses, then run both renderers and the planning validator. Do not hand-edit generated feature/Gherkin/queue/traceability views. Feature estimates are distributed into child work; never add parent and child hours together.
+Edit plan.json for tracking and unmigrated behaviour. For stories with behaviour_spec, edit the referenced main OpenSpec specification for requirements/scenarios; plan.json holds IDs and verification links only. Run both renderers and the planning validator. Generated views are read-only. Never add parent and child hours together.
 
 [EARS/Gherkin conventions and Jira mapping](story-workflow.md) · [OpenSpec handoff](openspec-handoff.md) · [Traceability](traceability.md)

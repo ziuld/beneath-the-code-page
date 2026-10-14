@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header(currentPath)" class="site-header page">
+    <a class="wordmark" href="/" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{brand.name}"></a>
+    <nav th:aria-label="#{navigation.label}">
+        <ul class="navigation">
+            <li><a href="/" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{navigation.home}"></a></li>
+            <li th:each="section : ${sections}">
+                <a th:if="${section.published}" th:href="${section.path}" th:aria-current="${currentPath == section.path ? 'page' : null}" th:text="#{${section.titleKey()}}"></a>
+                <span th:unless="${section.published}" class="unavailable" th:text="#{${section.titleKey()}}"></span>
+            </li>
+        </ul>
+    </nav>
+    <form class="language-preference" th:action="@{/preferences/language}" method="post">
+        <label for="interface-language" th:text="#{language.label}"></label>
+        <select id="interface-language" name="language">
+            <option value="en" th:selected="${language == 'en'}" th:text="#{language.en}"></option>
+            <option value="es" th:selected="${language == 'es'}" th:text="#{language.es}"></option>
+            <option value="fr" th:selected="${language == 'fr'}" th:text="#{language.fr}"></option>
+        </select>
+        <input type="hidden" name="returnTo" th:value="${currentPath}">
+        <button class="button" type="submit" th:text="#{language.apply}"></button>
+    </form>
+</header>
+<footer th:fragment="footer" class="site-footer page">
+    <p th:text="#{brand.name}"></p>
+    <p th:text="#{footer.statement}"></p>
+</footer>
+</body>
+</html>

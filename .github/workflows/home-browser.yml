@@ -1,0 +1,35 @@
+name: Packaged Home browser
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: home-browser-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: Chromium packaged Home
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Temurin 25.0.4.1+1
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: '25.0.4+101.0.LTS'
+          architecture: x64
+          overwrite-settings: false
+      - name: Build and verify the normal executable
+        run: python3 scripts/verify-java-baseline.py clean
+      - name: Test packaged Home in Chromium
+        run: python3 scripts/verify-home-browser.py --install --with-deps

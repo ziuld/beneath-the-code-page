@@ -13,7 +13,7 @@ environment = os.environ.copy()
 environment['MAVEN_OPTS'] = (environment.get('MAVEN_OPTS', '')
                             + f' -Dmaven.repo.local={ROOT / ".mvn/local-repository"}'
                             + f' -Djava.io.tmpdir={ROOT / "target"}')
-command = ['./mvnw', '--batch-mode', '--no-transfer-progress', 'verify', *sys.argv[1:]]
+command = ['./mvnw', '--batch-mode', '--no-transfer-progress', *sys.argv[1:], 'verify']
 print('Command:', ' '.join(command), flush=True)
 with subprocess.Popen(command, cwd=ROOT, env=environment, stdout=subprocess.PIPE,
                       stderr=subprocess.STDOUT, text=True) as process:

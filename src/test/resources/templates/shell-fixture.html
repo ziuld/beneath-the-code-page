@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{home.title}"></title>
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools')}"></header>
+<main id="main" class="page" tabindex="-1">
+    <h1 th:text="#{home.sections}"></h1>
+    <form>
+        <button th:replace="~{fragments/components :: button('action.continue', false)}"></button>
+        <button th:replace="~{fragments/components :: button('action.continue', true)}"></button>
+    </form>
+    <th:block th:each="section : ${sections}">
+        <article th:replace="~{fragments/components :: sectionCard(${section})}"></article>
+    </th:block>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

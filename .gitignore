@@ -1,5 +1,7 @@
 HELP.md
 target/
+src/main/frontend/node_modules/
+tests/e2e/node_modules/
 .mvn/local-repository/
 __pycache__/
 .mvn/wrapper/maven-wrapper.jar
@@ -32,4 +34,5 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+.vscode/*
+!.vscode/settings.json

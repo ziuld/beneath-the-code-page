@@ -547,11 +547,11 @@
       "depends_on": [
         "F01"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-13",
+      "actual_finish": "2026-10-13",
+      "evidence": ["harness/evidence/F02-UH01-integration.md", "harness/evidence/F02-UH02-local-assets.md"],
       "parent_id": "EPIC-MVP",
       "kind": "enabler",
       "stories": [
@@ -562,7 +562,7 @@
           "description": "As a maintainer, I want to build versioned browser assets into the application, so that SSR pages use the same tested assets in every environment.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F01"
@@ -570,43 +570,22 @@
           "baseline_hours": 8,
           "forecast_hours": 8,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-13",
+          "actual_finish": "2026-10-13",
+          "evidence": ["harness/evidence/F02-UH01-frontend-assets.md", "harness/evidence/F02-UH01-integration.md"],
+          "commits": ["938b97c"],
+          "behaviour_spec": "openspec/specs/packaged-browser-assets/spec.md",
           "requirements": [
-            {
-              "id": "F02-UH01-R01",
-              "pattern": "event",
-              "text": "When the clean application build succeeds, the packaged application shall serve the hashed browser assets referenced by its rendered pages."
-            },
-            {
-              "id": "F02-UH01-R02",
-              "pattern": "unwanted",
-              "text": "If a required manifest entry is absent, then application startup shall fail with a safe diagnostic."
-            }
+            {"id": "F02-UH01-R01"},
+            {"id": "F02-UH01-R02"}
           ],
           "scenarios": [
             {
               "id": "F02-UH01-AC01",
-              "name": "Resolve packaged assets",
-              "requirement_ids": [
-                "F02-UH01-R01"
-              ],
-              "given": "a clean build has generated a site entry and its imported stylesheet",
-              "when": "the packaged application renders the page",
-              "then": "the referenced JS and CSS URLs return the matching built assets",
               "verification": "Inspect JAR resources; integration-test manifest traversal and HTTP assets"
             },
             {
               "id": "F02-UH01-AC02",
-              "name": "Reject an incomplete build",
-              "requirement_ids": [
-                "F02-UH01-R02"
-              ],
-              "given": "the generated manifest is missing a required entry",
-              "when": "the packaged application starts",
-              "then": "startup fails instead of serving a page with broken asset links",
               "verification": "Integration fixture omitting an entry; verify diagnostic contains no payload"
             }
           ],
@@ -619,17 +598,17 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH01-frontend-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH01-T02",
@@ -639,7 +618,7 @@
               "baseline_hours": 2.5,
               "forecast_hours": 2.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH01-T01"
@@ -649,10 +628,10 @@
                 "F02-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH01-frontend-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH01-T03",
@@ -662,7 +641,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH01-T02"
@@ -671,10 +650,10 @@
                 "F02-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH01-frontend-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH01-T04",
@@ -684,7 +663,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH01-T03"
@@ -693,10 +672,10 @@
                 "F02-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH01-frontend-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH01-T05",
@@ -706,7 +685,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH01-T04"
@@ -716,13 +695,13 @@
                 "F02-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F02-UH01-frontend-assets.md", "harness/evidence/F02-UH01-integration.md"],
+              "commits": ["938b97c"],
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Accepted and integrated on local main in commit 938b97c; clean post-commit verification passed on 2026-10-13. Behaviour is owned by the referenced main OpenSpec specification. F02-UH02 remains outside this completed story; no remote CI/publication is claimed."
         },
         {
           "id": "F02-UH02",
@@ -731,7 +710,7 @@
           "description": "As a maintainer, I want to serve each rebuilt asset during local development, so that I do not test a stale copy.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F02-UH01"
@@ -739,10 +718,10 @@
           "baseline_hours": 4,
           "forecast_hours": 4,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-13",
+          "actual_finish": "2026-10-13",
+          "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
+          "commits": ["b1fb149"],
           "requirements": [
             {
               "id": "F02-UH02-R01",
@@ -788,17 +767,17 @@
               "baseline_hours": 0.25,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH02-T02",
@@ -808,7 +787,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH02-T01"
@@ -818,10 +797,10 @@
                 "F02-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH02-T03",
@@ -831,7 +810,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH02-T02"
@@ -840,10 +819,10 @@
                 "F02-UH02-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH02-T04",
@@ -853,7 +832,7 @@
               "baseline_hours": 1.0,
               "forecast_hours": 1.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH02-T03"
@@ -862,10 +841,10 @@
                 "F02-UH02-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F02-UH02-T05",
@@ -875,7 +854,7 @@
               "baseline_hours": 0.25,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02-UH02-T04"
@@ -885,13 +864,13 @@
                 "F02-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F02-UH02-local-assets.md"],
+              "commits": ["b1fb149"],
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Owner-accepted and integrated on local main in b1fb149 on 2026-10-13. Post-commit clean verification and packaged smoke passed, including successive real watcher rebuilds, safe production rejection and pure-layer lint. Behaviour remains plan-owned; no remote CI/publication claimed."
         }
       ]
     },
@@ -908,11 +887,14 @@
       "depends_on": [
         "F02"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-13",
+      "actual_finish": "2026-10-13",
+      "evidence": [
+        "harness/evidence/F03-UH01-home-page.md",
+        "harness/evidence/F03-UH02-shared-shell.md"
+      ],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -923,7 +905,7 @@
           "description": "As a visitor, I want to understand Beneath the Code from its Home page, so that I can choose practical tools or engineering education.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F02"
@@ -931,43 +913,29 @@
           "baseline_hours": 8,
           "forecast_hours": 8,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-13",
+          "actual_finish": "2026-10-13",
+          "evidence": [
+            "harness/evidence/F03-UH01-home-page.md"
+          ],
+          "commits": [
+            "f2a3e3c"
+          ],
           "requirements": [
             {
-              "id": "F03-UH01-R01",
-              "pattern": "event",
-              "text": "When a visitor requests the Home page, Beneath the Code shall return semantic server-rendered content describing its tools and learning purpose."
+              "id": "F03-UH01-R01"
             },
             {
-              "id": "F03-UH01-R02",
-              "pattern": "unwanted",
-              "text": "If a section has no published destination, then the Home page shall present that section without a broken actionable link."
+              "id": "F03-UH01-R02"
             }
           ],
           "scenarios": [
             {
               "id": "F03-UH01-AC01",
-              "name": "Read Home without JavaScript",
-              "requirement_ids": [
-                "F03-UH01-R01"
-              ],
-              "given": "JavaScript is disabled",
-              "when": "a visitor opens the Home page",
-              "then": "the response contains the brand identity, a main heading and the tools and learning descriptions",
               "verification": "MockMvc rendered HTML and browser JavaScript-disabled check"
             },
             {
               "id": "F03-UH01-AC02",
-              "name": "Avoid advertising an unavailable destination",
-              "requirement_ids": [
-                "F03-UH01-R02"
-              ],
-              "given": "a tools or learning destination has not been published in the current increment",
-              "when": "a visitor inspects the Home navigation",
-              "then": "the section is described without a link to a missing page",
               "verification": "Route/catalogue fixture; after publication verify the real link replaces the unavailable state"
             }
           ],
@@ -980,17 +948,20 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F02"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": [
+                "harness/tasks/F03-UH01-home-page.md",
+                "harness/evidence/F03-UH01-home-page.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH01-T02",
@@ -1000,7 +971,7 @@
               "baseline_hours": 2.5,
               "forecast_hours": 2.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH01-T01"
@@ -1010,10 +981,12 @@
                 "F03-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F03-UH01-home-page.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH01-T03",
@@ -1023,7 +996,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH01-T02"
@@ -1032,10 +1005,12 @@
                 "F03-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F03-UH01-home-page.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH01-T04",
@@ -1045,7 +1020,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH01-T03"
@@ -1054,10 +1029,12 @@
                 "F03-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F03-UH01-home-page.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH01-T05",
@@ -1067,7 +1044,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH01-T04"
@@ -1077,13 +1054,18 @@
                 "F03-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F03-UH01-home-page.md"
+              ],
+              "commits": [
+                "f2a3e3c"
+              ],
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied.",
+          "behaviour_spec": "openspec/specs/home-page/spec.md"
         },
         {
           "id": "F03-UH02",
@@ -1092,7 +1074,7 @@
           "description": "As a visitor, I want to read and navigate a consistent accessible interface, so that language or input method does not prevent me using the platform.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F03-UH01"
@@ -1100,10 +1082,10 @@
           "baseline_hours": 10,
           "forecast_hours": 10,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-13",
+          "actual_finish": "2026-10-13",
+          "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
+          "commits": ["0246b37"],
           "requirements": [
             {
               "id": "F03-UH02-R01",
@@ -1149,17 +1131,17 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH02-T02",
@@ -1169,7 +1151,7 @@
               "baseline_hours": 3.0,
               "forecast_hours": 3.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH02-T01"
@@ -1179,10 +1161,10 @@
                 "F03-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH02-T03",
@@ -1192,7 +1174,7 @@
               "baseline_hours": 3.0,
               "forecast_hours": 3.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH02-T02"
@@ -1201,10 +1183,10 @@
                 "F03-UH02-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH02-T04",
@@ -1214,7 +1196,7 @@
               "baseline_hours": 3.0,
               "forecast_hours": 3.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH02-T03"
@@ -1223,10 +1205,10 @@
                 "F03-UH02-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             },
             {
               "id": "F03-UH02-T05",
@@ -1236,7 +1218,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03-UH02-T04"
@@ -1246,10 +1228,10 @@
                 "F03-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F03-UH02-shared-shell.md"],
+              "commits": ["0246b37"],
+              "actual_start": "2026-10-13",
+              "actual_finish": "2026-10-13"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
@@ -1269,11 +1251,14 @@
       "depends_on": [
         "F03"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-14",
+      "actual_finish": "2026-10-14",
+      "evidence": [
+        "harness/evidence/F04-UH01-locale-preferences.md",
+        "harness/evidence/F04-UH02-secure-http-responses.md"
+      ],
       "parent_id": "EPIC-MVP",
       "kind": "enabler",
       "stories": [
@@ -1284,7 +1269,7 @@
           "description": "As a visitor, I want to choose a supported language, so that subsequent pages follow my preference.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F03"
@@ -1292,10 +1277,12 @@
           "baseline_hours": 7,
           "forecast_hours": 7,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-14",
+          "actual_finish": "2026-10-14",
+          "evidence": [
+            "harness/evidence/F04-UH01-locale-preferences.md"
+          ],
+          "commits": ["3ea174f"],
           "requirements": [
             {
               "id": "F04-UH01-R01",
@@ -1341,17 +1328,20 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F03"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/tasks/F04-security-and-locale-flow.md",
+                "harness/evidence/F04-UH01-locale-preferences.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH01-T02",
@@ -1361,7 +1351,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH01-T01"
@@ -1371,10 +1361,12 @@
                 "F04-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH01-locale-preferences.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH01-T03",
@@ -1384,7 +1376,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH01-T02"
@@ -1393,10 +1385,12 @@
                 "F04-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH01-locale-preferences.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH01-T04",
@@ -1406,7 +1400,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH01-T03"
@@ -1415,10 +1409,12 @@
                 "F04-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH01-locale-preferences.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH01-T05",
@@ -1428,7 +1424,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH01-T04"
@@ -1438,10 +1434,12 @@
                 "F04-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH01-locale-preferences.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
@@ -1453,7 +1451,7 @@
           "description": "As a visitor, I want to receive safe pages and errors, so that the public application does not expose sensitive internals.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F04-UH01"
@@ -1461,10 +1459,12 @@
           "baseline_hours": 7,
           "forecast_hours": 7,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-14",
+          "actual_finish": "2026-10-14",
+          "evidence": [
+            "harness/evidence/F04-UH02-secure-http-responses.md"
+          ],
+          "commits": ["3ea174f"],
           "requirements": [
             {
               "id": "F04-UH02-R01",
@@ -1510,17 +1510,19 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH02-secure-http-responses.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH02-T02",
@@ -1530,7 +1532,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH02-T01"
@@ -1540,10 +1542,12 @@
                 "F04-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH02-secure-http-responses.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH02-T03",
@@ -1553,7 +1557,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH02-T02"
@@ -1562,10 +1566,12 @@
                 "F04-UH02-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH02-secure-http-responses.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH02-T04",
@@ -1575,7 +1581,7 @@
               "baseline_hours": 2.0,
               "forecast_hours": 2.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH02-T03"
@@ -1584,10 +1590,13 @@
                 "F04-UH02-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH02-secure-http-responses.md",
+                "docs/quality/F04-asvs-mapping.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             },
             {
               "id": "F04-UH02-T05",
@@ -1597,7 +1606,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F04-UH02-T04"
@@ -1607,10 +1616,12 @@
                 "F04-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F04-UH02-secure-http-responses.md"
+              ],
+              "commits": ["3ea174f"],
+              "actual_start": "2026-10-14",
+              "actual_finish": "2026-10-14"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."

@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <link th:each="url : ${assets.stylesheets}" rel="stylesheet" th:href="${url}" />
+    <link th:each="url : ${assets.modulePreloads}" rel="modulepreload" th:href="${url}" />
+    <script type="module" th:src="${assets.script}"></script>
+  </head>
+  <body></body>
+</html>

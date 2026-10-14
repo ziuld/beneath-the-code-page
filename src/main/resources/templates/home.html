@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{home.title}"></title>
+    <meta name="description" th:content="#{home.description}">
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <link th:each="preload : ${assets.modulePreloads}" rel="modulepreload" th:href="${preload}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/')}"></header>
+<main id="main" class="page" tabindex="-1">
+    <section class="hero" aria-labelledby="home-heading">
+        <div>
+            <p class="eyebrow" th:text="#{home.eyebrow}"></p>
+            <h1 id="home-heading" th:text="#{home.heading}"></h1>
+            <p class="intro" th:text="#{home.introduction}"></p>
+        </div>
+        <img class="brand-composition" src="/brand/b-composition.png" width="1024" height="1024" th:alt="#{brand.logo.alt}">
+    </section>
+    <section class="section-grid" th:aria-label="#{home.sections}">
+        <th:block th:each="section : ${sections}">
+            <article th:replace="~{fragments/components :: sectionCard(${section})}"></article>
+        </th:block>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

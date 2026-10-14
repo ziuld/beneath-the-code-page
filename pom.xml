@@ -29,6 +29,9 @@
 	<properties>
 		<java.version>25</java.version>
 		<archunit.version>1.4.1</archunit.version>
+		<frontend-maven-plugin.version>2.0.2</frontend-maven-plugin.version>
+		<node.version>v24.21.0</node.version>
+		<npm.version>11.21.0</npm.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -90,10 +93,79 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>${project.build.directory}/frontend</directory>
+				<includes>
+					<include>static/assets/**</include>
+					<include>asset-manifest.json</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<!-- Explicit Maven builds own frontend work; IDE auto-build must not race npm ci/watch. -->
+				<?m2e ignore?>
+				<version>${frontend-maven-plugin.version}</version>
+				<configuration>
+					<workingDirectory>src/main/frontend</workingDirectory>
+					<installDirectory>${project.build.directory}/frontend-tooling</installDirectory>
+					<nodeVersion>${node.version}</nodeVersion>
+					<npmVersion>${npm.version}</npmVersion>
+					<environmentVariables>
+						<npm_config_cache>${project.build.directory}/npm-cache</npm_config_cache>
+					</environmentVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install-frontend-tooling</id>
+						<phase>generate-resources</phase>
+						<goals><goal>install-node-and-npm</goal></goals>
+					</execution>
+					<execution>
+						<id>install-frontend-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals><goal>npm</goal></goals>
+						<configuration><arguments>ci --no-audit --no-fund</arguments></configuration>
+					</execution>
+					<execution>
+						<id>check-frontend</id>
+						<phase>generate-resources</phase>
+						<goals><goal>npm</goal></goals>
+						<configuration><arguments>run check</arguments></configuration>
+					</execution>
+					<execution>
+						<id>bundle-frontend</id>
+						<phase>generate-resources</phase>
+						<goals><goal>npm</goal></goals>
+						<configuration><arguments>run build</arguments></configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<systemPropertyVariables>
+						<asset.test.jar>${project.build.directory}/${project.build.finalName}.jar</asset.test.jar>
+						<asset.test.classes>${project.build.testOutputDirectory}</asset.test.classes>
+						<asset.test.output>${project.build.directory}/asset-it</asset.test.output>
+					</systemPropertyVariables>
+				</configuration>
+				<executions>
+					<execution>
+						<goals><goal>integration-test</goal><goal>verify</goal></goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

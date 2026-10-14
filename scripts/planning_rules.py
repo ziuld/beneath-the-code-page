@@ -2,8 +2,13 @@
 from decimal import Decimal
 from pathlib import Path
 import re
+from planning_specs import resolve_behaviour
 
 def validate_hierarchy(data, root):
+    try:
+        data = resolve_behaviour(data, root)
+    except (ValueError, OSError) as exception:
+        return [str(exception)]
     errors=[]; nodes={}; stories=[]; tasks=[]; ids=set()
     def error(message): errors.append(message)
     def register(node):
