@@ -1,5 +1,19 @@
 # Current handoff
 
+Browser workflow correction, 2026-10-14: owner reversed the earlier automated
+Google Chrome choice. Automated tests/snapshots now use pinned Playwright Chromium;
+owner uses Google Chrome for manual review. Removed optional Chrome channel/selector,
+leaving existing CI Chromium workflow unchanged. Historical F04 Chrome evidence and
+archived artifacts preserved. Work on `chore/chromium-browser-tests` from merged
+origin/main; F05 not started. Owner authorised a local correction commit and asked
+to defer pushing it until the next feature; retain it in that feature's branch/PR.
+Reproduce: `python scripts/verify-home-browser.py --install` (no --with-deps locally).
+Executed that command: 46/46 browser cases passed with Playwright Chromium build
+1248 (headless shell 156.0.8078.4). Project-local install only; no sudo/system changes.
+Playwright reports Linux unsupported/fallback ubuntu24.04 build; checks passed on
+this machine, not a claim of official OS support. Planning integrity and whitespace
+checks passed. Log: `/tmp/opencode/chromium-workflow-check.log`.
+
 F04 archived, 2026-10-14: owner requested archive and selected main-spec sync.
 Archived complete spec-driven change to
 `openspec/changes/archive/2026-10-14-f04-security-and-locale-flow/` (16/16 tasks).

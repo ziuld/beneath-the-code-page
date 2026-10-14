@@ -11,7 +11,6 @@ export default defineConfig({
   use: {
     baseURL: process.env.BTC_BASE_URL,
     browserName: "chromium",
-    channel: process.env.BTC_BROWSER_CHANNEL === "chrome" ? "chrome" : undefined,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },

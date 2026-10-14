@@ -68,14 +68,11 @@ def running_jar(jar, log, environment, *arguments):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--install", action="store_true", help="install locked tooling and, for Chromium, the project-local browser")
-    parser.add_argument("--browser", choices=("chromium", "chrome"), default="chromium", help="use bundled Chromium or installed Google Chrome")
+    parser.add_argument("--install", action="store_true", help="install locked tooling and Chromium project-locally")
     parser.add_argument("--snapshot", type=Path, help="capture EN/ES/FR narrow/wide Home screenshots instead of running tests")
     parser.add_argument("--snapshot-reference-css", type=Path, help="snapshot only: substitute a reference stylesheet in the browser")
     parser.add_argument("--with-deps", action="store_true", help="CI only: install Chromium OS dependencies; may invoke sudo")
     args = parser.parse_args()
-    if args.browser == "chrome" and args.with_deps:
-        parser.error("--with-deps applies only to bundled Chromium")
     if args.snapshot_reference_css and not args.snapshot:
         parser.error("--snapshot-reference-css requires --snapshot")
     if args.with_deps and os.environ.get("CI") != "true":
@@ -84,14 +81,12 @@ def main():
     environment["PATH"] = str(NODE.parent) + os.pathsep + environment["PATH"]
     environment["PLAYWRIGHT_BROWSERS_PATH"] = str(ROOT / "target/browser-cache")
     environment["npm_config_cache"] = str(ROOT / "target/npm-cache")
-    environment["BTC_BROWSER_CHANNEL"] = args.browser
     if args.install:
         subprocess.run([str(NODE), str(NPM), "ci", "--no-audit", "--no-fund"], cwd=TESTS, env=environment, check=True, timeout=180)
-        if args.browser == "chromium":
-            command = [str(NODE), str(CLI), "install"]
-            if args.with_deps:
-                command.append("--with-deps")
-            subprocess.run([*command, "chromium"], cwd=TESTS, env=environment, check=True, timeout=300)
+        command = [str(NODE), str(CLI), "install"]
+        if args.with_deps:
+            command.append("--with-deps")
+        subprocess.run([*command, "chromium"], cwd=TESTS, env=environment, check=True, timeout=300)
     jar = ROOT / "target/beneath-the-code-0.1.0-SNAPSHOT.jar"
     digest = hashlib.sha256(jar.read_bytes()).digest()
     fixture = None
