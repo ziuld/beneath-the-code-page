@@ -1,5 +1,21 @@
 # Current handoff
 
+F05 implementation/automated verification complete, 2026-10-15: worker1990264
+and test inspection fix5f5a151 pushed to draft PR#5 (not merged). Java38803570316
+passes verification/architecture/real health/planning; browser38803570203 passes
+clean Maven51 frontend/191 Java/four skips/17 packaged, Chromium64/64, Firefox18/18,
+WebKit18/18 on Ubuntu24.04. Lifecycle, budgets, stale/protocol/disposal, actual worker
+CSP/no-network/no-eval, immutable assets and EN/ES/FR privacy/status pass. Existing
+Home/locale/security/watch/logo/JAR-exclusion/digest checks pass; no F06 or CSP
+relaxation/new dependency/framework/system install. Checklist12/15: only1.6 manual
+review,3.2 owner acceptance,3.3 final closure remain. Owner explicitly defers manual
+review to final acceptance, not coding; don't claim it passed. WorkerT01–T04 done,
+story/T05 in review; editor manual review open; F05 remains in progress. Next final
+manual/integrated owner review when ready, not more implementation or Orca install.
+Manual proof uses default profile/classpath assets (see delivery doc). Final
+evidence/tracking recorded after tested code; no production changes since its
+passing run. No merge/release/archive authorised.
+
 F05 worker CI test correction, 2026-10-15: slice `1990264` pushed to draft PR #5.
 Java38802356561/clean Maven pass; Chromium63/64 passes all real lifecycle/privacy
 cases but body inspection of a terminated worker response fails in browser CI

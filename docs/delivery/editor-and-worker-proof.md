@@ -19,10 +19,12 @@ This is a tooling-version correction under the unchanged CSP, not a fix to WebKi
 To run a persistent manual fixture, import `scripts/verify-home-browser.py` using Python importlib, call its `component_fixture` with `target/beneath-the-code-0.1.0-SNAPSHOT.jar`, then run:
 
 ```sh
-java -jar target/shell-browser-fixture.jar --server.address=127.0.0.1 --server.port=8081 --spring.profiles.active=local
+java -jar target/shell-browser-fixture.jar --server.address=127.0.0.1 --server.port=8081
 ```
 
 Open `http://127.0.0.1:8081/__editor-fixture?lang=en` (also `es` and `fr`). Stop the process after review. This is an isolated local proof, not deployment.
+
+Use the default profile for this copied proof, as the browser runner does: its extra worker assets are classpath-only. The local build-watch profile serves the normal frontend output and is not the worker-proof asset source.
 
 ## Manual acceptance
 
