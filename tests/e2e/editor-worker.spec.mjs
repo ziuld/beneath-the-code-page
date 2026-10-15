@@ -111,7 +111,11 @@ test("editor worker: actual response CSP denies network/eval independently", asy
     expect(headers["x-content-type-options"]).toBe("nosniff");
     expect(headers["cache-control"]).toContain("immutable");
     const path = new URL("../../target/worker-proof/static" + new URL(response.url()).pathname, import.meta.url);
-    expect(await response.body()).toEqual(readFileSync(path));
+    // The manager terminates completed workers; their network body session may be gone.
+    // Keep the actual worker headers above and verify bytes at the same immutable URL.
+    const asset = await context.request.get(response.url());
+    expect(asset.status()).toBe(200);
+    expect(await asset.body()).toEqual(readFileSync(path));
   }
   const missing = await context.request.get(`${fixture}/assets/proof-worker-missing.js`);
   expect(missing.status()).toBe(404);

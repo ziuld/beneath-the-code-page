@@ -1,5 +1,15 @@
 # Current handoff
 
+F05 worker CI test correction, 2026-10-15: slice `1990264` pushed to draft PR #5.
+Java38802356561/clean Maven pass; Chromium63/64 passes all real lifecycle/privacy
+cases but body inspection of a terminated worker response fails in browser CI
+38802356507; later Firefox/WebKit steps skipped. Test-only correction retains
+actual worker headers/CSP assertions and reads bytes at the same immutable URL
+through existing HTTP client. Local corrected Chromium64/64 and Firefox18/18 pass.
+Next deliver correction under ongoing approval and inspect actual three-engine CI.
+No application/CSP/timeouts/retry changes. Checklist9/15; manual review deferred
+to final acceptance, not coding. No feature closure/merge/release or system changes.
+
 F05 worker slice implemented locally, 2026-10-15: owner confirmed proposed
 implementation-first task ordering and minimal scope. Manual task1.6 remains a
 final acceptance gate, not a worker coding prerequisite; no Orca/new framework.

@@ -34,3 +34,9 @@ Date: 2026-10-15. Status: implementation and Chromium/Firefox proof pass locally
 
 - F05-UH02-AC01 / R01: exact unit deadline plus executed real timeout/cancel/error/recovery/UI tests in Chromium and Firefox; updated WebKit smoke pending.
 - F05-UH02-AC02 / R02: executed identity/race/protocol/disposal unit cases and fresh-context document/worker/static-request/storage/cookie/server-log privacy cases in EN/ES/FR. Full three-engine/final integrated acceptance pending.
+
+## First worker CI and terminated-response inspection correction
+
+- Worker slice/approved ordering committed and pushed as `1990264cff61571c0eae8c3b79498e0215c3369c` to draft PR #5. Java run38802356561 passes; browser run38802356507 clean Maven passes. Chromium63/64 passes: all three real lifecycle/privacy/status cases pass; policy/asset case reaches byte comparison then Playwright cannot read the body of an already-terminated worker response. Firefox/WebKit steps are skipped after Chromium fails; no worker WebKit result claimed. Log `/tmp/opencode/f05-pr5-worker-ci-full.log`.
+- Corrected only test inspection: keep the actual worker's observed response status/CSP/MIME/nosniff/cache assertions, then request its same immutable URL with the existing HTTP client to compare exact built bytes. This does not exercise or permit worker outbound networking; the real worker fetch/eval denial assertions remain unchanged. No increased timeout, retry, application change or CSP bypass.
+- Reran local full Chromium64/64 and Firefox18/18 successfully. Logs `/tmp/opencode/f05-worker-chromium-body-fixed.log`, `/tmp/opencode/f05-worker-firefox-body-fixed.log`. No Maven rerun for this test-only edit; preceding clean build/Java evidence unchanged. Deliver correction under ongoing debugging approval, then obtain actual three-engine CI results.
