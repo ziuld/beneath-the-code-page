@@ -1,5 +1,49 @@
 # Current handoff
 
+F05 final acceptance recorded, 2026-10-15: owner confirmed successful manual200%
+browser zoom and EN/ES/FR visual/copy checks in direct response to the final review
+questions. Together with earlier functional/keyboard feedback, approved speech-
+review scope removal and existing all-engine CI, all four acceptance pairs pass.
+Canonical F05/both stories/all ten tasks now done; actual finish2026-10-15, no
+invented effort. Checklist15/15; both planning renderers, planning integrity, all15
+planning-rule tests, strict OpenSpec validation(seven items) and whitespace pass. Existing
+code c3e94e6 CI green: Java38805367982/browser38805367966; no runtime changes.
+Latest acceptance sections in both evidence files supersede historical blockers.
+Screen-reader compatibility is out of scope, not passed/deferred; keyboard/focus/
+contrast/zoom/locales/axe/privacy remain. Separate documentation-only proposal
+clarify-keyboard-accessibility-scope ready, unapplied (0/3); future apply reconciles
+quality/brand guidance, not application code. Coherent closure commit follows; no
+merge/release/archive or behavioural migration. F06 is unstarted and prerequisites
+are now satisfied; don't start it without a request. Manual review versions are
+preparation metadata, exact viewport unreported, observations owner-reported.
+
+F05 scope revision approved, 2026-10-15: owner explicitly removed screen-reader
+compatibility/manual speech testing and confirmed the proposed artifact revisions.
+Updated existing F05 proposal/editor delta/design/tasks, canonical verification and
+delivery instructions; keyboard/navigation/labels/focus/contrast/zoom/locales/axe
+remain. This supersedes prior AT deferral, not a passing Orca test. User reported
+general manual satisfaction then clarified silence; audible output/compatibility
+not established. Existing all-engine CI on c3e94e6 is green; no runtime changes.
+F05 remains12/15: retained actual200% browser zoom and EN/ES/FR visual/copy checks
+have no explicit observations; do not invent them or mark closure done. Separate
+documentation-only change clarify-keyboard-accessibility-scope has proposal,
+design/tasks and deliberately skipped specs; ready for review/apply, not applied.
+It will reconcile project-wide quality/brand WCAG/speech-review wording. No merge,
+release/archive, desktop changes or F06 implementation. Current revisions local.
+
+F05 manual-review setup installed, 2026-10-15: owner retained original acceptance
+requirements and explicitly authorised installing needed screen-reader software.
+Orca50.2, eSpeak NG1.52.0, Speech Dispatcher0.12.1 and required dependencies installed
+through graphical authenticated pkexec after Omarchy installer lacked a terminal.
+No password shared, extra user-group membership or unrelated desktop settings.
+Orca running in current Hyprland/Wayland session; speech user service active and
+espeak-ng output module available. Current copied proof server runs default profile
+on http://127.0.0.1:8081/__editor-fixture?lang=en (es/fr also), HTTP200 and normal JAR
+digest verified. Need actual user-heard output and manual review observations;
+installation is not a test pass. Checklist12/15;1.6/3.2/3.3 open. Latest final CI on
+c3e94e6 passed both jobs. Setup evidence updates local/uncommitted; no app changes,
+merge/release/archive or feature closure. Earlier no-install restrictions historical.
+
 F05 implementation/automated verification complete, 2026-10-15: worker1990264
 and test inspection fix5f5a151 pushed to draft PR#5 (not merged). Java38803570316
 passes verification/architecture/real health/planning; browser38803570203 passes

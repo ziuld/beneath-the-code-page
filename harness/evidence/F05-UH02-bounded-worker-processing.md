@@ -1,6 +1,14 @@
 # F05-UH02 — Bounded worker processing evidence
 
-Date: 2026-10-15. Status: implementation and all automated/integrated checks pass locally and in Ubuntu CI: Chromium64/64, Firefox18/18, WebKit18/18. Manual review and final owner acceptance remain deferred/open. Checklist12/15; no full feature acceptance claimed.
+Date: 2026-10-15. Status: worker implementation/integration accepted within F05's revised keyboard/visual scope. Chromium64/64, Firefox18/18, WebKit18/18 pass; final owner manual confirmation is recorded in UH01 evidence. Historical pending/deferral notes below describe earlier stages, not current blockers.
+
+## Final integrated acceptance — 2026-10-15
+
+The owner requested F05 closure within the explicitly revised scope and confirmed the remaining200% browser zoom and EN/ES/FR manual checks worked well. Earlier general functional/keyboard satisfaction, this confirmation and passing all-engine integration establish acceptance of the shared editor/worker slice; no new defect reported. Both worker acceptance pairs pass: AC01/R01 uses deterministic deadline plus real all-engine timeout/cancel/error/recovery/UI evidence; AC02/R02 uses identity/race/protocol/disposal tests plus all-engine EN/ES/FR network/storage/cookie/log privacy proof. Existing input/output/memory caveats and temporary matched Playwright pin remain disclosed, not blockers or new conformance promises.
+
+Latest c3e94e6 Java38805367982/browser38805367966 CI is green. Current changes are planning/evidence only; no application/test/build/CI source changed since the passing run. Final review found no material outstanding implementation issue in the authorised slice. F04 prerequisites and all ten F05 canonical tasks have recorded evidence and real implementation/integration commit references; owner effort remains unreported. The speech-review obligation was removed by owner decision, not passed or deferred. No full WCAG AA or screen-reader compatibility claim, merge/release/archive, F06 implementation or automatic main-spec migration. Separate project-wide scope proposal remains unapplied.
+
+Final closure validation passes both planning renderers, planning integrity, all15 planning-rule tests, strict OpenSpec validation (seven items) and whitespace checks. Canonical F05/both stories/all ten tasks done, finish2026-10-15; OpenSpec checklist15/15. Historical pending notes below are superseded by this acceptance/validation record. No repeated application build or automated browser run claimed for the documentation-only closure.
 
 ## Authorised scope and prerequisites
 

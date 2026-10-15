@@ -10,7 +10,7 @@ F04 is accepted and archived, but the browser currently has no editor or worker 
 - Add a reusable labelled editor with EN/ES/FR resources, documented keyboard escape, visible focus, selection/search/scroll/tooltip/resize behaviour and per-document nonce integration.
 - Add one-active-job worker management with IDs, initial two-second deadline, cancellation/termination, stale-result rejection and clean recovery; enforce shared input/output budgets before expensive work.
 - Prove real document and same-origin worker response policies, privacy and accessibility using an isolated packaged proof page; do not publish tool routes or processing APIs.
-- Run primary Chromium coverage, Firefox/WebKit critical smoke, axe and actual manual keyboard/screen-reader checks. Record limitations instead of treating automated checks as manual acceptance.
+- Run primary Chromium coverage, Firefox/WebKit critical smoke, axe and actual manual keyboard/visual checks. Record limitations instead of treating automated checks as manual acceptance. Owner-approved scope revision: screen-reader operation and manual speech testing are not acceptance requirements; keyboard navigation, labels, visible focus, contrast, zoom and localisation remain required. Existing semantic markup and privacy-safe status handling are retained, without claiming verified screen-reader compatibility.
 
 ## Capabilities
 

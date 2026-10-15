@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Provide a reusable browser-local editor that keyboard and assistive-technology users can operate in English, Spanish or French under the application's restrictive content security policy.
+Provide a reusable browser-local editor that keyboard users can operate in English, Spanish or French under the application's restrictive content security policy. Screen-reader compatibility and manual speech testing are outside the owner-approved acceptance scope; labels, visible focus and existing semantic markup remain required, without a screen-reader compatibility claim.
 
 ## ADDED Requirements
 
@@ -19,7 +19,7 @@ When a keyboard user invokes the documented editor escape action, the editor SHA
 #### Scenario: Discover and use the keyboard instructions
 
 - **GIVEN** an EN, ES or FR workspace with its editor and following control
-- **WHEN** the visitor enters the editor by keyboard or with a screen reader
+- **WHEN** the visitor enters the editor by keyboard
 - **THEN** the editor has a resource-backed accessible name and discoverable Escape-then-Tab instructions
 - **AND** Escape followed by Tab exits forward, reverse traversal remains possible and focus is visible
 

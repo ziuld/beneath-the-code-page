@@ -22,7 +22,7 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F04-UH01-R02 | [F04-UH01](features/F04.md#f04-uh01) | F04-UH01-AC02 | F04-UH01-T04 | Missing/mismatched token and external redirect fixtures; table-test full locale precedence |
 | F04-UH02-R01 | [F04-UH02](features/F04.md#f04-uh02) | F04-UH02-AC01 | F04-UH02-T03 | Security header integration checks; no session/login redirects; production-only HSTS test |
 | F04-UH02-R02 | [F04-UH02](features/F04.md#f04-uh02) | F04-UH02-AC02 | F04-UH02-T04 | Declared-length and chunked-body tests; safe 404/500 tests and ASVS control mapping |
-| F05-UH01-R01 | [F05-UH01](features/F05.md#f05-uh01) | F05-UH01-AC01 | F05-UH01-T03 | Manual keyboard/screen-reader checks in addition to Playwright and axe |
+| F05-UH01-R01 | [F05-UH01](features/F05.md#f05-uh01) | F05-UH01-AC01 | F05-UH01-T03 | Manual keyboard and visual checks in addition to Playwright and axe; screen-reader testing excluded by owner-approved scope revision |
 | F05-UH01-R02 | [F05-UH01](features/F05.md#f05-uh01) | F05-UH01-AC02 | F05-UH01-T04 | Chromium/Firefox/WebKit proof; include tooltip and resize behaviour |
 | F05-UH02-R01 | [F05-UH02](features/F05.md#f05-uh02) | F05-UH02-AC01 | F05-UH02-T03 | Controlled worker fixture and UI responsiveness checks; no precision timing assertion on busy hardware |
 | F05-UH02-R02 | [F05-UH02](features/F05.md#f05-uh02) | F05-UH02-AC02 | F05-UH02-T04 | Worker protocol tests; inspect document and worker network traffic |

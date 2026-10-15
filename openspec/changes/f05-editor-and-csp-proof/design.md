@@ -34,7 +34,7 @@ At apply, pin only needed CodeMirror 6 packages (state/view/commands/search and 
 
 Use EN/ES/FR server resources for editor labels, instructions, phrases and polite status announcements, serialized into escaped attributes/text nodes. Verify resource/placeholder parity and the actual search/tooltip phrase set, including library-generated text. Built-in Escape-then-Tab escape is the starting binding; document it near the editor and prove forward/reverse navigation. Search-panel Escape first closes the panel; instructions/tests distinguish returning to editor from leaving it. Preserve native toolbar controls and shared visible focus.
 
-Owner decision, 2026-10-14: replace built-in content-excerpt announcements with resource-backed generic feedback before live-region rendering. Search can announce the selected line number, never the matching text/query; other editor actions use a generic message. Keep search navigation and selection intact. Prove the reduced feedback through actual screen-reader review; do not weaken the no-payload announcement rule or patch library sources.
+Owner decision, 2026-10-14: replace built-in content-excerpt announcements with resource-backed generic feedback before live-region rendering. Search can announce the selected line number, never the matching text/query; other editor actions use a generic message. Keep search navigation and selection intact. The later owner-approved scope revision removes manual speech review, not the no-payload announcement rule; retain automated message/privacy checks and do not patch library sources.
 
 Selection, scroll, search, tooltip placement and resize are a compatibility gate under `style-src-attr 'none'`: a nonce authorises stylesheet tags, not attributes. Capture real violations in each engine. A failing gate pauses for an owner decision/ADR; no unsafe-inline, global CSP bypass or weakened assertions. Public behaviour/policy changes would require updating the affected existing spec explicitly.
 
@@ -66,9 +66,11 @@ Inspect cold-start document/worker traffic and storage, then operations after re
 
 Extend the existing packaged runner only for the isolated editor proof and browser-project selection needed by F05. Pin axe in test tooling; use Chromium for the full PR suite and Firefox/WebKit for focused critical editor/worker smoke, with failure artifacts and honest OS/dependency limitations. User Google Chrome checks are manual supplementary evidence, not a replacement for specified engines.
 
-Run automated keyboard/axe/contrast/reflow first, then actual keyboard/screen-reader/200% browser zoom and copy review. Record browser/AT/OS versions, observations and omissions; missing manual checks or unavailable engines block acceptance, not silently become exemptions. Use genuine CSRF preference flow/regressions from F04; errors/live regions omit payloads. Proof fixture excluded from normal distributable and original JAR digest unchanged.
+Run automated keyboard/axe/contrast/reflow first, then actual keyboard/200% browser zoom and copy review. Record browser/OS versions, observations and omissions; missing retained manual checks or unavailable engines block acceptance, not silently become exemptions. Screen-reader operation/manual speech testing are excluded by the owner's explicit scope decision, not recorded as passed. Use genuine CSRF preference flow/regressions from F04; errors/live regions omit payloads. Proof fixture excluded from normal distributable and original JAR digest unchanged.
 
 Owner-approved ordering refinement, 2026-10-15: complete worker implementation and automated integration after the editor implementation and three-engine CSP proof pass. Manual screen-reader/zoom/copy review may run at final integrated review rather than blocking worker development. It remains required before F05 acceptance; do not mark it passed or install Orca merely to unblock coding. Batch existing checks and reuse the existing proof harness; no new infrastructure or acceptance exemptions.
+
+Subsequent owner-approved scope revision, 2026-10-15: remove screen-reader compatibility and manual speech testing from F05 acceptance rather than defer them. This supersedes the screen-reader portion of the earlier ordering decision only. Retain keyboard commands/navigation, labels, visible focus, contrast, actual 200% zoom, EN/ES/FR copy and automated axe/privacy checks. The attempted Orca review did not establish audible output or compatibility and is not a pass. Do not remove existing semantic markup, announce a full WCAG AA conformance result or change application code. The separate `clarify-keyboard-accessibility-scope` proposal will reconcile project-wide quality/brand guidance; it does not automatically migrate behavioural ownership.
 
 ## Risks / Trade-offs
 
@@ -76,7 +78,7 @@ Owner-approved ordering refinement, 2026-10-15: complete worker implementation a
 - [Dynamic/worker files missing from private metadata or eager Home assets] → focused pinned Vite build-output check, startup/resource validation and cold Home network assertions.
 - [Main-thread timer scheduling varies] → deterministic unit deadline tests plus eventual real recovery/responsiveness, not precision timing assertions.
 - [Output cap cannot bound intermediate allocations] → disclose limitation, terminate stuck worker, measure representative workloads rather than advertise a hard memory guarantee.
-- [Assistive technology or WebKit not available locally] → use supported CI/owner review environment; record blocked checks until actual evidence exists.
+- [Required engine or retained visual/keyboard check unavailable locally] → use supported CI/owner review environment; record blocked checks until actual evidence exists. Screen-reader testing is outside the revised acceptance scope, with no compatibility claim.
 - [Fourteen-hour baseline may be optimistic] → retain accepted estimates; actual owner effort/reforecast only from measured/reported information.
 
 ## Migration Plan

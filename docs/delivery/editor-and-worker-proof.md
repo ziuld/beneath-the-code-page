@@ -28,12 +28,16 @@ Use the default profile for this copied proof, as the browser runner does: its e
 
 ## Manual acceptance
 
+Current owner-approved scope revision, 2026-10-15: screen-reader operation and speech testing are no longer F05 acceptance requirements. The historical deferral below is superseded for screen readers only. Retain actual keyboard navigation, visible focus, 200% browser zoom, visual/EN/ES/FR copy review and automated checks. Existing semantic markup/status privacy stays unchanged; no verified screen-reader or full WCAG AA conformance claim is made. Project-wide reconciliation is proposed separately in `clarify-keyboard-accessibility-scope`.
+
+Final owner review, 2026-10-15: after the focused request to check actual200% browser zoom and EN/ES/FR readable controls without clipping/untranslated text, the owner confirmed they tested these and everything worked well. Alongside earlier functional/keyboard feedback and passing three-engine CI, this completes the retained manual acceptance. Record this as owner-reported observation, not agent-observed speech output or translation certification. See the latest UH01/UH02 evidence sections; earlier pending/deferral statements below are historical.
+
 On 2026-10-15 the owner reported that the presented local review worked as described and approved draft delivery for WebKit CI. Explicit browser/environment details and screen-reader use/results remain unreported; the required manual evidence is not yet complete. See `harness/evidence/F05-UH01-accessible-editor.md`.
 
 Owner-approved sequencing: finish worker implementation and automated integration first. The remaining actual screen-reader/zoom/copy observations stay required at final F05 acceptance, not as a gate on further coding. No Orca installation is required or authorised by this deferral.
 
-- Record browser, OS, screen-reader/version and viewport. Navigate with keyboard only; confirm label/instructions, visible focus, Escape then Tab within two seconds and reverse traversal.
-- Search with Ctrl+F/Command+F. Find next/previous, replace and close. Escape closes search first; Escape then Tab leaves the editor. Confirm the screen reader announces a localised search result/line number without reading a content excerpt from the live region. Normal reading of selected content is not prohibited.
+- Record browser, OS and viewport. Navigate with keyboard only; confirm label/instructions, visible focus, Escape then Tab within two seconds and reverse traversal.
+- Search with Ctrl+F/Command+F. Find next/previous, replace and close. Escape closes search first; Escape then Tab leaves the editor. Retain automated verification that status messages are localised and contain no content excerpt; no spoken-output observation is required.
 - Resize, select and scroll long text. Review controls at actual browser-UI 200% zoom, narrow viewport, EN/ES/FR and with JavaScript disabled. Confirm usable explanatory text and no input-submitting tool form.
 - Hover editor text to show the resource-backed keyboard-help tooltip; confirm it stays readable after resizing. The same instructions remain available without hovering through the editor’s described paragraph.
 - Report observed outcomes and any inaccessible search feedback, clipping, untranslated labels or CSP errors. Automated axe/keyboard checks do not establish manual acceptance.
