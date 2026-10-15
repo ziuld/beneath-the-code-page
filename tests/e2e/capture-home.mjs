@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 
 const directory = resolve(process.argv[2]);
 mkdirSync(directory, { recursive: true });
-const browser = await chromium.launch({ channel: process.env.BTC_BROWSER_CHANNEL === "chrome" ? "chrome" : undefined });
+const browser = await chromium.launch();
 try {
   for (const locale of ["en", "es", "fr"]) {
     for (const width of [320, 1280]) {

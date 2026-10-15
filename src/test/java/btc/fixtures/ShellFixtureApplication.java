@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 public final class ShellFixtureApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(new Class<?>[] { BeneathTheCodeApplication.class, ShellFixtureController.class,
+		SpringApplication.run(new Class<?>[] { BeneathTheCodeApplication.class, ShellFixtureController.class, EditorFixtureController.class,
 				ShellFixtureSecurity.class }, args);
 	}
 }

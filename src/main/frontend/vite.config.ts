@@ -3,6 +3,10 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   base: "/",
+  experimental: {
+    // static/ is a classpath packaging prefix, not part of the public URL.
+    renderBuiltUrl: (filename) => `/${filename.replace(/^static\//, "")}`,
+  },
   build: {
     outDir: fileURLToPath(new URL("../../../target/frontend", import.meta.url)),
     emptyOutDir: true,

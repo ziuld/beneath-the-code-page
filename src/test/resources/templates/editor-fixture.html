@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{editor.heading}"></title>
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <link th:each="preload : ${assets.modulePreloads}" rel="modulepreload" th:href="${preload}">
+    <script type="module" th:src="${#strings.isEmpty(workerProofScript) ? assets.script : workerProofScript}"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/')}" ></header>
+<main id="main" class="page" tabindex="-1">
+    <h1 th:text="#{brand.name}"></h1>
+    <section th:replace="~{fragments/editor :: workspace}"></section>
+    <section th:if="${!#strings.isEmpty(workerProofScript)}" data-worker-proof aria-labelledby="worker-heading">
+        <h2 id="worker-heading" th:text="#{worker.heading}"></h2>
+        <button class="button" type="button" data-operation="echo" th:text="#{worker.run}"></button>
+        <button class="button" type="button" data-operation="busy" th:text="#{worker.busy}"></button>
+        <button class="button" type="button" data-worker-cancel disabled th:text="#{worker.cancel}"></button>
+        <button class="button" type="button" data-operation="oversize" th:text="#{worker.oversize}"></button>
+        <button class="button" type="button" data-operation="throw" th:text="#{worker.fail}"></button>
+        <button class="button" type="button" data-operation="network" th:text="#{worker.network}"></button>
+        <button class="button" type="button" data-operation="eval" th:text="#{worker.eval}"></button>
+        <button class="button" type="button" data-worker-dispose th:text="#{worker.close}"></button>
+        <p data-worker-status aria-live="polite" aria-atomic="true"></p>
+        <h3 id="worker-output-label" th:text="#{worker.output}"></h3>
+        <pre data-worker-output aria-labelledby="worker-output-label"></pre>
+        <div hidden>
+            <span data-worker-message="running" th:text="#{worker.running}"></span>
+            <span data-worker-message="success" th:text="#{worker.success}"></span>
+            <span data-worker-message="cancelled" th:text="#{worker.cancelled}"></span>
+            <span data-worker-message="timeout" th:text="#{worker.timeout}"></span>
+            <span data-worker-message="error" th:text="#{worker.error}"></span>
+            <span data-worker-message="input-limit" th:text="#{editor.limit}"></span>
+            <span data-worker-message="output-limit" th:text="#{worker.limit}"></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

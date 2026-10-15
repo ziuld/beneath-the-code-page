@@ -65,10 +65,11 @@ public final class AssetManifest {
 			throw failure("ENTRY_INVALID");
 		}
 		// Validate lazy entries too, but do not preload their scripts or stylesheets.
+		var resources = new LinkedHashSet<String>();
 		for (var node : manifest) {
-			asset(node.path("file"), resourceExists);
+			resources.add(asset(node.path("file"), resourceExists));
 			for (var css : list(node, "css")) {
-				asset(css, resourceExists, ".css");
+				resources.add(asset(css, resourceExists, ".css"));
 			}
 			for (var field : List.of("imports", "dynamicImports")) {
 				for (var imported : list(node, field)) {
@@ -103,7 +104,7 @@ public final class AssetManifest {
 			}
 		}
 		return new AssetReferences(asset(entry.path("file"), resourceExists, ".js"),
-				List.copyOf(styles), List.copyOf(preloads));
+				List.copyOf(styles), List.copyOf(preloads), List.copyOf(resources));
 	}
 
 	private static List<JsonNode> list(JsonNode node, String field) {
@@ -143,10 +144,11 @@ public final class AssetManifest {
 	private record Visit(String key, boolean expanded) {
 	}
 
-	public record AssetReferences(String script, List<String> stylesheets, List<String> modulePreloads) {
+	public record AssetReferences(String script, List<String> stylesheets, List<String> modulePreloads, List<String> resources) {
 		public AssetReferences {
 			stylesheets = List.copyOf(stylesheets);
 			modulePreloads = List.copyOf(modulePreloads);
+			resources = List.copyOf(resources);
 		}
 	}
 }
