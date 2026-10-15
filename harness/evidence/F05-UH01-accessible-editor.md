@@ -1,6 +1,6 @@
 # F05-UH01 — Accessible editor evidence
 
-Updated: 2026-10-15. Status: Chromium and Firefox proof pass; actual Ubuntu WebKit smoke runs but fails four cases (button contrast in EN/ES/FR and an inline-style CSP violation). Owner reports successful presented manual review; explicit screen-reader/environment details remain pending. No complete three-engine/manual runtime editor proof or story closure claimed.
+Updated: 2026-10-15. Status: Chromium and Firefox proof pass; WebKit button contrast is corrected and EN/ES/FR axe passes, but Ubuntu WebKit still fails four cases on an initial-load inline-style CSP violation. Owner reports successful presented manual review; explicit screen-reader/environment details remain pending. No complete three-engine/manual runtime editor proof or story closure claimed.
 
 ## Task 1.1 — Executed inspection
 
@@ -164,3 +164,22 @@ Executed local checks: workflow YAML parsing/configuration assertions, runner re
 ## Diagnostic delivery approval — 2026-10-15
 
 Owner approved committing/pushing the locally verified shared-button correction, CSP diagnostics and related evidence/tracking to draft PR #5 for another WebKit CI run. This authorises delivery, not a WebKit pass, further fixes, merge/release, policy relaxation or feature acceptance. Actual results follow after execution.
+
+## Button/diagnostics delivery result — 2026-10-15
+
+- Committed the authorised button correction, CSP diagnostics and related records as `65ce664e449e3235b9842a36c49bb672634f6a09`, pushed to draft PR #5. No merge/release.
+- [Java run 38741818288](https://github.com/ziuld/beneath-the-code-page/actions/runs/38741818288) passes. [Browser run 38741818319](https://github.com/ziuld/beneath-the-code-page/actions/runs/38741818319) passes clean Maven and Chromium 56/56. WebKit 27.2 / Playwright build 2370 executes 6/10 pass, four fail.
+- The EN/ES/FR keyboard/search cases now pass axe with no accessibility violations, confirming the shared-button contrast correction in WebKit. They subsequently fail the unchanged empty-CSP-violations assertion. Selection/scroll/help-tooltip/narrow-resize also pass before the same CSP assertion fails. Later resource/cache/bytes/fresh-nonce assertions in that case remain unexecuted.
+- All four CSP reports contain `style-src-attr`, blocked resource `inline`, empty sourceFile, lineNumber 23 and columnNumber 1. The phase-enabled case reports `initial enhancement`, not tooltip/resize. The log does not identify a script write or establish CodeMirror as the source.
+- Inspected fresh packaged fixture HTML using the existing local copied-JAR runner: line 23 is `<select id="interface-language" name="language">` in the shared shell, with no authored style attribute. This is a diagnostic clue only: event line attribution and browser-generated styles need isolation before assigning a cause. No payload sample, browser patch, library patch, CSP relaxation or assertion filtering added.
+- Full CI log: `/tmp/opencode/f05-pr5-button-diagnostics-ci-full.log`; watch summary: `/tmp/opencode/f05-pr5-button-diagnostics-ci-watch.log`; local HTML-inspection server log: `/tmp/opencode/f05-csp-html-location.log`. The copied fixture process was stopped and the copied JAR removed by the diagnostic runner.
+- Pause after failed CI under apply guardrail. Recommended next scope: isolate initial-load CSP on real Home/shared shell versus editor enhancement under unchanged response policy, then fix only a confirmed cause. Further code changes/commit/push require guidance. Checklist remains 4/15; required AT/manual details and worker/final work pending. Post-run bookkeeping remains uncommitted.
+
+## Approved initial-load isolation — local verification, 2026-10-15
+
+- Owner authorised isolating the shared shell versus editor under unchanged CSP. Added three initial-load cases in `tests/e2e/editor-csp-isolation.spec.mjs`: actual production Home, existing script-free shared-shell fixture and existing enhanced editor fixture. Each test uses a fresh browser context, installs the policy listener before navigation, validates the restrictive response header and asserts no policy violations after initial rendering/measurement. No production code, response headers, route interception, event filtering or existing assertions changed.
+- Cases record only engine/page identity, script URL paths and policy source metadata, not HTML, cookies, nonces or content samples. The shared-shell case additionally requires zero script requests; Home must not load editor chunks. Initial rendering observation uses animation frames, not arbitrary sleeps or test retries. Passing initial-load cases alone do not replace the existing interaction proof or establish all later events are absent.
+- Full pinned Chromium 59/59 and Firefox critical suite 13/13 pass. In both engines Home requests only the site script, shared shell requests no script and editor requests site plus editor-workspace scripts. All three fresh initial-load observations have empty violation lists. Logs: `/tmp/opencode/f05-csp-isolation-chromium.log` and `/tmp/opencode/f05-csp-isolation-firefox.log`.
+- Existing packaged JAR used; no Maven rerun claimed for this test-only change. Actual WebKit isolation cannot execute locally due to missing host libraries. Need authorisation to commit/push these tests and related evidence to draft PR #5 and inspect supported Ubuntu results. Root cause remains unconfirmed; no speculative fix or CSP relaxation. Checklist 4/15, tasks 1.5/1.6 and worker/final work remain open. Changes uncommitted.
+
+Owner subsequently approved committing/pushing these three initial-load tests and related evidence/tracking to draft PR #5 for Ubuntu WebKit comparison. No further fix, CSP change, merge/release or acceptance is authorised by this delivery approval.

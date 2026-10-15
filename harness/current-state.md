@@ -1,5 +1,36 @@
 # Current handoff
 
+F05 isolation delivery authorised, 2026-10-15: owner approved committing/pushing
+the three locally verified initial-load tests and related evidence/tracking to
+draft PR #5. Deliver and inspect Ubuntu WebKit Home/shared-shell/editor comparison;
+no further fixes, policy change, merge/release or acceptance inferred. Checklist
+remains 4/15. Earlier pending-approval restrictions below historical.
+
+F05 initial-load isolation prepared, 2026-10-15: owner authorised shared-shell
+versus editor diagnosis under unchanged CSP. Added three fresh-context tests for
+real Home, existing script-free shared-shell fixture and enhanced editor fixture;
+pre-navigation violation listeners, response policy/script isolation checks and
+safe diagnostic output. No production/policy edits or existing-check omissions.
+Local Chromium 59/59 and Firefox 13/13 pass; all three initial-load cases have no
+violations in those engines. Existing packaged JAR used, no Maven rerun claimed.
+Need approval to commit/push local tests/evidence to draft PR #5 for actual Ubuntu
+WebKit isolation. Latest remote remains 65ce664, WebKit last 6/10; cause unconfirmed.
+Checklist 4/15; AT/manual evidence, worker/final work pending. Changes uncommitted;
+no further delivery, system changes, merge/release or sync/archive authorised.
+
+F05 diagnostic CI pause, 2026-10-15: authorised button/diagnostics slice committed
+and pushed as `65ce664` to draft PR #5, not merged. Remote Java 38741818288 and
+browser 38741818319 clean Maven/Chromium 56/56 pass. WebKit 27.2/build2370 still
+6/10: EN/ES/FR axe now passes (button contrast corrected), four cases instead
+fail unchanged CSP assertions. Reports: style-src-attr/inline, sourceFile empty,
+line 23/column 1; phase-enabled case says initial enhancement. Fresh packaged
+HTML line 23 is shared language select without authored style; clue, not confirmed
+cause or proof against CodeMirror. No filtering/policy relaxation. Pause for
+guidance to isolate real Home/shared-shell initial load versus editor enhancement
+and fix confirmed cause. Post-run evidence/tracking uncommitted; no further
+commit/push inferred. Checklist 4/15; AT/manual details, dependent worker/final
+work pending. No merge/release/system changes/sync/archive. Earlier handoffs historical.
+
 F05 diagnostic delivery authorised, 2026-10-15: owner approved committing/pushing
 the shared-button correction, test-only CSP source/phase diagnostics and related
 evidence/tracking to draft PR #5 for another Ubuntu WebKit run. Deliver this exact
