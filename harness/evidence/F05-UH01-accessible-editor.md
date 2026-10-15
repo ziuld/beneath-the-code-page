@@ -125,3 +125,19 @@ Executed local checks: workflow YAML parsing/configuration assertions, runner re
 - Fresh non-clean `python scripts/verify-java-baseline.py` passed frontend checks/34 tests, 190 Java cases with four explicit skips and 17 packaged cases. Full pinned Chromium passed 56/56; Firefox critical smoke passed 10/10. Logs: `/tmp/opencode/f05-approved-delivery-maven.log`, `/tmp/opencode/f05-approved-delivery-chromium.log` and `/tmp/opencode/f05-approved-delivery-firefox.log`.
 - Executable startup/health smoke passed (HTTP 200, UP); log `/tmp/opencode/f05-approved-delivery-smoke.log`. Both planning renderers ran; planning integrity, 15 planning-rule tests, strict OpenSpec validation (six items) and whitespace checks passed. Scoped source/test diff review found no material issue; no claim of complete F05 integration review.
 - Tasks 1.5/1.6 and dependent worker work remain open; checklist stays 4/15 until the required evidence exists.
+
+## Draft PR CI result — 2026-10-15
+
+- Created and pushed implementation commit `db0f06c0a5d09e4b6b2d527ee0d28c0f02f7f2fb`; branch also retains Chromium correction `750e959`. Opened draft [PR #5](https://github.com/ziuld/beneath-the-code-page/pull/5) with owner approval. No merge or release.
+- [Java baseline run 38738672625](https://github.com/ziuld/beneath-the-code-page/actions/runs/38738672625) passed Java/architecture verification, executable health smoke and canonical planning. The browser workflow's separate clean Maven build also passed.
+- [Browser run 38738672614](https://github.com/ziuld/beneath-the-code-page/actions/runs/38738672614) failed Chromium: 55/56 passed. The selection/scroll/tooltip/resize test failed at `tests/e2e/editor.spec.mjs:159`: immediate `scrollTop > 0` assertion observed zero after Control+End. Subsequent tooltip/resize/nonce/resource assertions in that case did not execute. WebKit step was skipped because Chromium failed; no WebKit result exists.
+- Pinned CodeMirror view schedules measurement using `requestAnimationFrame` (`requestMeasure`, dist/index.js:8367–8369) and applies the pending scroll in measurement (line 8258). The test's text-content assertion can succeed before this scheduled scroll. This supports a timing-race hypothesis, not a confirmed production scrolling failure or a passing CI result.
+- Recommended minimal test-only correction: use Playwright `expect.poll` for the unchanged positive scroll condition rather than one immediate DOM read. Preserve all selection/tooltip/resize/CSP/resource assertions, normal assertion timeout and zero test retries; no sleeps, policy bypass or production change. Not applied pending guidance under the apply error guardrail.
+- CI logs retained at `/tmp/opencode/f05-pr5-browser-ci-failed.log`; watch summary at `/tmp/opencode/f05-pr5-ci-watch.log`. Task 1.5 remains open and checklist stays 4/15. Delivery-result bookkeeping is local and uncommitted; no extra commit/push inferred from the failed run.
+
+## Approved scroll assertion correction — 2026-10-15
+
+- Owner authorised the proposed test-only correction, local verification, commit and push to the existing draft PR.
+- Replaced the single immediate scrollTop read with `await expect.poll(...).toBeGreaterThan(0)`. The positive-scroll condition, all other assertions, default assertion timeout and zero test retries are unchanged. No production/CSP/system change or fixed sleep.
+- Executed full pinned Chromium: 56/56 pass; Firefox critical smoke: 10/10 pass. Logs: `/tmp/opencode/f05-scroll-poll-chromium.log` and `/tmp/opencode/f05-scroll-poll-firefox.log`. Existing packaged JAR used; no new Maven run claimed for this test-only edit.
+- Supported Ubuntu CI must still rerun Chromium and execute WebKit before task 1.5 can close. Required explicit AT/manual environment evidence remains outstanding; checklist 4/15, dependent worker work pending.

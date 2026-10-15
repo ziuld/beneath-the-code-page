@@ -156,7 +156,7 @@ test("editor CSP: selection, scroll, help tooltip, resize and fresh nonce", asyn
   expect(await page.evaluate(() => window.getSelection().toString())).toBe("line 0 sample");
   await input.press("Control+End");
   await expect(page.locator(".cm-content")).toContainText("line 199 sample");
-  expect(await page.locator(".cm-scroller").evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
+  await expect.poll(() => page.locator(".cm-scroller").evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
   await input.press("Control+Home");
   const instructions = await page.locator("#editor-instructions").textContent();
   await page.locator(".cm-line").first().hover({ position: { x: 20, y: 10 } });

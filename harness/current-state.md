@@ -1,5 +1,31 @@
 # Current handoff
 
+F05 scroll assertion correction, 2026-10-15: owner authorised test-only expect.poll
+correction plus commit/push to draft PR #5. Applied only the retrying positive
+scroll condition; all other checks/default timeout/zero test retries unchanged.
+Fresh full Chromium 56/56 and Firefox critical 10/10 pass against the packaged
+JAR; no new Maven run for this test-only edit. Next: deliver correction and
+inspect actual Ubuntu Chromium/WebKit results. Task 1.5 remains open until WebKit
+passes; task 1.6 still needs explicit AT/manual environment evidence. Checklist
+4/15; dependent worker implementation pending. No merge/release/CSP or system
+change. Earlier failure and unapproved-correction statements below historical.
+
+F05 draft delivery pause, 2026-10-15: owner-approved commit `db0f06c` pushed on
+`feature/F05-editor-and-csp-proof`, including deferred Chromium correction 750e959;
+draft PR https://github.com/ziuld/beneath-the-code-page/pull/5 opened, not merged.
+Fresh local Maven (34 frontend/190 Java/four skips/17 packaged), Chromium 56/56,
+Firefox 10/10, health/planning/OpenSpec checks pass. Remote Java run 38738672625
+passes, browser clean build passes; browser run 38738672614 fails Chromium 55/56
+at immediate scrollTop > 0 assertion (editor.spec.mjs:159 observed zero).
+WebKit step skipped; no WebKit evidence. Pinned CodeMirror schedules scrolling
+through animation-frame measurement; recommend test-only expect.poll for the same
+positive scroll assertion, preserving all checks/timeouts. Not applied; pause for
+guidance under apply error rule. Owner reports successful presented manual review;
+explicit screen-reader/browser/environment details remain unreported. Checklist
+4/15; dependent workers/final acceptance pending. Delivery-result bookkeeping is
+uncommitted; no further commit/push, merge/release/CSP relaxation/system changes.
+Evidence: `harness/evidence/F05-UH01-accessible-editor.md`. Earlier handoffs historical.
+
 F05 resumed, 2026-10-15: owner reports the presented local editor manual review
 works as described and approves committing the current F05 slice, pushing
 `feature/F05-editor-and-csp-proof` and opening a draft PR for Ubuntu WebKit CI.
