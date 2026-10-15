@@ -1,5 +1,45 @@
 # Current handoff
 
+F05 worker slice implemented locally, 2026-10-15: owner confirmed proposed
+implementation-first task ordering and minimal scope. Manual task1.6 remains a
+final acceptance gate, not a worker coding prerequisite; no Orca/new framework.
+One-job manager, bounded input/output, timeout/cancel/replacement/stale-result/
+disposal handling and isolated worker proof added using existing harness/assets/
+headers/i18n. Normal JAR has no proof worker/classes/routes; original B bytes and
+JAR digest preserved. Clean Maven51 frontend/191 Java/four skips/17 packaged
+(including actual successive watch rebuilds) passes. Local Chromium64/64 and
+Firefox18/18 pass real lifecycle/CSP/privacy/status cases; health smoke passes.
+Task1.1–1.5/2.1–2.4 complete:9/15. Updated WebKit worker proof still requires
+Ubuntu CI, not earlier editor-only evidence. Next review/deliver to draft PR #5
+under ongoing scope, inspect CI, record integration; final manual/owner acceptance
+still open. No F06, CSP relaxation, system changes, merge/release or closure.
+Evidence: F05-UH01 and new F05-UH02 file. Changes uncommitted at this handoff.
+
+F05 manual/AT preparation, 2026-10-15: user requested continuation. Task1.6 is
+next, not more automated debugging. Installed Chrome155.0.8059.79 and Omarchy4.0.4
+discovered; Orca not on PATH. This does not establish the owner's previous review
+environment or AT use. Replaced our stale manual fixture child on loopback8081
+with current copied JAR; HTTP200/shared button and normal JAR digest verified.
+Review URL http://127.0.0.1:8081/__editor-fixture?lang=en (es/fr also). Need explicit
+screen-reader observations/environment; ask whether prior review included AT or
+arrange an available reader. No system install/configuration change authorised or
+performed. Checklist5/15, task1.6 and worker/final work pending; previous all-engine
+passing evidence unchanged. Tracking/evidence updates remain uncommitted.
+
+F05 WebKit gate resolved, 2026-10-15: tooling correction committed/pushed as
+`baf1153` to draft PR #5, not merged. Java run 38747569779 passes; browser run
+38747569700 passes clean Maven (34 frontend/190 Java/four skips/17 packaged),
+Chromium60/60, Firefox14/14 and WebKit14/14 on Ubuntu24.04. Matched Playwright1.63.0
+engines Chromium153/build1243, Firefox155/build1543, WebKit26.6/build2359; upstream
+WebKit27.2 bug327212 remains open, no application/CSP/check relaxation. Required
+Firefox CI added; all three engines mandatory. Task1.5 done, checklist5/15. T02
+implementation done; canonical T03/T04 blocked only on required manual/AT evidence
+and predecessor closure, not automated engine failures. Next task1.6: explicit
+screen-reader/browser/OS/viewport observations; earlier owner review positive but
+optional AT use unreported. Worker work follows required UH01 evidence. Upgrade
+pin owner/trigger in delivery doc. No story acceptance, merge/release or system
+changes; result bookkeeping currently uncommitted. Earlier blockers historical.
+
 F05 upstream regression fix route, 2026-10-15: owner requested fixing rather than
 waiving WebKit. Found exact upstream WebKit bug 327212 (native select UA-shadow
 inline style before attachment; NEW, no published fix found). Keep all three

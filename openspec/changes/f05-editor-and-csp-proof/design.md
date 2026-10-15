@@ -68,6 +68,8 @@ Extend the existing packaged runner only for the isolated editor proof and brows
 
 Run automated keyboard/axe/contrast/reflow first, then actual keyboard/screen-reader/200% browser zoom and copy review. Record browser/AT/OS versions, observations and omissions; missing manual checks or unavailable engines block acceptance, not silently become exemptions. Use genuine CSRF preference flow/regressions from F04; errors/live regions omit payloads. Proof fixture excluded from normal distributable and original JAR digest unchanged.
 
+Owner-approved ordering refinement, 2026-10-15: complete worker implementation and automated integration after the editor implementation and three-engine CSP proof pass. Manual screen-reader/zoom/copy review may run at final integrated review rather than blocking worker development. It remains required before F05 acceptance; do not mark it passed or install Orca merely to unblock coding. Batch existing checks and reuse the existing proof harness; no new infrastructure or acceptance exemptions.
+
 ## Risks / Trade-offs
 
 - [CodeMirror runtime positioning conflicts with style-attribute CSP] → early three-engine selection/search/tooltip/resize proof; stop for ADR before relaxation.
@@ -79,6 +81,6 @@ Run automated keyboard/axe/contrast/reflow first, then actual keyboard/screen-re
 
 ## Migration Plan
 
-This proposal writes no application code. On explicit apply, implement UH01/prove CSP first, then UH02/prove lifecycle/privacy, then clean combined checks and owner acceptance. Keep F05 plan-owned, all tasks unchecked until executed, and F06 untouched. Reuse local Chromium correction `750e959` in F05's own PR when later authorised; no push implied now.
+This proposal writes no application code. On explicit apply, implement UH01/prove CSP first, then UH02/prove lifecycle/privacy, then clean combined checks, outstanding manual accessibility review and owner acceptance. Worker development requires completed editor implementation/automated proof, not prior full UH01 acceptance. Keep F05 plan-owned, all tasks unchecked until executed, and F06 untouched. Reuse local Chromium correction `750e959` in F05's own PR when later authorised; no push implied now.
 
 No data/server-state migration. A requested rollback removes the enhancement/worker adapters, proof fixtures and new pinned dependencies coherently while retaining F04's security and locale flow. Close only with actual evidence, accepted manual/engine checks, real authorised commit references and regenerated planning validation. Main-spec sync/archive/behavioural adoption remain separately requested workflows.

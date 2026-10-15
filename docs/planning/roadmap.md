@@ -15,7 +15,7 @@ Week 1 begins at project start. Fractional weeks show capacity, not exact appoin
 | F02 | Frontend asset pipeline | 12 | 1.2–2.4 | done | F01 |
 | F03 | Home and shared EN/ES/FR shell | 18 | 2.4–4.2 | done | F02 |
 | F04 | Security and locale flow | 14 | 4.2–5.6 | done | F03 |
-| F05 | Editor and CSP proof | 14 | 5.6–7.0 | blocked | F04 |
+| F05 | Editor and CSP proof | 14 | 5.6–7.0 | in_progress | F04 |
 | F06 | JSON Formatter | 24 | 7.0–9.4 | planned | F05 |
 | F07 | JSON Validator and Minifier | 10 | 9.4–10.4 | planned | F06 |
 | F08 | Base64 Encoder/Decoder | 6 | 10.4–11.0 | planned | F06 |

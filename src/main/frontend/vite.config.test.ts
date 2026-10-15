@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import { build } from "vite";
 import { describe, expect, it } from "vitest";
 import config from "./vite.config";
+import proofConfig from "./vite.worker-proof.config";
 
 interface ManifestEntry {
   file: string;
@@ -19,6 +20,39 @@ interface ManifestEntry {
 }
 
 describe("SSR asset build", () => {
+  it("emits the isolated proof worker with explicit private metadata", async () => {
+    const target = fileURLToPath(new URL("../../../target", import.meta.url));
+    await mkdir(target, { recursive: true });
+    const output = await mkdtemp(join(target, "btc-worker-proof-"));
+    try {
+      await build({
+        ...proofConfig,
+        configFile: false,
+        build: { ...proofConfig.build, outDir: output },
+      });
+      const workers = JSON.parse(
+        await readFile(join(output, "worker-proof-resources.json"), "utf8"),
+      ) as string[];
+      expect(workers).toHaveLength(1);
+      expect(workers[0]).toMatch(/^static\/assets\/proof-worker-[\w-]+\.js$/);
+      await expect(readFile(join(output, workers[0]!))).resolves.toBeInstanceOf(
+        Buffer,
+      );
+      const manifest = JSON.parse(
+        await readFile(join(output, "asset-manifest.json"), "utf8"),
+      ) as Record<string, ManifestEntry>;
+      const entry = Object.values(manifest).find((item) => item.isEntry)!;
+      expect(entry.file).toMatch(
+        /^static\/assets\/proof-worker-proof-[\w-]+\.js$/,
+      );
+      expect(await readFile(join(output, entry.file), "utf8")).toContain(
+        workers[0]!.replace(/^static\//, ""),
+      );
+    } finally {
+      await rm(output, { recursive: true, force: true });
+    }
+  });
+
   it("records lazy chunks but emits worker files outside manifest entries", async () => {
     const target = fileURLToPath(new URL("../../../target", import.meta.url));
     await mkdir(target, { recursive: true });

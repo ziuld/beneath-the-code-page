@@ -82,6 +82,16 @@ class AssetManifestTests {
 	}
 
 	@Test
+	void validatesExplicitWorkerResourcesWithoutPreloadingThem() {
+		String json = "{" + SITE + "},\"__worker-proof-resource\":{\"file\":\"static/assets/proof-worker-hash.js\"}}";
+		var references = resolve(json);
+		assertThat(references.resources()).contains("/assets/proof-worker-hash.js");
+		assertThat(references.modulePreloads()).isEmpty();
+		assertThatThrownBy(() -> AssetManifest.resolve(stream(json), path -> !path.contains("proof-worker")))
+				.hasMessage("BTC_ASSETS_RESOURCE_MISSING").hasNoCause();
+	}
+
+	@Test
 	void referenceListsDefensivelyCopyTheirInput() {
 		var styles = new java.util.ArrayList<>(List.of("/assets/a.css"));
 		var references = new AssetManifest.AssetReferences("/assets/a.js", styles, List.of(), styles);

@@ -192,7 +192,9 @@ test("editor CSP: selection, scroll, help tooltip, resize and fresh nonce", asyn
     expect(response.status()).toBe(200);
     expect(response.headers()["cache-control"]).toContain("immutable");
     expect(response.headers()["content-type"]).toMatch(/javascript|text\/css/);
-    const file = new URL("../../target/frontend/static" + new URL(response.url()).pathname, import.meta.url);
+    const path = new URL(response.url()).pathname;
+    const build = path.startsWith("/assets/proof-") ? "worker-proof" : "frontend";
+    const file = new URL(`../../target/${build}/static${path}`, import.meta.url);
     expect(await response.body()).toEqual(readFileSync(file));
   }
   expect(responses.length).toBeGreaterThanOrEqual(4);

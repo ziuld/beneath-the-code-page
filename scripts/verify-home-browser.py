@@ -3,6 +3,7 @@
 import argparse
 from contextlib import contextmanager, ExitStack
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -21,16 +22,40 @@ def component_fixture(jar):
     """Copy only the shell fixture into a separate executable; never change the normal JAR."""
     output = ROOT / "target/shell-browser-fixture.jar"
     classes = ROOT / "target/test-classes"
+    frontend = ROOT / "src/main/frontend"
+    environment = os.environ.copy()
+    environment["PATH"] = str(NODE.parent) + os.pathsep + environment["PATH"]
+    subprocess.run([str(NODE), str(frontend / "node_modules/vite/bin/vite.js"), "build",
+                    "--config", "vite.worker-proof.config.ts"], cwd=frontend, env=environment, check=True, timeout=60)
+    proof = ROOT / "target/worker-proof"
+    manifest = json.loads((proof / "asset-manifest.json").read_text())
+    workers = json.loads((proof / "worker-proof-resources.json").read_text())
+    if len(workers) != 1 or not re.fullmatch(r"static/assets/proof-worker-[\w-]+\.js", workers[0]):
+        raise RuntimeError("Expected one explicit same-origin proof worker in private build metadata")
+    entry = next(value["file"] for value in manifest.values() if value.get("isEntry"))
+    # Preserve the normal lazy graph: fixture chunks can have the same source keys.
+    manifest = {"__worker-proof/" + key: {
+        **value,
+        **{field: ["__worker-proof/" + item for item in value[field]]
+           for field in ("imports", "dynamicImports") if field in value}
+    } for key, value in manifest.items()}
+    manifest["__worker-proof-resource"] = {"file": workers[0]}
     with ZipFile(jar) as original, ZipFile(output, "w") as fixture:
         names = original.namelist()
         if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name for name in names):
             raise RuntimeError("Fixture leaked into normal executable")
         for info in original.infolist():
             data = original.read(info)
+            if info.filename == "BOOT-INF/classes/asset-manifest.json":
+                data = json.dumps({**json.loads(data), **manifest}).encode()
+            if info.filename == "BOOT-INF/classes/application.yaml":
+                data += f"\nbtc:\n  worker-proof-script: /{entry.removeprefix('static/')}\n".encode()
             if info.filename == "META-INF/MANIFEST.MF":
                 data = data.replace(b"Start-Class: dev.beneaththecode.BeneathTheCodeApplication",
                                     b"Start-Class: btc.fixtures.ShellFixtureApplication")
             fixture.writestr(info, data)
+        for asset in (proof / "static/assets").iterdir():
+            fixture.writestr("BOOT-INF/classes/static/assets/" + asset.name, asset.read_bytes(), compress_type=ZIP_DEFLATED)
         for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity", "EditorFixtureController"):
             path = f"btc/fixtures/{name}.class"
             fixture.writestr("BOOT-INF/classes/" + path, (classes / path).read_bytes(), compress_type=ZIP_DEFLATED)
