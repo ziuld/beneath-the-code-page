@@ -1,5 +1,41 @@
 # Current handoff
 
+F05 diagnostic delivery authorised, 2026-10-15: owner approved committing/pushing
+the shared-button correction, test-only CSP source/phase diagnostics and related
+evidence/tracking to draft PR #5 for another Ubuntu WebKit run. Deliver this exact
+verified slice and inspect actual CI results; no merge/release, CSP relaxation,
+system changes or feature closure authorised. Checklist remains 4/15 pending
+WebKit and explicit AT/manual evidence. Prior local-only restrictions historical.
+
+F05 WebKit local investigation, 2026-10-15: owner authorised diagnosis/fixes under
+unchanged CSP/accessibility checks. Reused existing BTC button fragment for the
+editor Continue control (previously native button); EN/ES/FR MVC checks require
+its shared class/type. Added test-only CSP source-file/line/column and operation-
+phase diagnostics without payload samples or assertion changes. Previous CI has
+no retained trace artifacts; originating blocked write still unconfirmed. Fresh
+non-clean Maven (34 frontend/190 Java/four skips/17 packaged), Chromium 56/56 and
+Firefox 10/10 pass. Local WebKit still lacks host libraries. Next: ask approval
+to commit/push local contrast correction and diagnostics to draft PR #5, then
+inspect real Ubuntu WebKit output. No extra commit/push performed or authorised;
+latest remote remains 9780a76, last WebKit 6/10 with four failures. Checklist 4/15;
+AT/manual details, worker work and final acceptance pending. No CSP relaxation,
+system change, merge/release or sync/archive. Earlier handoffs historical.
+
+F05 actual WebKit pause, 2026-10-15: approved scroll correction committed/pushed
+as `9780a76` to draft PR #5 (not merged). Local Chromium 56/56 and Firefox 10/10
+pass. Remote Java run 38739467192 passes; browser run 38739466295 clean Maven
+(34 frontend/190 Java/four skips/17 packaged) and Chromium 56/56 pass. WebKit now
+launches in Ubuntu: 6/10 pass, four fail. EN/ES/FR axe cases report Continue button
+contrast 1.81:1 (white on native grey, needs 4.5:1); tooltip/resize case reaches
+policy assertion and reports style-src-attr / inline violation. Originating write
+not yet identified; later asset/nonce assertions unexecuted. Pause for guidance
+before diagnosing/fixing these failures under unchanged CSP; no policy relaxation,
+assertion omissions or ADR decision inferred. Task 1.5 open, checklist 4/15;
+explicit AT/manual environment evidence and dependent worker work remain pending.
+Results recorded in F05-UH01 evidence; post-run bookkeeping uncommitted. No
+further commit/push, merge/release/system change or sync/archive. Earlier blockers
+and WebKit-unexecuted statements below historical.
+
 F05 scroll assertion correction, 2026-10-15: owner authorised test-only expect.poll
 correction plus commit/push to draft PR #5. Applied only the retrying positive
 scroll condition; all other checks/default timeout/zero test retries unchanged.

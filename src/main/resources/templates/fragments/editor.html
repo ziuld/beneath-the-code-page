@@ -6,7 +6,7 @@
     <p id="editor-instructions" th:text="#{editor.instructions}"></p>
     <noscript><p th:text="#{editor.noScript}"></p></noscript>
     <div data-editor-host data-description-id="editor-instructions" th:attr="data-nonce=${cspNonce}"></div>
-    <button type="button" th:text="#{action.continue}"></button>
+    <button th:replace="~{fragments/components :: button('action.continue', false)}"></button>
     <p role="status" aria-live="polite" aria-atomic="true"></p>
     <div hidden>
         <span data-editor-message="label" th:text="#{editor.label}"></span>

@@ -1,6 +1,6 @@
 # F05-UH01 — Accessible editor evidence
 
-Updated: 2026-10-15. Status: Chromium and Firefox proof pass; owner reports the local manual review works as described and approves delivery for WebKit CI. Actual WebKit results and explicit screen-reader/environment details remain pending. No complete three-engine/manual runtime editor proof or story closure claimed.
+Updated: 2026-10-15. Status: Chromium and Firefox proof pass; actual Ubuntu WebKit smoke runs but fails four cases (button contrast in EN/ES/FR and an inline-style CSP violation). Owner reports successful presented manual review; explicit screen-reader/environment details remain pending. No complete three-engine/manual runtime editor proof or story closure claimed.
 
 ## Task 1.1 — Executed inspection
 
@@ -141,3 +141,26 @@ Executed local checks: workflow YAML parsing/configuration assertions, runner re
 - Replaced the single immediate scrollTop read with `await expect.poll(...).toBeGreaterThan(0)`. The positive-scroll condition, all other assertions, default assertion timeout and zero test retries are unchanged. No production/CSP/system change or fixed sleep.
 - Executed full pinned Chromium: 56/56 pass; Firefox critical smoke: 10/10 pass. Logs: `/tmp/opencode/f05-scroll-poll-chromium.log` and `/tmp/opencode/f05-scroll-poll-firefox.log`. Existing packaged JAR used; no new Maven run claimed for this test-only edit.
 - Supported Ubuntu CI must still rerun Chromium and execute WebKit before task 1.5 can close. Required explicit AT/manual environment evidence remains outstanding; checklist 4/15, dependent worker work pending.
+
+## Scroll correction CI and actual WebKit failures — 2026-10-15
+
+- Committed approved correction and preceding delivery-result records in `9780a763c9b5384ddd4006c87d3e240f00724750`, pushed to draft PR #5. No merge or release.
+- [Java run 38739467192](https://github.com/ziuld/beneath-the-code-page/actions/runs/38739467192) passed. [Browser run 38739466295](https://github.com/ziuld/beneath-the-code-page/actions/runs/38739466295) passed clean Maven (34 frontend tests, 190 Java cases/four skips, 17 packaged cases) and all 56 Chromium cases, including corrected scroll/CSP/tooltip/resize proof.
+- Required WebKit smoke now launches on supported Ubuntu and executes: 6/10 pass, four fail. Three EN/ES/FR keyboard/search cases reach axe and report serious color-contrast failure on the fixture Continue button: white text (#ffffff) against native #c0c0c0 background, 1.81:1 instead of 4.5:1. Final policy assertions after axe do not execute in those three cases.
+- WebKit selection/scroll/help-tooltip/narrow-resize assertions pass, then the policy assertion at `tests/e2e/editor.spec.mjs:175` detects one `style-src-attr` violation with blocked resource `inline`. Later resource/header/cache/byte and fresh-document nonce assertions do not execute. The log does not identify the originating DOM write; no confirmed CodeMirror root cause or policy exception is claimed.
+- WebKit no-JS explanations (three locales), synthetic paste/typing budget, Home/proof-route isolation and programmatic byte-boundary/inert-content/disposal cases pass. This is partial evidence, not an engine acceptance pass.
+- Pause under task 1.5's compatibility/error guardrail. Recommended next scope: diagnose the blocked inline style and reuse approved shared button styling for contrast, preserving CSP and all accessibility/policy assertions. Any actual policy relaxation requires explicit artifact/ADR approval; none is proposed or applied now.
+- Full CI log `/tmp/opencode/f05-pr5-scroll-poll-ci-full.log`, failed step log `/tmp/opencode/f05-pr5-scroll-poll-ci-failed.log`, watch summary `/tmp/opencode/f05-pr5-scroll-poll-ci-watch.log`. Checklist remains 4/15; task 1.6/worker/final evidence outstanding. This post-run bookkeeping remains uncommitted.
+
+## Approved WebKit investigation — local changes, 2026-10-15
+
+- Owner authorised diagnosing/fixing both WebKit failures while preserving the CSP and accessibility requirements. No additional commit/push was requested in that approval; work remains local.
+- Confirmed contrast cause in source: the editor fragment rendered a plain native Continue button rather than the existing BTC button component. Reused `fragments/components :: button('action.continue', false)`, preserving resource-backed text, type=button and keyboard order while applying approved shared colours. EN/ES/FR MVC rendering tests now require the shared button class/type. Actual WebKit contrast re-verification remains pending.
+- Existing remote violation data contains only directive/resource; GitHub reports zero retained artifacts for browser run 38739466295. No trace/source location is available from that run. Pinned CodeMirror has CSSOM writes, but this alone does not identify the failing write; no speculative library patch, global interception or policy exemption applied.
+- Extended test-only policy event records with source file/line/column and operation phase (initial enhancement, selection/scroll, help tooltip, narrow resize). Phase reflects event delivery, not a guaranteed originating-call timestamp. No content samples are captured. Existing empty-violations assertions and all other checks are unchanged. This is diagnostic preparation, not a fix or passing WebKit result.
+- Executed non-clean Maven verification: frontend checks/34 tests, 190 Java cases with four explicit skips and 17 packaged cases pass. Full pinned Chromium 56/56 and Firefox critical smoke 10/10 pass. Logs: `/tmp/opencode/f05-webkit-diagnostics-maven.log`, `/tmp/opencode/f05-webkit-diagnostics-chromium.log`, `/tmp/opencode/f05-webkit-diagnostics-firefox.log`.
+- Local WebKit remains unavailable due to previously confirmed missing host libraries; no repeated failing launch or system install. Next action requires authorisation to commit/push this contrast correction and diagnostic instrumentation to the existing draft PR, then inspect actual supported-environment WebKit output. Task 1.5/1.6 remain open; checklist 4/15, worker work pending.
+
+## Diagnostic delivery approval — 2026-10-15
+
+Owner approved committing/pushing the locally verified shared-button correction, CSP diagnostics and related evidence/tracking to draft PR #5 for another WebKit CI run. This authorises delivery, not a WebKit pass, further fixes, merge/release, policy relaxation or feature acceptance. Actual results follow after execution.

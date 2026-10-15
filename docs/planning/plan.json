@@ -1642,7 +1642,7 @@
         "F04"
       ],
       "status": "blocked",
-      "blocker": "Draft PR #5 CI rerun/WebKit evidence pending after owner-approved scroll assertion correction; explicit screen-reader/manual environment evidence outstanding.",
+      "blocker": "Local contrast correction/CSP diagnostics pass; owner-approved Ubuntu CI rerun results and explicit screen-reader/manual evidence pending.",
       "actual_start": "2026-10-14",
       "actual_finish": null,
       "evidence": [
@@ -1659,7 +1659,7 @@
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "blocked",
-          "blocker": "Draft PR #5 CI rerun/WebKit evidence pending after owner-approved scroll assertion correction; explicit screen-reader/manual environment evidence outstanding.",
+          "blocker": "Local contrast correction/CSP diagnostics pass; owner-approved Ubuntu CI rerun results and explicit screen-reader/manual evidence pending.",
           "depends_on": [
             "F04"
           ],
@@ -1741,7 +1741,7 @@
               "forecast_hours": 2.5,
               "actual_hours": 0,
               "status": "blocked",
-              "blocker": "Corrected local Chromium/Firefox pass; required Ubuntu WebKit CI and explicit screen-reader/manual environment evidence pending.",
+              "blocker": "Local shared-button correction/CSP diagnostics pass Maven/Chromium/Firefox; actual Ubuntu WebKit and explicit AT/manual evidence pending.",
               "depends_on": [
                 "F05-UH01-T01"
               ],

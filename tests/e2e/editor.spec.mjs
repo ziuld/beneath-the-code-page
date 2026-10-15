@@ -15,7 +15,14 @@ async function open(page, locale) {
   await page.addInitScript(() => {
     window.policyViolations = [];
     document.addEventListener("securitypolicyviolation", (event) => {
-      window.policyViolations.push({ directive: event.violatedDirective, resource: event.blockedURI });
+      window.policyViolations.push({
+        directive: event.violatedDirective,
+        resource: event.blockedURI,
+        sourceFile: event.sourceFile,
+        lineNumber: event.lineNumber,
+        columnNumber: event.columnNumber,
+        phase: window.editorProofPhase,
+      });
     });
   });
   const response = await page.goto(`${fixture}/__editor-fixture?lang=${locale}`);
@@ -147,9 +154,11 @@ test("editor CSP: selection, scroll, help tooltip, resize and fresh nonce", asyn
     if (new URL(response.url()).pathname.startsWith("/assets/")) responses.push(response);
   });
   await page.setViewportSize({ width: 1000, height: 900 });
+  await page.addInitScript(() => { window.editorProofPhase = "initial enhancement"; });
   const input = await open(page, "en");
   const nonce = await page.locator("[data-editor-host]").getAttribute("data-nonce");
   expect(await page.locator("style").evaluateAll((nodes) => nodes.map((node) => node.nonce))).toContain(nonce);
+  await page.evaluate(() => { window.editorProofPhase = "selection and scrolling"; });
   await input.fill(Array.from({ length: 200 }, (_, index) => `line ${index} sample`).join("\n"));
   await input.press("Control+Home");
   await input.press("Shift+End");
@@ -158,12 +167,14 @@ test("editor CSP: selection, scroll, help tooltip, resize and fresh nonce", asyn
   await expect(page.locator(".cm-content")).toContainText("line 199 sample");
   await expect.poll(() => page.locator(".cm-scroller").evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
   await input.press("Control+Home");
+  await page.evaluate(() => { window.editorProofPhase = "help tooltip"; });
   const instructions = await page.locator("#editor-instructions").textContent();
   await page.locator(".cm-line").first().hover({ position: { x: 20, y: 10 } });
   await expect(page.getByRole("tooltip")).toHaveText(instructions);
   let box = await page.getByRole("tooltip").boundingBox();
   expect(box.x).toBeGreaterThanOrEqual(0);
   expect(box.x + box.width).toBeLessThanOrEqual(1000);
+  await page.evaluate(() => { window.editorProofPhase = "narrow resize and tooltip"; });
   await page.setViewportSize({ width: 375, height: 900 });
   await input.scrollIntoViewIfNeeded();
   await page.locator(".cm-line").first().hover({ position: { x: 20, y: 10 } });

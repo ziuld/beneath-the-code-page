@@ -39,7 +39,7 @@ class EditorComponentTests {
 		String html = response.getContentAsString(StandardCharsets.UTF_8);
 		assertThat(html).contains("lang=\"" + locale + "\"", "data-editor-message=\"label\">" + label,
 				"data-editor-phrase=\"Find\">" + find, "aria-live=\"polite\"", "data-description-id=\"editor-instructions\"",
-				"<noscript>", "type=\"button\"")
+				"<noscript>", "class=\"button\" type=\"button\"")
 				.doesNotContain("??", "th:", "onclick", "textarea", "<form action=\"/__editor-fixture");
 		String nonce = html.split("data-nonce=\"")[1].split("\"")[0];
 		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-" + nonce + "'", "style-src-attr 'none'")
