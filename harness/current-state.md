@@ -1,5 +1,33 @@
 # Current handoff
 
+F05 upstream regression fix route, 2026-10-15: owner requested fixing rather than
+waiving WebKit. Found exact upstream WebKit bug 327212 (native select UA-shadow
+inline style before attachment; NEW, no published fix found). Keep all three
+engine gates required. Test environment temporarily pinned to matched Playwright
+1.63.0: Chromium153/build1243, Firefox155/build1543, WebKit26.6/build2359; no binary
+mixing, browser patch or application/CSP changes. Local Chromium60/60 and Firefox
+14/14 pass with project-local installs; lockfile deduped, audit reports zero
+vulnerabilities. Added required Firefox CI smoke (quality plan already requires
+it) before WebKit. Next deliver under ongoing debugging/draft-PR approval and
+verify actual Ubuntu WebKit results. Checklist4/15; no passing WebKit or full
+acceptance yet. Upgrade follow-up owner/trigger recorded in delivery instructions.
+Earlier advisory-policy proposal is not adopted; no merge/release/system changes.
+
+F05 browser-gate decision, 2026-10-15: continued diagnosis pushed as `e5e62bd` to
+draft PR #5. Java run 38745556539 passes; browser run 38745556636 clean Maven and
+Chromium 60/60 pass, latest local Firefox 14/14. WebKit 6/14: no-select minimal
+control passes, every plain native-select variant reports style-src-attr/inline
+without application/editor code; appearance:none, dark scheme and listbox do not
+help. Pinned browser/tooling incompatibility confirmed, exact implementation bug
+and released Safari behaviour not claimed. Available Playwright 1.64.1 retains
+WebKit2370/27.2; no speculative dependency upgrade or application/CSP workaround.
+Genuine decision now needed: retain required WebKit gate and stay blocked, or
+explicitly adopt Chromium/Firefox-required and visibly advisory WebKit via agreed
+artifact changes/ADR. User priority alone is not a waiver. Checklist remains 4/15;
+AT/manual and dependent worker/final work pending. No policy decision, acceptance,
+merge/release, system change, test omission or external issue publication. Post-run
+bookkeeping uncommitted. Evidence in F05-UH01; prior handoffs historical.
+
 F05 continued debugging authorised, 2026-10-15: owner prioritises Chrome/Chromium
 and Firefox, asked to continue after explanation of WebKit/Safari coverage.
 Ongoing scoped diagnosis, verification and commits/pushes to draft PR #5 approved;

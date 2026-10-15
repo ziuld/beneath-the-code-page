@@ -7,8 +7,14 @@ F05's proof is isolated at `/__editor-fixture` in the copied test JAR, not a pub
 Build: `python scripts/verify-java-baseline.py`.
 Browser: `python scripts/verify-home-browser.py --install`.
 Critical editor smoke: `python scripts/verify-home-browser.py --engine firefox --install` and `python scripts/verify-home-browser.py --engine webkit --install`. These install only pinned project-local browsers, not system dependencies. Local system changes require separate approval. The default and screenshots remain Chromium; Google Chrome remains manual only.
-The existing Ubuntu 24.04 browser workflow runs the full Chromium suite followed by WebKit editor smoke, using the CI-only `--with-deps` path. A workflow edit is not passing remote evidence; WebKit acceptance remains pending until that job actually runs successfully.
+The existing Ubuntu 24.04 browser workflow runs the full Chromium suite followed by required Firefox and WebKit editor smoke, using the CI-only `--with-deps` path. A workflow edit is not passing remote evidence; acceptance requires actual passing engine results.
 The browser runner starts the normal app, the copied proof JAR and the local preference app on dynamic loopback ports; it stops them afterwards and checks the original JAR digest.
+
+### Browser-tooling regression pin
+
+Browser tooling is temporarily pinned to Playwright 1.63.0 and its matched engines: Chromium 153.0.8010.12/build1243, Firefox 155.0/build1543 and WebKit 26.6/build2359. The previously tested Playwright 1.64.0 WebKit 27.2/build2370 reports an internal inline-style violation for every native select, matching [WebKit bug 327212](https://bugs.webkit.org/show_bug.cgi?id=327212). Playwright 1.64.1 retains that same WebKit build.
+
+This is a tooling-version correction under the unchanged CSP, not a fix to WebKit 27.2 or a waiver of WebKit coverage. All three engine suites remain required, with unchanged assertions. Current-engine Chromium 156 and Firefox 157 results remain recorded in evidence; the older matched versions must pass separately. Upgrade owner: Ziuld with AI assistance; reassess when a Playwright release bundles the upstream fix, rerunning the minimal select reproduction and the full three-engine gates before removing the pin. Do not treat these pinned reference browsers as a promise of current-browser security or released Safari certification.
 
 To run a persistent manual fixture, import `scripts/verify-home-browser.py` using Python importlib, call its `component_fixture` with `target/beneath-the-code-0.1.0-SNAPSHOT.jar`, then run:
 

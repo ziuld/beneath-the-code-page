@@ -1642,7 +1642,7 @@
         "F04"
       ],
       "status": "blocked",
-      "blocker": "WebKit reproduces initial-load CSP failure on script-free shared shell/native language selector path; exact cause/fix and AT/manual evidence pending.",
+      "blocker": "Upstream WebKit bug 327212 identified; matched pre-regression tooling pin awaits Ubuntu three-engine proof; explicit AT/manual evidence pending.",
       "actual_start": "2026-10-14",
       "actual_finish": null,
       "evidence": [
@@ -1659,7 +1659,7 @@
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "blocked",
-          "blocker": "WebKit reproduces initial-load CSP failure on script-free shared shell/native language selector path; exact cause/fix and AT/manual evidence pending.",
+          "blocker": "Upstream WebKit bug 327212 identified; matched pre-regression tooling pin awaits Ubuntu three-engine proof; explicit AT/manual evidence pending.",
           "depends_on": [
             "F04"
           ],
@@ -1741,7 +1741,7 @@
               "forecast_hours": 2.5,
               "actual_hours": 0,
               "status": "blocked",
-              "blocker": "WebKit contrast passes; initial-load CSP reproduces without editor/scripts on shared selector path. Exact cause/fix and AT/manual evidence pending.",
+              "blocker": "No engine waiver: pre-regression Playwright pin passes local Chromium/Firefox; Ubuntu WebKit proof and explicit AT/manual evidence pending.",
               "depends_on": [
                 "F05-UH01-T01"
               ],
