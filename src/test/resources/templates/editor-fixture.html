@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{editor.heading}"></title>
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <link th:each="preload : ${assets.modulePreloads}" rel="modulepreload" th:href="${preload}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/')}" ></header>
+<main id="main" class="page" tabindex="-1">
+    <h1 th:text="#{brand.name}"></h1>
+    <section th:replace="~{fragments/editor :: workspace}"></section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

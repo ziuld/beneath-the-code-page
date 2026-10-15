@@ -8,6 +8,11 @@ export default defineConfig({
   workers: 1,
   retries: 0,
   reporter: [["list"], ["json", { outputFile: "../../target/browser-results.json" }]],
+  projects: [
+    { name: "chromium", use: { browserName: "chromium" } },
+    { name: "firefox", testMatch: "editor*.spec.mjs", use: { browserName: "firefox" } },
+    { name: "webkit", testMatch: "editor*.spec.mjs", use: { browserName: "webkit" } },
+  ],
   use: {
     baseURL: process.env.BTC_BASE_URL,
     browserName: "chromium",

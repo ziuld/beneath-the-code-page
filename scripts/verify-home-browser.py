@@ -23,7 +23,7 @@ def component_fixture(jar):
     classes = ROOT / "target/test-classes"
     with ZipFile(jar) as original, ZipFile(output, "w") as fixture:
         names = original.namelist()
-        if any("btc/fixtures/" in name or "shell-fixture" in name for name in names):
+        if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name for name in names):
             raise RuntimeError("Fixture leaked into normal executable")
         for info in original.infolist():
             data = original.read(info)
@@ -31,11 +31,13 @@ def component_fixture(jar):
                 data = data.replace(b"Start-Class: dev.beneaththecode.BeneathTheCodeApplication",
                                     b"Start-Class: btc.fixtures.ShellFixtureApplication")
             fixture.writestr(info, data)
-        for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity"):
+        for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity", "EditorFixtureController"):
             path = f"btc/fixtures/{name}.class"
             fixture.writestr("BOOT-INF/classes/" + path, (classes / path).read_bytes(), compress_type=ZIP_DEFLATED)
         fixture.writestr("BOOT-INF/classes/templates/shell-fixture.html",
-                         (classes / "templates/shell-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+                          (classes / "templates/shell-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+        fixture.writestr("BOOT-INF/classes/templates/editor-fixture.html",
+                         (classes / "templates/editor-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
     return output
 
 
@@ -68,13 +70,17 @@ def running_jar(jar, log, environment, *arguments):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--install", action="store_true", help="install locked tooling and Chromium project-locally")
+    parser.add_argument("--install", action="store_true", help="install locked tooling and the selected engine project-locally")
+    parser.add_argument("--engine", choices=("chromium", "firefox", "webkit"), default="chromium",
+                        help="Chromium full suite (default); Firefox/WebKit editor critical smoke")
     parser.add_argument("--snapshot", type=Path, help="capture EN/ES/FR narrow/wide Home screenshots instead of running tests")
     parser.add_argument("--snapshot-reference-css", type=Path, help="snapshot only: substitute a reference stylesheet in the browser")
-    parser.add_argument("--with-deps", action="store_true", help="CI only: install Chromium OS dependencies; may invoke sudo")
+    parser.add_argument("--with-deps", action="store_true", help="CI only: install selected engine OS dependencies; may invoke sudo")
     args = parser.parse_args()
     if args.snapshot_reference_css and not args.snapshot:
         parser.error("--snapshot-reference-css requires --snapshot")
+    if args.snapshot and args.engine != "chromium":
+        parser.error("Home screenshots use pinned Chromium")
     if args.with_deps and os.environ.get("CI") != "true":
         parser.error("--with-deps is restricted to CI; obtain approval for local privileged installs")
     environment = os.environ.copy()
@@ -86,7 +92,7 @@ def main():
         command = [str(NODE), str(CLI), "install"]
         if args.with_deps:
             command.append("--with-deps")
-        subprocess.run([*command, "chromium"], cwd=TESTS, env=environment, check=True, timeout=300)
+        subprocess.run([*command, args.engine], cwd=TESTS, env=environment, check=True, timeout=300)
     jar = ROOT / "target/beneath-the-code-0.1.0-SNAPSHOT.jar"
     digest = hashlib.sha256(jar.read_bytes()).digest()
     fixture = None
@@ -100,7 +106,7 @@ def main():
                     jar, ROOT / "target/preferences-browser-server.log", environment, "--spring.profiles.active=local"))
             subprocess.run([str(NODE), str(CLI), "--version"], cwd=TESTS, env=environment, check=True, timeout=10)
             command = ([str(NODE), str(TESTS / "capture-home.mjs"), str(args.snapshot.resolve())]
-                       if args.snapshot else [str(NODE), str(CLI), "test"])
+                       if args.snapshot else [str(NODE), str(CLI), "test", "--project", args.engine])
             if args.snapshot_reference_css:
                 command.append(str(args.snapshot_reference_css.resolve()))
             subprocess.run(command, cwd=TESTS, env=environment, check=True, timeout=180)

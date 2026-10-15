@@ -1,5 +1,140 @@
 # Current handoff
 
+F05 resumed, 2026-10-15: owner reports the presented local editor manual review
+works as described and approves committing the current F05 slice, pushing
+`feature/F05-editor-and-csp-proof` and opening a draft PR for Ubuntu WebKit CI.
+Explicit browser/viewport/OS and screen-reader use/version/observations remain
+unreported; task 1.6 stays open, not waived by general review approval. Local
+fixture runs on loopback 8081; editor HTTP 200 and normal JAR digest unchanged.
+Fresh non-clean Maven and Chromium verification exit successfully; detailed
+evidence in `harness/evidence/F05-UH01-accessible-editor.md`. Checklist remains
+4/15; task 1.5 requires actual WebKit results, dependent workers remain pending.
+Next: complete authorised draft delivery, inspect remote results and obtain
+remaining manual evidence. No merge/release/system change/CSP relaxation or
+sync/archive authorised. Earlier stop and delivery restrictions below historical.
+
+Owner-requested stop, 2026-10-14: pause F05 until the owner resumes, intended next
+day. Branch `feature/F05-editor-and-csp-proof`; work uncommitted, deferred local
+Chromium correction 750e959 retained. Checklist 4/15 complete (1.1–1.4).
+Latest checks: Chromium 56/56, Firefox 10/10; Maven frontend 34, Java 190 with four
+explicit skips, packaged 17 pass. WebKit cannot launch locally due to missing
+fallback-build libraries; required Ubuntu CI smoke step added but not run remotely.
+Workflow/configuration safety, planning and whitespace checks pass. No application
+CSP relaxation or system changes, commit/push/acceptance/sync/archive.
+
+Resume with `/opsx-apply f05-editor-and-csp-proof`: inspect current diff/checklist,
+obtain actual supported-environment WebKit results through separately authorised
+delivery, then actual keyboard/screen-reader/200% browser zoom and EN/ES/FR review
+using `docs/delivery/editor-and-worker-proof.md`. Tasks 1.5/1.6 remain open; do not
+claim CI configuration as WebKit evidence. Dependent worker lifecycle follows only
+after required UH01 evidence. No authorisation to push/commit inferred from this
+stop. Evidence: `harness/evidence/F05-UH01-accessible-editor.md`; task record:
+`harness/tasks/F05-editor-and-csp-proof.md`. Earlier handoffs below historical.
+
+F05 WebKit CI step prepared, 2026-10-14: owner authorised adding WebKit smoke to
+existing Ubuntu browser workflow. Added one step after Chromium using --engine
+webkit --install --with-deps; preserves runner CI-only dependency guard, permissions,
+pins and timeout. No push/remote run/local privileged install; WebKit acceptance
+still unverified. Chromium 56/56 and Firefox 10/10 remain latest executed results.
+Checklist 4/15; required WebKit/manual/dependent worker evidence pending.
+No commit/publication/CSP relaxation. Earlier handoffs historical.
+
+F05 WebKit launch pause, 2026-10-14: owner authorised portable synthetic paste
+correction without omissions. Firefox 10/10 and Chromium 56/56 pass; clipboard
+property attached explicitly on test events, no production change or skipped case.
+WebKit project-local download succeeds but all 10 cases error before launch due to
+missing host libicu74/libxml2/libflite1; no WebKit assertions executed. No sudo/system
+changes. Recommended required smoke in supported existing Ubuntu CI with CI-only
+dependency install; workflow/remote run not yet performed. Checklist 4/15; task
+1.5/manual/dependent worker remain open. Evidence F05-UH01; logs
+`/tmp/opencode/f05-editor-firefox-paste-fixed.log`,
+`f05-editor-chromium-paste-fixed.log`, `f05-editor-webkit.log`.
+No acceptance/commit/push/CSP relaxation. Earlier handoffs historical.
+
+F05 Firefox paste-fixture pause, 2026-10-14: task 1.4 completed (pre-post input
+guard/unit cases and programmatic browser limits/inert output/disposal). Checklist
+4/15. Added resource-backed CodeMirror help tooltip, selection/scroll/375px resize,
+fresh nonce and lazy-asset MIME/immutable cache/bytes proof; explicit --engine
+runner with Firefox/WebKit critical projects, default/snapshots Chromium unchanged.
+Maven 34 frontend/190 Java (four skips)/17 packaged pass; Chromium 56/56 passes.
+Firefox 157/build1555 downloaded locally without sudo: 9/10 passes, one synthetic
+paste failure. Focused reproduction: source DataTransfer 524288 chars, constructed
+ClipboardEvent exposes zero; no paste inserted. Programmatic limits pass. Proposed
+test-only explicit clipboardData property on synthetic event, unchanged assertions;
+not applied pending error-rule guidance. WebKit/manual/worker/final checks pending.
+Evidence F05-UH01; logs /tmp/opencode/f05-editor-tooltip-verify.log,
+f05-editor-tooltip-chromium.log, f05-editor-firefox.log. No CSP relaxation,
+commit/push/acceptance. Earlier handoffs historical.
+
+F05 Escape fix verified, 2026-10-14: owner authorised explicit wrapper binding.
+Search-close retains priority; editor Escape calls setTabFocusMode(2000) before
+default simplifySelection. Maven passes 31 frontend tests, 190 Java cases/four
+explicit skips, 17 packaged. Pinned Chromium 54/54 passes: EN/ES/FR search/privacy,
+selected-match Escape-Tab exit/reverse traversal, axe and executed policy checks.
+Task 1.3 done; checklist 3/15. No CSP relaxation. Full input/pre-worker proof,
+tooltip/resize/Firefox/WebKit, actual AT/zoom/copy, worker and final integration
+remain pending; no acceptance/commit/push/archive. Evidence F05-UH01; logs
+`/tmp/opencode/f05-editor-escape-verify.log`, `f05-editor-escape-browser.log`.
+Earlier blockers/handoffs below historical.
+
+F05 keyboard pause, 2026-10-14: owner-authorised search test correction now commits
+query before navigation. Chromium 51/54: EN/ES/FR search line1/line2/wraparound,
+no-excerpt announcements and search-panel Escape focus return pass. Earlier
+wraparound-only diagnosis corrected: fill did not commit query before Enter.
+Actual remaining failure: default Escape simplifySelection consumes selected-match
+Escape before core Tab-escape handler. Proposed minimal wrapper binding calls public
+setTabFocusMode(2000), after search-close and before default keymap; preserve tests.
+Not applied pending error-rule guidance. Checklist 2/15; axe/final policy checks
+after failure, actual manual/three-engine/worker evidence pending. Log
+`/tmp/opencode/f05-editor-committed-search-browser.log`; F05-UH01 evidence updated.
+No commit/push/acceptance/CSP changes. Earlier handoffs historical.
+
+F05 search-test pause, 2026-10-14: owner-authorised Vite built-URL mapping applied
+with lazy JS/CSS/worker build regression; server/CSP unchanged. Maven passes 31
+frontend tests, 190 Java cases/four explicit skips, 17 packaged. Chromium 51/54:
+editor loads and Unicode limits pass; three search cases expect line 2 after two
+advances but see localised line 1 after wraparound. Proposed test-only per-step
+selection/announcement assertions, retaining excerpt absence; not applied pending
+error-rule guidance. Task 1.2 complete, checklist 2/15; normal JAR digest/fixture
+exclusion/original B bytes and no-JS/cold Home isolation verified. Later keyboard/
+axe/policy assertions in failed cases unexecuted; manual/three-engine/worker pending.
+Evidence F05-UH01; logs `/tmp/opencode/f05-editor-url-verify.log`,
+`f05-editor-url-browser.log`. No commit/push/acceptance. Earlier handoffs historical.
+
+F05 browser URL pause, 2026-10-14: owner-authorised MVC query correction applied.
+Maven verify passes 31 frontend tests, 190 Java cases/four explicit skips and 17
+packaged cases. Chromium run passes 50/54: four JS-enabled editor cases cannot
+enhance because Vite generates `/static/assets/` lazy JS/CSS URLs while packaged
+resources serve at `/assets/`. Trace confirms 403/MIME failures, not CodeMirror
+CSP incompatibility. Proposed minimal correction: Vite built-URL mapping strips
+packaging-only static prefix; build regression then same browser rerun. Not applied
+pending error-rule guidance. Checklist 1/15; no runtime/manual/worker acceptance.
+Logs `/tmp/opencode/f05-editor-query-verify.log`, `f05-editor-browser.log`; evidence
+in F05-UH01 file. No commit/push/CSP relaxation. Earlier handoffs historical.
+
+F05 resumed apply pause, 2026-10-14: owner agreed to generic no-excerpt search
+announcements. Wrapper/lazy workspace/escaped SSR/messages/nonce, bounded input,
+exact lazy-asset caching and isolated editor proof are prepared. Frontend checks
+and 31/31 tests pass. New Java MVC verification: 190 cases, two locale failures,
+four explicit skips; packaged tests did not run. MockMvc `.param` does not set raw
+query read by locale resolver. Proposed minimal test-only fix: real `?lang=es/fr`
+URLs, then rerun; not applied pending error-rule guidance. Browser/axe/manual and
+worker checks unexecuted; checklist remains 1/15, no false partial completion.
+Evidence: `harness/evidence/F05-UH01-accessible-editor.md`. No CSP relaxation,
+commit/push/sync/archive; Chromium correction retained. Earlier handoffs historical.
+
+F05 apply pause, 2026-10-14: `feature/F05-editor-and-csp-proof` retains deferred
+Chromium correction 750e959. Spec-driven checklist 1/15 complete (task 1.1).
+Pinned minimal CodeMirror packages and browser axe with integrity/licence metadata;
+focused Vite test confirms worker files need explicit private build metadata.
+Frontend type/lint/format and 16/16 unit/build tests pass. Wrapper implementation
+paused: built-in search announces document excerpts, conflicting with task 1.3's
+no-payload-derived live-region text. Recommended owner decision: generic resource-
+backed search announcements, preserving privacy, with actual AT proof. No editor
+runtime/browser/manual acceptance or worker lifecycle implemented. Evidence:
+`harness/evidence/F05-UH01-accessible-editor.md`; task record under `harness/tasks/`.
+No commit/push/sync/archive; actual owner effort unreported. Prior handoffs historical.
+
 Browser workflow correction, 2026-10-14: owner reversed the earlier automated
 Google Chrome choice. Automated tests/snapshots now use pinned Playwright Chromium;
 owner uses Google Chrome for manual review. Removed optional Chrome channel/selector,

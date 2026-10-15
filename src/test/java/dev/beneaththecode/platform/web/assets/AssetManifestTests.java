@@ -34,6 +34,7 @@ class AssetManifestTests {
 				+ "\"lazy\":{\"file\":\"static/assets/lazy-hash.js\",\"css\":[\"static/assets/lazy-hash.css\"]}}");
 		assertThat(result.modulePreloads()).containsExactly("/assets/shared-hash.js");
 		assertThat(result.stylesheets()).isEmpty();
+		assertThat(result.resources()).contains("/assets/lazy-hash.js", "/assets/lazy-hash.css");
 	}
 
 	@ParameterizedTest
@@ -83,9 +84,10 @@ class AssetManifestTests {
 	@Test
 	void referenceListsDefensivelyCopyTheirInput() {
 		var styles = new java.util.ArrayList<>(List.of("/assets/a.css"));
-		var references = new AssetManifest.AssetReferences("/assets/a.js", styles, List.of());
+		var references = new AssetManifest.AssetReferences("/assets/a.js", styles, List.of(), styles);
 		styles.clear();
 		assertThat(references.stylesheets()).containsExactly("/assets/a.css");
+		assertThat(references.resources()).containsExactly("/assets/a.css");
 	}
 
 	private static AssetManifest.AssetReferences resolve(String json) {

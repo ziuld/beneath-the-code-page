@@ -1,0 +1,56 @@
+/* Loaded with the editor enhancement only. Shared BTC tokens remain authoritative. */
+[data-editor-workspace] {
+  min-width: 0;
+}
+[data-editor-host] {
+  border: 1px solid var(--secondary);
+  min-width: 0;
+}
+[data-editor-host] .cm-editor {
+  background: var(--surface);
+  color: var(--text);
+}
+[data-editor-host] .cm-scroller {
+  overflow: auto;
+  height: 20rem;
+  font-family: monospace;
+}
+[data-editor-host] .cm-content {
+  caret-color: var(--text);
+}
+[data-editor-host] .cm-editor.cm-focused {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-offset);
+}
+[data-editor-host] .cm-panel,
+[data-editor-host] .cm-tooltip {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--secondary);
+}
+[data-editor-host] .cm-textfield,
+[data-editor-host] .cm-button {
+  background: var(--canvas);
+  color: var(--text);
+  border: 1px solid var(--secondary);
+}
+[data-editor-host] .cm-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+[data-editor-host] .cm-textfield {
+  max-width: 100%;
+  min-width: 0;
+}
+[data-editor-host] .editor-help-tooltip {
+  max-width: min(24rem, 80vw);
+  padding: var(--space-xs);
+  font-family: var(--font-body);
+  white-space: normal;
+}
+[data-editor-host] .cm-selectionBackground,
+[data-editor-host] .cm-searchMatch,
+[data-editor-host] .cm-selectionMatch {
+  background: #494844;
+}

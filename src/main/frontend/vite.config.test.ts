@@ -1,4 +1,11 @@
-import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
+import {
+  mkdir,
+  mkdtemp,
+  readFile,
+  readdir,
+  rm,
+  writeFile,
+} from "node:fs/promises";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { build } from "vite";
@@ -12,6 +19,64 @@ interface ManifestEntry {
 }
 
 describe("SSR asset build", () => {
+  it("records lazy chunks but emits worker files outside manifest entries", async () => {
+    const target = fileURLToPath(new URL("../../../target", import.meta.url));
+    await mkdir(target, { recursive: true });
+    const fixture = await mkdtemp(join(target, "btc-worker-build-"));
+    const output = join(fixture, "output");
+    try {
+      await writeFile(
+        join(fixture, "entry.ts"),
+        'document.querySelector("[data-proof]") && import("./lazy");',
+      );
+      await writeFile(
+        join(fixture, "lazy.ts"),
+        'import "./lazy.css"; new Worker(new URL("./probe.worker.ts", import.meta.url), {type: "module"});',
+      );
+      await writeFile(
+        join(fixture, "lazy.css"),
+        "[data-proof] { color: red; }",
+      );
+      await writeFile(
+        join(fixture, "probe.worker.ts"),
+        'self.onmessage = () => self.postMessage("probe");',
+      );
+      await build({
+        ...config,
+        configFile: false,
+        root: fixture,
+        build: {
+          ...config.build,
+          outDir: output,
+          rollupOptions: { input: { entry: join(fixture, "entry.ts") } },
+        },
+      });
+      const manifest = JSON.parse(
+        await readFile(join(output, "asset-manifest.json"), "utf8"),
+      ) as Record<string, ManifestEntry & { dynamicImports?: string[] }>;
+      const entry = manifest["entry.ts"]!;
+      expect(entry.dynamicImports).toEqual(["lazy.ts"]);
+      const files = await readdir(join(output, "static/assets"));
+      const worker = files.find((name) =>
+        /^probe\.worker-[\w-]+\.js$/.test(name),
+      );
+      expect(worker).toBeDefined();
+      expect(Object.values(manifest).map((item) => item.file)).not.toContain(
+        `static/assets/${worker}`,
+      );
+      expect(
+        await readFile(join(output, manifest["lazy.ts"]!.file), "utf8"),
+      ).toContain(`/assets/${worker}`);
+      const entryCode = await readFile(join(output, entry.file), "utf8");
+      expect(entryCode).not.toContain("/static/assets/");
+      const lazy = manifest["lazy.ts"]!;
+      expect(lazy.css).toHaveLength(1);
+      expect(entryCode).toContain(lazy.css[0]!.replace(/^static\//, ""));
+    } finally {
+      await rm(fixture, { recursive: true, force: true });
+    }
+  });
+
   it("emits hashed JS and imported CSS with a manifest outside the public tree", async () => {
     const target = fileURLToPath(new URL("../../../target", import.meta.url));
     await mkdir(target, { recursive: true });

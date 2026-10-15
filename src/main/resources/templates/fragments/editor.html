@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<section th:fragment="workspace" data-editor-workspace aria-labelledby="editor-heading">
+    <h2 id="editor-heading" th:text="#{editor.heading}"></h2>
+    <p id="editor-instructions" th:text="#{editor.instructions}"></p>
+    <noscript><p th:text="#{editor.noScript}"></p></noscript>
+    <div data-editor-host data-description-id="editor-instructions" th:attr="data-nonce=${cspNonce}"></div>
+    <button type="button" th:text="#{action.continue}"></button>
+    <p role="status" aria-live="polite" aria-atomic="true"></p>
+    <div hidden>
+        <span data-editor-message="label" th:text="#{editor.label}"></span>
+        <span data-editor-message="match" th:text="#{editor.match}"></span>
+        <span data-editor-message="action" th:text="#{editor.action}"></span>
+        <span data-editor-message="limit" th:text="#{editor.limit}"></span>
+        <span data-editor-phrase="Find" th:text="#{editor.find}"></span>
+        <span data-editor-phrase="Replace" th:text="#{editor.replace}"></span>
+        <span data-editor-phrase="next" th:text="#{editor.next}"></span>
+        <span data-editor-phrase="previous" th:text="#{editor.previous}"></span>
+        <span data-editor-phrase="all" th:text="#{editor.all}"></span>
+        <span data-editor-phrase="match case" th:text="#{editor.matchCase}"></span>
+        <span data-editor-phrase="regexp" th:text="#{editor.regexp}"></span>
+        <span data-editor-phrase="by word" th:text="#{editor.byWord}"></span>
+        <span data-editor-phrase="replace" th:text="#{editor.replaceButton}"></span>
+        <span data-editor-phrase="replace all" th:text="#{editor.replaceAll}"></span>
+        <span data-editor-phrase="close" th:text="#{editor.close}"></span>
+        <span data-editor-phrase="Control character" th:text="#{editor.controlCharacter}"></span>
+    </div>
+</section>
+</body>
+</html>
