@@ -1,5 +1,32 @@
 # Current handoff
 
+F05 continued debugging authorised, 2026-10-15: owner prioritises Chrome/Chromium
+and Firefox, asked to continue after explanation of WebKit/Safari coverage.
+Ongoing scoped diagnosis, verification and commits/pushes to draft PR #5 approved;
+do not ask for each intermediate step. Stop for genuine design/security/scope
+decisions; no CSP relaxation/check omissions/merge/release/closure authorised.
+Added controlled native-selector reproduction (no-select control, unstyled native
+select, appearance:none, dark scheme and listbox), with actual unchanged server
+CSP and trusted nonce-backed diagnostic CSS. Original application acceptance
+tests untouched. Local Chromium 60/60 and Firefox 14/14 pass; no Maven rerun for
+test-only changes. Next deliver tests/records and inspect Ubuntu WebKit results,
+then fix only a confirmed cause. Checklist 4/15; AT/manual and worker/final pending.
+
+F05 shell isolation confirmed, 2026-10-15: tests/records committed and pushed as
+`bf8007d` to draft PR #5, not merged. Java run 38743541537 passes; browser run
+38743541682 clean Maven/Chromium 59/59 pass. WebKit executes 6/13 pass: three added
+initial-load diagnostics and four existing policy assertions fail. Home (only
+site script), script-free shared shell (zero scripts) and editor all report one
+style-src-attr/inline violation; HTML lines 31/28/23 respectively. Fresh rendered
+HTML confirms each line is the native language select, without authored inline
+style. Editor enhancement/application scripts are not required; exact native-
+control/CSS cause and safe fix unconfirmed. Pause for guidance to narrow selector
+rendering under unchanged CSP, then fix only a confirmed cause. No CodeMirror
+patch, selector removal, event filtering or policy relaxation. Checklist 4/15;
+AT/manual details, worker/final work pending. Post-run bookkeeping uncommitted;
+no further commit/push, merge/release/system changes or sync/archive authorised.
+Evidence: `harness/evidence/F05-UH01-accessible-editor.md`. Earlier handoffs historical.
+
 F05 isolation delivery authorised, 2026-10-15: owner approved committing/pushing
 the three locally verified initial-load tests and related evidence/tracking to
 draft PR #5. Deliver and inspect Ubuntu WebKit Home/shared-shell/editor comparison;
