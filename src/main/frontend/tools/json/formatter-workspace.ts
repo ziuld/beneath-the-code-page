@@ -14,6 +14,11 @@ export function enhanceFormatter(workspace: HTMLElement) {
   )!;
   const output = workspace.querySelector<HTMLElement>("[data-format-output]")!;
   const status = workspace.querySelector<HTMLElement>("[data-format-status]")!;
+  const copy =
+    workspace.querySelector<HTMLButtonElement>("[data-format-copy]")!;
+  const clear = workspace.querySelector<HTMLButtonElement>(
+    "[data-format-clear]",
+  )!;
   const message = (key: string) =>
     workspace.querySelector<HTMLElement>(`[data-format-message="${key}"]`)!
       .textContent!;
@@ -35,6 +40,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
         output.textContent = text;
       },
       current: (current) => {
+        copy.disabled = !current;
         workspace.dataset.formatCurrent = String(current);
         outputLabel.textContent = message(current ? "current" : "output");
       },
@@ -51,11 +57,28 @@ export function enhanceFormatter(workspace: HTMLElement) {
   });
   cancel.addEventListener("click", () => session.cancel());
   indentation.addEventListener("change", () => session.invalidate());
+  copy.addEventListener("click", () => {
+    void session.copy(
+      navigator.clipboard?.writeText
+        ? (text) => navigator.clipboard.writeText(text)
+        : undefined,
+    );
+  });
+  clear.addEventListener("click", () => {
+    session.clear();
+    editor.clear();
+    clear.focus();
+  });
   const dispose = () => {
     session.dispose();
     editor.dispose();
     output.textContent = "";
-    run.disabled = cancel.disabled = indentation.disabled = true;
+    run.disabled =
+      cancel.disabled =
+      indentation.disabled =
+      copy.disabled =
+      clear.disabled =
+        true;
     workspace.dataset.formatReady = "false";
   };
   window.addEventListener("pagehide", dispose, { once: true });
@@ -66,7 +89,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
       status.textContent = message("unavailable");
     }
   });
-  run.disabled = indentation.disabled = false;
+  run.disabled = indentation.disabled = clear.disabled = false;
   status.textContent = message("ready");
   workspace.dataset.formatCurrent = "false";
   workspace.dataset.formatReady = "true";

@@ -25,12 +25,18 @@
             </select>
             <button class="button" type="button" data-format-run disabled th:text="#{formatter.format}"></button>
             <button class="button" type="button" data-format-cancel disabled th:text="#{worker.cancel}"></button>
+            <button class="button" type="button" data-format-copy disabled th:text="#{formatter.copy}"></button>
+            <button class="button" type="button" data-format-clear disabled th:text="#{formatter.clear}"></button>
         </div>
         <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
         <h2 id="formatter-output-label" data-format-output-label th:text="#{formatter.output}"></h2>
         <pre id="formatter-output" data-format-output role="region" aria-labelledby="formatter-output-label" tabindex="0"></pre>
         <div hidden>
             <span data-format-message="ready" th:text="#{formatter.ready}"></span>
+            <span data-format-message="copied" th:text="#{formatter.copied}"></span>
+            <span data-format-message="copy-failed" th:text="#{formatter.copyFailed}"></span>
+            <span data-format-message="copy-unavailable" th:text="#{formatter.copyUnavailable}"></span>
+            <span data-format-message="cleared" th:text="#{formatter.cleared}"></span>
             <span data-format-message="running" th:text="#{worker.running}"></span>
             <span data-format-message="success" th:text="#{worker.success}"></span>
             <span data-format-message="error" th:text="#{worker.error}"></span>

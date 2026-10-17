@@ -1,5 +1,18 @@
 # Evidence — F06-UH02 localised diagnostics and safe budgets
 
+Owner explicitly accepted UH02 after the successful f4e9b47 three-engine CI summary
+and authorised proceeding to Copy/Clear. Reviewed the diagnostic/current-result/
+output-region slice and evidence against R01/R02 and AC01/AC02; no blocking findings
+remain in this slice. Coherent implementation commits b77ac8a/7c0114e/f4e9b47 are
+already delivered on draft PR #6. UH02 and task2.6/canonical T05 are done on this
+acceptance, not on an invented final feature manual review. Owner effort unreported.
+
+## Latest verified result — three-engine CI passes
+
+At `f4e9b4705cb1d82f98ee0366a3cd99def0ea508c`, Java run39071829961 and browser run39071830007 both succeeded on Ubuntu CI. Actual browser log `/tmp/opencode/f06-output-region-ci-browser.log` confirms Chromium78/78,Firefox32/32,WebKit32/32. The clean Maven build also passed. Back-navigation clearing, exact output, positioned diagnostics and all retained privacy/CSP/budget regressions pass; the previous WebKit blocker is resolved without removing assertions or relaxing limits.
+
+Tasks2.3 and2.5/canonical T02–T04 are complete with this evidence; checklist12/22. UH02 story closure/task2.6 still requires owner acceptance. Copy/Clear and final integrated manual review remain pending, and no merge/release or Home promotion is claimed. Earlier failed-head and CI-pending notes below are historical.
+
 Date: 2026-10-17. Status: locally verified diagnostics/freshness slice after explicit owner acceptance of UH01; updated WebKit CI and UH02 acceptance pending. Owner effort unreported; actual tests are recorded below, not inferred from implementation.
 
 ## Current blocker — Back-navigation output restoration

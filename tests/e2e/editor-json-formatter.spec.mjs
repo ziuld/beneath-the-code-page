@@ -13,6 +13,12 @@ const messages = {
   fr: { format: "Formater le JSON", input: "Éditeur de contenu", success: "Traitement terminé.", syntax: "JSON non valide à la ligne {0}, colonne {1}.", stale: "Le résultat précédent n’est plus à jour. Formatez à nouveau pour l’actualiser.", depth: "Le JSON dépasse la limite de 128 niveaux d’imbrication. L’entrée a été conservée.", unavailable: "Le traitement n’est pas disponible tant que JavaScript et l’éditeur ne sont pas chargés." },
 };
 
+const actionMessages = {
+  en: { copy: "Copy result", clear: "Clear workspace", copied: "Result copied.", failed: "The result could not be copied. Your content was kept.", unavailable: "Clipboard access is unavailable. Your content was kept.", cleared: "Workspace cleared." },
+  es: { copy: "Copiar resultado", clear: "Vaciar espacio de trabajo", copied: "Resultado copiado.", failed: "No se pudo copiar el resultado. Se conservó el contenido.", unavailable: "El acceso al portapapeles no está disponible. Se conservó el contenido.", cleared: "Espacio de trabajo vaciado." },
+  fr: { copy: "Copier le résultat", clear: "Vider l’espace de travail", copied: "Résultat copié.", failed: "Le résultat n’a pas pu être copié. Votre contenu a été conservé.", unavailable: "L’accès au presse-papiers est indisponible. Votre contenu a été conservé.", cleared: "Espace de travail vidé." },
+};
+
 for (const [locale, copy] of Object.entries(messages)) {
   test(`JSON formatter ${locale}: real worker, fidelity, recovery, CSP and privacy`, async ({ page, context, baseURL }) => {
     const requests = [];
@@ -21,6 +27,12 @@ for (const [locale, copy] of Object.entries(messages)) {
     context.on("response", (response) => { if (new URL(response.url()).pathname === workerPath) workerResponses.push(response); });
     await page.addInitScript(() => {
       window.formatterViolations = [];
+      window.clipboardWrites = [];
+      window.clipboardReads = 0;
+      Object.defineProperty(navigator, "clipboard", { configurable: true, value: {
+        writeText: async (text) => { window.clipboardWrites.push(text); },
+        readText: async () => { window.clipboardReads++; throw new Error("Unexpected read"); },
+      } });
       document.addEventListener("securitypolicyviolation", (event) => window.formatterViolations.push({ directive: event.violatedDirective, blocked: event.blockedURI }));
     });
     const response = await page.goto(`/tools/json-formatter?lang=${locale}`);
@@ -74,6 +86,26 @@ for (const [locale, copy] of Object.entries(messages)) {
     await expect(page.locator("[data-format-indent]")).toBeFocused();
     expect(await workspace.locator("form").count()).toBe(0);
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    const actions = actionMessages[locale];
+    const copyButton = page.getByRole("button", { name: actions.copy, exact: true });
+    const clearButton = page.getByRole("button", { name: actions.clear, exact: true });
+    expect(await page.evaluate(() => window.clipboardWrites)).toEqual([]);
+    await copyButton.focus();
+    await copyButton.press("Enter");
+    await expect(status).toHaveText(actions.copied);
+    expect(await page.evaluate(() => window.clipboardWrites)).toEqual([expected.replace(/^  /gm, "    ")]);
+    await clearButton.focus();
+    await clearButton.press("Space");
+    await expect(status).toHaveText(actions.cleared);
+    await expect(clearButton).toBeFocused();
+    await expect(copyButton).toBeDisabled();
+    await expect(output).toBeEmpty();
+    expect(await input.textContent()).toBe("");
+    await input.focus();
+    await input.press("Control+z");
+    expect(await input.textContent()).toBe("");
+    expect(await page.evaluate(() => window.clipboardWrites)).toEqual([expected.replace(/^  /gm, "    ")]);
+    expect(await page.evaluate(() => window.clipboardReads)).toBe(0);
     expect(await page.evaluate(() => window.formatterViolations)).toEqual([]);
     expect(await context.cookies()).toEqual(cookies);
     expect(await page.evaluate(async () => ({ local: localStorage.length, session: sessionStorage.length, databases: (await indexedDB.databases()).length, caches: (await caches.keys()).length })))
@@ -204,6 +236,91 @@ for (const [locale, copy] of Object.entries(messages)) {
       await expect(page.locator("[data-format-run]")).toBeDisabled();
       await expect(page.locator("[data-format-status]")).toHaveText(copy.unavailable);
     } finally { await context.close(); }
+  });
+
+  test(`JSON formatter ${locale}: clipboard failures, revision races and irreversible Clear`, async ({ page }) => {
+    const actions = actionMessages[locale];
+    await page.addInitScript(() => {
+      window.clipboardWrites = [];
+      window.clipboardReads = 0;
+      window.clipboardMode = "denied";
+      Object.defineProperty(navigator, "clipboard", { configurable: true, value: {
+        writeText: (text) => {
+          window.clipboardWrites.push(text);
+          if (window.clipboardMode === "pending") return new Promise((resolve, reject) => { window.finishCopy = resolve; window.failCopy = reject; });
+          return Promise.reject(new Error("PRIVATE"));
+        },
+        readText: async () => { window.clipboardReads++; throw new Error("Unexpected read"); },
+      } });
+    });
+    await page.goto(`/tools/json-formatter?lang=${locale}`);
+    const workspace = page.locator("[data-json-formatter]");
+    await expect(workspace).toHaveAttribute("data-format-ready", "true");
+    const input = page.getByRole("textbox", { name: copy.input, exact: true });
+    const run = page.locator("[data-format-run]");
+    const output = page.locator("[data-format-output]");
+    const status = page.locator("[data-format-status]");
+    const copyButton = page.getByRole("button", { name: actions.copy, exact: true });
+    const clearButton = page.getByRole("button", { name: actions.clear, exact: true });
+    await expect(copyButton).toBeDisabled();
+    await input.fill("{}");
+    await run.click();
+    await expect(copyButton).toBeEnabled();
+    await copyButton.focus();
+    await copyButton.press("Space");
+    await expect(status).toHaveText(actions.failed);
+    expect(await input.textContent()).toBe("{}");
+    expect(await output.textContent()).toBe("{}");
+    await expect(copyButton).toBeEnabled();
+    await page.evaluate(() => { window.clipboardMode = "pending"; });
+    await copyButton.click();
+    await input.fill("[]");
+    await expect(copyButton).toBeDisabled();
+    await run.click();
+    await expect(status).toHaveText(copy.success);
+    await page.evaluate(() => window.finishCopy());
+    await expect(status).toHaveText(copy.success);
+    await copyButton.click();
+    await clearButton.click();
+    await page.evaluate(() => window.failCopy(new Error("PRIVATE")));
+    await expect(status).toHaveText(actions.cleared);
+    await expect(output).toBeEmpty();
+    await expect(copyButton).toBeDisabled();
+    await expect(clearButton).toBeFocused();
+    expect(await input.textContent()).toBe("");
+    await input.focus();
+    await input.press("Control+z");
+    await input.press("Control+Shift+z");
+    expect(await input.textContent()).toBe("");
+    await input.fill("[1,]");
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-state", "error");
+    await expect(copyButton).toBeDisabled();
+    await clearButton.click();
+    await expect(status).toHaveText(actions.cleared);
+    await clearButton.click();
+    await expect(status).toHaveText(actions.cleared);
+    await input.fill("{}");
+    const state = await page.evaluate(() => {
+      document.querySelector("[data-format-run]").click();
+      const running = document.querySelector("[data-json-formatter]").dataset.formatState;
+      document.querySelector("[data-format-clear]").click();
+      return running;
+    });
+    expect(state).toBe("running");
+    await expect(status).toHaveText(actions.cleared);
+    await expect(output).toBeEmpty();
+    expect(await input.textContent()).toBe("");
+    await input.fill("{}");
+    await run.click();
+    await expect(copyButton).toBeEnabled();
+    await page.evaluate(() => Object.defineProperty(navigator, "clipboard", { value: undefined, configurable: true }));
+    await copyButton.click();
+    await expect(status).toHaveText(actions.unavailable);
+    expect(await input.textContent()).toBe("{}");
+    expect(await output.textContent()).toBe("{}");
+    expect(await page.evaluate(() => window.clipboardReads)).toBe(0);
+    expect(await page.evaluate(() => window.clipboardWrites)).toEqual(["{}", "{}", "[]"]);
   });
 
   test(`JSON formatter ${locale}: worker load failure keeps input and permits a safe retry`, async ({ page }) => {

@@ -34,6 +34,116 @@ function setup() {
 }
 
 describe("formatter result ownership", () => {
+  it("copies exactly the current result only on explicit activation", async () => {
+    const { session, reply, view } = setup();
+    const write = vi.fn().mockResolvedValue(undefined);
+    await session.copy(write);
+    session.start("{}", 2);
+    await session.copy(write);
+    expect(write).not.toHaveBeenCalled();
+    reply({ status: "success", output: '{\n  "n": 9007199254740993\n}' });
+    expect(write).not.toHaveBeenCalled();
+    const result = session.currentResult();
+    const pending = session.copy(write);
+    expect(write).toHaveBeenCalledExactlyOnceWith(result!.output);
+    await pending;
+    expect(view.status).toHaveBeenLastCalledWith("copied");
+    expect(session.currentResult()).toEqual(result);
+    session.invalidate();
+    await session.copy(write);
+    expect(write).toHaveBeenCalledTimes(1);
+  });
+
+  it("handles denied, synchronously throwing and unavailable writes without losing content", async () => {
+    const { session, reply, view } = setup();
+    session.start("{}", 2);
+    reply({ status: "success", output: "{}" });
+    await session.copy();
+    expect(view.status).toHaveBeenLastCalledWith("copy-unavailable");
+    await session.copy(() => Promise.reject(new Error("PRIVATE")));
+    expect(view.status).toHaveBeenLastCalledWith("copy-failed");
+    await session.copy(() => {
+      throw new Error("PRIVATE");
+    });
+    expect(view.status).toHaveBeenLastCalledWith("copy-failed");
+    expect(session.currentResult()!.output).toBe("{}");
+    expect(view.output).toHaveBeenCalledExactlyOnceWith("{}");
+  });
+
+  it.each(["invalidate", "cancel", "clear", "dispose", "start"] as const)(
+    "suppresses clipboard success and rejection after %s",
+    async (action) => {
+      for (const rejected of [false, true]) {
+        const { session, reply, view } = setup();
+        session.start("{}", 2);
+        reply({ status: "success", output: "{}" });
+        let settle!: () => void;
+        const pending = session.copy(
+          () =>
+            new Promise<void>((resolve, reject) => {
+              settle = () =>
+                rejected ? reject(new Error("PRIVATE")) : resolve();
+            }),
+        );
+        if (action === "start") session.start("[]", 4);
+        else session[action]();
+        const calls = view.status.mock.calls.length;
+        settle();
+        await pending;
+        expect(view.status).toHaveBeenCalledTimes(calls);
+        session.dispose();
+      }
+    },
+  );
+
+  it("suppresses an older clipboard attempt when a newer one completes", async () => {
+    const { session, reply, view } = setup();
+    session.start("{}", 2);
+    reply({ status: "success", output: "{}" });
+    let resolve!: () => void;
+    const old = session.copy(
+      () =>
+        new Promise<void>((done) => {
+          resolve = done;
+        }),
+    );
+    await session.copy(() => Promise.reject(new Error("PRIVATE")));
+    expect(view.status).toHaveBeenLastCalledWith("copy-failed");
+    resolve();
+    await old;
+    expect(view.status).toHaveBeenLastCalledWith("copy-failed");
+  });
+
+  it("clears running/completed/error/empty states and ignores late work", () => {
+    const { session, reply, workers, view } = setup();
+    session.start("{}", 2);
+    const late = workers[0]!.onmessage!;
+    session.clear();
+    late({
+      data: {
+        id: 1,
+        operation: "json-format-2",
+        status: "success",
+        output: "stale",
+      },
+    } as MessageEvent);
+    expect(view.output).toHaveBeenLastCalledWith("");
+    expect(view.status).toHaveBeenLastCalledWith("cleared");
+    expect(workers[0]!.terminate).toHaveBeenCalledOnce();
+    expect(session.currentResult()).toBeUndefined();
+    session.start("[]", 2);
+    reply({ status: "success", output: "[]" });
+    session.clear();
+    session.start("[", 2);
+    reply({ status: "error", diagnostic: { code: "syntax", offset: 1 } });
+    session.clear();
+    session.clear();
+    session.invalidate();
+    expect(view.status).toHaveBeenLastCalledWith("ready");
+    expect(view.output).toHaveBeenLastCalledWith("");
+    expect(session.currentResult()).toBeUndefined();
+    expect(vi.getTimerCount()).toBe(0);
+  });
   beforeEach(() =>
     vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "performance"] }),
   );

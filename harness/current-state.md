@@ -1,5 +1,25 @@
 # Current handoff
 
+F06 UH02 accepted/Copy-Clear locally verified, 2026-10-17: owner accepted UH02
+after f4e9b47 required CI; story/all five tasks done. UH03 adds explicit exact Copy
+with revision/attempt-guarded translated clipboard feedback, no reads; Clear cancels
+first, discards input/history/result/diagnostics and retains focus/clipboard unchanged.
+Clean Maven140 frontend/199 Java cases (three skips)/17 packaged pass. Chromium81/81,
+Firefox35/35 pass including clipboard/undo/all-action sentinel privacy/CSP regressions.
+Checklist17/22 through3.4;3.5 awaits updated required Ubuntu WebKit, not old UH02 CI.
+Prepare scoped commit/push on existing draft PR #6 path; no UH03/final manual acceptance,
+Home promotion, merge/release or budget/security waiver. Evidence F06-UH03 recorded;
+owner effort unreported. Earlier Copy/Clear-unstarted/UH02-acceptance-pending notes
+below are historical and superseded.
+
+F06 UH02 required CI green, 2026-10-17: f4e9b47 Java39071829961 and browser
+39071830007 succeed. Actual Ubuntu results Chromium78/78,Firefox32/32,WebKit32/32;
+clean Maven succeeds. Output-region fix resolves Back-navigation clearing with exact
+assertions/privacy/CSP/budgets retained. Reclosed2.3/completed2.5 and canonical T02–T04;
+checklist12/22. UH02 owner acceptance/task2.6 pending before dependent Copy/Clear.
+No Home promotion, final manual acceptance, F06 merge/release. Result bookkeeping
+local; draft PR #6 remains at tested f4e9b47. Earlier blockers below superseded.
+
 F06 output-region fix authorised/locally verified, 2026-10-17: owner approved
 replacing textarea with labelled selectable text-only output and continuation.
 Implemented focusable pre region, textContent-only writes/clearing, bounded scrolling;

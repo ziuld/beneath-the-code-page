@@ -1,5 +1,17 @@
 # Task — F06 JSON Formatter
 
+Current scope: owner accepted UH02 after f4e9b47 required CI. Close2.6 and start3.1
+with UH03 R01/AC01 exact explicit clipboard writes and R02/AC02 irreversible active
+editor/history clearing. Preserve current-result revision ownership, no clipboard
+reads/persistence, exact worker-asset privacy allowlist, CSP/budgets and Clear focus.
+Unit races and three-engine keyboard/clipboard/undo/all-action privacy checks planned;
+no UH03 or final manual acceptance inferred. See F06-UH03 evidence for results.
+
+Latest result: required Ubuntu CI at f4e9b47 passes Java39071829961 and browser
+39071830007 (Chromium78/78,Firefox32/32,WebKit32/32), including history clearing.
+Tasks2.3/2.5 and canonical T02–T04 complete;12/22. Await UH02 owner acceptance before
+task2.6 closure/Copy/Clear. No feature merge, release or final manual review claimed.
+
 Latest continuation: owner approved the labelled text-only output-region fix.
 Implemented textContent-only rendering/clearing, focusable/selectable bounded output
 and exact-text/SSR checks. Local Maven129 frontend/199 Java (three skips)/17 packaged,

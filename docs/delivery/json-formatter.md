@@ -1,5 +1,18 @@
 # JSON Formatter — implementation preview
 
+Current preview: UH01/UH02 accepted; UH03 Copy/Clear locally verified, awaiting
+updated required Ubuntu WebKit CI and story acceptance. Copy writes only a current
+successful result on explicit activation and reports translated success/denied/
+unavailable feedback. Clear cancels work, discards active input/history/output and
+diagnostics, disables Copy and retains button focus; it leaves the system clipboard
+alone. Pending authorised clipboard writes cannot necessarily be retracted. No
+secure heap-erasure or speech-compatibility guarantee. Earlier unimplemented notes
+below refer to previous slices; Home remains unpublished pending full acceptance.
+
+UH02 is now explicitly accepted by the owner against f4e9b47 passing required CI.
+Copy/Clear implementation is underway; do not infer those actions or final integrated
+manual acceptance from the accepted diagnostics slice. Home promotion remains off.
+
 Status: F06-UH01 is accepted/done with passing three-engine CI. UH02 adds localised positioned diagnostics and current-result ownership, verified locally and awaiting updated supported-environment WebKit CI. Do not promote Home Tools yet. Exact SSR GET/HEAD `/tools` and `/tools/json-formatter` provide EN/ES/FR explanations, input editor, two/four-space selection, Format/Cancel and a read-only result labelled current or previous. Copy/Clear remain the next story, not delivered here. WebKit still cannot launch on this local host.
 
 ## Processing boundary
@@ -9,6 +22,11 @@ Strict full-input validation uses pinned `jsonc-parser`3.3.1 after non-recursive
 ADR006 permits only body-free GETs without query/fragment to exact hashed worker scripts identified by private build metadata. No tool content may enter traffic, URLs, cookies, logs or persistent storage. The production worker is bundled separately, self-contained and subject to unchanged worker response CSP. Home and the Tools index do not load editor/worker assets merely by visiting them.
 
 ## Verification and current limitation
+
+Latest verified head `f4e9b47`: Ubuntu Java39071829961 and browser39071830007 pass,
+including Chromium78/78,Firefox32/32,WebKit32/32 and Back-navigation output clearing.
+UH02 implementation/verification is complete; story acceptance is pending. Copy/Clear
+and final integrated manual review remain outstanding. Earlier blockers below are historical.
 
 Owner approved the history-restoration fix: output is now a labelled, keyboard-focusable/selectable text-only region rather than a textarea, populated/cleared through `textContent`. Local Maven,Chromium78/78 andFirefox32/32 pass; actual updated Ubuntu WebKit verification is pending. Exact output and Back-navigation clearing assertions remain. The failed-head details below are historical, not a new-code pass.
 
