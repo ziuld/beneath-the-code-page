@@ -1,5 +1,35 @@
 # Current handoff
 
+F06 archived,2026-10-18: all22/22 tasks complete; spec synced and verified at
+openspec/specs/json-formatter/spec.md. Change archived to
+openspec/changes/archive/2026-10-18-f06-json-formatter/ including .openspec.yaml.
+Canonical F06 done/all stories accepted; Home Tools enabled on testeded0e502,
+Ubuntu Java39074613656/browser39074613616 pass,Chromium84/Firefox38/WebKit38.
+Clean Maven140 frontend/199 Java (three skips)/17 packaged and local health pass.
+Planning integrity,15 rule tests,strict change/main-spec checks and whitespace pass
+before archive and again after archive; OpenSpec lists no active changes. No runtime changes after tested head,
+manual environment omissions explicit, no merge/release. Closure/spec/archive
+bookkeeping prepared for coherent delivery on existing draft PR #6 path. Required
+runtime CI evidence remains tied to ed0e502, not inferred from documentation edits.
+Next feature F07 is not started; proceed only on owner request.
+
+F06 accepted/complete,2026-10-18: tested final publication ed0e502 passes Ubuntu
+Java39074613656/browser39074613616,Chromium84/Firefox38/WebKit38;clean Maven140
+frontend/199 Java (three skips)/17 packaged,local health pass. All three stories/
+all15 canonical tasks and all22 OpenSpec tasks done; owner Chrome manual acceptance
+recorded without invented version/OS/viewport. Home Tools enabled, Learn unpublished.
+Owner chose Sync then archive: new main json-formatter spec matches exact Purpose/
+seven requirements/scenarios; strict main-spec8/8 pass. Final closure checks and
+archive in progress; no merge/release. Runtime remains testeded0e502 on draft PR #6.
+
+F06 final publication delivered,2026-10-18: ed0e502 pushed to draft PR #6;
+Java39074613656/browser39074613616 running. Local Chromium84/Firefox38,clean Maven/
+health and planning/rule/OpenSpec/whitespace checks pass;21/22. Owner selected
+Sync then archive after final CI: new json-formatter main spec (ADDED only), verify
+and archive. Specs instructions snapshot fetched successfully; no extra rules.
+Do not refetch for inline sync. Required final WebKit before4.3/F06 closure; manual
+Chrome confirmation recorded with version/OS/viewport unreported. No merge/release.
+
 F06 owner final review accepted/publication local,2026-10-18: owner confirmed all
 requested Chrome keyboard/narrow/actual200% zoom/EN-ES-FR/Copy-Clear checks passed
 and asked to close/archive. Chrome version/OS/viewport not reported; no invented

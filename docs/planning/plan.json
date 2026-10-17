@@ -2011,10 +2011,10 @@
       "depends_on": [
         "F05"
       ],
-      "status": "in_progress",
+      "status": "done",
       "blocker": "",
       "actual_start": "2026-10-17",
-      "actual_finish": null,
+      "actual_finish": "2026-10-18",
       "evidence": ["harness/evidence/F06-integrated-acceptance.md"],
       "parent_id": "EPIC-MVP",
       "kind": "product",

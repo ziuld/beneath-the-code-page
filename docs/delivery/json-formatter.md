@@ -1,11 +1,14 @@
-# JSON Formatter — implementation preview
+# JSON Formatter — accepted delivery
 
 Status,2026-10-18: UH01/UH02/UH03 are accepted and done. Required Ubuntu CI passes
 at05a688a (Java39072823450; browser39072823403:Chromium81/81,Firefox35/35,WebKit35/35).
 Owner confirmed the keyboard/narrow/actual200% zoom/EN-ES-FR/Copy-Clear review passed
 in Google Chrome and requested closure/archive; version/OS/viewport unreported.
-Home Tools is now enabled; updated publication-state CI remains pending before
-F06 closure. No merge/release performed.
+Home Tools is enabled and final publication-state CI passes at ed0e502: Ubuntu
+Java39074613656 and browser39074613616,Chromium84/84,Firefox38/38,WebKit38/38.
+F06 is accepted/done; [main specification](../../openspec/specs/json-formatter/spec.md)
+synced and [change archived](../../openspec/changes/archive/2026-10-18-f06-json-formatter/tasks.md).
+No merge/release performed.
 
 Copy writes only a current
 successful result on explicit activation and reports translated success/denied/

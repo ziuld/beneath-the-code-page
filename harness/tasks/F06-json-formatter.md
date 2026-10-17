@@ -1,5 +1,12 @@
 # Task — F06 JSON Formatter
 
+Completion2026-10-18: ed0e502 passes final required Ubuntu Java39074613656/browser
+39074613616,Chromium84/Firefox38/WebKit38,clean Maven140 frontend/199 Java (three
+skips)/17 packaged and local health. All stories/tasks accepted;22/22. Home Tools
+published, Learn/unfinished tools remain denied. Owner manual Chrome confirmation
+and unreported environment details retained. Owner selected main-spec sync/archive;
+new main spec verified against accepted delta. No merge/release or effort invention.
+
 Final continuation2026-10-18: owner confirmed Chrome manual checklist passed and
 requested closure/archive; version/OS/viewport unreported.4.2 done,21/22. Home Tools
 enabled with real EN/ES/FR journey, prior link/control fixtures reconciled preserving
@@ -43,9 +50,9 @@ User outcome and authorised scope: Apply the complete F06 change. Owner approved
 
 Prerequisites and files read: F05 accepted/archived; current handoff, architecture/feasibility/hierarchy, F06 dossier/EARS/Gherkin/tasks, proposal/spec/design/checklist, existing worker manager/input/budget and editor/build code, F05 worker main spec. Preserve existing local archival, specification and accessibility-documentation changes.
 
-Acceptance criteria (link, do not drift): [F06 dossier](../../docs/planning/features/F06.md) and [proposed capability](../../openspec/changes/f06-json-formatter/specs/json-formatter/spec.md). Canonical tracking/behavioural ownership remains plan-owned.
+Acceptance criteria (link, do not drift): [F06 dossier](../../docs/planning/features/F06.md) and [accepted capability](../../openspec/specs/json-formatter/spec.md). Canonical tracking/behavioural ownership remains plan-owned.
 
-Implementation steps: Follow the [existing checklist](../../openspec/changes/f06-json-formatter/tasks.md) after resolving the documented request-free worker-lifecycle conflict. Home publication waits for integrated acceptance; formatting-only UH01 privacy checks do not depend on unimplemented Copy/Clear; final all-action privacy remains required.
+Implementation steps: The [completed checklist](../../openspec/changes/archive/2026-10-18-f06-json-formatter/tasks.md) records the accepted implementation. Home publication followed integrated acceptance; formatting-only UH01 privacy checks were distinct from the final all-action privacy gate.
 
 Security, privacy, accessibility and locale implications: No payload in traffic/URLs/logs/storage, unchanged restrictive CSP, hard worker deadlines/recovery and explicit keyboard/visual/locale/axe scope. Do not treat browser cache as proof of absent requests or introduce blob/data workers, persistent caching or exceptions without agreement.
 

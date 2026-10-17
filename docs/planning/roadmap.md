@@ -2,7 +2,7 @@
 
 Baseline date: 2026-10-09.
 
-6/17 features accepted; 70/298 baseline hours accepted (23%). Forecast 298 owner hours + 59.6h contingency = 357.6h, approximately 36 weeks at 10h/week. No start date committed.
+7/17 features accepted; 94/298 baseline hours accepted (32%). Forecast 298 owner hours + 59.6h contingency = 357.6h, approximately 36 weeks at 10h/week. No start date committed.
 
 Initial estimating envelope: 194–552h before contingency. These are judgement ranges, not confidence intervals. AI assistance is already assumed.
 
@@ -16,7 +16,7 @@ Week 1 begins at project start. Fractional weeks show capacity, not exact appoin
 | F03 | Home and shared EN/ES/FR shell | 18 | 2.4–4.2 | done | F02 |
 | F04 | Security and locale flow | 14 | 4.2–5.6 | done | F03 |
 | F05 | Editor and CSP proof | 14 | 5.6–7.0 | done | F04 |
-| F06 | JSON Formatter | 24 | 7.0–9.4 | in_progress | F05 |
+| F06 | JSON Formatter | 24 | 7.0–9.4 | done | F05 |
 | F07 | JSON Validator and Minifier | 10 | 9.4–10.4 | planned | F06 |
 | F08 | Base64 Encoder/Decoder | 6 | 10.4–11.0 | planned | F06 |
 | F09 | UUID Generator | 4 | 11.0–11.4 | planned | F06 |
