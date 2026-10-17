@@ -131,7 +131,20 @@ for (const [locale, copy] of Object.entries(messages)) {
       ['//PRIVATE_COMMENT\n{}', 1, 1], ['{} {}', 1, 4],
       ['[\r\n"😀",]', 2, 5], ['[\r\n"😀"', 2, 4], ['"unfinished', 1, 12],
     ]) {
-      await input.fill(source);
+      if (source.includes("\r\n")) {
+        // Exercise the editor's raw-text CRLF paste path, not the engines'
+        // differing contenteditable insertText behaviour used by Playwright fill.
+        await input.focus();
+        await input.press("Control+a");
+        await input.evaluate((node, text) => {
+          const data = new DataTransfer();
+          data.setData("text/plain", text);
+          const event = new ClipboardEvent("paste", { bubbles: true, cancelable: true });
+          Object.defineProperty(event, "clipboardData", { value: data });
+          node.dispatchEvent(event);
+        }, source);
+      } else await input.fill(source);
+      expect((await input.locator(".cm-line").allTextContents()).join("\n")).toBe(source.replace(/\r\n/g, "\n"));
       await run.click();
       await expect(status).toHaveText(copy.syntax.replace("{0}", String(line)).replace("{1}", String(column)));
       expect((await input.locator(".cm-line").allTextContents()).join("\n")).toBe(source.replace(/\r\n/g, "\n"));

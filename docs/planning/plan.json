@@ -2206,7 +2206,7 @@
           "actual_start": "2026-10-17",
           "actual_finish": null,
           "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
-          "commits": [],
+          "commits": ["b77ac8a"],
           "requirements": [
             {
               "id": "F06-UH02-R01",
@@ -2260,7 +2260,7 @@
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
-              "commits": [],
+              "commits": ["b77ac8a"],
               "actual_start": "2026-10-17",
               "actual_finish": "2026-10-17"
             },
@@ -2283,7 +2283,7 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
-              "commits": [],
+              "commits": ["b77ac8a"],
               "actual_start": "2026-10-17",
               "actual_finish": "2026-10-17"
             },
@@ -2305,7 +2305,7 @@
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
               "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
-              "commits": [],
+              "commits": ["b77ac8a"],
               "actual_start": "2026-10-17",
               "actual_finish": "2026-10-17"
             },

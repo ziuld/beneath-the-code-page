@@ -1,5 +1,25 @@
 # Current handoff
 
+F06 changed-code CI/CRLF fixture correction, 2026-10-17: b77ac8a Java39069636791
+passes; browser39069636868 clean Maven/Chromium78/Firefox32 pass, WebKit29/32.
+Only EN/ES/FR CRLF-position fixtures fail (expected line2, observed line3). Switched
+those raw CRLF fixtures from contenteditable fill to the existing explicit paste
+path in every engine, adding exact editor-text assertion before formatting and
+retaining all position/preservation assertions. Runtime/packages/CSP/budgets/timeouts
+unchanged. Corrected local Chromium78/78 andFirefox32/32 pass; prepare scoped test/
+evidence delivery to draft PR #6 and require actual updated WebKit. Checklist11/22;
+task2.5/UH02 acceptance and dependent Copy/Clear pending. No merge/release or waiver.
+
+F06 diagnostics slice delivered, 2026-10-17: continued on owner request, fixed a
+stale negative planning-test fixture without changing validator/assertions (all15
+tests pass), and pushed b77ac8a to existing draft PR #6. Java run39069636791 and
+browser run39069636868 are running against that head; no new-code WebKit pass yet.
+First watcher exited before checks were registered, not because CI failed; restarted
+after confirming both jobs running. Local129 frontend/199 Java (three skips)/17
+packaged,Chromium78/78,Firefox32/32 and real health pass. Checklist11/22; task2.5 and
+UH02 acceptance pending. No runtime changes after commit; delivery-result bookkeeping
+local. No Copy/Clear, Home promotion, F06 merge/release or manual acceptance claimed.
+
 F06 diagnostics delivery continuing, 2026-10-17: owner requested continuation with
 the existing Sol session. Prepare the locally verified UH02 diagnostics/freshness
 slice and accepted UH01 bookkeeping for the existing authorised draft PR #6/Ubuntu

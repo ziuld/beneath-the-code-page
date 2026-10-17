@@ -35,6 +35,16 @@ Tasks2.3/2.4 complete on this local evidence; task2.5 remains pending updated re
 
 ## Continued draft delivery
 
+### First changed-code CI result and CRLF fixture correction
+
+At `b77ac8a`, Java run39069636791 passed. Browser run39069636868 passed the clean Maven build,Chromium78/78 andFirefox32/32; WebKit passed29/32 and failed the three locale copies of the CRLF-position fixture (expected line2,column5; reported line3,column5). No other WebKit case failed, including reference-size/budget, real worker load recovery and previous privacy/CSP regressions. This is not a passing WebKit gate.
+
+The failure is isolated to CRLF insertion through Playwright's contenteditable `fill` path, consistent with an extra editor line rather than the unit-tested CRLF position calculation. The fixture now supplies the original raw CRLF text through the existing explicit `ClipboardEvent`/DataTransfer paste path in every engine; CodeMirror's paste implementation uses `state.toText`, whose default split treats CRLF as one line break. A new assertion verifies exact normalised editor text before formatting; existing post-operation preservation and expected line/column assertions remain unchanged. No application/package source, timeout, retry, budget or CSP change.
+
+After this test-only correction, local Chromium78/78 andFirefox32/32 pass again (`/tmp/opencode/f06-diagnostics-crlf-chromium.log`, `/tmp/opencode/f06-diagnostics-crlf-firefox.log`). Updated Ubuntu WebKit remains pending; task2.5 stays open. The correction is within the owner's permission to resolve straightforward test-only integration mismatches while preserving coverage.
+
+Executed continuation, 2026-10-17: committed verified diagnostics/freshness and completed UH01 acceptance bookkeeping as `b77ac8af663c2df6dec0161a16adab43941dc725`, pushed it to the existing draft PR #6 and updated that PR's scope/verification description. Java run39069636791 and browser run39069636868 are in progress at this head. The first watcher returned before GitHub registered the checks; inspection confirmed no test failure, and watching resumed after registration. No changed-code WebKit pass or task2.5 completion is claimed yet. Local real health smoke also passes (`/tmp/opencode/f06-diagnostics-health.log`). No runtime change after the tested/pushed slice.
+
 Owner requested continuation after the model discussion. Continue the already authorised existing draft-PR verification path with this verified slice and completed UH01 acceptance bookkeeping; no new model/delegation, F06 merge, release or manual acceptance is inferred. Record the actual next commit/CI identity after delivery, leaving task2.5 open until the updated required checks pass.
 
 Pre-delivery checks found one stale negative planning-test fixture: its selected baseline UH01 was now accepted, so simply marking it done no longer constructed an invalid closure. The test now explicitly leaves a child open and removes evidence/finish date before asserting the same two validator failures. The validator and assertions are unchanged; all15 planning-rule tests pass again. Planning integrity, strict OpenSpec and whitespace checks also pass. This is the owner-authorised straightforward test-only integration correction, not a change to closure policy.
