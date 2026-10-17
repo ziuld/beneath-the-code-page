@@ -10,11 +10,17 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "format:check": "prettier --check .",
+    "format:check": "prettier --check . ../../test/frontend",
     "test": "vitest run",
     "check": "npm run typecheck && npm run lint && npm run format:check && npm test",
     "build": "vite build",
     "watch": "vite build --watch"
+  },
+  "dependencies": {
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/search": "6.7.2",
+    "@codemirror/state": "6.7.6",
+    "@codemirror/view": "6.43.14"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

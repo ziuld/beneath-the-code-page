@@ -46,6 +46,7 @@ class PackagedAssetsIT {
 			assertThat(names).contains(MANIFEST);
 			assertThat(names).noneMatch(name -> name.contains("node_modules") || name.contains("btc/fixtures")
 					|| name.endsWith(".ts") || name.contains("asset-fixture")
+					|| name.contains("proof-worker") || name.contains("worker-proof")
 					|| name.startsWith("BOOT-INF/classes/static/") && name.endsWith("asset-manifest.json"));
 			for (var asset : references.entrySet()) {
 				var generated = Path.of("target/frontend/static" + asset.getKey());

@@ -1,6 +1,5 @@
 package dev.beneaththecode.platform.web.assets;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -35,10 +34,7 @@ public class LocalAssetWebConfiguration implements WebMvcConfigurer {
 					.setCacheControl(CacheControl.noStore()).resourceChain(false);
 		}
 		else {
-			var references = manifest.site();
-			var paths = new ArrayList<>(references.stylesheets());
-			paths.add(references.script());
-			paths.addAll(references.modulePreloads());
+			var paths = manifest.site().resources();
 			registry.addResourceHandler(paths.toArray(String[]::new)).addResourceLocations("classpath:/static/")
 					.setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS).cachePublic().immutable());
 		}

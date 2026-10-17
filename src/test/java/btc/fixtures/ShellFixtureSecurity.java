@@ -16,9 +16,10 @@ public class ShellFixtureSecurity {
 	@Bean
 	@Order(0)
 	SecurityFilterChain shellFixtureFilterChain(HttpSecurity http, CookieCsrfTokenRepository csrfRepository) throws Exception {
-		return http.securityMatcher("/__shell-fixture")
+		return http.securityMatcher("/__shell-fixture", "/__editor-fixture")
 				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers(org.springframework.http.HttpMethod.GET, "/__shell-fixture").permitAll()
+						.requestMatchers(org.springframework.http.HttpMethod.GET, "/__shell-fixture", "/__editor-fixture").permitAll()
+						.requestMatchers(org.springframework.http.HttpMethod.HEAD, "/__editor-fixture").permitAll()
 						.anyRequest().denyAll())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.csrf(csrf -> csrf.csrfTokenRepository(csrfRepository)

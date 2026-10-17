@@ -3,6 +3,7 @@
 import argparse
 from contextlib import contextmanager, ExitStack
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -21,21 +22,47 @@ def component_fixture(jar):
     """Copy only the shell fixture into a separate executable; never change the normal JAR."""
     output = ROOT / "target/shell-browser-fixture.jar"
     classes = ROOT / "target/test-classes"
+    frontend = ROOT / "src/main/frontend"
+    environment = os.environ.copy()
+    environment["PATH"] = str(NODE.parent) + os.pathsep + environment["PATH"]
+    subprocess.run([str(NODE), str(frontend / "node_modules/vite/bin/vite.js"), "build",
+                    "--config", "vite.worker-proof.config.ts"], cwd=frontend, env=environment, check=True, timeout=60)
+    proof = ROOT / "target/worker-proof"
+    manifest = json.loads((proof / "asset-manifest.json").read_text())
+    workers = json.loads((proof / "worker-proof-resources.json").read_text())
+    if len(workers) != 1 or not re.fullmatch(r"static/assets/proof-worker-[\w-]+\.js", workers[0]):
+        raise RuntimeError("Expected one explicit same-origin proof worker in private build metadata")
+    entry = next(value["file"] for value in manifest.values() if value.get("isEntry"))
+    # Preserve the normal lazy graph: fixture chunks can have the same source keys.
+    manifest = {"__worker-proof/" + key: {
+        **value,
+        **{field: ["__worker-proof/" + item for item in value[field]]
+           for field in ("imports", "dynamicImports") if field in value}
+    } for key, value in manifest.items()}
+    manifest["__worker-proof-resource"] = {"file": workers[0]}
     with ZipFile(jar) as original, ZipFile(output, "w") as fixture:
         names = original.namelist()
-        if any("btc/fixtures/" in name or "shell-fixture" in name for name in names):
+        if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name for name in names):
             raise RuntimeError("Fixture leaked into normal executable")
         for info in original.infolist():
             data = original.read(info)
+            if info.filename == "BOOT-INF/classes/asset-manifest.json":
+                data = json.dumps({**json.loads(data), **manifest}).encode()
+            if info.filename == "BOOT-INF/classes/application.yaml":
+                data += f"\nbtc:\n  worker-proof-script: /{entry.removeprefix('static/')}\n".encode()
             if info.filename == "META-INF/MANIFEST.MF":
                 data = data.replace(b"Start-Class: dev.beneaththecode.BeneathTheCodeApplication",
                                     b"Start-Class: btc.fixtures.ShellFixtureApplication")
             fixture.writestr(info, data)
-        for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity"):
+        for asset in (proof / "static/assets").iterdir():
+            fixture.writestr("BOOT-INF/classes/static/assets/" + asset.name, asset.read_bytes(), compress_type=ZIP_DEFLATED)
+        for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity", "EditorFixtureController"):
             path = f"btc/fixtures/{name}.class"
             fixture.writestr("BOOT-INF/classes/" + path, (classes / path).read_bytes(), compress_type=ZIP_DEFLATED)
         fixture.writestr("BOOT-INF/classes/templates/shell-fixture.html",
-                         (classes / "templates/shell-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+                          (classes / "templates/shell-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+        fixture.writestr("BOOT-INF/classes/templates/editor-fixture.html",
+                         (classes / "templates/editor-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
     return output
 
 
@@ -68,30 +95,29 @@ def running_jar(jar, log, environment, *arguments):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--install", action="store_true", help="install locked tooling and, for Chromium, the project-local browser")
-    parser.add_argument("--browser", choices=("chromium", "chrome"), default="chromium", help="use bundled Chromium or installed Google Chrome")
+    parser.add_argument("--install", action="store_true", help="install locked tooling and the selected engine project-locally")
+    parser.add_argument("--engine", choices=("chromium", "firefox", "webkit"), default="chromium",
+                        help="Chromium full suite (default); Firefox/WebKit editor critical smoke")
     parser.add_argument("--snapshot", type=Path, help="capture EN/ES/FR narrow/wide Home screenshots instead of running tests")
     parser.add_argument("--snapshot-reference-css", type=Path, help="snapshot only: substitute a reference stylesheet in the browser")
-    parser.add_argument("--with-deps", action="store_true", help="CI only: install Chromium OS dependencies; may invoke sudo")
+    parser.add_argument("--with-deps", action="store_true", help="CI only: install selected engine OS dependencies; may invoke sudo")
     args = parser.parse_args()
-    if args.browser == "chrome" and args.with_deps:
-        parser.error("--with-deps applies only to bundled Chromium")
     if args.snapshot_reference_css and not args.snapshot:
         parser.error("--snapshot-reference-css requires --snapshot")
+    if args.snapshot and args.engine != "chromium":
+        parser.error("Home screenshots use pinned Chromium")
     if args.with_deps and os.environ.get("CI") != "true":
         parser.error("--with-deps is restricted to CI; obtain approval for local privileged installs")
     environment = os.environ.copy()
     environment["PATH"] = str(NODE.parent) + os.pathsep + environment["PATH"]
     environment["PLAYWRIGHT_BROWSERS_PATH"] = str(ROOT / "target/browser-cache")
     environment["npm_config_cache"] = str(ROOT / "target/npm-cache")
-    environment["BTC_BROWSER_CHANNEL"] = args.browser
     if args.install:
         subprocess.run([str(NODE), str(NPM), "ci", "--no-audit", "--no-fund"], cwd=TESTS, env=environment, check=True, timeout=180)
-        if args.browser == "chromium":
-            command = [str(NODE), str(CLI), "install"]
-            if args.with_deps:
-                command.append("--with-deps")
-            subprocess.run([*command, "chromium"], cwd=TESTS, env=environment, check=True, timeout=300)
+        command = [str(NODE), str(CLI), "install"]
+        if args.with_deps:
+            command.append("--with-deps")
+        subprocess.run([*command, args.engine], cwd=TESTS, env=environment, check=True, timeout=300)
     jar = ROOT / "target/beneath-the-code-0.1.0-SNAPSHOT.jar"
     digest = hashlib.sha256(jar.read_bytes()).digest()
     fixture = None
@@ -105,7 +131,7 @@ def main():
                     jar, ROOT / "target/preferences-browser-server.log", environment, "--spring.profiles.active=local"))
             subprocess.run([str(NODE), str(CLI), "--version"], cwd=TESTS, env=environment, check=True, timeout=10)
             command = ([str(NODE), str(TESTS / "capture-home.mjs"), str(args.snapshot.resolve())]
-                       if args.snapshot else [str(NODE), str(CLI), "test"])
+                       if args.snapshot else [str(NODE), str(CLI), "test", "--project", args.engine])
             if args.snapshot_reference_css:
                 command.append(str(args.snapshot_reference_css.resolve()))
             subprocess.run(command, cwd=TESTS, env=environment, check=True, timeout=180)

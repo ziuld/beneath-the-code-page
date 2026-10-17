@@ -33,3 +33,7 @@ jobs:
         run: python3 scripts/verify-java-baseline.py clean
       - name: Test packaged Home in Chromium
         run: python3 scripts/verify-home-browser.py --install --with-deps
+      - name: Test packaged editor critical smoke in Firefox
+        run: python3 scripts/verify-home-browser.py --engine firefox --install --with-deps
+      - name: Test packaged editor critical smoke in WebKit
+        run: python3 scripts/verify-home-browser.py --engine webkit --install --with-deps
