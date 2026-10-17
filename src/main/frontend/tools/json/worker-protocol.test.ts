@@ -28,10 +28,25 @@ describe("formatter worker boundary", () => {
   ])("ignores malformed requests: %j", (value) => {
     expect(processJsonRequest(value)).toBeUndefined();
   });
-  it("returns only a generic error for invalid or unsupported operations", () => {
-    for (const operation of ["json-format-2", "unexpected"])
-      expect(
-        processJsonRequest({ id: 2, operation, input: "PRIVATE_INVALID" }),
-      ).toEqual({ id: 2, operation, status: "error" });
+  it("returns only bounded metadata for invalid input and generic unsupported-operation errors", () => {
+    expect(
+      processJsonRequest({
+        id: 2,
+        operation: "json-format-2",
+        input: "PRIVATE_INVALID",
+      }),
+    ).toEqual({
+      id: 2,
+      operation: "json-format-2",
+      status: "error",
+      diagnostic: { code: "syntax", offset: 0 },
+    });
+    expect(
+      processJsonRequest({
+        id: 2,
+        operation: "unexpected",
+        input: "PRIVATE_INVALID",
+      }),
+    ).toEqual({ id: 2, operation: "unexpected", status: "error" });
   });
 });

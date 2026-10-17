@@ -25,7 +25,9 @@ export function createEditor(
   nonce: string,
   messages: EditorMessages,
   announce: (message: string) => void,
+  onChange?: () => void,
 ) {
+  let disposed = false;
   const view = new EditorView({
     parent: host,
     state: EditorState.create({
@@ -64,10 +66,12 @@ export function createEditor(
           indentWithTab,
         ]),
         editorPolicy(messages, () => announce(messages.limit)),
+        EditorView.updateListener.of((update) => {
+          if (update.docChanged && !disposed) onChange?.();
+        }),
       ],
     }),
   });
-  let disposed = false;
   return {
     content: () => view.state.doc.toString(),
     replace: (text: string) => {

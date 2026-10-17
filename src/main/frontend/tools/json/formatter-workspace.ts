@@ -1,9 +1,10 @@
 import { enhanceEditorWorkspace } from "../../design-system/components/editor-workspace";
-import { createWorkerManager } from "../../platform/worker-manager";
+import { createFormatterSession } from "./formatter-session";
 import "./formatter.css";
+import { sourcePosition } from "./algorithms/position";
 
 export function enhanceFormatter(workspace: HTMLElement) {
-  const editor = enhanceEditorWorkspace(workspace);
+  const editor = enhanceEditorWorkspace(workspace, () => session.invalidate());
   const run = workspace.querySelector<HTMLButtonElement>("[data-format-run]")!;
   const cancel = workspace.querySelector<HTMLButtonElement>(
     "[data-format-cancel]",
@@ -18,7 +19,10 @@ export function enhanceFormatter(workspace: HTMLElement) {
   const message = (key: string) =>
     workspace.querySelector<HTMLElement>(`[data-format-message="${key}"]`)!
       .textContent!;
-  const manager = createWorkerManager(
+  const outputLabel = workspace.querySelector<HTMLElement>(
+    "[data-format-output-label]",
+  )!;
+  const session = createFormatterSession(
     () =>
       new Worker(new URL("./formatter.worker.ts", import.meta.url), {
         type: "module",
@@ -32,24 +36,40 @@ export function enhanceFormatter(workspace: HTMLElement) {
       output: (text) => {
         output.value = text;
       },
+      current: (current) => {
+        workspace.dataset.formatCurrent = String(current);
+        outputLabel.textContent = message(current ? "current" : "output");
+      },
+      diagnostic: (diagnostic, jobInput) => {
+        const position = sourcePosition(jobInput, diagnostic.offset ?? 0);
+        status.textContent = message(diagnostic.code)
+          .replace("{0}", String(position.line))
+          .replace("{1}", String(position.column));
+      },
     },
   );
-  run.addEventListener("click", () =>
-    manager.start(
-      indentation.value === "4" ? "json-format-4" : "json-format-2",
-      editor.content(),
-    ),
-  );
-  cancel.addEventListener("click", () => manager.cancel());
+  run.addEventListener("click", () => {
+    session.start(editor.content(), indentation.value === "4" ? 4 : 2);
+  });
+  cancel.addEventListener("click", () => session.cancel());
+  indentation.addEventListener("change", () => session.invalidate());
   const dispose = () => {
-    manager.dispose();
+    session.dispose();
     editor.dispose();
     output.value = "";
     run.disabled = cancel.disabled = indentation.disabled = true;
     workspace.dataset.formatReady = "false";
   };
   window.addEventListener("pagehide", dispose, { once: true });
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      // Disposed workspaces never revive payloads/workers from the back-forward cache.
+      dispose();
+      status.textContent = message("unavailable");
+    }
+  });
   run.disabled = indentation.disabled = false;
   status.textContent = message("ready");
+  workspace.dataset.formatCurrent = "false";
   workspace.dataset.formatReady = "true";
 }

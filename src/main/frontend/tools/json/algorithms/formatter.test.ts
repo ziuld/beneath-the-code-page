@@ -117,4 +117,22 @@ describe("strict token-preserving JSON formatting", () => {
       code: "output-limit",
     });
   });
+
+  it("accepts exactly the output byte limit and rejects the next byte", () => {
+    const base = "[".repeat(128) + "0,".repeat(15000) + '""' + "]".repeat(128);
+    const baseline = formatJson(base, 4);
+    expect(baseline.status).toBe("success");
+    if (baseline.status !== "success") return;
+    const padding = JSON_LIMITS.output - baseline.output.length;
+    expect(padding).toBeGreaterThan(0);
+    const exact = base.replace('""', '"' + "x".repeat(padding) + '"');
+    expect(exact.length).toBeLessThan(JSON_LIMITS.input);
+    const result = formatJson(exact, 4);
+    expect(result.status).toBe("success");
+    if (result.status === "success")
+      expect(result.output.length).toBe(JSON_LIMITS.output);
+    expect(
+      formatJson(base.replace('""', '"' + "x".repeat(padding + 1) + '"'), 4),
+    ).toEqual({ status: "error", code: "output-limit" });
+  });
 });

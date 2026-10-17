@@ -1,5 +1,50 @@
 # Current handoff
 
+F06 diagnostics delivery continuing, 2026-10-17: owner requested continuation with
+the existing Sol session. Prepare the locally verified UH02 diagnostics/freshness
+slice and accepted UH01 bookkeeping for the existing authorised draft PR #6/Ubuntu
+CI path. Checklist11/22; updated WebKit result and UH02 acceptance remain pending.
+No code/test scope changes, model switch, Home promotion, F06 merge or release.
+
+F06 UH01 accepted/UH02 local verification, 2026-10-17: owner explicitly accepted
+the first formatting slice and asked to continue. UH01/all five tasks done against
+cd3460d and actual clean three-engine CI; final feature manual gate remains pending.
+UH02 adds validated optional worker diagnostic metadata, safe Unicode/CRLF/EOF
+locations, editor accepted-change notifications and revision-owned current-result
+state. Accepted edits/settings/retry/cancel/exit invalidate stale work; rejected
+oversized edits preserve accepted input/matching result. No Copy/Clear yet.
+Maven129 frontend/199 Java cases (three skips)/17 packaged passes; Chromium78/78,
+Firefox32/32 pass real diagnostics/freshness/budgets/load failure/history restoration
+and all retained regressions. Reference10/100 KiB/1 MiB and deep output observations
+recorded, no universal timing claim. Checklist11/22 (through2.4); canonical UH02-T04
+and task2.5 pending updated required Ubuntu WebKit CI for changed code. Old UH01 CI
+is not a new-code pass. Changes/result tracking remain local/uncommitted on existing
+draft PR #6 branch. Next publish verified slice through that existing CI path; no
+merge/release/Home promotion. Evidence harness/evidence/F06-UH02-json-diagnostics.md.
+Owner asked about simpler models; no automatic model switch or delegation performed.
+
+F06 three-engine CI passed, 2026-10-17: actual head cd3460d on draft PR #6 has Java
+run39063899168 and browser run39063899165 SUCCESS. Ubuntu24.04 clean Maven92 frontend/
+199 Java cases (three explicit architecture skips)/17 packaged pass; Chromium71/71,
+Firefox25/25,WebKit25/25 pass all real formatter and retained regression cases. No
+runtime changes since the tested commit, CSP relaxation, local system install or
+gate waiver. Checklist1.1–1.6 done (6/22); canonical UH01-T01–T04 done, T05/story
+in_review pending acceptance. Both UH01 automated acceptance pairs evidenced; manual
+browser200%/visual/EN/ES/FR owner observations not fabricated. Existing dependency
+sequence still places UH02 after accepted UH01 closure; later diagnostics/freshness/
+Copy/Clear unstarted. PR #6 remains draft/open/unmerged, Home promotion off. Result
+tracking/evidence updates currently local; no F06 release or automatic feature close.
+Earlier required-WebKit/CI-permission blockers are historical.
+
+F06 draft PR delivered, 2026-10-17: authorised commit cd3460d includes verified first
+formatter slice plus completed approved documentation updates, pushed on
+feature/F06-json-formatter-implementation; draft PR #6 opened against main:
+https://github.com/ziuld/beneath-the-code-page/pull/6. Required Ubuntu CI is running;
+wait for actual Java/three-engine results, not configuration alone. Checklist5/22,
+UH01-T04/story/dependent work still pending. No local privileged install, F06 merge,
+release, Home promotion or owner-acceptance fabrication. Delivery-result bookkeeping
+is currently local; earlier no-authorisation/no-delivery statements are historical.
+
 F06 draft delivery authorised, 2026-10-17: owner approved committing the current
 formatter slice and completed documentation updates, pushing the feature branch and
 opening a draft PR for supported Ubuntu WebKit CI. Deliver this scoped snapshot;

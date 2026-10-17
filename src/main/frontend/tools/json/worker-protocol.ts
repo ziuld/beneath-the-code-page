@@ -17,5 +17,13 @@ export function processJsonRequest(value: unknown) {
   const result = formatJson(input, operation === "json-format-4" ? 4 : 2);
   return result.status === "success"
     ? { id, operation, status: "success", output: result.output }
-    : { id, operation, status: "error" };
+    : {
+        id,
+        operation,
+        status: "error",
+        diagnostic: {
+          code: result.code,
+          ...(result.offset === undefined ? {} : { offset: result.offset }),
+        },
+      };
 }

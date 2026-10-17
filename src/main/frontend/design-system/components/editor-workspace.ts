@@ -1,6 +1,9 @@
 import { createEditor } from "./editor";
 
-export function enhanceEditorWorkspace(workspace: HTMLElement) {
+export function enhanceEditorWorkspace(
+  workspace: HTMLElement,
+  onChange?: () => void,
+) {
   const host = workspace.querySelector<HTMLElement>("[data-editor-host]")!;
   const status = workspace.querySelector<HTMLElement>("[role=status]")!;
   const phrases: Record<string, string> = {};
@@ -28,6 +31,7 @@ export function enhanceEditorWorkspace(workspace: HTMLElement) {
     (message) => {
       status.textContent = message;
     },
+    onChange,
   );
   // Page lifecycle owns resources; no payload globals, URLs or persistence.
   window.addEventListener("pagehide", () => editor.dispose(), { once: true });

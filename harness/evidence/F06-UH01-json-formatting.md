@@ -1,6 +1,6 @@
 # Evidence — F06-UH01 token-preserving formatting
 
-Date: 2026-10-17. Status: first formatter slice implemented and locally verified except the required WebKit gate; no story acceptance or final feature closure. Owner authorised F06 apply and ADR 006's exact worker-script GET exception. F05 PR #5 merged as `8033ef0127b8c6e0da22f1e396e28f0eb88c4485`; implementation branch is based on the merged main and preserves local documentation work.
+Date: 2026-10-17. Status: first formatter slice implemented with passing local and required three-engine Ubuntu CI verification; story closure/review and final feature acceptance remain pending. Owner authorised F06 apply and ADR 006's exact worker-script GET exception. F05 PR #5 merged as `8033ef0127b8c6e0da22f1e396e28f0eb88c4485`; implementation branch is based on the merged main and preserves local documentation work.
 
 ## Prerequisites and intended evidence
 
@@ -14,7 +14,24 @@ Registry inspection returned `jsonc-parser` 3.3.1, MIT licence, integrity `sha51
 
 ## Execution results
 
+### First-slice acceptance — 2026-10-17
+
+After the actual passing three-engine CI results were presented, the owner explicitly answered “yes, continue” to accepting the first formatting slice and proceeding to diagnostics/Copy/Clear while retaining final full-feature manual review. Accept UH01's two evidence-backed formatting/privacy pairs; implementation commit `cd3460d` is recorded and the integrated first-slice review found no blocker. UH01-T05/story now done; checklist1.7 complete. This is acceptance of this bounded slice, not a fabricated manual200% zoom/translation observation, F06 feature completion or PR merge. Final manual gate4.2 remains pending.
+
+### Required Ubuntu CI completed — 2026-10-17
+
+Inspected actual remote steps/logs at full implementation commit `cd3460d5509a889826cf2e6d2428ad57a41da870`, not merely a workflow definition or pending status:
+
+- [Browser run39063899165](https://github.com/ziuld/beneath-the-code-page/actions/runs/39063899165): SUCCESS on Ubuntu24.04. Clean normal-executable Maven build passes92 frontend tests,199 Java cases with three explicit architecture skips and17 packaged integration tests. Chromium71/71, Firefox25/25 and **WebKit25/25** all pass, including all seven real formatter cases in every engine and retained regressions.
+- [Java run39063899168](https://github.com/ziuld/beneath-the-code-page/actions/runs/39063899168): SUCCESS. Build/verification, architecture/planning and actual executable health checks pass.
+- Matched Playwright1.63.0; WebKit26.6/build2359 installed by the existing CI-only dependency path on supported Ubuntu. No local privileged installation or application CSP/timeout/coverage relaxation was needed.
+- Logs inspected: `/tmp/opencode/f06-pr6-browser-ci.log` and `/tmp/opencode/f06-pr6-java-ci.log`. Browser run head matches the PR head and the reviewed implementation commit. No application code changed after those results.
+
+Task1.6 and canonical UH01-T04 are complete; checklist6/22. Both UH01 acceptance pairs now have actual automated evidence: AC01 lexical/golden/large-number preservation and AC02 cold/warm exact-asset privacy/CSP/storage/log checks. No blocking issue found in the integrated first-slice review. UH01-T05/story remain in review pending acceptance; no owner manual200% zoom or independent translation/visual observation is invented. Later feature work and final manual gate are not passed by this CI run. PR #6 remains draft/open and unmerged; earlier host-library/CI-delivery blockers below are historical.
+
 ### Current verified slice and remaining gate — 2026-10-17
+
+Draft delivery executed, 2026-10-17: created coherent commit `cd3460d` containing the current first slice and completed approved documentation updates, pushed `feature/F06-json-formatter-implementation`, and opened draft [PR #6](https://github.com/ziuld/beneath-the-code-page/pull/6) against merged `main`. Existing Ubuntu CI checks started; actual results are pending at this entry. No F06 merge/release or task1.6 completion inferred from configuring/starting CI. Earlier statements that no F06 delivery had occurred are historical.
 
 Subsequent owner authorisation: commit this slice and completed local documentation updates, push its branch and open a draft PR for existing Ubuntu CI. No F06 merge/release, manual acceptance or WebKit exemption inferred. Actual delivery identity and remote results will be recorded after execution.
 

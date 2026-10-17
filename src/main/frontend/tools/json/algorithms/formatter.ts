@@ -40,7 +40,11 @@ export function formatJson(input: string, indentation: 2 | 4 = 2): JsonResult {
       return {
         status: "error",
         code: "syntax",
-        offset: scanner.getTokenOffset(),
+        offset:
+          scanner.getTokenError() === ScanError.UnexpectedEndOfString ||
+          scanner.getTokenError() === ScanError.UnexpectedEndOfNumber
+            ? input.length
+            : scanner.getTokenOffset(),
       };
     if (
       token === SyntaxKind.OpenBraceToken ||

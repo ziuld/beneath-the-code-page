@@ -8,9 +8,9 @@ const workerPath = assetPath(manifest["__json-formatter-worker"].file);
 const lazyPath = assetPath(manifest["tools/json/formatter-workspace.ts"].file);
 const assets = new Set(Object.values(manifest).flatMap((entry) => [entry.file, ...(entry.css || [])]).map(assetPath));
 const messages = {
-  en: { format: "Format JSON", input: "Content editor", success: "Processing completed.", error: "Processing failed. You can try again.", unavailable: "Processing is not available until JavaScript and the editor have loaded." },
-  es: { format: "Formatear JSON", input: "Editor de contenido", success: "Procesamiento completado.", error: "El procesamiento falló. Puedes intentarlo de nuevo.", unavailable: "El procesamiento no está disponible hasta que se carguen JavaScript y el editor." },
-  fr: { format: "Formater le JSON", input: "Éditeur de contenu", success: "Traitement terminé.", error: "Le traitement a échoué. Vous pouvez réessayer.", unavailable: "Le traitement n’est pas disponible tant que JavaScript et l’éditeur ne sont pas chargés." },
+  en: { format: "Format JSON", input: "Content editor", success: "Processing completed.", syntax: "Invalid JSON at line {0}, column {1}.", stale: "The previous output is no longer current. Format again to update it.", depth: "JSON exceeds the nesting limit of 128. Your input was kept.", unavailable: "Processing is not available until JavaScript and the editor have loaded." },
+  es: { format: "Formatear JSON", input: "Editor de contenido", success: "Procesamiento completado.", syntax: "JSON no válido en la línea {0}, columna {1}.", stale: "La salida anterior ya no está actualizada. Vuelve a formatear para actualizarla.", depth: "El JSON supera el límite de anidamiento de 128. Se conservó la entrada.", unavailable: "El procesamiento no está disponible hasta que se carguen JavaScript y el editor." },
+  fr: { format: "Formater le JSON", input: "Éditeur de contenu", success: "Traitement terminé.", syntax: "JSON non valide à la ligne {0}, colonne {1}.", stale: "Le résultat précédent n’est plus à jour. Formatez à nouveau pour l’actualiser.", depth: "Le JSON dépasse la limite de 128 niveaux d’imbrication. L’entrée a été conservée.", unavailable: "Le traitement n’est pas disponible tant que JavaScript et l’éditeur ne sont pas chargés." },
 };
 
 for (const [locale, copy] of Object.entries(messages)) {
@@ -60,12 +60,14 @@ for (const [locale, copy] of Object.entries(messages)) {
 
     await input.fill('{"invalid":1,}');
     await run.click();
-    await expect(status).toHaveText(copy.error);
+    await expect(status).toHaveText(copy.syntax.replace("{0}", "1").replace("{1}", "14"));
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
     expect(await input.textContent()).toBe('{"invalid":1,}');
     await input.fill(source);
     await run.click();
     await expect(status).toHaveText(copy.success);
     await expect(output).toHaveValue(expected.replace(/^  /gm, "    "));
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
     await input.focus();
     await input.press("Escape");
     await input.press("Tab");
@@ -105,6 +107,72 @@ for (const [locale, copy] of Object.entries(messages)) {
     expect(readFileSync(new URL("../../target/home-browser-server.log", import.meta.url), "utf8")).not.toContain("SYNTHETIC_BTC_JSON_");
   });
 
+  test(`JSON formatter ${locale}: positioned diagnostics, stale results and depth budget`, async ({ page }) => {
+    await page.goto(`/tools/json-formatter?lang=${locale}`);
+    const workspace = page.locator("[data-json-formatter]");
+    await expect(workspace).toHaveAttribute("data-format-ready", "true");
+    const input = page.getByRole("textbox", { name: copy.input, exact: true });
+    const run = page.getByRole("button", { name: copy.format, exact: true });
+    const status = page.locator("[data-format-status]");
+    await input.fill("{}");
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+    await input.fill("[]");
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
+    await expect(status).toHaveText(copy.stale);
+    await expect(page.locator("[data-format-output]")).toHaveValue("{}");
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+    await page.locator("[data-format-indent]").selectOption("4");
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
+    await expect(status).toHaveText(copy.stale);
+    for (const [source, line, column] of [
+      ["", 1, 1], ["  ", 1, 3], ['{"id":1,}', 1, 9],
+      ['//PRIVATE_COMMENT\n{}', 1, 1], ['{} {}', 1, 4],
+      ['[\r\n"😀",]', 2, 5], ['[\r\n"😀"', 2, 4], ['"unfinished', 1, 12],
+    ]) {
+      await input.fill(source);
+      await run.click();
+      await expect(status).toHaveText(copy.syntax.replace("{0}", String(line)).replace("{1}", String(column)));
+      expect((await input.locator(".cm-line").allTextContents()).join("\n")).toBe(source.replace(/\r\n/g, "\n"));
+      await expect(workspace).toHaveAttribute("data-format-current", "false");
+      expect(await status.textContent()).not.toContain("PRIVATE_COMMENT");
+    }
+    await input.fill("[".repeat(129) + "0" + "]".repeat(129));
+    await run.click();
+    await expect(status).toHaveText(copy.depth);
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
+    await input.fill("{}");
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+    await input.focus();
+    await input.press("Control+a");
+    await input.evaluate((node) => {
+      const data = new DataTransfer();
+      data.setData("text/plain", "😀".repeat(256 * 1024) + "x");
+      const event = new ClipboardEvent("paste", { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "clipboardData", { value: data });
+      node.dispatchEvent(event);
+    });
+    expect(await input.textContent()).toBe("{}");
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+    await page.evaluate(() => {
+      document.querySelector("[data-format-run]").click();
+      const node = document.querySelector(".cm-content");
+      const data = new DataTransfer();
+      data.setData("text/plain", "[]");
+      const event = new ClipboardEvent("paste", { bubbles: true, cancelable: true });
+      Object.defineProperty(event, "clipboardData", { value: data });
+      node.dispatchEvent(event);
+    });
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
+    await expect(status).toHaveText(copy.stale);
+    await page.goto("/tools");
+    await page.goBack();
+    await expect(page.locator("[data-format-output]")).toHaveValue("");
+    await expect(page.locator("[data-json-formatter]")).toHaveAttribute("data-format-current", "false");
+  });
+
   test(`JSON formatter ${locale}: no-JS explanation and failed enhancement`, async ({ browser, baseURL }) => {
     const disabled = await browser.newContext({ javaScriptEnabled: false });
     try {
@@ -124,6 +192,27 @@ for (const [locale, copy] of Object.entries(messages)) {
       await expect(page.locator("[data-format-status]")).toHaveText(copy.unavailable);
     } finally { await context.close(); }
   });
+
+  test(`JSON formatter ${locale}: worker load failure keeps input and permits a safe retry`, async ({ page }) => {
+    await page.goto(`/tools/json-formatter?lang=${locale}`);
+    const workspace = page.locator("[data-json-formatter]");
+    await expect(workspace).toHaveAttribute("data-format-ready", "true");
+    const input = page.getByRole("textbox", { name: copy.input, exact: true });
+    const run = page.getByRole("button", { name: copy.format, exact: true });
+    await input.fill('{"id":9007199254740993}');
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+    await page.route(`**${workerPath}`, (route) => route.abort());
+    await run.click();
+    await expect(workspace).toHaveAttribute("data-format-state", "error");
+    await expect(workspace).toHaveAttribute("data-format-current", "false");
+    expect(await input.textContent()).toBe('{"id":9007199254740993}');
+    expect(await page.locator("[data-format-status]").textContent()).not.toContain("9007199254740993");
+    await page.unroute(`**${workerPath}`);
+    await run.click();
+    await expect(page.locator("[data-format-status]")).toHaveText(copy.success);
+    await expect(workspace).toHaveAttribute("data-format-current", "true");
+  });
 }
 
 test("JSON formatter: ordinary Home and index visits never load tool/editor assets", async ({ page }) => {
@@ -137,4 +226,39 @@ test("JSON formatter: ordinary Home and index visits never load tool/editor asse
     expect(requests.some((url) => url.includes("editor-workspace"))).toBe(false);
     page.off("request", listener);
   }
+});
+
+test("JSON formatter: real size/reference responsiveness observations and bounded expansion", async ({ page }, testInfo) => {
+  await page.goto("/tools/json-formatter?lang=en");
+  const workspace = page.locator("[data-json-formatter]");
+  await expect(workspace).toHaveAttribute("data-format-ready", "true");
+  const input = page.getByRole("textbox", { name: messages.en.input, exact: true });
+  const run = page.getByRole("button", { name: messages.en.format, exact: true });
+  const output = page.locator("[data-format-output]");
+  const status = page.locator("[data-format-status]");
+  const observations = [];
+  for (const size of [10 * 1024, 100 * 1024, 1024 * 1024]) {
+    const started = performance.now();
+    await input.fill('"' + "a".repeat(size - 2) + '"');
+    const inserted = performance.now();
+    const running = await run.evaluate((node) => { node.click(); return node.closest("[data-json-formatter]").dataset.formatState; });
+    expect(running).toBe("running");
+    await input.focus();
+    await input.press("Escape");
+    await input.press("Tab");
+    await expect(page.locator("[data-format-indent]")).toBeFocused();
+    await expect(status).toHaveText(messages.en.success);
+    expect(await output.evaluate((node) => node.value.length)).toBe(size);
+    observations.push({ inputBytes: size, insertObservedMs: inserted - started, jobObservedMs: performance.now() - inserted });
+  }
+  await page.locator("[data-format-indent]").selectOption("4");
+  await input.fill("[".repeat(128) + "0,".repeat(5000) + "0" + "]".repeat(128));
+  await run.click();
+  await expect(status).toHaveText(messages.en.success);
+  expect(await output.evaluate((node) => node.value.length)).toBeGreaterThan(1024 * 1024);
+  await input.fill("[".repeat(128) + "0,".repeat(20000) + "0" + "]".repeat(128));
+  await run.click();
+  await expect(status).toHaveText("Output exceeds the 8 MiB UTF-8 limit. Existing output was kept.");
+  await expect(workspace).toHaveAttribute("data-format-current", "false");
+  console.log("Formatter reference observations:", JSON.stringify({ engine: testInfo.project.name, browser: page.context().browser().version(), hardwareConcurrency: await page.evaluate(() => navigator.hardwareConcurrency), observations }));
 });

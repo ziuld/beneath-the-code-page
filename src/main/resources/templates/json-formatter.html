@@ -27,7 +27,7 @@
             <button class="button" type="button" data-format-cancel disabled th:text="#{worker.cancel}"></button>
         </div>
         <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
-        <label for="formatter-output" th:text="#{formatter.output}"></label>
+        <label for="formatter-output" data-format-output-label th:text="#{formatter.output}"></label>
         <textarea id="formatter-output" data-format-output readonly spellcheck="false" autocomplete="off"></textarea>
         <div hidden>
             <span data-format-message="ready" th:text="#{formatter.ready}"></span>
@@ -38,6 +38,12 @@
             <span data-format-message="timeout" th:text="#{worker.timeout}"></span>
             <span data-format-message="input-limit" th:text="#{editor.limit}"></span>
             <span data-format-message="output-limit" th:text="#{worker.limit}"></span>
+            <span data-format-message="syntax" th:text="#{formatter.syntax}"></span>
+            <span data-format-message="depth-limit" th:text="#{formatter.depthLimit}"></span>
+            <span data-format-message="stale" th:text="#{formatter.stale}"></span>
+            <span data-format-message="current" th:text="#{formatter.current}"></span>
+            <span data-format-message="output" th:text="#{formatter.output}"></span>
+            <span data-format-message="unavailable" th:text="#{formatter.unavailable}"></span>
         </div>
     </section>
 </main>

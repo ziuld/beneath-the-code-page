@@ -15,7 +15,7 @@ function setup() {
     workers.push(worker);
     return worker;
   });
-  const callbacks = { status: vi.fn(), output: vi.fn() };
+  const callbacks = { status: vi.fn(), output: vi.fn(), diagnostic: vi.fn() };
   const manager = createWorkerManager(factory, callbacks);
   const reply = (output: unknown, status = "success") => {
     const worker = workers.at(-1)!;
@@ -169,6 +169,121 @@ describe("one-active-job worker lifecycle", () => {
     expect(callbacks.output).toHaveBeenCalledExactlyOnceWith("accepted");
     expect(callbacks.status).toHaveBeenLastCalledWith("error");
     expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it("accepts only bounded matching-job diagnostics and still releases the worker", () => {
+    const { manager, workers, callbacks } = setup();
+    manager.start("json-format-2", "{} ");
+    workers[0]!.onmessage!({
+      data: {
+        id: 1,
+        operation: "json-format-2",
+        status: "error",
+        diagnostic: { code: "syntax", offset: 3 },
+      },
+    } as MessageEvent);
+    expect(callbacks.status).toHaveBeenLastCalledWith("error");
+    expect(callbacks.diagnostic).toHaveBeenCalledExactlyOnceWith({
+      code: "syntax",
+      offset: 3,
+    });
+    expect(callbacks.output).not.toHaveBeenCalled();
+    expect(workers[0]!.terminate).toHaveBeenCalledOnce();
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
+  it.each([
+    null,
+    [],
+    {},
+    { code: "unknown" },
+    { code: "syntax" },
+    { code: "syntax", offset: -1 },
+    { code: "syntax", offset: 4 },
+    { code: "syntax", offset: 0.5 },
+    { code: "syntax", offset: "1" },
+    { code: "syntax", offset: Number.POSITIVE_INFINITY },
+    { code: "syntax", offset: 1, text: "PRIVATE" },
+    { code: "depth-limit", offset: 1 },
+  ])(
+    "uses generic failure for malformed diagnostic metadata: %j",
+    (diagnostic) => {
+      const { manager, workers, callbacks } = setup();
+      manager.start("json-format-2", "{}");
+      workers[0]!.onmessage!({
+        data: {
+          id: 1,
+          operation: "json-format-2",
+          status: "error",
+          diagnostic,
+        },
+      } as MessageEvent);
+      expect(callbacks.status).toHaveBeenLastCalledWith("error");
+      expect(callbacks.diagnostic).not.toHaveBeenCalled();
+      expect(callbacks.output).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each(["depth-limit", "input-limit", "output-limit"])(
+    "accepts allowlisted non-location code %s",
+    (code) => {
+      const { manager, workers, callbacks } = setup();
+      manager.start("json-format-2", "{}");
+      workers[0]!.onmessage!({
+        data: {
+          id: 1,
+          operation: "json-format-2",
+          status: "error",
+          diagnostic: { code },
+        },
+      } as MessageEvent);
+      expect(callbacks.diagnostic).toHaveBeenCalledExactlyOnceWith({ code });
+    },
+  );
+
+  it("ignores cancelled-job and unknown-ID diagnostic replies", () => {
+    const { manager, workers, callbacks } = setup();
+    manager.start("json-format-2", "{}");
+    const late = workers[0]!.onmessage!;
+    manager.cancel();
+    manager.start("json-format-2", "{}");
+    late({
+      data: {
+        id: 1,
+        operation: "json-format-2",
+        status: "error",
+        diagnostic: { code: "syntax", offset: 0 },
+      },
+    } as MessageEvent);
+    workers[1]!.onmessage!({
+      data: {
+        id: 999,
+        operation: "json-format-2",
+        status: "error",
+        diagnostic: { code: "syntax", offset: 0 },
+      },
+    } as MessageEvent);
+    expect(callbacks.diagnostic).not.toHaveBeenCalled();
+    expect(callbacks.status).toHaveBeenLastCalledWith("running");
+    manager.dispose();
+  });
+
+  it("does not deliver a diagnostic after an error-status callback starts a replacement", () => {
+    const { manager, workers, callbacks } = setup();
+    manager.start("json-format-2", "{}");
+    callbacks.status.mockImplementationOnce(() => {
+      manager.start("echo", "new");
+    });
+    workers[0]!.onmessage!({
+      data: {
+        id: 1,
+        operation: "json-format-2",
+        status: "error",
+        diagnostic: { code: "syntax", offset: 0 },
+      },
+    } as MessageEvent);
+    expect(callbacks.diagnostic).not.toHaveBeenCalled();
+    manager.dispose();
   });
 
   it("enforces Unicode input/output byte boundaries without replacing accepted output", () => {
