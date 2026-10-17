@@ -31,10 +31,10 @@ class ToolsRenderingTests {
 		var result = mvc.perform(get("/tools/json-formatter?lang=" + language)).andExpect(status().isOk()).andReturn();
 		var response = result.getResponse();
 		String html = response.getContentAsString(StandardCharsets.UTF_8);
-		assertThat(html).contains("lang=\"" + language + "\"", title, action, "data-format-run disabled", "readonly", "<noscript>", "data-format-message=\"ready\"")
+		assertThat(html).contains("lang=\"" + language + "\"", title, action, "data-format-run disabled", "role=\"region\" aria-labelledby=\"formatter-output-label\" tabindex=\"0\"", "<noscript>", "data-format-message=\"ready\"")
 				.doesNotContain("??", "th:", "onclick");
 		String workspace = html.substring(html.indexOf("<section data-json-formatter"), html.indexOf("</section>"));
-		assertThat(workspace).doesNotContain("<form", "name=\"");
+		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea");
 		String nonce = html.split("data-nonce=\"")[1].split("\"")[0];
 		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-" + nonce + "'", "connect-src 'none'", "style-src-attr 'none'").doesNotContain("unsafe-inline", "unsafe-eval");
 		assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");

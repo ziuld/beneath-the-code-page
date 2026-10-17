@@ -1,6 +1,13 @@
 # Task — F06 JSON Formatter
 
-Status / owner / date: UH01 accepted/done; UH02 local diagnostics/freshness verified (11/22); Ziuld with AI assistance; 2026-10-17.
+Latest continuation: owner approved the labelled text-only output-region fix.
+Implemented textContent-only rendering/clearing, focusable/selectable bounded output
+and exact-text/SSR checks. Local Maven129 frontend/199 Java (three skips)/17 packaged,
+Chromium78/78,Firefox32/32 pass. Deliver to existing draft PR #6 and require updated
+Ubuntu WebKit history-restoration result before closing reopened2.3 or2.5. Earlier
+approval-pending notes below are historical; no acceptance/constraint is waived.
+
+Status / owner / date: UH01 accepted/done; UH02 history-restoration blocker (10/22; task2.3 reopened); Ziuld with AI assistance; 2026-10-17.
 
 User outcome and authorised scope: Apply the complete F06 change. Owner approved correcting publication/verification ordering and investigating a worker-lifecycle plan preserving strict zero-request acceptance, and requested read-only F05 PR review. No push/merge, dependency install, application changes or acceptance-policy exception has been performed in this reconciliation.
 
@@ -16,4 +23,4 @@ Verification commands and manual checks to run: Algorithm/unit/build/MVC/package
 
 Results / evidence links / actual effort: Maven passes92 frontend/199 Java cases with three explicit skips/17 packaged; real health smoke passes. Actual Ubuntu CI at cd3460d passes Chromium71/71,Firefox25/25,WebKit25/25 plus Java run39063899168/browser run39063899165. See [actual UH01 evidence](../evidence/F06-UH01-json-formatting.md). Commit pushed to draft PR #6; no final/manual acceptance or owner effort invented.
 
-Open issues and next action: UH02 b77ac8a passes Java39069636791 and CI clean Maven/Chromium78/Firefox32; WebKit29/32 fails only three raw-CRLF insertion fixtures. Owner-authorised test-only correction uses explicit raw paste plus pre-format editor-text assertion, retaining all expected positions; corrected local Chromium78/Firefox32 pass. Deliver that fixture/evidence correction on existing draft PR #6 and require updated WebKit before completing2.5/closing UH02. Runtime code unchanged since b77ac8a. No F06 merge/release or Home promotion. Copy/Clear and final manual acceptance remain pending; see actual UH02 evidence.
+Open issues and next action: 7c0114e passes Java39070308263 and CI clean Maven/Chromium78/Firefox32; WebKit29/32 now passes CRLF positions but fails final Back-navigation output clearing in three locales (old output restored). This is runtime behaviour, outside routine test-only fixes. Proposed labelled selectable text-only output region instead of textarea avoids form-control restoration; pause before changing runtime or expectations pending owner agreement. Task2.3/canonical implementation reopened; no Copy/Clear, Home promotion, F06 merge/release or manual acceptance. See actual UH02 evidence.

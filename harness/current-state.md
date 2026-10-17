@@ -1,5 +1,32 @@
 # Current handoff
 
+F06 output-region fix authorised/locally verified, 2026-10-17: owner approved
+replacing textarea with labelled selectable text-only output and continuation.
+Implemented focusable pre region, textContent-only writes/clearing, bounded scrolling;
+exact whitespace/inert HTML/history-clearing/accessibility checks retained. Local
+Maven129 frontend/199 Java (three skips)/17 packaged,Chromium78/78,Firefox32/32 pass.
+Prepare scoped delivery on existing draft PR #6; updated Ubuntu WebKit required.
+Task2.3 remains reopened,10/22; no UH02 acceptance/Copy/Clear/Home promotion/merge.
+Prior approval-pending notes below are superseded; no constraints waived.
+
+F06 runtime history blocker, 2026-10-17: 7c0114e Java39070308263 succeeds; browser
+39070308306 clean Maven/Chromium78/Firefox32 pass,WebKit29/32. CRLF paste/position
+assertions now pass; three locale cases instead reach final Back-navigation check
+and find old output {} rather than empty. Runtime/lifecycle issue, not test-only.
+Pause before runtime change under owner guardrail. Recommend labelled selectable
+text-only output region instead of textarea to avoid form-control history restore,
+retaining all clearing/limit/CSP expectations; exact engine ordering not proved.
+Task2.3 reopened:10/22; canonical UH02 implementation/dependent verification blocked.
+No assertion relaxation, system install, model switch, F06 merge/release or Copy/Clear.
+Evidence F06-UH02 and log /tmp/opencode/f06-crlf-ci-browser.log updated locally;
+draft PR #6 remains at7c0114e. Earlier CI-pending/CRLF-only blockers are superseded.
+
+F06 raw-CRLF test correction delivered, 2026-10-17: committed/pushed 7c0114e to
+draft PR #6 after corrected local Chromium78/Firefox32 and planning/rule/OpenSpec/
+whitespace checks pass. Java run39070308263/browser run39070308306 are running at
+this head; require actual updated WebKit result. Runtime remains b77ac8a unchanged.
+Checklist11/22, no UH02 closure, Copy/Clear, Home promotion or F06 merge/release yet.
+
 F06 changed-code CI/CRLF fixture correction, 2026-10-17: b77ac8a Java39069636791
 passes; browser39069636868 clean Maven/Chromium78/Firefox32 pass, WebKit29/32.
 Only EN/ES/FR CRLF-position fixtures fail (expected line2, observed line3). Switched

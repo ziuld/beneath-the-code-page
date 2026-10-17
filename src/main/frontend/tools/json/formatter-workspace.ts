@@ -12,9 +12,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
   const indentation = workspace.querySelector<HTMLSelectElement>(
     "[data-format-indent]",
   )!;
-  const output = workspace.querySelector<HTMLTextAreaElement>(
-    "[data-format-output]",
-  )!;
+  const output = workspace.querySelector<HTMLElement>("[data-format-output]")!;
   const status = workspace.querySelector<HTMLElement>("[data-format-status]")!;
   const message = (key: string) =>
     workspace.querySelector<HTMLElement>(`[data-format-message="${key}"]`)!
@@ -34,7 +32,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
         status.textContent = message(state);
       },
       output: (text) => {
-        output.value = text;
+        output.textContent = text;
       },
       current: (current) => {
         workspace.dataset.formatCurrent = String(current);
@@ -56,7 +54,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
   const dispose = () => {
     session.dispose();
     editor.dispose();
-    output.value = "";
+    output.textContent = "";
     run.disabled = cancel.disabled = indentation.disabled = true;
     workspace.dataset.formatReady = "false";
   };

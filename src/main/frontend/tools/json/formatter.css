@@ -10,6 +10,10 @@
     display: block;
     width: 100%;
     min-height: 16rem;
+    max-height: 40rem;
+    overflow: auto;
+    white-space: pre;
+    user-select: text;
     resize: vertical;
     box-sizing: border-box;
     background: var(--surface);

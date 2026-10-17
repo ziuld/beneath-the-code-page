@@ -2,6 +2,18 @@
 
 Date: 2026-10-17. Status: locally verified diagnostics/freshness slice after explicit owner acceptance of UH01; updated WebKit CI and UH02 acceptance pending. Owner effort unreported; actual tests are recorded below, not inferred from implementation.
 
+## Current blocker — Back-navigation output restoration
+
+Owner subsequently approved the proposed output-region fix and continuation. Replaced the read-only textarea with a labelled, focusable/selectable `pre` region, retaining bounded scrolling/resizing. Both worker success and disposal write only `textContent`; no HTML interpretation or form-control value remains. Browser assertions now read exact text (including indentation) and still require empty output after Back. SSR checks require the labelled region and prohibit a textarea in the workspace; existing inert-markup sentinel and Axe checks remain.
+
+Actual local verification after the fix: Maven passes129 frontend tests,199 Java cases (three explicit skips),17 packaged cases; Chromium78/78 andFirefox32/32 pass. Logs: `/tmp/opencode/f06-output-region-maven.log`, `/tmp/opencode/f06-output-region-chromium.log`, `/tmp/opencode/f06-output-region-firefox.log`. The first Maven attempt stopped on Prettier layout only; corrected formatting and reran successfully. No privacy/CSP/budget/deadline changes, assertion relaxation or manual acceptance. Updated Ubuntu WebKit remains necessary; task2.3 remains reopened and task2.5 incomplete pending its result. The following pause/approval statements describe the earlier failed head, not the current authorisation.
+
+At `7c0114e`, Java run39070308263 passed and browser run39070308306 passed clean Maven,Chromium78/78 andFirefox32/32. WebKit again passed29/32, but the CRLF insertion/position assertions now pass: the three locale tests reach their final history-restoration assertion and find previous output `{}` rather than the required empty result after Back navigation. This establishes a remaining runtime/lifecycle problem, not a passing matrix or merely another CRLF-fixture failure. Log `/tmp/opencode/f06-crlf-ci-browser.log`.
+
+Pause runtime edits under the owner's distinction between routine test-only corrections and behaviour/security decisions. Proposed minimal direction: replace the read-only textarea with an equivalently labelled, selectable text-only output region so browser form-control history restoration cannot repopulate it; retain the existing input/editor/worker lifecycle, limits and exact clearing expectations. The exact engine event/restore ordering is not yet independently proved, so no upstream browser-bug or universal workaround claim is made. No code/expectation/timeout change is applied before agreement.
+
+Reopened task2.3 and canonical implementation T02; dependent canonical verification statuses remain blocked even though their recorded diagnostic checks passed. Checklist10/22; task2.5 and UH02 closure remain open. No stale-output assertion removed, WebKit waiver, new system dependency, F06 merge or release. Earlier delivery/CI-pending statements below are historical.
+
 ## Prerequisite and scope
 
 F06-UH01 is done at `cd3460d`: clean Maven92 frontend/199 Java cases with three explicit skips/17 packaged, Chromium71/71,Firefox25/25,WebKit25/25 on actual Ubuntu CI and explicit owner slice acceptance. Read the F06 dossier/EARS/Gherkin/tasks and current change artifacts; UH02 preserves input while explaining syntax locations and rejecting oversized edits safely.
@@ -42,6 +54,8 @@ At `b77ac8a`, Java run39069636791 passed. Browser run39069636868 passed the clea
 The failure is isolated to CRLF insertion through Playwright's contenteditable `fill` path, consistent with an extra editor line rather than the unit-tested CRLF position calculation. The fixture now supplies the original raw CRLF text through the existing explicit `ClipboardEvent`/DataTransfer paste path in every engine; CodeMirror's paste implementation uses `state.toText`, whose default split treats CRLF as one line break. A new assertion verifies exact normalised editor text before formatting; existing post-operation preservation and expected line/column assertions remain unchanged. No application/package source, timeout, retry, budget or CSP change.
 
 After this test-only correction, local Chromium78/78 andFirefox32/32 pass again (`/tmp/opencode/f06-diagnostics-crlf-chromium.log`, `/tmp/opencode/f06-diagnostics-crlf-firefox.log`). Updated Ubuntu WebKit remains pending; task2.5 stays open. The correction is within the owner's permission to resolve straightforward test-only integration mismatches while preserving coverage.
+
+Correction delivered as `7c0114e` on draft PR #6. Java run39070308263 and browser run39070308306 started at that head; updated WebKit evidence pending. Runtime code is unchanged from b77ac8a. No assertion, test, timeout or gate removed.
 
 Executed continuation, 2026-10-17: committed verified diagnostics/freshness and completed UH01 acceptance bookkeeping as `b77ac8af663c2df6dec0161a16adab43941dc725`, pushed it to the existing draft PR #6 and updated that PR's scope/verification description. Java run39069636791 and browser run39069636868 are in progress at this head. The first watcher returned before GitHub registered the checks; inspection confirmed no test failure, and watching resumed after registration. No changed-code WebKit pass or task2.5 completion is claimed yet. Local real health smoke also passes (`/tmp/opencode/f06-diagnostics-health.log`). No runtime change after the tested/pushed slice.
 

@@ -66,9 +66,9 @@ One active task at a time. The order includes owner capacity, not only technical
 | 58 | [F06-UH01-T04](features/F06.md#f06-uh01) | verification | 3 | done | F06-UH01-T03 |
 | 59 | [F06-UH01-T05](features/F06.md#f06-uh01) | closure | 0.5 | done | F06-UH01-T04 |
 | 60 | [F06-UH02-T01](features/F06.md#f06-uh02) | analysis | 0.5 | done | F06-UH01 |
-| 61 | [F06-UH02-T02](features/F06.md#f06-uh02) | implementation | 2.5 | done | F06-UH02-T01 |
-| 62 | [F06-UH02-T03](features/F06.md#f06-uh02) | verification | 2.25 | done | F06-UH02-T02 |
-| 63 | [F06-UH02-T04](features/F06.md#f06-uh02) | verification | 2.25 | in_progress | F06-UH02-T03 |
+| 61 | [F06-UH02-T02](features/F06.md#f06-uh02) | implementation | 2.5 | blocked | F06-UH02-T01 |
+| 62 | [F06-UH02-T03](features/F06.md#f06-uh02) | verification | 2.25 | blocked | F06-UH02-T02 |
+| 63 | [F06-UH02-T04](features/F06.md#f06-uh02) | verification | 2.25 | blocked | F06-UH02-T03 |
 | 64 | [F06-UH02-T05](features/F06.md#f06-uh02) | closure | 0.5 | planned | F06-UH02-T04 |
 | 65 | [F06-UH03-T01](features/F06.md#f06-uh03) | analysis | 0.5 | planned | F06-UH02 |
 | 66 | [F06-UH03-T02](features/F06.md#f06-uh03) | implementation | 1.75 | planned | F06-UH03-T01 |

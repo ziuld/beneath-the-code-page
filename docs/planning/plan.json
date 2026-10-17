@@ -2011,8 +2011,8 @@
       "depends_on": [
         "F05"
       ],
-      "status": "in_progress",
-      "blocker": "",
+      "status": "blocked",
+      "blocker": "Owner-approved text-only output-region fix passes local checks; required updated Ubuntu WebKit history-restoration verification pending.",
       "actual_start": "2026-10-17",
       "actual_finish": null,
       "evidence": [],
@@ -2195,8 +2195,8 @@
           "description": "As a developer, I want to receive actionable errors without losing my input, so that I can correct a document and retry.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "in_progress",
-          "blocker": "",
+          "status": "blocked",
+          "blocker": "Owner approved the text-only output region; implemented and locally verified, awaiting updated supported-environment WebKit CI before closure.",
           "depends_on": [
             "F06-UH01"
           ],
@@ -2272,8 +2272,8 @@
               "baseline_hours": 2.5,
               "forecast_hours": 2.5,
               "actual_hours": 0,
-              "status": "done",
-              "blocker": "",
+              "status": "blocked",
+              "blocker": "Approved output-region fix implemented; keep reopened pending actual WebKit Back-navigation clearing verification.",
               "depends_on": [
                 "F06-UH02-T01"
               ],
@@ -2285,7 +2285,7 @@
               "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
               "commits": ["b77ac8a"],
               "actual_start": "2026-10-17",
-              "actual_finish": "2026-10-17"
+              "actual_finish": null
             },
             {
               "id": "F06-UH02-T03",
@@ -2295,8 +2295,8 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "done",
-              "blocker": "",
+              "status": "blocked",
+              "blocker": "Diagnostic position/preservation checks pass, but canonical implementation prerequisite reopened for history-restoration fix.",
               "depends_on": [
                 "F06-UH02-T02"
               ],
@@ -2307,7 +2307,7 @@
               "evidence": ["harness/evidence/F06-UH02-json-diagnostics.md"],
               "commits": ["b77ac8a"],
               "actual_start": "2026-10-17",
-              "actual_finish": "2026-10-17"
+              "actual_finish": null
             },
             {
               "id": "F06-UH02-T04",
@@ -2317,8 +2317,8 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "in_progress",
-              "blocker": "",
+              "status": "blocked",
+              "blocker": "WebKit29/32 fails only the three locale Back-navigation output-clearing assertions; required history-state behaviour not waived.",
               "depends_on": [
                 "F06-UH02-T03"
               ],

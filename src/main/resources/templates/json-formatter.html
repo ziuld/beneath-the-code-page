@@ -27,8 +27,8 @@
             <button class="button" type="button" data-format-cancel disabled th:text="#{worker.cancel}"></button>
         </div>
         <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
-        <label for="formatter-output" data-format-output-label th:text="#{formatter.output}"></label>
-        <textarea id="formatter-output" data-format-output readonly spellcheck="false" autocomplete="off"></textarea>
+        <h2 id="formatter-output-label" data-format-output-label th:text="#{formatter.output}"></h2>
+        <pre id="formatter-output" data-format-output role="region" aria-labelledby="formatter-output-label" tabindex="0"></pre>
         <div hidden>
             <span data-format-message="ready" th:text="#{formatter.ready}"></span>
             <span data-format-message="running" th:text="#{worker.running}"></span>

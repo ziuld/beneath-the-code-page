@@ -40,11 +40,11 @@ for (const [locale, copy] of Object.entries(messages)) {
     await run.click();
     await expect(status).toHaveText(copy.success);
     const expected = `{\n  "id": 9007199254740993,\n  "id": -0,\n  "n": 1.2300e+999,\n  "escape": "\\u0041\\/",\n  "private": ${JSON.stringify(sentinel)}\n}`;
-    await expect(output).toHaveValue(expected);
+    await expect.poll(() => output.textContent()).toBe(expected);
     expect(await workspace.locator("img").count()).toBe(0);
     await page.locator("[data-format-indent]").selectOption("4");
     await run.click();
-    await expect(output).toHaveValue(expected.replace(/^  /gm, "    "));
+    await expect.poll(() => output.textContent()).toBe(expected.replace(/^  /gm, "    "));
     // Same-task cancellation/replacement avoids racing against a deliberately fast formatter.
     await page.evaluate(() => {
       document.querySelector("[data-format-run]").click();
@@ -56,7 +56,7 @@ for (const [locale, copy] of Object.entries(messages)) {
       document.querySelector("[data-format-run]").click();
     });
     await expect(status).toHaveText(copy.success);
-    await expect(output).toHaveValue(expected.replace(/^  /gm, "    "));
+    await expect.poll(() => output.textContent()).toBe(expected.replace(/^  /gm, "    "));
 
     await input.fill('{"invalid":1,}');
     await run.click();
@@ -66,7 +66,7 @@ for (const [locale, copy] of Object.entries(messages)) {
     await input.fill(source);
     await run.click();
     await expect(status).toHaveText(copy.success);
-    await expect(output).toHaveValue(expected.replace(/^  /gm, "    "));
+    await expect.poll(() => output.textContent()).toBe(expected.replace(/^  /gm, "    "));
     await expect(workspace).toHaveAttribute("data-format-current", "true");
     await input.focus();
     await input.press("Escape");
@@ -120,7 +120,7 @@ for (const [locale, copy] of Object.entries(messages)) {
     await input.fill("[]");
     await expect(workspace).toHaveAttribute("data-format-current", "false");
     await expect(status).toHaveText(copy.stale);
-    await expect(page.locator("[data-format-output]")).toHaveValue("{}");
+    await expect(page.locator("[data-format-output]")).toHaveText("{}");
     await run.click();
     await expect(workspace).toHaveAttribute("data-format-current", "true");
     await page.locator("[data-format-indent]").selectOption("4");
@@ -182,7 +182,7 @@ for (const [locale, copy] of Object.entries(messages)) {
     await expect(status).toHaveText(copy.stale);
     await page.goto("/tools");
     await page.goBack();
-    await expect(page.locator("[data-format-output]")).toHaveValue("");
+    await expect(page.locator("[data-format-output]")).toBeEmpty();
     await expect(page.locator("[data-json-formatter]")).toHaveAttribute("data-format-current", "false");
   });
 
@@ -261,14 +261,14 @@ test("JSON formatter: real size/reference responsiveness observations and bounde
     await input.press("Tab");
     await expect(page.locator("[data-format-indent]")).toBeFocused();
     await expect(status).toHaveText(messages.en.success);
-    expect(await output.evaluate((node) => node.value.length)).toBe(size);
+    expect(await output.evaluate((node) => node.textContent.length)).toBe(size);
     observations.push({ inputBytes: size, insertObservedMs: inserted - started, jobObservedMs: performance.now() - inserted });
   }
   await page.locator("[data-format-indent]").selectOption("4");
   await input.fill("[".repeat(128) + "0,".repeat(5000) + "0" + "]".repeat(128));
   await run.click();
   await expect(status).toHaveText(messages.en.success);
-  expect(await output.evaluate((node) => node.value.length)).toBeGreaterThan(1024 * 1024);
+  expect(await output.evaluate((node) => node.textContent.length)).toBeGreaterThan(1024 * 1024);
   await input.fill("[".repeat(128) + "0,".repeat(20000) + "0" + "]".repeat(128));
   await run.click();
   await expect(status).toHaveText("Output exceeds the 8 MiB UTF-8 limit. Existing output was kept.");

@@ -10,6 +10,10 @@ ADR006 permits only body-free GETs without query/fragment to exact hashed worker
 
 ## Verification and current limitation
 
+Owner approved the history-restoration fix: output is now a labelled, keyboard-focusable/selectable text-only region rather than a textarea, populated/cleared through `textContent`. Local Maven,Chromium78/78 andFirefox32/32 pass; actual updated Ubuntu WebKit verification is pending. Exact output and Back-navigation clearing assertions remain. The failed-head details below are historical, not a new-code pass.
+
+Current CI blocker at `7c0114e`: Java, clean Maven,Chromium78/78 andFirefox32/32 pass; WebKit29/32 passes the corrected raw-CRLF position checks but restores old output after Back navigation in three locale cases. Safe history restoration is not verified. Proposed text-only output-region fix awaits agreement; do not weaken that assertion or claim full three-engine success for UH02.
+
 Run `python scripts/verify-java-baseline.py`, then the existing packaged browser runner with full Chromium and critical Firefox/WebKit checks. Do not claim a workflow configuration or a unit test proves real-browser privacy/CSP. Actual results and limitations belong in [UH01 evidence](../../harness/evidence/F06-UH01-json-formatting.md) and [UH02 evidence](../../harness/evidence/F06-UH02-json-diagnostics.md).
 
 The accepted first slice at `cd3460d` passes actual Ubuntu24.04 browser run39063899165 and Java run39063899168. Updated UH02 local checks pass129/129 frontend tests,199 Java cases with three explicit architecture skips,17/17 packaged,78/78 Chromium and32/32 Firefox. WebKit26.6/build2359 requires the supported CI environment; its earlier first-slice success is not a new-code pass. No local privileged installation or waiver. UH02 story closure/acceptance and later feature work remain pending.
