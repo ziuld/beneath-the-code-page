@@ -61,10 +61,10 @@ class ToolsRenderingTests {
 	}
 
 	@Test
-	void indexListsOnlyFormatterWhileHomePromotionRemainsOff() throws Exception {
+	void indexListsOnlyFormatterAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(index).contains("href=\"/tools/json-formatter\"").doesNotContain("/tools/json-validator", "/tools/base64");
 		String home = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		assertThat(home).doesNotContain("href=\"/tools\"", "href=\"/learn\"");
+		assertThat(home).contains("href=\"/tools\"").doesNotContain("href=\"/learn\"");
 	}
 }

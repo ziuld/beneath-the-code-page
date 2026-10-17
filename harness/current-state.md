@@ -1,5 +1,40 @@
 # Current handoff
 
+F06 owner final review accepted/publication local,2026-10-18: owner confirmed all
+requested Chrome keyboard/narrow/actual200% zoom/EN-ES-FR/Copy-Clear checks passed
+and asked to close/archive. Chrome version/OS/viewport not reported; no invented
+environment or agent-observed visual measurements. Evidence F06-integrated-acceptance.
+4.2 done,21/22. Enabled Home Tools, Learn remains unpublished; real three-locale
+journey added. Local clean Maven140 frontend/199 Java (three skips)/17 packaged,
+Chromium84/Firefox38/health pass; updated Ubuntu WebKit and4.3 still pending.
+Prepare final publication slice on draft PR #6, no merge/release. Archive requires
+completion and explicit spec-sync choice; no sync/archive performed yet.
+
+F06 UH03 accepted, 2026-10-18: owner explicitly accepted Copy/Clear after actual
+05a688a three-engine CI. All three stories/all15 canonical tasks now done with
+evidence; task3.6 closed,20/22. F06 itself remains in progress: actual final owner
+keyboard/visual/200% zoom/EN-ES-FR review4.2 and integrated publication/closure4.3
+pending. No manual observation inferred; Home promotion off, no merge/release.
+Runtime still tested05a688a on draft PR #6; acceptance/evidence updates local.
+Next obtain actual final review observations/environment, then complete authorised
+Home publication plus journey verification; merge/release remain separate.
+
+F06 Copy/Clear required CI green, 2026-10-17: 05a688a Java39072823450 and browser
+39072823403 succeed;Chromium81/81,Firefox35/35,WebKit35/35. Clean Maven140 frontend/
+199 Java (three skips)/17 packaged plus local health pass. Completed3.5/T04 and4.1;
+19/22. UH03 owner acceptance3.6 and actual final visual/200% zoom/EN-ES-FR review4.2
+remain pending before integrated Home publication/closure4.3. No runtime changes,
+Home promotion, merge/release or fabricated manual observations. Evidence/tracking
+updates local; draft PR #6 remains at tested05a688a. Prior CI-pending notes superseded.
+
+F06 Copy/Clear delivered, 2026-10-17: committed/pushed05a688a to draft PR #6 and
+updated PR scope/results. Java39072823450/browser39072823403 running at this head;
+required updated WebKit pending. Local clean Maven140 frontend/199 Java cases
+(three skips)/17 packaged,Chromium81/Firefox35/health and planning checks pass.
+Checklist17/22; task3.5, UH03 acceptance and final integrated/manual gates remain.
+No runtime changes after commit. Delivery-result bookkeeping local; no Home
+promotion, feature merge/release or invented acceptance.
+
 F06 UH02 accepted/Copy-Clear locally verified, 2026-10-17: owner accepted UH02
 after f4e9b47 required CI; story/all five tasks done. UH03 adds explicit exact Copy
 with revision/attempt-guarded translated clipboard feedback, no reads; Clear cancels

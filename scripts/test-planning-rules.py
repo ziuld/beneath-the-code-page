@@ -101,6 +101,8 @@ class PlanningRulesTest(unittest.TestCase):
         self.expect_error('closed story has open tasks')
         self.expect_error('done without evidence')
     def test_feature_cannot_close_with_open_stories(self):
+        # Construct an open child even when every baseline story has been accepted.
+        self.story['status']='in_progress';self.story['actual_finish']=None
         self.feature['status']='done'
         self.expect_error('closed feature has open stories')
     def test_dependency_cycle_is_rejected(self):

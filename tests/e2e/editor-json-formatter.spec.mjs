@@ -20,6 +20,24 @@ const actionMessages = {
 };
 
 for (const [locale, copy] of Object.entries(messages)) {
+  test(`JSON formatter ${locale}: accepted Home to Tools to Formatter journey`, async ({ browser, baseURL }) => {
+    const page = await browser.newPage({ locale, baseURL });
+    try {
+      await page.goto("/");
+      await expect(page.locator('a[href="/learn"]')).toHaveCount(0);
+      await page.locator('main a[href="/tools"]').click();
+      await expect(page).toHaveURL(/\/tools$/);
+      await expect(page.locator('main a[href="/tools/json-formatter"]')).toHaveCount(1);
+      await expect(page.locator('a[href="/tools/json-validator"], a[href="/tools/base64"]')).toHaveCount(0);
+      await page.locator('main a[href="/tools/json-formatter"]').click();
+      await expect(page).toHaveURL(/\/tools\/json-formatter$/);
+      await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      await expect(page.locator("[data-json-formatter]")).toHaveAttribute("data-format-ready", "true");
+      await page.getByRole("textbox", { name: copy.input, exact: true }).fill('{"id":9007199254740993}');
+      await page.getByRole("button", { name: copy.format, exact: true }).click();
+      await expect.poll(() => page.locator("[data-format-output]").textContent()).toBe('{\n  "id": 9007199254740993\n}');
+    } finally { await page.close(); }
+  });
   test(`JSON formatter ${locale}: real worker, fidelity, recovery, CSP and privacy`, async ({ page, context, baseURL }) => {
     const requests = [];
     const workerResponses = [];

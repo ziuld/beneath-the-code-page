@@ -1,5 +1,23 @@
 # Task — F06 JSON Formatter
 
+Final continuation2026-10-18: owner confirmed Chrome manual checklist passed and
+requested closure/archive; version/OS/viewport unreported.4.2 done,21/22. Home Tools
+enabled with real EN/ES/FR journey, prior link/control fixtures reconciled preserving
+coverage. Clean Maven140 frontend/199 Java (three skips)/17 packaged,Chromium84/
+Firefox38/health pass. Required updated WebKit/4.3 pending before final closure;
+then assess spec sync and archive. No merge/release or fabricated visual evidence.
+
+Current acceptance,2026-10-18: owner accepted UH03 at tested05a688a. All three
+stories/all15 canonical tasks done;3.6 complete,20/22. Final actual keyboard/visual/
+200% zoom/localisation review4.2 and integrated publication/closure4.3 remain open.
+No manual observations inferred, Home still unpublished; no merge/release.
+
+Latest verification:05a688a passes Ubuntu Java39072823450/browser39072823403,
+Chromium81/81,Firefox35/35,WebKit35/35; clean Maven140 frontend/199 Java (three
+skips)/17 packaged and local health pass. Completed3.5/T04 and4.1;19/22. UH03
+acceptance3.6, final actual visual/200% zoom review4.2 and integrated publication/
+closure4.3 pending; no Home promotion, merge/release or invented manual acceptance.
+
 Current scope: owner accepted UH02 after f4e9b47 required CI. Close2.6 and start3.1
 with UH03 R01/AC01 exact explicit clipboard writes and R02/AC02 irreversible active
 editor/history clearing. Preserve current-result revision ownership, no clipboard

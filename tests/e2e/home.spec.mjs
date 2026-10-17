@@ -22,13 +22,14 @@ for (const language of languages) {
       await expect(page.getByRole("heading", { name: language.tools, exact: true })).toBeVisible();
       await expect(page.getByRole("heading", { name: language.learn, exact: true })).toBeVisible();
       await expect(page.locator(".section-card p:not(.status)")).toHaveCount(2);
-      await expect(page.locator(".section-card .status")).toHaveCount(2);
+      await expect(page.locator(".section-card .status")).toHaveCount(1);
       await expect(page.locator(".wordmark")).toHaveText("Beneath the Code");
       await expect(page.locator("main img")).toBeVisible();
       const logo = await context.request.get(`${baseURL}/brand/b-composition.png`);
       expect(logo.status()).toBe(200);
       expect(await logo.body()).toEqual(readFileSync(new URL("../../docs/reference/logo-composition-original.png", import.meta.url)));
-      await expect(page.locator('a[href="/tools"], a[href="/learn"], [onclick]')).toHaveCount(0);
+      await expect(page.locator('a[href="/tools"]')).toHaveCount(2);
+      await expect(page.locator('a[href="/learn"], [onclick]')).toHaveCount(0);
       await expect(page.locator('form[action="/preferences/language"]')).toHaveCount(1);
       for (const href of await page.locator("nav a").evaluateAll(links => links.map(link => link.getAttribute("href")))) {
         expect((await context.request.get(new URL(href, baseURL).href)).status()).toBe(200);
@@ -61,7 +62,7 @@ for (const language of languages) {
       await page.keyboard.press("Enter");
       await expect(page.locator("main")).toBeFocused();
       const response = await page.goto(baseURL);
-      for (const selector of [".skip-link", ".wordmark", "nav a"]) {
+      for (const selector of [".skip-link", ".wordmark", 'nav a[href="/"]', 'nav a[href="/tools"]']) {
         await page.keyboard.press("Tab");
         const link = page.locator(selector);
         await expect(link).toBeFocused();
@@ -70,6 +71,8 @@ for (const language of languages) {
         expect(box.x).toBeGreaterThanOrEqual(0);
         expect(box.x + box.width).toBeLessThanOrEqual(320);
       }
+      await page.keyboard.press("Shift+Tab");
+      await expect(page.locator('nav a[href="/"]')).toBeFocused();
       await page.keyboard.press("Shift+Tab");
       await expect(page.locator(".wordmark")).toBeFocused();
       await page.screenshot({ path: `../../target/home-${language.locale}-narrow-default.png`, fullPage: true });

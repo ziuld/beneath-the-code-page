@@ -1,5 +1,47 @@
 # Evidence — F06-UH03 deliberate Copy and Clear
 
+## Owner acceptance — 2026-10-18
+
+Owner explicitly accepted UH03 after the verified three-engine CI result at
+05a688a. Reviewed R01/AC01 and R02/AC02 against implementation, tests and evidence;
+no blocking findings remain. UH02 prerequisite and all four implementation/
+verification tasks are done; coherent implementation commit05a688a is on draft
+PR #6. Close UH03/T05 and task3.6 on this acceptance. Owner effort unreported.
+
+Progress20/22: final actual keyboard/visual/200% zoom/EN-ES-FR review4.2 and
+integrated publication/closure4.3 remain open. Acceptance of Copy/Clear does not
+assert that manual observations occurred or authorise feature merge/release.
+Home promotion remains off; no secure heap/clipboard-erasure or speech claim.
+
+Acceptance bookkeeping exposed a stale negative planning-test fixture: it assumed
+the baseline F06 still had open stories. The test now explicitly marks a child
+in-progress before asserting that feature closure is rejected. Validator and
+assertion unchanged; this is the authorised test-only fixture correction, not a
+feature-closure waiver. No application runtime changes.
+
+## Latest result — required updated CI passes
+
+At `05a688aeca1227fb43402e4f7f4b765f2f839cb8`, Ubuntu Java run39072823450 and
+browser run39072823403 both succeed. Actual browser log
+`/tmp/opencode/f06-copy-clear-ci-browser.log` confirms Chromium81/81,Firefox35/35,
+WebKit35/35. CI clean Maven passes140 frontend/199 Java cases (three explicit
+architecture skips)/17 packaged. Existing packaged/regression gates retain proof
+fixture exclusion, approved B bytes, watch/security/locale/architecture coverage.
+Local clean Maven and real health smoke also pass as recorded below. No runtime
+change after this tested head or privileged local dependency installation.
+
+Task3.5/canonical T04 and integrated automated task4.1 are complete;19/22 total.
+No blocking implementation findings remain in the reviewed Copy/Clear slice.
+UH03 owner acceptance/task3.6, actual final visual/200% zoom/EN-ES-FR review4.2,
+and integrated publication/closure4.3 remain open. Neither CI nor this evidence
+claims manual acceptance, screen-reader compatibility, secure heap/clipboard
+erasure, Home promotion or merge/release. Earlier CI-pending notes are historical.
+
+Delivered locally verified slice as `05a688aeca1227fb43402e4f7f4b765f2f839cb8`
+to existing draft PR #6 and updated its verification summary. Java run39072823450
+and browser run39072823403 are running at that head; no updated WebKit success or
+task3.5 completion claimed yet. No runtime changes after this delivered slice.
+
 Date: 2026-10-17. Status: started after explicit owner acceptance of UH02 at
 f4e9b47 with required Ubuntu CI passing. Owner effort unreported.
 

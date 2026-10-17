@@ -73,8 +73,8 @@ One active task at a time. The order includes owner capacity, not only technical
 | 65 | [F06-UH03-T01](features/F06.md#f06-uh03) | analysis | 0.5 | done | F06-UH02 |
 | 66 | [F06-UH03-T02](features/F06.md#f06-uh03) | implementation | 1.75 | done | F06-UH03-T01 |
 | 67 | [F06-UH03-T03](features/F06.md#f06-uh03) | verification | 1.75 | done | F06-UH03-T02 |
-| 68 | [F06-UH03-T04](features/F06.md#f06-uh03) | verification | 1.5 | in_progress | F06-UH03-T03 |
-| 69 | [F06-UH03-T05](features/F06.md#f06-uh03) | closure | 0.5 | planned | F06-UH03-T04 |
+| 68 | [F06-UH03-T04](features/F06.md#f06-uh03) | verification | 1.5 | done | F06-UH03-T03 |
+| 69 | [F06-UH03-T05](features/F06.md#f06-uh03) | closure | 0.5 | done | F06-UH03-T04 |
 | 70 | [F07-UH01-T01](features/F07.md#f07-uh01) | analysis | 0.5 | planned | F06 |
 | 71 | [F07-UH01-T02](features/F07.md#f07-uh01) | implementation | 1.5 | planned | F07-UH01-T01 |
 | 72 | [F07-UH01-T03](features/F07.md#f07-uh01) | verification | 1.25 | planned | F07-UH01-T02 |
