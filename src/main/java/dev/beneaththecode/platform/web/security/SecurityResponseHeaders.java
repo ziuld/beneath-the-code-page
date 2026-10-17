@@ -55,6 +55,8 @@ public final class SecurityResponseHeaders extends GenericFilterBean {
 		finally {
 			String route = switch (request.getRequestURI()) {
 				case "/" -> "home";
+				case "/tools" -> "tools-index";
+				case "/tools/json-formatter" -> "json-formatter";
 				case "/preferences/language" -> "language-preference";
 				case "/actuator/health" -> "health";
 				default -> "unmatched";

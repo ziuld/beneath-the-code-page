@@ -29,4 +29,6 @@ Understanding over memorisation; clarity over spectacle. Use calm, precise expla
 
 ## Acceptance
 
-Keyboard navigation, visible/unobscured focus, 200% zoom, narrow-screen reflow, reduced motion, WCAG 2.2 AA contrast, accessible dialog focus management and no colour-only status. Check editor escape/Tab behaviour and screen-reader announcements manually as well as with automated tools.
+Keyboard navigation, visible/unobscured focus, actual 200% browser zoom, narrow-screen reflow, reduced motion, applicable WCAG 2.2 AA text/non-text contrast thresholds, dialog focus management and no colour-only status. Check editor Escape/Tab behaviour, labelled controls and EN/ES/FR visual/copy quality manually alongside existing automated axe and browser checks. Preserve semantic markup and privacy-safe live statuses.
+
+The owner's 2026-10-15 decision, reconciled project-wide on 2026-10-17, excludes screen-reader compatibility and manual speech testing rather than deferring them to release. No verified non-visual usability or full WCAG AA conformance is claimed. See [the quality plan](../quality/quality-plan.md) for retained criteria and evidence requirements.

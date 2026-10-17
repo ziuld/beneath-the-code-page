@@ -30,10 +30,11 @@ class HomeSecurityTests {
 	@Autowired @Qualifier("requestMappingHandlerMapping") RequestMappingHandlerMapping mappings;
 
 	@Test
-	void productionHasNoMappedPlaceholderDestinations() {
+	void productionMapsRealToolsButNoPlaceholderDestinations() {
 		assertThat(mappings.getHandlerMethods().keySet().stream()
 				.flatMap(mapping -> mapping.getPatternValues().stream()).toList())
-				.doesNotContain("/tools", "/learn", "/__asset-fixture");
+				.contains("/", "/tools", "/tools/json-formatter")
+				.doesNotContain("/tools/json-validator", "/tools/base64", "/learn", "/__asset-fixture", "/__editor-fixture");
 	}
 
 	@Test
@@ -52,7 +53,7 @@ class HomeSecurityTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/tools", "/learn", "/__asset-fixture", "/asset-manifest.json", "/actuator", "/login", "/missing" })
+	@ValueSource(strings = { "/tools/json-validator", "/tools/missing", "/learn", "/__asset-fixture", "/asset-manifest.json", "/actuator", "/login", "/missing" })
 	void unpublishedAndUnlistedRoutesAreDenied(String path) throws Exception {
 		mvc.perform(get(path)).andExpect(status().isForbidden()).andExpect(header().doesNotExist("Location"));
 		mvc.perform(head(path)).andExpect(status().isForbidden());

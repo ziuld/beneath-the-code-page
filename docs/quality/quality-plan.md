@@ -1,6 +1,8 @@
 # Quality, security and verification plan
 
-Targets: WCAG 2.2 AA and applicable OWASP ASVS controls, not a certification claim. F04 selects an exact ASVS release and maps applicable control IDs to tests; explain inapplicable auth/storage controls. Use primary sources in `../architecture/sources.md`.
+Targets: the explicit keyboard/visual criteria below and applicable OWASP ASVS controls, not full WCAG 2.2 AA conformance or certification. F04 selects an exact ASVS release and maps applicable control IDs to tests; explain inapplicable auth/storage controls. Use primary sources in `../architecture/sources.md`.
+
+Owner decision, 2026-10-15, reconciled project-wide on 2026-10-17: screen-reader compatibility and manual speech testing are excluded from acceptance, not passed or deferred to F16. The attempted Orca review did not establish audible output or compatibility. Preserve semantic markup, resource-backed labels, privacy-safe live statuses and existing automated checks. Non-visual usability is not verified; do not advertise screen-reader compatibility or full WCAG AA conformance.
 
 ## Threat boundaries
 
@@ -15,19 +17,19 @@ Browser input → editor → worker → output is untrusted data. All source/dia
 | CSRF/open redirect | Cookie CSRF, masked hidden token, allowlisted redirects | GET/POST round trip, missing/wrong token rejection |
 | Sensitive logs/errors | Event codes and route patterns, no raw input | Captured logs/response checks with synthetic sentinels |
 | Supply-chain compromise | Pinned dependencies, scans, action SHAs, least privilege | Lockfile/SBOM/scan results and reviewed updates |
-| Inaccessible editor | Shared labels/focus/live status; keyboard escape | Manual keyboard/screen-reader evidence plus axe |
+| Keyboard/visual editor barriers | Shared labels/focus/privacy-safe live status; keyboard escape | Manual keyboard/visual evidence plus existing axe checks |
 
 ## Test layers
 
 - Java: JUnit/AssertJ domain and application tests; MVC/Security tests; packaged integration; ArchUnit real-package assertions.
 - TypeScript: Vitest pure processing and state transitions; ESLint restricted imports; typecheck and translation-key parity.
 - Browser: Playwright Chromium full suite; critical Firefox/WebKit editor/CSP smoke each PR; broader matrix before release.
-- Accessibility: axe plus keyboard-only, focus visibility/return, Tab escape, screen reader, reduced motion, 200% zoom and narrow reflow.
+- Keyboard/visual accessibility: existing axe checks plus keyboard-only navigation, visible/unobscured focus and return, editor Escape/Tab, labelled controls, dialog focus management, no colour-only status, reduced motion, actual 200% browser zoom, narrow reflow and EN/ES/FR review. Retain WCAG 2.2 AA text/non-text contrast thresholds for the applicable roles; these specific criteria and automated results do not establish full conformance.
 - Security: static/dependency/secret/container scans. No real token or user payload fixtures. Scanner errors fail visibly.
 
 ## Privacy test protocol
 
-Start a fresh context without service workers. Observe document, popup and worker traffic from navigation onward. Allow only expected static/page requests and the explicit language form. Enter unique synthetic sentinel text in each tool, exercise successful/error/cancel/copy/clear paths, inspect URLs and bodies, browser storage and captured application logs. After initial assets load, processing must not issue requests. Test lazy-load/error paths too. Ensure tools cannot submit an enclosing form. Browser-local processing is not a claim that the whole website makes no network requests.
+Start a fresh context without service workers. Observe document, popup and worker traffic from navigation onward. Allow only expected static/page requests and the explicit language form. Enter unique synthetic sentinel text in each tool, exercise successful/error/cancel/copy/clear paths, inspect URLs and bodies, browser storage and captured application logs. After initial UI assets load, processing must not issue requests except body-free GETs without query/fragment to exact build-known hashed worker scripts needed for clean-worker startup/recovery (ADR 006). Never allow an entire asset prefix or treat cache hits as absent requests. No tool content is permitted in any request. Test lazy-load/error paths too. Ensure tools cannot submit an enclosing form. Browser-local processing is not a claim that the whole website makes no network requests.
 
 ## Performance protocol
 

@@ -3,11 +3,14 @@
 <body>
 <section th:fragment="workspace" data-editor-workspace aria-labelledby="editor-heading">
     <h2 id="editor-heading" th:text="#{editor.heading}"></h2>
+    <th:block th:replace="~{fragments/editor :: input}"></th:block>
+    <button th:replace="~{fragments/components :: button('action.continue', false)}"></button>
+    <p role="status" aria-live="polite" aria-atomic="true"></p>
+</section>
+<th:block th:fragment="input">
     <p id="editor-instructions" th:text="#{editor.instructions}"></p>
     <noscript><p th:text="#{editor.noScript}"></p></noscript>
     <div data-editor-host data-description-id="editor-instructions" th:attr="data-nonce=${cspNonce}"></div>
-    <button th:replace="~{fragments/components :: button('action.continue', false)}"></button>
-    <p role="status" aria-live="polite" aria-atomic="true"></p>
     <div hidden>
         <span data-editor-message="label" th:text="#{editor.label}"></span>
         <span data-editor-message="match" th:text="#{editor.match}"></span>
@@ -26,6 +29,6 @@
         <span data-editor-phrase="close" th:text="#{editor.close}"></span>
         <span data-editor-phrase="Control character" th:text="#{editor.controlCharacter}"></span>
     </div>
-</section>
+</th:block>
 </body>
 </html>

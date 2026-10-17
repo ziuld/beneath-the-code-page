@@ -1,0 +1,20 @@
+@layer btc-components {
+  .formatter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-block: 1rem;
+  }
+  [data-format-output] {
+    display: block;
+    width: 100%;
+    min-height: 16rem;
+    resize: vertical;
+    box-sizing: border-box;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--secondary);
+    font-family: var(--font-mono, monospace);
+  }
+}

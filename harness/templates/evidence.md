@@ -8,7 +8,9 @@ Acceptance criteria checked:
 
 Executed commands, fixture identifiers and results:
 
-Manual keyboard/screen-reader/visual/language checks:
+Manual keyboard/focus/visual/actual browser-zoom/language checks:
+
+Scope limitation: screen-reader compatibility and manual speech testing are excluded by owner decision, not passed or deferred. Preserve labels, semantics, privacy-safe statuses and existing automated checks; do not claim full WCAG AA conformance or verified non-visual usability.
 
 Privacy/security/architecture results:
 
