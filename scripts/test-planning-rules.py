@@ -94,10 +94,15 @@ class PlanningRulesTest(unittest.TestCase):
         self.story['tasks'][0]['forecast_hours']+=1
         self.expect_error('forecast_hours does not roll up')
     def test_commit_cannot_close_an_unfinished_story(self):
+        # The real baseline story may already be accepted; construct the negative fixture explicitly.
+        self.story['tasks'][-1]['status']='planned'
+        self.story['evidence']=[];self.story['actual_finish']=None
         self.story['status']='done';self.story['commits']=['synthetic-test-reference']
         self.expect_error('closed story has open tasks')
         self.expect_error('done without evidence')
     def test_feature_cannot_close_with_open_stories(self):
+        # Construct an open child even when every baseline story has been accepted.
+        self.story['status']='in_progress';self.story['actual_finish']=None
         self.feature['status']='done'
         self.expect_error('closed feature has open stories')
     def test_dependency_cycle_is_rejected(self):

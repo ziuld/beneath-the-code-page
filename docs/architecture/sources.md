@@ -17,7 +17,7 @@ Research date: 2026-10-09. Versions can change; reconfirm patches before the fir
 | [Microsoft JSON parser](https://github.com/microsoft/node-jsonc-parser) | Syntax scanner and text formatting edits |
 | [YAML library](https://eemeli.org/yaml/) | Parser options and alias controls |
 | [ArchUnit guide](https://www.archunit.org/userguide/html/000_Index.html) | Dependency and cycle enforcement |
-| [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | Accessibility acceptance target |
+| [WCAG 2.2](https://www.w3.org/TR/WCAG22/) | Reference for the quality plan's explicit keyboard/visual criteria, including applicable contrast thresholds; not a blanket conformance target |
 | [OWASP ASVS](https://owasp.org/projects/asvs) | Security verification mapping; select exact release/control identifiers in F04 |
 | [Official project instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md) | Repository AGENTS.md discovery; custom harness paths are ordinary project conventions |
 

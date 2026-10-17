@@ -40,7 +40,8 @@ class HomePublicationTests {
 		String html = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		for (var section : descriptors) {
 			assertThat(html.contains("href=\"" + section.path() + "\"")).isEqualTo(section.published());
-			mvc.perform(get(section.path())).andExpect(section.published() ? status().isOk() : status().isForbidden());
+			// Tools now has real exact public routes; Home promotion still waits for F06 acceptance.
+			mvc.perform(get(section.path())).andExpect(section.published() || section.path().equals("/tools") ? status().isOk() : status().isForbidden());
 		}
 		assertThat(html).contains("designed to process your input locally", "beginning with Java fundamentals");
 		assertThat(Pattern.compile(">Not yet available<").matcher(html).results().count())
@@ -53,7 +54,7 @@ class HomePublicationTests {
 
 	@RestController
 	static class Destinations {
-		@GetMapping({ "/tools", "/learn" })
+		@GetMapping("/learn")
 		String fixture() {
 			return "Mapped publication fixture only";
 		}

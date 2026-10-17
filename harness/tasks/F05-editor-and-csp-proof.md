@@ -10,9 +10,11 @@ Owner approved the proposed ordering edits: require completed editor implementat
 
 Prerequisites and files read: F04 and both stories confirmed done with commit 3ea174f in plan.json and archived in the handoff. Read architecture, feasibility review, hierarchy, F05 dossier/EARS/Gherkin/tasks, all apply context files and existing frontend/browser build configuration. Branch retains Chromium correction 750e959.
 
-Acceptance criteria (link, do not drift): [F05 dossier](../../docs/planning/features/F05.md), [editor delta](../../openspec/changes/f05-editor-and-csp-proof/specs/accessible-editor/spec.md), [worker delta](../../openspec/changes/f05-editor-and-csp-proof/specs/bounded-worker-processing/spec.md).
+Acceptance criteria (link, do not drift): [F05 dossier](../../docs/planning/features/F05.md), [editor delta](../../openspec/changes/archive/2026-10-17-f05-editor-and-csp-proof/specs/accessible-editor/spec.md), [worker delta](../../openspec/changes/archive/2026-10-17-f05-editor-and-csp-proof/specs/bounded-worker-processing/spec.md).
 
-Implementation steps: Follow the [15-item checklist](../../openspec/changes/f05-editor-and-csp-proof/tasks.md): dependency/API inspection, isolated editor enhancement and bounded insertion, unchanged-CSP engine proof, actual manual review, then dependent worker lifecycle and integration.
+Implementation steps: Follow the [15-item checklist](../../openspec/changes/archive/2026-10-17-f05-editor-and-csp-proof/tasks.md): dependency/API inspection, isolated editor enhancement and bounded insertion, unchanged-CSP engine proof, actual manual review, then dependent worker lifecycle and integration.
+
+Archival update, 2026-10-17: Owner requested archiving completed work and confirmed main-spec synchronisation. Both accepted delta specifications were synchronised verbatim into canonical main-spec structure and verified before moving the complete change to `openspec/changes/archive/2026-10-17-f05-editor-and-csp-proof/`. This supersedes the historical no-archive boundary below; no application changes, behavioural ownership migration, commit, push, merge or release. The accessibility clarification and F06 remain unimplemented.
 
 Security, privacy, accessibility and locale implications: Same-origin lazy assets, escaped server messages/nonces, EN/ES/FR, no payload transmission/storage, no CSP relaxation, visible focus and documented keyboard escape. Synthetic workers remain test-only.
 

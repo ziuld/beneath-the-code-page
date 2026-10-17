@@ -11,7 +11,7 @@ public final class HomeNavigation {
 	private final List<Section> sections;
 
 	public HomeNavigation() {
-		this(false, false);
+		this(true, false);
 	}
 
 	public HomeNavigation(boolean toolsPublished, boolean learningPublished) {

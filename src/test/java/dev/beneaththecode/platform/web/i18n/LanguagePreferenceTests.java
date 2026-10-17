@@ -47,7 +47,7 @@ class LanguagePreferenceTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "https://example.invalid/", "//example.invalid/", "/tools", "/learn", "/?lang=en",
+	@ValueSource(strings = { "https://example.invalid/", "//example.invalid/", "/tools?lang=en", "/tools/json-formatter#main", "/learn", "/?lang=en",
 		"/#main", "%2f%2fexample.invalid", "/%2e%2e", "javascript:alert(1)", "", "/" })
 	void neverReflectsNonAllowlistedRedirects(String target) throws Exception {
 		var form = form();

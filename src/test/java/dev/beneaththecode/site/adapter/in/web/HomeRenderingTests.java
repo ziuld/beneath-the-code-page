@@ -40,8 +40,8 @@ class HomeRenderingTests {
 		String html = home("en");
 		assertThat(html).contains("<main", "<header", "<footer", "<nav", "Beneath the Code",
 				"id=\"home-heading\"", "Tools", "Learn", "Java fundamentals", "locally in your browser",
-				"src=\"/brand/b-composition.png\"", "type=\"module\"", manifest.site().script())
-				.doesNotContain("th:", "onclick", "asset-manifest.json", "href=\"/tools\"", "href=\"/learn\"");
+				"src=\"/brand/b-composition.png\"", "type=\"module\"", manifest.site().script(), "href=\"/tools\"")
+				.doesNotContain("th:", "onclick", "asset-manifest.json", "href=\"/learn\"");
 		assertThat(Pattern.compile("<h1\\b").matcher(html).results().count()).isEqualTo(1);
 		for (String path : manifest.site().stylesheets()) {
 			assertThat(html).contains("href=\"" + path + "\"");

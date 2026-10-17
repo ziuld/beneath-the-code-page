@@ -18,6 +18,37 @@ export interface JobWorker {
   onmessageerror: ((event: MessageEvent<unknown>) => void) | null;
 }
 
+export interface WorkerDiagnostic {
+  code: "syntax" | "depth-limit" | "input-limit" | "output-limit";
+  offset?: number;
+}
+
+function readDiagnostic(
+  value: unknown,
+  inputLength: number,
+): WorkerDiagnostic | undefined {
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    return undefined;
+  const diagnostic = value as Record<string, unknown>;
+  if (Object.keys(diagnostic).some((key) => key !== "code" && key !== "offset"))
+    return undefined;
+  if (
+    !["syntax", "depth-limit", "input-limit", "output-limit"].includes(
+      diagnostic.code as string,
+    )
+  )
+    return undefined;
+  if (diagnostic.code === "syntax") {
+    if (
+      !Number.isSafeInteger(diagnostic.offset) ||
+      (diagnostic.offset as number) < 0 ||
+      (diagnostic.offset as number) > inputLength
+    )
+      return undefined;
+  } else if (diagnostic.offset !== undefined) return undefined;
+  return diagnostic as unknown as WorkerDiagnostic;
+}
+
 interface Job {
   id: number;
   operation: string;
@@ -32,6 +63,7 @@ export function createWorkerManager(
   callbacks: {
     status: (status: WorkerStatus) => void;
     output: (text: string) => void;
+    diagnostic?: (diagnostic: WorkerDiagnostic) => void;
   },
 ) {
   let active: Job | undefined;
@@ -50,11 +82,18 @@ export function createWorkerManager(
     job.worker.terminate();
   }
 
-  function finish(job: Job, status: WorkerStatus, output?: string) {
+  function finish(
+    job: Job,
+    status: WorkerStatus,
+    output?: string,
+    diagnostic?: WorkerDiagnostic,
+  ) {
     if (disposed || active !== job) return;
     release();
     if (output !== undefined) callbacks.output(output);
     if (!disposed && sequence === job.id) callbacks.status(status);
+    if (diagnostic && !disposed && sequence === job.id)
+      callbacks.diagnostic?.(diagnostic);
   }
 
   return {
@@ -105,7 +144,13 @@ export function createWorkerManager(
         if (!Number.isSafeInteger(message.id)) return finish(job, "error");
         if (message.id !== job.id) return;
         if (message.operation !== job.operation) return finish(job, "error");
-        if (message.status === "error") return finish(job, "error");
+        if (message.status === "error")
+          return finish(
+            job,
+            "error",
+            undefined,
+            readDiagnostic(message.diagnostic, input.length),
+          );
         if (message.status !== "success" || typeof message.output !== "string")
           return finish(job, "error");
         if (

@@ -2,6 +2,8 @@
 
 This is the feature-level scope summary. Canonical descriptions, EARS requirements, Gherkin scenarios, tasks, statuses and estimates now live in `plan.json`; start with the [detailed hierarchy](hierarchy.md). All UI features inherit EN/ES/FR, responsive layout, keyboard access, safe errors, approved design-system use and privacy checks. The detailed stories refine these commitments rather than replacing them.
 
+All future features and final F16 acceptance use the explicit keyboard/visual criteria in the [quality plan](../quality/quality-plan.md): labels/semantics, focus, contrast, zoom/reflow, reduced motion and existing axe/browser checks remain required. Screen-reader compatibility and manual speech testing are excluded by owner decision, not deferred to release; neither full WCAG AA conformance nor verified non-visual usability is claimed.
+
 | ID | Outcome | Acceptance evidence |
 |---|---|---|
 | F00 | Manual Initializr import | POM at root; Java 25/Boot 4.1.1/package correct; five dependencies; planning files preserved |

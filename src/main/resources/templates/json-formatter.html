@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{formatter.title}"></title>
+    <meta name="description" th:content="#{formatter.description}">
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools/json-formatter')}"></header>
+<main id="main" class="page" tabindex="-1">
+    <a href="/tools" th:text="#{tools.title}"></a>
+    <h1 th:text="#{formatter.title}"></h1>
+    <p th:text="#{formatter.description}"></p>
+    <section data-json-formatter data-editor-workspace aria-labelledby="formatter-input-label">
+        <h2 id="formatter-input-label" th:text="#{formatter.input}"></h2>
+        <th:block th:replace="~{fragments/editor :: input}"></th:block>
+        <div class="formatter-controls">
+            <label for="formatter-indent" th:text="#{formatter.indentation}"></label>
+            <select id="formatter-indent" data-format-indent disabled>
+                <option value="2" th:text="#{formatter.twoSpaces}"></option>
+                <option value="4" th:text="#{formatter.fourSpaces}"></option>
+            </select>
+            <button class="button" type="button" data-format-run disabled th:text="#{formatter.format}"></button>
+            <button class="button" type="button" data-format-cancel disabled th:text="#{worker.cancel}"></button>
+            <button class="button" type="button" data-format-copy disabled th:text="#{formatter.copy}"></button>
+            <button class="button" type="button" data-format-clear disabled th:text="#{formatter.clear}"></button>
+        </div>
+        <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
+        <h2 id="formatter-output-label" data-format-output-label th:text="#{formatter.output}"></h2>
+        <pre id="formatter-output" data-format-output role="region" aria-labelledby="formatter-output-label" tabindex="0"></pre>
+        <div hidden>
+            <span data-format-message="ready" th:text="#{formatter.ready}"></span>
+            <span data-format-message="copied" th:text="#{formatter.copied}"></span>
+            <span data-format-message="copy-failed" th:text="#{formatter.copyFailed}"></span>
+            <span data-format-message="copy-unavailable" th:text="#{formatter.copyUnavailable}"></span>
+            <span data-format-message="cleared" th:text="#{formatter.cleared}"></span>
+            <span data-format-message="running" th:text="#{worker.running}"></span>
+            <span data-format-message="success" th:text="#{worker.success}"></span>
+            <span data-format-message="error" th:text="#{worker.error}"></span>
+            <span data-format-message="cancelled" th:text="#{worker.cancelled}"></span>
+            <span data-format-message="timeout" th:text="#{worker.timeout}"></span>
+            <span data-format-message="input-limit" th:text="#{editor.limit}"></span>
+            <span data-format-message="output-limit" th:text="#{worker.limit}"></span>
+            <span data-format-message="syntax" th:text="#{formatter.syntax}"></span>
+            <span data-format-message="depth-limit" th:text="#{formatter.depthLimit}"></span>
+            <span data-format-message="stale" th:text="#{formatter.stale}"></span>
+            <span data-format-message="current" th:text="#{formatter.current}"></span>
+            <span data-format-message="output" th:text="#{formatter.output}"></span>
+            <span data-format-message="unavailable" th:text="#{formatter.unavailable}"></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

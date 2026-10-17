@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{tools.title}"></title>
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools')}"></header>
+<main id="main" class="page" tabindex="-1">
+    <h1 th:text="#{tools.title}"></h1>
+    <p th:text="#{formatter.description}"></p>
+    <a href="/tools/json-formatter" th:text="#{formatter.title}"></a>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

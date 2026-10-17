@@ -12,4 +12,4 @@ Feature: F06-UH01 — Format valid JSON without changing its data
   Scenario: Process a private sentinel locally
     Given the formatter contains a unique synthetic sentinel and all initial assets are loaded
     When the developer formats the document
-    Then no operation-triggered request is made and the sentinel is absent from persistent storage and application logs
+    Then no operation-triggered request is made except body-free GETs to exact build-known hashed worker scripts, and the sentinel is absent from all requests, persistent storage and application logs

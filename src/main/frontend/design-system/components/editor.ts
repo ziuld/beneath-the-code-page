@@ -25,10 +25,11 @@ export function createEditor(
   nonce: string,
   messages: EditorMessages,
   announce: (message: string) => void,
+  onChange?: () => void,
 ) {
-  const view = new EditorView({
-    parent: host,
-    state: EditorState.create({
+  let disposed = false;
+  const freshState = () =>
+    EditorState.create({
       extensions: [
         EditorView.cspNonce.of(nonce),
         EditorView.contentAttributes.of({
@@ -64,10 +65,15 @@ export function createEditor(
           indentWithTab,
         ]),
         editorPolicy(messages, () => announce(messages.limit)),
+        EditorView.updateListener.of((update) => {
+          if (update.docChanged && !disposed) onChange?.();
+        }),
       ],
-    }),
+    });
+  const view = new EditorView({
+    parent: host,
+    state: freshState(),
   });
-  let disposed = false;
   return {
     content: () => view.state.doc.toString(),
     replace: (text: string) => {
@@ -80,6 +86,12 @@ export function createEditor(
     },
     focus: () => {
       if (!disposed) view.focus();
+    },
+    clear: () => {
+      if (disposed) return;
+      // A fresh state discards undo/redo and search state, not an undoable edit.
+      // The explicit Clear caller owns invalidation; no edit transaction is emitted.
+      view.setState(freshState());
     },
     dispose: () => {
       if (disposed) return;

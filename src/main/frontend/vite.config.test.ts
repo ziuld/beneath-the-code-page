@@ -79,6 +79,13 @@ describe("SSR asset build", () => {
         ...config,
         configFile: false,
         root: fixture,
+        // This generic Vite probe is not the production formatter worker.
+        worker: {
+          format: "es",
+          rollupOptions: {
+            output: { entryFileNames: "static/assets/[name]-[hash].js" },
+          },
+        },
         build: {
           ...config.build,
           outDir: output,
@@ -142,6 +149,16 @@ describe("SSR asset build", () => {
       expect(await readFile(join(fixture, site!.css[0]!), "utf8")).toContain(
         "@layer btc-base",
       );
+      const worker = manifest["__json-formatter-worker"]!;
+      expect(worker.file).toMatch(
+        /^static\/assets\/json-formatter-worker-[\w-]+\.js$/,
+      );
+      const workerCode = await readFile(join(fixture, worker.file), "utf8");
+      expect(workerCode).not.toMatch(
+        /\bfetch\s*\(|XMLHttpRequest|importScripts\s*\(|\bimport\s*\(/,
+      );
+      expect(workerCode).not.toContain("proof-worker");
+      expect(site!.file).not.toBe(worker.file);
     } finally {
       await rm(fixture, { recursive: true, force: true });
     }

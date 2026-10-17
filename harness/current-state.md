@@ -1,5 +1,311 @@
 # Current handoff
 
+F06 archived,2026-10-18: all22/22 tasks complete; spec synced and verified at
+openspec/specs/json-formatter/spec.md. Change archived to
+openspec/changes/archive/2026-10-18-f06-json-formatter/ including .openspec.yaml.
+Canonical F06 done/all stories accepted; Home Tools enabled on testeded0e502,
+Ubuntu Java39074613656/browser39074613616 pass,Chromium84/Firefox38/WebKit38.
+Clean Maven140 frontend/199 Java (three skips)/17 packaged and local health pass.
+Planning integrity,15 rule tests,strict change/main-spec checks and whitespace pass
+before archive and again after archive; OpenSpec lists no active changes. No runtime changes after tested head,
+manual environment omissions explicit, no merge/release. Closure/spec/archive
+bookkeeping prepared for coherent delivery on existing draft PR #6 path. Required
+runtime CI evidence remains tied to ed0e502, not inferred from documentation edits.
+Next feature F07 is not started; proceed only on owner request.
+
+F06 accepted/complete,2026-10-18: tested final publication ed0e502 passes Ubuntu
+Java39074613656/browser39074613616,Chromium84/Firefox38/WebKit38;clean Maven140
+frontend/199 Java (three skips)/17 packaged,local health pass. All three stories/
+all15 canonical tasks and all22 OpenSpec tasks done; owner Chrome manual acceptance
+recorded without invented version/OS/viewport. Home Tools enabled, Learn unpublished.
+Owner chose Sync then archive: new main json-formatter spec matches exact Purpose/
+seven requirements/scenarios; strict main-spec8/8 pass. Final closure checks and
+archive in progress; no merge/release. Runtime remains testeded0e502 on draft PR #6.
+
+F06 final publication delivered,2026-10-18: ed0e502 pushed to draft PR #6;
+Java39074613656/browser39074613616 running. Local Chromium84/Firefox38,clean Maven/
+health and planning/rule/OpenSpec/whitespace checks pass;21/22. Owner selected
+Sync then archive after final CI: new json-formatter main spec (ADDED only), verify
+and archive. Specs instructions snapshot fetched successfully; no extra rules.
+Do not refetch for inline sync. Required final WebKit before4.3/F06 closure; manual
+Chrome confirmation recorded with version/OS/viewport unreported. No merge/release.
+
+F06 owner final review accepted/publication local,2026-10-18: owner confirmed all
+requested Chrome keyboard/narrow/actual200% zoom/EN-ES-FR/Copy-Clear checks passed
+and asked to close/archive. Chrome version/OS/viewport not reported; no invented
+environment or agent-observed visual measurements. Evidence F06-integrated-acceptance.
+4.2 done,21/22. Enabled Home Tools, Learn remains unpublished; real three-locale
+journey added. Local clean Maven140 frontend/199 Java (three skips)/17 packaged,
+Chromium84/Firefox38/health pass; updated Ubuntu WebKit and4.3 still pending.
+Prepare final publication slice on draft PR #6, no merge/release. Archive requires
+completion and explicit spec-sync choice; no sync/archive performed yet.
+
+F06 UH03 accepted, 2026-10-18: owner explicitly accepted Copy/Clear after actual
+05a688a three-engine CI. All three stories/all15 canonical tasks now done with
+evidence; task3.6 closed,20/22. F06 itself remains in progress: actual final owner
+keyboard/visual/200% zoom/EN-ES-FR review4.2 and integrated publication/closure4.3
+pending. No manual observation inferred; Home promotion off, no merge/release.
+Runtime still tested05a688a on draft PR #6; acceptance/evidence updates local.
+Next obtain actual final review observations/environment, then complete authorised
+Home publication plus journey verification; merge/release remain separate.
+
+F06 Copy/Clear required CI green, 2026-10-17: 05a688a Java39072823450 and browser
+39072823403 succeed;Chromium81/81,Firefox35/35,WebKit35/35. Clean Maven140 frontend/
+199 Java (three skips)/17 packaged plus local health pass. Completed3.5/T04 and4.1;
+19/22. UH03 owner acceptance3.6 and actual final visual/200% zoom/EN-ES-FR review4.2
+remain pending before integrated Home publication/closure4.3. No runtime changes,
+Home promotion, merge/release or fabricated manual observations. Evidence/tracking
+updates local; draft PR #6 remains at tested05a688a. Prior CI-pending notes superseded.
+
+F06 Copy/Clear delivered, 2026-10-17: committed/pushed05a688a to draft PR #6 and
+updated PR scope/results. Java39072823450/browser39072823403 running at this head;
+required updated WebKit pending. Local clean Maven140 frontend/199 Java cases
+(three skips)/17 packaged,Chromium81/Firefox35/health and planning checks pass.
+Checklist17/22; task3.5, UH03 acceptance and final integrated/manual gates remain.
+No runtime changes after commit. Delivery-result bookkeeping local; no Home
+promotion, feature merge/release or invented acceptance.
+
+F06 UH02 accepted/Copy-Clear locally verified, 2026-10-17: owner accepted UH02
+after f4e9b47 required CI; story/all five tasks done. UH03 adds explicit exact Copy
+with revision/attempt-guarded translated clipboard feedback, no reads; Clear cancels
+first, discards input/history/result/diagnostics and retains focus/clipboard unchanged.
+Clean Maven140 frontend/199 Java cases (three skips)/17 packaged pass. Chromium81/81,
+Firefox35/35 pass including clipboard/undo/all-action sentinel privacy/CSP regressions.
+Checklist17/22 through3.4;3.5 awaits updated required Ubuntu WebKit, not old UH02 CI.
+Prepare scoped commit/push on existing draft PR #6 path; no UH03/final manual acceptance,
+Home promotion, merge/release or budget/security waiver. Evidence F06-UH03 recorded;
+owner effort unreported. Earlier Copy/Clear-unstarted/UH02-acceptance-pending notes
+below are historical and superseded.
+
+F06 UH02 required CI green, 2026-10-17: f4e9b47 Java39071829961 and browser
+39071830007 succeed. Actual Ubuntu results Chromium78/78,Firefox32/32,WebKit32/32;
+clean Maven succeeds. Output-region fix resolves Back-navigation clearing with exact
+assertions/privacy/CSP/budgets retained. Reclosed2.3/completed2.5 and canonical T02–T04;
+checklist12/22. UH02 owner acceptance/task2.6 pending before dependent Copy/Clear.
+No Home promotion, final manual acceptance, F06 merge/release. Result bookkeeping
+local; draft PR #6 remains at tested f4e9b47. Earlier blockers below superseded.
+
+F06 output-region fix authorised/locally verified, 2026-10-17: owner approved
+replacing textarea with labelled selectable text-only output and continuation.
+Implemented focusable pre region, textContent-only writes/clearing, bounded scrolling;
+exact whitespace/inert HTML/history-clearing/accessibility checks retained. Local
+Maven129 frontend/199 Java (three skips)/17 packaged,Chromium78/78,Firefox32/32 pass.
+Prepare scoped delivery on existing draft PR #6; updated Ubuntu WebKit required.
+Task2.3 remains reopened,10/22; no UH02 acceptance/Copy/Clear/Home promotion/merge.
+Prior approval-pending notes below are superseded; no constraints waived.
+
+F06 runtime history blocker, 2026-10-17: 7c0114e Java39070308263 succeeds; browser
+39070308306 clean Maven/Chromium78/Firefox32 pass,WebKit29/32. CRLF paste/position
+assertions now pass; three locale cases instead reach final Back-navigation check
+and find old output {} rather than empty. Runtime/lifecycle issue, not test-only.
+Pause before runtime change under owner guardrail. Recommend labelled selectable
+text-only output region instead of textarea to avoid form-control history restore,
+retaining all clearing/limit/CSP expectations; exact engine ordering not proved.
+Task2.3 reopened:10/22; canonical UH02 implementation/dependent verification blocked.
+No assertion relaxation, system install, model switch, F06 merge/release or Copy/Clear.
+Evidence F06-UH02 and log /tmp/opencode/f06-crlf-ci-browser.log updated locally;
+draft PR #6 remains at7c0114e. Earlier CI-pending/CRLF-only blockers are superseded.
+
+F06 raw-CRLF test correction delivered, 2026-10-17: committed/pushed 7c0114e to
+draft PR #6 after corrected local Chromium78/Firefox32 and planning/rule/OpenSpec/
+whitespace checks pass. Java run39070308263/browser run39070308306 are running at
+this head; require actual updated WebKit result. Runtime remains b77ac8a unchanged.
+Checklist11/22, no UH02 closure, Copy/Clear, Home promotion or F06 merge/release yet.
+
+F06 changed-code CI/CRLF fixture correction, 2026-10-17: b77ac8a Java39069636791
+passes; browser39069636868 clean Maven/Chromium78/Firefox32 pass, WebKit29/32.
+Only EN/ES/FR CRLF-position fixtures fail (expected line2, observed line3). Switched
+those raw CRLF fixtures from contenteditable fill to the existing explicit paste
+path in every engine, adding exact editor-text assertion before formatting and
+retaining all position/preservation assertions. Runtime/packages/CSP/budgets/timeouts
+unchanged. Corrected local Chromium78/78 andFirefox32/32 pass; prepare scoped test/
+evidence delivery to draft PR #6 and require actual updated WebKit. Checklist11/22;
+task2.5/UH02 acceptance and dependent Copy/Clear pending. No merge/release or waiver.
+
+F06 diagnostics slice delivered, 2026-10-17: continued on owner request, fixed a
+stale negative planning-test fixture without changing validator/assertions (all15
+tests pass), and pushed b77ac8a to existing draft PR #6. Java run39069636791 and
+browser run39069636868 are running against that head; no new-code WebKit pass yet.
+First watcher exited before checks were registered, not because CI failed; restarted
+after confirming both jobs running. Local129 frontend/199 Java (three skips)/17
+packaged,Chromium78/78,Firefox32/32 and real health pass. Checklist11/22; task2.5 and
+UH02 acceptance pending. No runtime changes after commit; delivery-result bookkeeping
+local. No Copy/Clear, Home promotion, F06 merge/release or manual acceptance claimed.
+
+F06 diagnostics delivery continuing, 2026-10-17: owner requested continuation with
+the existing Sol session. Prepare the locally verified UH02 diagnostics/freshness
+slice and accepted UH01 bookkeeping for the existing authorised draft PR #6/Ubuntu
+CI path. Checklist11/22; updated WebKit result and UH02 acceptance remain pending.
+No code/test scope changes, model switch, Home promotion, F06 merge or release.
+
+F06 UH01 accepted/UH02 local verification, 2026-10-17: owner explicitly accepted
+the first formatting slice and asked to continue. UH01/all five tasks done against
+cd3460d and actual clean three-engine CI; final feature manual gate remains pending.
+UH02 adds validated optional worker diagnostic metadata, safe Unicode/CRLF/EOF
+locations, editor accepted-change notifications and revision-owned current-result
+state. Accepted edits/settings/retry/cancel/exit invalidate stale work; rejected
+oversized edits preserve accepted input/matching result. No Copy/Clear yet.
+Maven129 frontend/199 Java cases (three skips)/17 packaged passes; Chromium78/78,
+Firefox32/32 pass real diagnostics/freshness/budgets/load failure/history restoration
+and all retained regressions. Reference10/100 KiB/1 MiB and deep output observations
+recorded, no universal timing claim. Checklist11/22 (through2.4); canonical UH02-T04
+and task2.5 pending updated required Ubuntu WebKit CI for changed code. Old UH01 CI
+is not a new-code pass. Changes/result tracking remain local/uncommitted on existing
+draft PR #6 branch. Next publish verified slice through that existing CI path; no
+merge/release/Home promotion. Evidence harness/evidence/F06-UH02-json-diagnostics.md.
+Owner asked about simpler models; no automatic model switch or delegation performed.
+
+F06 three-engine CI passed, 2026-10-17: actual head cd3460d on draft PR #6 has Java
+run39063899168 and browser run39063899165 SUCCESS. Ubuntu24.04 clean Maven92 frontend/
+199 Java cases (three explicit architecture skips)/17 packaged pass; Chromium71/71,
+Firefox25/25,WebKit25/25 pass all real formatter and retained regression cases. No
+runtime changes since the tested commit, CSP relaxation, local system install or
+gate waiver. Checklist1.1–1.6 done (6/22); canonical UH01-T01–T04 done, T05/story
+in_review pending acceptance. Both UH01 automated acceptance pairs evidenced; manual
+browser200%/visual/EN/ES/FR owner observations not fabricated. Existing dependency
+sequence still places UH02 after accepted UH01 closure; later diagnostics/freshness/
+Copy/Clear unstarted. PR #6 remains draft/open/unmerged, Home promotion off. Result
+tracking/evidence updates currently local; no F06 release or automatic feature close.
+Earlier required-WebKit/CI-permission blockers are historical.
+
+F06 draft PR delivered, 2026-10-17: authorised commit cd3460d includes verified first
+formatter slice plus completed approved documentation updates, pushed on
+feature/F06-json-formatter-implementation; draft PR #6 opened against main:
+https://github.com/ziuld/beneath-the-code-page/pull/6. Required Ubuntu CI is running;
+wait for actual Java/three-engine results, not configuration alone. Checklist5/22,
+UH01-T04/story/dependent work still pending. No local privileged install, F06 merge,
+release, Home promotion or owner-acceptance fabrication. Delivery-result bookkeeping
+is currently local; earlier no-authorisation/no-delivery statements are historical.
+
+F06 draft delivery authorised, 2026-10-17: owner approved committing the current
+formatter slice and completed documentation updates, pushing the feature branch and
+opening a draft PR for supported Ubuntu WebKit CI. Deliver this scoped snapshot;
+inspect actual remote checks before claiming task1.6 complete. Checklist5/22; Home
+promotion and later story implementation remain pending. No F06 merge/release or
+acceptance waiver authorised. This supersedes the earlier delivery-permission pause.
+
+F06 first slice verified/WebKit gate, 2026-10-17: owner authorised resolving ordinary
+test-only integration mismatches while retaining coverage and stopping for material
+decisions. Exact real-route/unfinished-route assertions corrected. Maven passes92
+frontend/199 Java cases (three explicit architecture skips)/17 packaged; real health
+passes. Normal-JAR Chromium71/71 and Firefox25/25 pass real formatter/fidelity,
+cancel/replacement/error recovery, exact-asset privacy, actual worker CSP/cache/bytes,
+EN/ES/FR axe/no-JS/lazy failure and Home/index isolation; existing regressions pass.
+Checklist1.1–1.5 done (5/22); canonical UH01-T01/T02/T03 done. WebKit26.6/build2359
+downloaded locally but all25 cases fail before assertions: unavailable fallback-build
+libicu74/libxml2/libflite1. No system install, CSP relaxation or gate waiver. Need
+authorisation to commit/push current slice and completed doc updates/open draft PR
+for existing supported Ubuntu CI. No F06 delivery/commit/acceptance yet; Home Tools
+off. UH01-T04/story/dependent work blocked; positioned diagnostics/freshness/Copy/Clear
+unstarted. Final owner manual acceptance remains required, not invented. Evidence
+harness/evidence/F06-UH01-json-formatting.md has actual commands/logs and supersedes
+earlier pauses; branch feature/F06-json-formatter-implementation based on merged main.
+
+F06 fixture fixed/Java assertion pause, 2026-10-17: owner-approved fixture-local
+worker naming override retains all assertions and production naming/metadata.
+Frontend92/92 plus type/lint/style pass. Java compiles;199 cases,three explicit
+architecture skips,one failure: pre-F06 HomeSecurityTests line36 forbids any /tools
+mapping. New Tools MVC6/6, locale/editor/publication/architecture checks pass.
+Recommend replacing that obsolete blanket assertion with required exact real Tools
+mappings and retained absence of unfinished tools/Learn/fixtures; no access-policy
+relaxation. Not applied pending guidance under error rule. Checklist2/22;
+packaged/browser checks not run. Log /tmp/opencode/f06-fixture-fixed-verify.log;
+canonical blocker/evidence updated. Earlier formatter/Vite failures resolved.
+
+F06 algorithm fixed/worker verification pause, 2026-10-17: owner approved replacing
+the dependency formatter routine with bounded local token-gap whitespace editing,
+retaining strict library validation/scanning and all fidelity/budget requirements.
+Algorithm32/32 and initial full frontend83/83 pass. Checklist2/22 (1.1/1.2) complete.
+Added production worker/protocol/build metadata and lazy EN/ES/FR SSR formatter/index,
+exact GET/HEAD/security/locale returns and corresponding tests; Home promotion off.
+Combined Maven verification stops at generic Vite fixture inheriting production
+worker output naming while expecting probe.worker;91/92 tests pass (types/lint/style
+pass). Actual production metadata build test passes. Java/packaged/browser gates
+unexecuted;1.3/1.4 remain unchecked, canonical F06/UH01/T02 blocked. Recommend a
+fixture-local naming override retaining all assertions; not applied pending guidance
+under the requested error rule. No skipped tests, budget/CSP relaxation or F06
+commit/push/merge. Log /tmp/opencode/f06-first-worker-verify.log; evidence F06-UH01.
+
+F05 merged/F06 started, 2026-10-17: owner authorised PR #5 ready/squash merge and
+ADR 006's exact same-origin immutable worker-script GET exception, never payload
+traffic or arbitrary asset-prefix allowance. F05 merged as 8033ef0. New branch
+feature/F06-json-formatter-implementation is based on merged origin/main, preserving
+all local archive/accessibility/spec/planning work. Canonical F06 acceptance and
+delta/quality guidance reconciled; CSP/storage restrictions unchanged.
+F06 checklist 1/22: analysis/evidence recorded, exact MIT jsonc-parser3.3.1 installed
+project-locally (audit zero findings). Pure formatter/types/lint prepared; focused
+tests22/24 pass. Depth128 and output-expansion cases fail because dependency format
+returns undefined edit content at its indentation-cache boundary; direct dependency
+reproduction confirms at depth100 (two-space). No skipped tests or lowered limits.
+Apply paused under error rule; task1.2 and canonical F06/UH01/T02 blocked pending
+direction. Recommend retain strict parser/scanner and generate bounded whitespace-
+only edits without defective library formatter; not implemented without agreement.
+No worker/route/UI or packaged/browser acceptance yet, no F06 commit/push/release.
+Evidence harness/evidence/F06-UH01-json-formatting.md; owner effort unreported.
+
+F06 apply/PR review, 2026-10-17: owner authorised proposed planning reconciliation
+and requested F05 PR review. Corrected F06 Home publication timing, formatting-only
+UH01 versus final all-action privacy verification, and archived accessibility-follow-up
+wording. Strict change validation, planning integrity and whitespace pass; no code edits.
+Strict request-free processing/recovery remains a design blocker: worker recreation
+after hard termination loads a script; cache hits and successful-worker reuse alone
+do not prove zero browser requests. No policy exception/CSP relaxation accepted.
+Apply paused at 0/22 pending that decision; task record harness/tasks/F06-json-formatter.md.
+PR #5 actual head e83be62d remains draft/open, clean/mergeable; Java and Chromium/
+Firefox/WebKit CI steps pass at that head. No blocking implementation review finding.
+Evidence harness/evidence/F05-pr5-review.md. Local archives/spec/accessibility/F06
+planning updates remain uncommitted and absent from PR; no push/merge performed.
+
+Scope clarification archived, 2026-10-17: owner explicitly requested archival of
+clarify-keyboard-accessibility-scope after all three tasks and validation completed.
+Moved complete spec-driven change, including metadata, to
+openspec/changes/archive/2026-10-17-clarify-keyboard-accessibility-scope/.
+Specs deliberately skipped; no delta sync or main-spec changes. Task links updated.
+Only f06-json-formatter remains active: planning ready, implementation unstarted
+(0/22). No application changes, commit/push/merge/release or F06 apply authorised.
+
+Clarification validation completed, 2026-10-17: owner approved rewording the evidence
+search expression. Plain-language wording resolves the Markdown-link false positive
+without changing the validator. Final planning integrity, all 15 planning-rule tests,
+strict OpenSpec (nine items), whitespace and empty runtime/test/build/CI scope diff
+pass. clarify-keyboard-accessibility-scope now complete (3/3), ready for review and
+separately requested archival; evidence/task record updated. No application changes,
+commit/push/merge/release/archive or F06 implementation. This supersedes the pause below.
+
+Final clarification validation paused, 2026-10-17: after evidence creation, planning
+integrity misread its inline search expression as a Markdown link to `review|test`.
+Earlier planning checks passed before the evidence existed; final closure does not.
+Task 2.1 reopened, progress 2/3. Proposed fix is documentation-only rewording of that
+expression, then rerun planning/whitespace checks; no validator change. Waiting for
+guidance under apply's error rule. This supersedes the completion claim immediately
+below; all retained-scope edits remain, no runtime changes or F06 implementation.
+
+Keyboard/visual scope clarification applied, 2026-10-17: owner explicitly requested
+apply of clarify-keyboard-accessibility-scope. All three documentation tasks complete;
+quality/brand guidance, future-feature inheritance, F16 manual review wording,
+delivery guidance and evidence template now retain explicit keyboard/visual/locale/
+axe criteria without mandatory speech review or blanket WCAG AA conformance target.
+Historical evidence preserved; speech compatibility is excluded, not passed/deferred.
+Both renderers, planning integrity, all 15 rule tests, strict OpenSpec (nine items),
+whitespace and runtime/test/build/CI scope checks passed. Canonical plan changed only
+F16-UH01-T03 title; IDs, estimates, requirements/scenarios and statuses unchanged.
+Evidence: harness/evidence/clarify-keyboard-accessibility-scope.md. No application
+build/browser/manual checks run, no code/dependency/security/CI changes. F05 remains
+archived; F06 remains planning-only (0/22). No commit/push/merge/release or automatic
+archive of this clarification; ready for review and separately requested archive.
+
+F05 archived, 2026-10-17: owner requested completed-change archival and confirmed
+main-spec synchronisation. Created accessible-editor and bounded-worker-processing
+main specs with verbatim accepted purpose/requirements/scenarios and canonical
+structure; exact-content comparison and strict validation of all seven main specs
+passed before archival. Complete F05 change (15/15) moved to
+openspec/changes/archive/2026-10-17-f05-editor-and-csp-proof/; task-record links updated.
+No application changes or behavioural ownership migration, commit/push/merge/release.
+clarify-keyboard-accessibility-scope remains unapplied (0/3), not completed work.
+f06-json-formatter has all four planning artifacts ready, strictly validated, with
+0/22 implementation checklist items; apply has not started. Earlier no-archive
+instructions and F05 active-change references are historical.
+
 F05 final acceptance recorded, 2026-10-15: owner confirmed successful manual200%
 browser zoom and EN/ES/FR visual/copy checks in direct response to the final review
 questions. Together with earlier functional/keyboard feedback, approved speech-

@@ -1,0 +1,63 @@
+# Task — F06 JSON Formatter
+
+Completion2026-10-18: ed0e502 passes final required Ubuntu Java39074613656/browser
+39074613616,Chromium84/Firefox38/WebKit38,clean Maven140 frontend/199 Java (three
+skips)/17 packaged and local health. All stories/tasks accepted;22/22. Home Tools
+published, Learn/unfinished tools remain denied. Owner manual Chrome confirmation
+and unreported environment details retained. Owner selected main-spec sync/archive;
+new main spec verified against accepted delta. No merge/release or effort invention.
+
+Final continuation2026-10-18: owner confirmed Chrome manual checklist passed and
+requested closure/archive; version/OS/viewport unreported.4.2 done,21/22. Home Tools
+enabled with real EN/ES/FR journey, prior link/control fixtures reconciled preserving
+coverage. Clean Maven140 frontend/199 Java (three skips)/17 packaged,Chromium84/
+Firefox38/health pass. Required updated WebKit/4.3 pending before final closure;
+then assess spec sync and archive. No merge/release or fabricated visual evidence.
+
+Current acceptance,2026-10-18: owner accepted UH03 at tested05a688a. All three
+stories/all15 canonical tasks done;3.6 complete,20/22. Final actual keyboard/visual/
+200% zoom/localisation review4.2 and integrated publication/closure4.3 remain open.
+No manual observations inferred, Home still unpublished; no merge/release.
+
+Latest verification:05a688a passes Ubuntu Java39072823450/browser39072823403,
+Chromium81/81,Firefox35/35,WebKit35/35; clean Maven140 frontend/199 Java (three
+skips)/17 packaged and local health pass. Completed3.5/T04 and4.1;19/22. UH03
+acceptance3.6, final actual visual/200% zoom review4.2 and integrated publication/
+closure4.3 pending; no Home promotion, merge/release or invented manual acceptance.
+
+Current scope: owner accepted UH02 after f4e9b47 required CI. Close2.6 and start3.1
+with UH03 R01/AC01 exact explicit clipboard writes and R02/AC02 irreversible active
+editor/history clearing. Preserve current-result revision ownership, no clipboard
+reads/persistence, exact worker-asset privacy allowlist, CSP/budgets and Clear focus.
+Unit races and three-engine keyboard/clipboard/undo/all-action privacy checks planned;
+no UH03 or final manual acceptance inferred. See F06-UH03 evidence for results.
+
+Latest result: required Ubuntu CI at f4e9b47 passes Java39071829961 and browser
+39071830007 (Chromium78/78,Firefox32/32,WebKit32/32), including history clearing.
+Tasks2.3/2.5 and canonical T02–T04 complete;12/22. Await UH02 owner acceptance before
+task2.6 closure/Copy/Clear. No feature merge, release or final manual review claimed.
+
+Latest continuation: owner approved the labelled text-only output-region fix.
+Implemented textContent-only rendering/clearing, focusable/selectable bounded output
+and exact-text/SSR checks. Local Maven129 frontend/199 Java (three skips)/17 packaged,
+Chromium78/78,Firefox32/32 pass. Deliver to existing draft PR #6 and require updated
+Ubuntu WebKit history-restoration result before closing reopened2.3 or2.5. Earlier
+approval-pending notes below are historical; no acceptance/constraint is waived.
+
+Status / owner / date: UH01 accepted/done; UH02 history-restoration blocker (10/22; task2.3 reopened); Ziuld with AI assistance; 2026-10-17.
+
+User outcome and authorised scope: Apply the complete F06 change. Owner approved correcting publication/verification ordering and investigating a worker-lifecycle plan preserving strict zero-request acceptance, and requested read-only F05 PR review. No push/merge, dependency install, application changes or acceptance-policy exception has been performed in this reconciliation.
+
+Prerequisites and files read: F05 accepted/archived; current handoff, architecture/feasibility/hierarchy, F06 dossier/EARS/Gherkin/tasks, proposal/spec/design/checklist, existing worker manager/input/budget and editor/build code, F05 worker main spec. Preserve existing local archival, specification and accessibility-documentation changes.
+
+Acceptance criteria (link, do not drift): [F06 dossier](../../docs/planning/features/F06.md) and [accepted capability](../../openspec/specs/json-formatter/spec.md). Canonical tracking/behavioural ownership remains plan-owned.
+
+Implementation steps: The [completed checklist](../../openspec/changes/archive/2026-10-18-f06-json-formatter/tasks.md) records the accepted implementation. Home publication followed integrated acceptance; formatting-only UH01 privacy checks were distinct from the final all-action privacy gate.
+
+Security, privacy, accessibility and locale implications: No payload in traffic/URLs/logs/storage, unchanged restrictive CSP, hard worker deadlines/recovery and explicit keyboard/visual/locale/axe scope. Do not treat browser cache as proof of absent requests or introduce blob/data workers, persistent caching or exceptions without agreement.
+
+Verification commands and manual checks to run: Algorithm/unit/build/MVC/packaged and full Chromium/critical Firefox/WebKit checks per checklist; actual owner manual acceptance before closure. None executed for F06 implementation yet.
+
+Results / evidence links / actual effort: Maven passes92 frontend/199 Java cases with three explicit skips/17 packaged; real health smoke passes. Actual Ubuntu CI at cd3460d passes Chromium71/71,Firefox25/25,WebKit25/25 plus Java run39063899168/browser run39063899165. See [actual UH01 evidence](../evidence/F06-UH01-json-formatting.md). Commit pushed to draft PR #6; no final/manual acceptance or owner effort invented.
+
+Open issues and next action: 7c0114e passes Java39070308263 and CI clean Maven/Chromium78/Firefox32; WebKit29/32 now passes CRLF positions but fails final Back-navigation output clearing in three locales (old output restored). This is runtime behaviour, outside routine test-only fixes. Proposed labelled selectable text-only output region instead of textarea avoids form-control restoration; pause before changing runtime or expectations pending owner agreement. Task2.3/canonical implementation reopened; no Copy/Clear, Home promotion, F06 merge/release or manual acceptance. See actual UH02 evidence.

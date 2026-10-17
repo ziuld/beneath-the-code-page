@@ -53,7 +53,7 @@ for (const locale of ["en", "es", "fr"]) {
           const url = fixture ? `${process.env.BTC_COMPONENT_URL}/__shell-fixture` : `${baseURL}/`;
           const response = await page.goto(url);
           const controls = page.locator("a[href], select, button:not(:disabled)");
-          await expect(controls).toHaveCount(fixture ? 8 : 5);
+          await expect(controls).toHaveCount(fixture ? 8 : 7);
           for (let index = 0; index < await controls.count(); index++) {
             await page.keyboard.press("Tab");
             await visibleFocus(controls.nth(index));
