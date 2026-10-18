@@ -2552,7 +2552,7 @@
         "F06"
       ],
       "status": "blocked",
-      "blocker": "PR7 head0ca9f94: Ubuntu Java/clean Maven/Chromium94/Firefox48 pass; WebKit44/48. Three injected lazy-failure reload checks remain unavailable and retry after injected busy worker still times out. Await test-fixture cache-isolation guidance; no runtime or assertion relaxation applied.",
+      "blocker": "e5c8d7d Ubuntu Java/Chromium/Firefox pass; WebKit45/48. Three lazy-reload checks explicitly deferred as BTC-F07-WK-01 under ADR008. Catalogue publication and split active failure/retry tests are being verified; no final closure yet.",
       "actual_start": "2026-10-18",
       "actual_finish": null,
       "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
@@ -2567,7 +2567,7 @@
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "blocked",
-          "blocker": "Owner review accepted; required Ubuntu WebKit fails four injected-failure/recovery cases at0ca9f94 (44/48). Task1.4/publication/closure remain pending; proposed non-cacheable test failure fixtures require guidance.",
+          "blocker": "Owner review accepted; busy-worker retry passes WebKit at e5c8d7d. Three injected-module reload checks deferred under ADR008. Changed catalogue and separate important failure/retry checks await verification before closure.",
           "depends_on": [
             "F06"
           ],
@@ -2667,7 +2667,7 @@
               "forecast_hours": 1.25,
               "actual_hours": 0,
               "status": "blocked",
-              "blocker": "Actual Ubuntu CI at0ca9f94 passes clean Maven/Chromium94/Firefox48; WebKit44/48 fails lazy-failure reload readiness in EN/ES/FR and final retry after injected timeout. No fixture/runtime/assertion correction applied pending guidance.",
+              "blocker": "e5c8d7d Ubuntu build/Chromium/Firefox pass; WebKit45/48 with busy-worker retry resolved. Only three WebKit lazy-reload checks deferred under ADR008; new split active tests and catalogue journeys await changed-state verification.",
               "depends_on": [
                 "F07-UH01-T02"
               ],

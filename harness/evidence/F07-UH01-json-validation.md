@@ -20,7 +20,35 @@ not claimed. No automatic behavioural ownership migration or V2 work.
 
 ## Executed results
 
+### Bounded correction result and publication verification in progress
+
+Ubuntu Java39114716031 succeeds at `e5c8d7d`; browser39114716064 passes build,
+Chromium and Firefox. WebKit improves to45/48: busy-worker deadline/clean retry
+passes; only EN/ES/FR injected-module reload readiness still fails. Under the
+owner's explicit deferral approval and ADR008, split those three WebKit cases into
+named reload-only `test.fixme` tests with TODO BTC-F07-WK-01. Keep no-JS/lazy-failure
+feedback and worker-load failure/retry separate and active on all engines.
+No deferred assertion is counted as passed; pending-browser-tests.md records risk
+and reproduction. No further speculative cache investigation in this slice.
+
+Owner manual acceptance already recorded. Added the labelled Validator Tools link,
+localized catalogue description, exact accepted-destination MVC assertions and
+EN/ES/FR Home→Tools→Validator real-worker journeys. Minifier/V2/Learn remain absent.
+This publication state is being verified; it is not yet a passing final build or
+UH01 closure. Runtime algorithm/security/cache/CSP policy is unchanged.
+
+Changed publication candidate: clean Maven passes166 frontend tests,204 Java
+cases (three existing architecture skips) and17 packaged integration tests.
+Log: `/tmp/opencode/f07-publication-maven.log`. Planning integrity and whitespace
+checks pass. Packaged Chromium and health smoke running; final Ubuntu engine
+results for the split tests/publication are still required, not inferred.
+
 ### Authorised bounded fixture correction and testing policy
+
+Delivered `e5c8d7d8c70d6ab59c34442dc479ba66618a8f09` to existing draftPR7.
+Java39114716031/browser39114716064 confirmed running at that head; watchers active.
+Node syntax, planning integrity, all21 planning-rule tests, strict OpenSpec9 items
+and whitespace pass. No corrected browser pass claimed until actual results arrive.
 
 Owner approved non-cacheable injected failures, then explicitly asked to prioritise
 important MVP tests, use a75% rather than100% coverage target and leave troublesome

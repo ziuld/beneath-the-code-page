@@ -34,11 +34,13 @@ large-document fixture uses the editor's explicit copy event into in-memory
 DataTransfer rather than its virtualised DOM; no real clipboard read or application
 change. Firefox also passes48/48. The owner reports all requested keyboard,
 Clear/Back, narrow-layout, actual200%-zoom and EN/ES/FR checks pass; browser/version,
-OS and viewport are unreported. Actual Ubuntu CI at0ca9f94 passes Java/clean build,
-Chromium94/94 and Firefox48/48; WebKit44/48 fails four injected-failure/recovery
-checks (lazy-script reload in three locales and retry after a busy-worker timeout).
-Test-cache contamination is suspected, not proved; no runtime or test correction
-applied. Catalogue promotion and closure remain pending. Review preview is on8082
+OS and viewport are unreported. Ubuntu CI at e5c8d7d passes Java/build, Chromium
+and Firefox; WebKit45/48. The test-only no-store correction resolves busy-worker
+retry. Three WebKit injected-module reload checks are explicitly deferred under
+ADR008 with TODO BTC-F07-WK-01; normal failure feedback and worker retry remain
+active. See the [pending register](../quality/pending-browser-tests.md) for risk.
+The accepted Validator catalogue link and split tests are being verified; closure
+is not yet claimed. Review preview is on8082
 with the reviewed local JAR; it is not a deployment or an acceptance observation.
 Actual results belong in `harness/evidence/F07-UH01-json-validation.md`; this
 document does not claim product acceptance. Verify keyboard Escape/Tab, Clear,
@@ -47,8 +49,8 @@ narrow layout, actual 200% browser zoom and EN/ES/FR before owner acceptance.
 ## Owner review when the verified build is ready
 
 Run the reviewed packaged JAR on loopback, then open `/tools/json-validator?lang=en`
-(repeat with `es` and `fr`). The route is directly available for review but remains
-absent from the Tools index until accepted. Do not paste real secrets.
+(repeat with `es` and `fr`). The route and accepted Tools link are present in the
+publication candidate; verify against the actual built JAR. Do not paste real secrets.
 
 1. Validate `true`, an array and `{"id":9007199254740993,"id":-0}`. Check the
    translated valid verdict and unchanged input; no output document or Copy action.

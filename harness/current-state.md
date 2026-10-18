@@ -1,5 +1,25 @@
 # Current handoff
 
+F07 publication verification in progress: e5c8d7d Ubuntu Java succeeds; browser
+build/Chromium/Firefox pass, WebKit45/48. Busy-worker retry fixed by test no-store;
+only three injected-module reload cases deferred under owner-approved ADR008.
+Split them into WebKit-only fixme/TODO BTC-F07-WK-01; no-JS/failure feedback and
+worker-load retry remain active in all engines. Pending register documents risk.
+Added accepted Validator Tools link/localized description and three-locale journey
+checks; Minifier/V2/Learn unadvertised. Clean build for changed publication state
+running; no final verification or UH01 closure claimed yet. Checklist4/14, no
+Minifier/merge/release. Earlier running-CI/no-deferral notes are historical.
+
+F07 bounded fixture correction delivered,2026-10-18: e5c8d7d pushed to draftPR7;
+Java39114716031/browser39114716064 confirmed running at that exact head,watchers
+active. Only two test failure responses made non-cacheable; production code/CSP/
+cache/deadlines/assertions unchanged, no test skipped yet. ADR008 and pending-browser
+register capture owner's explicit75%-target/bounded-WebKit-debt policy, not measured
+coverage or permission to hide important failures. Checklist4/14; awaiting actual
+correctedCI, no catalogue promotion/closure/Minifier/merge/release. Local syntax,
+planning/rule21/strict OpenSpec9/whitespace pass; no redundant local Maven rerun for
+test-only edits. Earlier0ca9f94 WebKit44/48 is historical, not a new-head result.
+
 F07 bounded test follow-up authorised,2026-10-18: owner approves the targeted fixture
 correction and permits troublesome WebKit recovery checks as explicit TODO/pending
 debt rather than repeated delays;75% code-coverage target, not100%, no measured

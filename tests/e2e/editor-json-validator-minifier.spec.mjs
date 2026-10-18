@@ -7,6 +7,7 @@ const assetPath = (file) => "/" + file.replace(/^static\//, "");
 const workerPath = assetPath(manifest["__json-formatter-worker"].file);
 const lazyPath = assetPath(manifest["tools/json/formatter-workspace.ts"].file);
 const assets = new Set(Object.values(manifest).flatMap((entry) => [entry.file, ...(entry.css || [])]).map(assetPath));
+const failAsset = (route) => route.fulfill({ status: 503, contentType: "text/javascript", headers: { "cache-control": "no-store" }, body: "" });
 const messages = {
   en: { input: "Content editor", run: "Validate JSON", valid: "Valid JSON.", ready: "Ready to validate locally. No current verdict.", syntax: "Invalid JSON at line {0}, column {1}.", depth: "JSON exceeds the nesting limit of 128. Your input was kept.", limit: "Input exceeds the 1 MiB UTF-8 limit. Existing content was kept.", cleared: "Workspace cleared.", unavailable: "Processing is not available until JavaScript and the editor have loaded." },
   es: { input: "Editor de contenido", run: "Validar JSON", valid: "JSON válido.", ready: "Listo para validar localmente. No hay un resultado de validación actual.", syntax: "JSON no válido en la línea {0}, columna {1}.", depth: "El JSON supera el límite de anidamiento de 128. Se conservó la entrada.", limit: "La entrada supera el límite de 1 MiB en UTF-8. Se conservó el contenido anterior.", cleared: "Espacio de trabajo vaciado.", unavailable: "El procesamiento no está disponible hasta que se carguen JavaScript y el editor." },
@@ -26,6 +27,23 @@ async function paste(input, source) {
 }
 
 for (const [locale, copy] of Object.entries(messages)) {
+  test(`JSON validator ${locale}: published Home to Tools to Validator journey`, async ({ browser, baseURL }) => {
+    const page = await browser.newPage({ locale, baseURL });
+    try {
+      await page.goto("/");
+      await page.locator('main a[href="/tools"]').click();
+      await expect(page.locator('main a[href="/tools/json-formatter"]')).toHaveCount(1);
+      await expect(page.locator('a[href="/tools/json-minifier"], a[href="/tools/base64"], a[href="/learn"]')).toHaveCount(0);
+      await page.locator('main a[href="/tools/json-validator"]').click();
+      await expect(page).toHaveURL(/\/tools\/json-validator$/);
+      await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "true");
+      await page.getByRole("textbox", { name: copy.input, exact: true }).fill("null");
+      await page.getByRole("button", { name: copy.run, exact: true }).click();
+      await expect(page.locator("[data-format-status]")).toHaveText(copy.valid);
+    } finally { await page.close(); }
+  });
+
   test(`JSON validator ${locale}: F07-UH01-AC01 real worker, verdict ownership, privacy and CSP`, async ({ page, context, baseURL }) => {
     const requests = [];
     const workerResponses = [];
@@ -165,7 +183,7 @@ for (const [locale, copy] of Object.entries(messages)) {
     await expect(page.locator("[data-format-status]")).not.toHaveText(copy.valid);
   });
 
-  test(`JSON validator ${locale}: no-JS, lazy and worker load failures`, async ({ browser, baseURL }) => {
+  test(`JSON validator ${locale}: no-JS and lazy load failure feedback`, async ({ browser, baseURL }) => {
     const disabled = await browser.newContext({ javaScriptEnabled: false });
     try {
       const page = await disabled.newPage();
@@ -177,30 +195,42 @@ for (const [locale, copy] of Object.entries(messages)) {
     const context = await browser.newContext();
     try {
       const page = await context.newPage();
-      // An injected failure must not poison WebKit's immutable asset cache.
-      await page.route(`**${lazyPath}`, (route) => route.fulfill({
-        status: 503,
-        contentType: "text/javascript",
-        headers: { "cache-control": "no-store" },
-        body: "",
-      }));
+      await page.route(`**${lazyPath}`, failAsset);
       await page.goto(`${baseURL}/tools/json-validator?lang=${locale}`);
       await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "false");
       await expect(page.locator("[data-format-run]")).toBeDisabled();
       await expect(page.locator("[data-format-status]")).toHaveText(copy.unavailable);
+    } finally { await context.close(); }
+  });
+
+  test(`JSON validator ${locale}: lazy load recovery after reload`, async ({ browser, browserName, baseURL }) => {
+    // TODO(BTC-F07-WK-01): re-enable WebKit reload recovery; see pending-browser-tests.md.
+    test.fixme(browserName === "webkit", "TODO BTC-F07-WK-01: injected module failure persists after reload; owner-authorised test debt, ADR 008.");
+    const context = await browser.newContext();
+    try {
+      const page = await context.newPage();
+      await page.route(`**${lazyPath}`, failAsset);
+      await page.goto(`${baseURL}/tools/json-validator?lang=${locale}`);
+      await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "false");
+      await expect(page.locator("[data-format-status]")).toHaveText(copy.unavailable);
       await page.unroute(`**${lazyPath}`);
       await page.reload();
       await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "true");
-      const input = page.getByRole("textbox", { name: copy.input, exact: true });
-      await input.fill("true");
-      await page.route(`**${workerPath}`, (route) => route.abort());
-      await page.locator("[data-format-run]").click();
-      await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-state", "error");
-      expect(await input.textContent()).toBe("true");
-      await page.unroute(`**${workerPath}`);
-      await page.locator("[data-format-run]").click();
-      await expect(page.locator("[data-format-status]")).toHaveText(copy.valid);
     } finally { await context.close(); }
+  });
+
+  test(`JSON validator ${locale}: worker load failure preserves input and permits retry`, async ({ page }) => {
+    await page.goto(`/tools/json-validator?lang=${locale}`);
+    await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "true");
+    const input = page.getByRole("textbox", { name: copy.input, exact: true });
+    await input.fill("true");
+    await page.route(`**${workerPath}`, failAsset);
+    await page.locator("[data-format-run]").click();
+    await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-state", "error");
+    expect(await input.textContent()).toBe("true");
+    await page.unroute(`**${workerPath}`);
+    await page.locator("[data-format-run]").click();
+    await expect(page.locator("[data-format-status]")).toHaveText(copy.valid);
   });
 }
 

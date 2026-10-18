@@ -11,8 +11,11 @@
 <header th:replace="~{fragments/shell :: header('/tools')}"></header>
 <main id="main" class="page" tabindex="-1">
     <h1 th:text="#{tools.title}"></h1>
-    <p th:text="#{formatter.description}"></p>
-    <a href="/tools/json-formatter" th:text="#{formatter.title}"></a>
+    <p th:text="#{tools.description}"></p>
+    <ul>
+        <li><a href="/tools/json-formatter" th:text="#{formatter.title}"></a></li>
+        <li><a href="/tools/json-validator" th:text="#{validator.title}"></a></li>
+    </ul>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>
 </body></html>
