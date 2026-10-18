@@ -4,18 +4,25 @@ import "./formatter.css";
 import { sourcePosition } from "./algorithms/position";
 
 export function enhanceFormatter(workspace: HTMLElement) {
-  const editor = enhanceEditorWorkspace(workspace, () => session.invalidate());
+  const validation = workspace.hasAttribute("data-json-validator");
+  const minification = workspace.hasAttribute("data-json-minifier");
+  const feedback = workspace.querySelector<HTMLElement>(
+    "[data-editor-feedback]",
+  );
+  const editor = enhanceEditorWorkspace(workspace, () => {
+    if (feedback) feedback.textContent = "";
+    session.invalidate();
+  });
   const run = workspace.querySelector<HTMLButtonElement>("[data-format-run]")!;
   const cancel = workspace.querySelector<HTMLButtonElement>(
     "[data-format-cancel]",
   )!;
   const indentation = workspace.querySelector<HTMLSelectElement>(
     "[data-format-indent]",
-  )!;
-  const output = workspace.querySelector<HTMLElement>("[data-format-output]")!;
+  );
+  const output = workspace.querySelector<HTMLElement>("[data-format-output]");
   const status = workspace.querySelector<HTMLElement>("[data-format-status]")!;
-  const copy =
-    workspace.querySelector<HTMLButtonElement>("[data-format-copy]")!;
+  const copy = workspace.querySelector<HTMLButtonElement>("[data-format-copy]");
   const clear = workspace.querySelector<HTMLButtonElement>(
     "[data-format-clear]",
   )!;
@@ -24,7 +31,7 @@ export function enhanceFormatter(workspace: HTMLElement) {
       .textContent!;
   const outputLabel = workspace.querySelector<HTMLElement>(
     "[data-format-output-label]",
-  )!;
+  );
   const session = createFormatterSession(
     () =>
       new Worker(new URL("./formatter.worker.ts", import.meta.url), {
@@ -37,12 +44,13 @@ export function enhanceFormatter(workspace: HTMLElement) {
         status.textContent = message(state);
       },
       output: (text) => {
-        output.textContent = text;
+        if (output) output.textContent = text;
       },
       current: (current) => {
-        copy.disabled = !current;
+        if (copy) copy.disabled = !current;
         workspace.dataset.formatCurrent = String(current);
-        outputLabel.textContent = message(current ? "current" : "output");
+        if (outputLabel)
+          outputLabel.textContent = message(current ? "current" : "output");
       },
       diagnostic: (diagnostic, jobInput) => {
         const position = sourcePosition(jobInput, diagnostic.offset ?? 0);
@@ -53,11 +61,20 @@ export function enhanceFormatter(workspace: HTMLElement) {
     },
   );
   run.addEventListener("click", () => {
-    session.start(editor.content(), indentation.value === "4" ? 4 : 2);
+    session.start(
+      editor.content(),
+      validation
+        ? "validate"
+        : minification
+          ? "minify"
+          : indentation?.value === "4"
+            ? 4
+            : 2,
+    );
   });
   cancel.addEventListener("click", () => session.cancel());
-  indentation.addEventListener("change", () => session.invalidate());
-  copy.addEventListener("click", () => {
+  indentation?.addEventListener("change", () => session.invalidate());
+  copy?.addEventListener("click", () => {
     void session.copy(
       navigator.clipboard?.writeText
         ? (text) => navigator.clipboard.writeText(text)
@@ -67,18 +84,16 @@ export function enhanceFormatter(workspace: HTMLElement) {
   clear.addEventListener("click", () => {
     session.clear();
     editor.clear();
+    if (feedback) feedback.textContent = "";
     clear.focus();
   });
   const dispose = () => {
     session.dispose();
     editor.dispose();
-    output.textContent = "";
-    run.disabled =
-      cancel.disabled =
-      indentation.disabled =
-      copy.disabled =
-      clear.disabled =
-        true;
+    if (feedback) feedback.textContent = "";
+    if (output) output.textContent = "";
+    for (const control of [run, cancel, indentation, copy, clear])
+      if (control) control.disabled = true;
     workspace.dataset.formatReady = "false";
   };
   window.addEventListener("pagehide", dispose, { once: true });
@@ -89,7 +104,8 @@ export function enhanceFormatter(workspace: HTMLElement) {
       status.textContent = message("unavailable");
     }
   });
-  run.disabled = indentation.disabled = clear.disabled = false;
+  run.disabled = clear.disabled = false;
+  if (indentation) indentation.disabled = false;
   status.textContent = message("ready");
   workspace.dataset.formatCurrent = "false";
   workspace.dataset.formatReady = "true";

@@ -28,7 +28,9 @@ for (const [locale, copy] of Object.entries(messages)) {
       await page.locator('main a[href="/tools"]').click();
       await expect(page).toHaveURL(/\/tools$/);
       await expect(page.locator('main a[href="/tools/json-formatter"]')).toHaveCount(1);
-      await expect(page.locator('a[href="/tools/json-validator"], a[href="/tools/base64"]')).toHaveCount(0);
+      await expect(page.locator('main a[href="/tools/json-validator"]')).toHaveCount(1);
+      await expect(page.locator('main a[href="/tools/json-minifier"]')).toHaveCount(1);
+      await expect(page.locator('a[href="/tools/base64"]')).toHaveCount(0);
       await page.locator('main a[href="/tools/json-formatter"]').click();
       await expect(page).toHaveURL(/\/tools\/json-formatter$/);
       await expect(page.locator("html")).toHaveAttribute("lang", locale);

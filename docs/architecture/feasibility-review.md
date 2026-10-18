@@ -2,6 +2,13 @@
 
 Reviewed 2026-10-09. Verdict: **feasible; proceed to manual bootstrap and bounded technical proofs.** This is a documentation review supported by official references, not evidence that an application has been compiled or tested.
 
+Scope update, 2026-10-18: [ADR 007](adr-007-focused-mvp.md) explicitly supersedes
+the historical eight-tool/full-course release gate and container prerequisite below.
+F00–F06 are now accepted with implementation evidence in the current handoff. V1
+retains F06/F07, the complete website journey and one reviewed EN/ES/FR learning
+unit; other tools, additional units and Docker/Compose are V2. The original review
+below remains historical, not a new bootstrap or course-completion instruction.
+
 ## Findings and trade-offs
 
 | Area | Assessment | Required action / gate |

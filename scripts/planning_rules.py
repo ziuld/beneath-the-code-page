@@ -21,6 +21,12 @@ def validate_hierarchy(data, root):
     if epic.get('id')!='EPIC-MVP' or data.get('hierarchy')!=['Epic','Feature','User Story','Task']:
         error('Missing required Epic > Feature > User Story > Task hierarchy')
     register(epic)
+    releases={}
+    for feature in data['features']:
+        release=feature.get('release','V1')
+        if release not in {'V1','V2'}: error(f'{feature["id"]}: invalid release')
+        for node in [feature]+feature.get('stories',[])+[t for s in feature.get('stories',[]) for t in s['tasks']]:
+            releases[node['id']]=release
     for f in data['features']:
         register(f)
         if f.get('parent_id')!=epic['id']: error(f'{f["id"]}: invalid epic parent')
@@ -73,7 +79,11 @@ def validate_hierarchy(data, root):
     for n in nodes.values():
         for dep in n.get('depends_on',[]):
             if dep not in nodes:error(f'{n["id"]}: unknown dependency {dep}')
+            elif releases.get(n['id'])=='V1' and releases.get(dep)=='V2':error(f'{n["id"]}: V1 depends on frozen V2 work {dep}')
             elif n.get('status') in {'ready','in_progress','in_review','done'} and nodes[dep]['status']!='done':error(f'{n["id"]}: dependency {dep} is not done')
+    for milestone in data.get('milestones',[]):
+        if any(releases.get(dep)=='V2' for dep in milestone['requires']):
+            error(f'{milestone["id"]}: V1 milestone includes frozen V2 work')
     visiting=set();visited=set()
     def visit(key):
         if key in visiting:
@@ -85,5 +95,5 @@ def validate_hierarchy(data, root):
         visiting.remove(key);visited.add(key)
     for key in nodes:visit(key)
     if sum(t['status']=='in_progress' for t in tasks)>1:error('More than one task is in progress')
-    if epic['status']=='done' and (not epic['evidence'] or any(f['status']!='done' for f in data['features'])):error('Epic cannot close before feature acceptance and evidence')
+    if epic['status']=='done' and (not epic['evidence'] or any(f['status']!='done' for f in data['features'] if f.get('release','V1')=='V1')):error('Epic cannot close before V1 feature acceptance and evidence')
     return errors

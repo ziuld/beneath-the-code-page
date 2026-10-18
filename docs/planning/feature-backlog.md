@@ -2,6 +2,8 @@
 
 This is the feature-level scope summary. Canonical descriptions, EARS requirements, Gherkin scenarios, tasks, statuses and estimates now live in `plan.json`; start with the [detailed hierarchy](hierarchy.md). All UI features inherit EN/ES/FR, responsive layout, keyboard access, safe errors, approved design-system use and privacy checks. The detailed stories refine these commitments rather than replacing them.
 
+Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md): F00–F06 are accepted; remaining V1 is F07/F12/F13/F14/F16. **F08–F11 and F15 are frozen for V2**, retained below only for traceability. No implementation or preparatory framework work for deferred scope.
+
 All future features and final F16 acceptance use the explicit keyboard/visual criteria in the [quality plan](../quality/quality-plan.md): labels/semantics, focus, contrast, zoom/reflow, reduced motion and existing axe/browser checks remain required. Screen-reader compatibility and manual speech testing are excluded by owner decision, not deferred to release; neither full WCAG AA conformance nor verified non-visual usability is claimed.
 
 | ID | Outcome | Acceptance evidence |
@@ -14,22 +16,22 @@ All future features and final F16 acceptance use the explicit keyboard/visual cr
 | F05 | Editor and worker proof | Shared editor labels/focus; CSP nonce; worker response policy; no unexpected network; scrolling/selection/search/resize/cancellation across three browser engines |
 | F06 | JSON Formatter | Strict complete JSON; whitespace-only edits preserve numbers/escapes/order/duplicates; indentation; clear/copy; no stale result; input/depth/output/deadline limits; full vertical tests |
 | F07 | JSON Validator and Minifier | Distinct pages/actions; validation has stable error keys/locations; minification preserves tokens; shared engine tests; valid primitive roots; invalid input and resource limits |
-| F08 | Base64 Encoder/Decoder | Explicit UTF-8 text mode; encode/decode round trip including Unicode; invalid alphabet/padding errors; bounded output; no automatic clipboard reads |
-| F09 | UUID Generator | UUID v4 via browser cryptographic API; valid version/variant; bounded batch (initial 1–100); no Math.random; copy only by explicit action |
-| F10 | JWT Decoder | Decode supported three-part compact JWS locally; strict bounded base64url/UTF-8/JSON handling; signature-not-verified notice; five-part JWE reported unsupported; do not fetch keys or label expired tokens as verified |
-| F11 | JSON→YAML and YAML→JSON | Separate direction tests; single YAML document; bounded aliases/nesting; no custom tags; string mapping keys; duplicate/non-finite/unsafe-number policy; reject unsupported/lossy cases; malicious fixtures stay isolated |
-| F12 | Integrated tools/local runtime | All eight tools navigable in all languages; non-root container with available health probe; packaged privacy/a11y/regression; dependency/secret/SAST/container evidence; contributor/run instructions |
-| F13 | Learn pages and navigation | Course/lesson catalogue, breadcrumbs/previous/next; classpath content adapter; raw HTML disabled/sanitised; 404; no progress persistence or CMS; accessible semantic content |
-| F14 | Java Fundamentals outline and pilot | Owner accepts proposed course outline and completion rubric; one lesson with mental model, worked example, exercise/answer in EN/ES/FR; code examples verified; review establishes content pace |
-| F15 | Complete Java Fundamentals | All lessons in accepted outline written and verified; exercises/answers; technical and language review in EN/ES/FR; consistent terminology; no placeholder lessons; references/rights recorded |
-| F16 | Full Phase 1 release candidate | Every prior feature accepted; complete local regression, accessibility and privacy checks; known defects triaged; dependency evidence; local release notes/runbook; no hosting implied |
+| F08 | V2 frozen — Base64 Encoder/Decoder | Historical requirements retained; no V1 gate |
+| F09 | V2 frozen — UUID Generator | Historical requirements retained; no V1 gate |
+| F10 | V2 frozen — JWT Decoder | Historical requirements retained; no V1 gate |
+| F11 | V2 frozen — JSON/YAML converters | Historical requirements retained; no V1 gate |
+| F12 | MVP JSON navigation/local runtime | Published Formatter/Validator/Minifier links only; unknown tool 404; reuse local JAR startup/health/shutdown and safe configuration; applicable application security evidence; no Docker prerequisite |
+| F13 | Learn pages and navigation | Learn landing, course overview and unit templates with breadcrumbs/return navigation; safe localised content resources; unknown/unpublished 404; synthetic single/multi-unit fixtures; production navigation waits for F14; no CMS/progress storage |
+| F14 | First complete learning unit | Short accepted unit brief; source→bytecode→JVM explanation, worked example, exercise and explanatory answer in EN/ES/FR; verified code, technical/language review and references/rights; no full-course syllabus gate |
+| F15 | V2 frozen — Additional Java Fundamentals units | Original seven remaining units retained as provisional backlog, not an approved complete syllabus or V1 gate |
+| F16 | Polished focused MVP candidate | Every V1 feature accepted; coherent Home/Tools/Learn/course/unit/answer/error journeys; responsive shared styling, keyboard/zoom/locales/no-JS/privacy/security checks; actual evidence and local JAR handoff |
 
-## Suggested course scope for estimation — not an approved syllabus
+## Frozen V2 course ideas — not an approved syllabus
 
 Eight lessons: source→bytecode→JVM; values/types and numeric limits; control flow/tracing; methods and stack frames; objects/references/heap; encapsulation/interfaces; exceptions and resource lifetimes; collections/generics/equality. Threading, framework programming and deep GC tuning are follow-on course material unless the outline decision changes scope.
 
-F14 must validate this outline against beginner prerequisites and brand goals before bulk content production. F15 assumes seven remaining lessons after the pilot, including all three languages. If the owner chooses a different course size, update F15's forecast and preserve its baseline.
+V1 publishes one complete source-to-JVM unit. The remaining seven ideas belong to F15/V2; no bulk-content production or full syllabus approval is required for V1. Revisit course size and forecasts when V2 is explicitly resumed.
 
 ## Original BTC backlog traceability
 
-BTC-001→F01; BTC-002→F01; BTC-003→F02; BTC-004→F03; BTC-005→F04; BTC-006→F04; BTC-007→F05; BTC-008→F01/F12; BTC-009/010/011→F06; BTC-012→F07; BTC-013→F08/F09/F10; BTC-014→F11; BTC-015→F13/F14. F15/F16 explicitly plan full course completion and integrated release rather than mistaking the first lesson for the full MVP.
+BTC-001→F01; BTC-002→F01; BTC-003→F02; BTC-004→F03; BTC-005→F04; BTC-006→F04; BTC-007→F05; BTC-008→F01/F12; BTC-009/010/011→F06; BTC-012→F07; BTC-013→F08/F09/F10 (V2); BTC-014→F11 (V2); BTC-015→F13/F14. F16 accepts the explicitly reduced MVP; a complete course remains outside V1.

@@ -48,14 +48,14 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F11-UH02-R02 | [F11-UH02](features/F11.md#f11-uh02) | F11-UH02-AC02 | F11-UH02-T05 | Aliases, custom tags, multiple documents, duplicate/non-string keys, non-finite and unsafe numbers |
 | F12-UH01-R01 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC01 | F12-UH01-T03 | Route traversal in EN/ES/FR and keyboard/accessible-name checks |
 | F12-UH01-R02 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC02 | F12-UH01-T04 | MockMvc status/error-body tests and captured-log sentinel checks |
-| F12-UH02-R01 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC01 | F12-UH02-T03 | Inspect UID/mounts/capabilities/limits; execute actual health command and graceful shutdown |
-| F12-UH02-R02 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC02 | F12-UH02-T04 | Container/dependency/secret/SAST/SBOM evidence; documented expiring exceptions only |
-| F13-UH01-R01 | [F13-UH01](features/F13.md#f13-uh01) | F13-UH01-AC01 | F13-UH01-T03 | SSR/browser route tests, first/last boundaries and keyboard navigation |
+| F12-UH02-R01 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC01 | F12-UH02-T03 | Execute packaged-JAR startup, loopback/management isolation, actual health check and shutdown |
+| F12-UH02-R02 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC02 | F12-UH02-T04 | Review applicable dependency/secret/static-analysis evidence and unresolved findings; no container gate |
+| F13-UH01-R01 | [F13-UH01](features/F13.md#f13-uh01) | F13-UH01-AC01 | F13-UH01-T03 | SSR/browser single-unit journey and keyboard checks; synthetic two-unit fixtures verify future previous/next boundaries |
 | F13-UH01-R02 | [F13-UH01](features/F13.md#f13-uh01) | F13-UH01-AC02 | F13-UH01-T04 | Unknown/unpublished slugs in EN/ES/FR; no persistence dependency |
-| F13-UH02-R01 | [F13-UH02](features/F13.md#f13-uh02) | F13-UH02-AC01 | F13-UH02-T03 | Content completeness and rendering checks for EN/ES/FR; immutable resource loading |
+| F13-UH02-R01 | [F13-UH02](features/F13.md#f13-uh02) | F13-UH02-AC01 | F13-UH02-T03 | Verify EN/ES/FR fixture completeness and immutable resource rendering; real unit review belongs to F14 |
 | F13-UH02-R02 | [F13-UH02](features/F13.md#f13-uh02) | F13-UH02-AC02 | F13-UH02-T04 | Raw HTML disabled plus sanitisation tests; CSP/browser assertion |
-| F14-UH01-R01 | [F14-UH01](features/F14.md#f14-uh01) | F14-UH01-AC01 | F14-UH01-T03 | Owner content review recorded; compare overview to accepted outline |
-| F14-UH01-R02 | [F14-UH01](features/F14.md#f14-uh01) | F14-UH01-AC02 | F14-UH01-T04 | Inspect decision/evidence record and keep provisional lesson records unready |
+| F14-UH01-R01 | [F14-UH01](features/F14.md#f14-uh01) | F14-UH01-AC01 | F14-UH01-T03 | Record owner review of the unit brief and compare the course overview against it |
+| F14-UH01-R02 | [F14-UH01](features/F14.md#f14-uh01) | F14-UH01-AC02 | F14-UH01-T04 | Inspect published navigation, course claims and the V2 boundary without requiring a full syllabus |
 | F14-UH02-R01 | [F14-UH02](features/F14.md#f14-uh02) | F14-UH02-AC01 | F14-UH02-T04 | Compile/run the example with the baseline JDK and review diagram/content consistency |
 | F14-UH02-R02 | [F14-UH02](features/F14.md#f14-uh02) | F14-UH02-AC02 | F14-UH02-T05 | Manual educational review in EN/ES/FR and accessible answer presentation |
 | F15-UH01-R01 | [F15-UH01](features/F15.md#f15-uh01) | F15-UH01-AC01 | F15-UH01-T04 | Compile/run all lesson examples; technical review: Numeric boundaries, floating-point caveats and reference-versus-value terminology |
@@ -72,7 +72,7 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F15-UH06-R02 | [F15-UH06](features/F15.md#f15-uh06) | F15-UH06-AC02 | F15-UH06-T05 | Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate |
 | F15-UH07-R01 | [F15-UH07](features/F15.md#f15-uh07) | F15-UH07-AC01 | F15-UH07-T04 | Compile/run all lesson examples; technical review: Type parameters, list/set/map basics and equals/hashCode contract |
 | F15-UH07-R02 | [F15-UH07](features/F15.md#f15-uh07) | F15-UH07-AC02 | F15-UH07-T05 | Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate |
-| F16-UH01-R01 | [F16-UH01](features/F16.md#f16-uh01) | F16-UH01-AC01 | F16-UH01-T04 | Trace all requirement/scenario/task IDs to actual test/review evidence |
+| F16-UH01-R01 | [F16-UH01](features/F16.md#f16-uh01) | F16-UH01-AC01 | F16-UH01-T04 | Trace V1 criteria to evidence and review complete EN/ES/FR journeys, responsive styling, keyboard/zoom, errors and no-JS states |
 | F16-UH01-R02 | [F16-UH01](features/F16.md#f16-uh01) | F16-UH01-AC02 | F16-UH01-T05 | Controlled status-validator fixture plus real defect triage; no waived scope by calendar date |
-| F16-UH02-R01 | [F16-UH02](features/F16.md#f16-uh02) | F16-UH02-AC01 | F16-UH02-T03 | Fresh checkout/container run and recorded version identity |
+| F16-UH02-R01 | [F16-UH02](features/F16.md#f16-uh02) | F16-UH02-AC01 | F16-UH02-T03 | Clean-checkout packaged-JAR run and recorded version identity; no Docker prerequisite |
 | F16-UH02-R02 | [F16-UH02](features/F16.md#f16-uh02) | F16-UH02-AC02 | F16-UH02-T04 | Review runbook, known limitations and publication authorisation boundaries |

@@ -1,12 +1,12 @@
 @EPIC-MVP @F16 @F16-UH01
-Feature: F16-UH01 — Verify the full Phase 1 acceptance set
-  As a project owner, I want to review the integrated tools and complete course against their criteria, so that I can distinguish a finished MVP from partial demonstrations.
+Feature: F16-UH01 — Polish and accept the complete MVP website journey
+  As a project owner, I want to use the JSON tools and first learning unit through a coherent polished website, so that the MVP demonstrates every retained page type without unfinished navigation.
 
   @F16-UH01-AC01 @F16-UH01-R01
   Scenario: Review complete scope
-    Given all feature stories report completion with evidence
+    Given all prerequisite V1 feature stories report completion with evidence and V2 features remain frozen
     When the owner evaluates M4
-    Then the review covers all eight tools, the complete accepted course and shared quality gates
+    Then the review covers F06/F07, one complete learning unit, every retained page type and shared quality gates without requiring V2 scope
 
   @F16-UH01-AC02 @F16-UH01-R02
   Scenario: Reject incomplete MVP acceptance

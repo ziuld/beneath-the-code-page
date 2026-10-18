@@ -2,6 +2,12 @@
 
 Public remote: https://github.com/ziuld/beneath-the-code-page. No push or settings changes are part of the planning delivery.
 
+V1 scope is governed by [ADR 007](../architecture/adr-007-focused-mvp.md): F06/F07
+JSON tools, complete retained website journeys and one learning unit. Use the
+existing packaged JAR and CI checks; Docker/Compose and container-specific work
+are frozen for V2. Historical bootstrap follow-ups below are not new frameworks
+or evidence that external repository settings have been configured.
+
 ## Repository conventions to establish during F01
 
 Main branch, short feature branches such as `feature/F06-json-formatter`, PRs, squash merges, Conventional Commit-style titles, required checks, resolved discussions, real maintainer CODEOWNERS and dependency-update PRs. A solo owner must be able to merge; do not require impossible self-approval. Public visibility does not choose a licence; discuss code and brand/course licensing separately.
@@ -18,13 +24,13 @@ F01 closure disposition (2026-10-09): contributor guidance, CODEOWNERS and PR te
 | Frontend | npm lockfile, types, lint, unit, translations, build | F02–F03 |
 | Browser | Packaged JAR, CSP/privacy/a11y; engine smoke | F05–F06 |
 | Supply chain | Dependencies, secrets, SAST; report failures | F01 onward |
-| Container | Build, non-root/runtime probe, image scan, SBOM | F12 |
+| Container | Build, non-root/runtime probe, image scan, image SBOM | V2 — deferred, not an MVP gate |
 
 Pin action SHAs; default token read-only; no secrets/elevated token for untrusted PR execution; avoid privileged pull_request_target checkout. Use Gitleaks, Trivy and CodeQL (public repository eligibility/configuration verified during setup) or a documented SAST substitute. Choose exact tool/ruleset versions at installation. Critical/high exploitable findings block release; triage disputed/non-applicable findings with owner and expiry rather than silent suppression.
 
 The initial Java workflow is integrated in `.github/workflows/java.yml`: real Maven verification, executable-JAR smoke and planning checks on PRs/main pushes, SHA-pinned actions, read-only token and no persisted checkout credentials. PR #1 proved actual pass/failure/restored-pass reporting; PR #2 integrated the wrapper checksum correction; both post-merge main runs passed. See [final acceptance](../../harness/evidence/F01-closure.md), [CI evidence](../../harness/evidence/F01-java-ci.md) and [contributor guidance](../../CONTRIBUTING.md). GitHub's non-failing Node.js 20 action-runtime warning and maintenance follow-up are recorded separately. No branch-protection or required-check setting has been changed. Dependency/secret/SAST scans and wider release jobs remain planned, not passing Java-baseline results.
 
-## Local container acceptance
+## V2 local container acceptance — deferred
 
 Multi-stage pinned build/runtime images, Java 25, no Node runtime in final image, non-root, read-only root, tmpfs, no-new-privileges, dropped capabilities, CPU/memory limits, graceful shutdown. Compose app port binds 127.0.0.1 only. No DB/Redis/Docker socket/credential mounts. Separate unpublished health management endpoint; select a probe actually available in the image. Validate failing and recovering readiness, not just HTTP success once.
 
@@ -34,4 +40,7 @@ Structured safe stdout logs, request IDs and normalised routes; bounded Micromet
 
 ## Eventual local release procedure
 
-Tag only reviewed commits, create release notes and known limitations, archive verification/SBOM evidence and test the clean container run instructions. Publishing a public release or deploying remains a separate authorised action.
+For V1, reproduce the reviewed commit using the existing clean Maven build and
+packaged-JAR runbook; record health/smoke results, security evidence and known
+limitations. Do not require a container or new release automation. Any tagging,
+public release or deployment remains a separately authorised action.

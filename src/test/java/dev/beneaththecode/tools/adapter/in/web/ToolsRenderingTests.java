@@ -42,7 +42,7 @@ class ToolsRenderingTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/tools", "/tools/json-formatter" })
+	@ValueSource(strings = { "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier" })
 	void exactPagesSupportHeadAndSafePreferenceReturn(String path) throws Exception {
 		mvc.perform(head(path)).andExpect(status().isOk());
 		var form = mvc.perform(get(path)).andExpect(status().isOk()).andReturn().getResponse();
@@ -61,10 +61,63 @@ class ToolsRenderingTests {
 	}
 
 	@Test
-	void indexListsOnlyFormatterAndHomePublishesToolsAfterAcceptance() throws Exception {
+	void indexListsAcceptedJsonToolsAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		assertThat(index).contains("href=\"/tools/json-formatter\"").doesNotContain("/tools/json-validator", "/tools/base64");
+		assertThat(index).contains("href=\"/tools/json-formatter\"", "href=\"/tools/json-validator\"", "href=\"/tools/json-minifier\"")
+				.doesNotContain("/tools/base64", "href=\"/learn\"");
 		String home = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(home).contains("href=\"/tools\"").doesNotContain("href=\"/learn\"");
+	}
+
+	@ParameterizedTest
+	@CsvSource({ "en,JSON Validator,Validate JSON,Valid JSON.", "es,Validador JSON,Validar JSON,JSON válido.", "fr,Validateur JSON,Valider le JSON,JSON valide." })
+	void validatorRendersLocalisedVerdictWithoutAnOutputDocument(String language, String title, String action, String valid) throws Exception {
+		var result = mvc.perform(get("/tools/json-validator?lang=" + language)).andExpect(status().isOk()).andReturn();
+		var response = result.getResponse();
+		String html = response.getContentAsString(StandardCharsets.UTF_8);
+		assertThat(html).contains("lang=\"" + language + "\"", title, action, valid,
+				"data-format-run disabled", "data-format-cancel disabled", "data-format-clear disabled", "<noscript>", "data-editor-feedback")
+				.doesNotContain("??", "th:", "onclick");
+		String workspace = html.substring(html.indexOf("<section data-json-validator"), html.indexOf("</section>"));
+		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea", "<pre", "data-format-copy", "data-format-indent", "data-format-output=");
+		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-", "connect-src 'none'", "style-src-attr 'none'")
+				.doesNotContain("unsafe-inline", "unsafe-eval");
+		assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
+		assertThat(result.getRequest().getSession(false)).isNull();
+		assertThat(response.getCookies()).noneMatch(cookie -> cookie.getName().equals("JSESSIONID"));
+	}
+
+	@Test
+	void validatorBodyMethodsRemainDeniedWithValidCsrf() throws Exception {
+		assertBodyMethodsDenied("/tools/json-validator");
+	}
+
+	@ParameterizedTest
+	@CsvSource({ "en,JSON Minifier,Minify JSON", "es,Minificador JSON,Minificar JSON", "fr,Minificateur JSON,Minifier le JSON" })
+	void minifierRendersLocalisedCopyWorkspaceWithoutIndentation(String language, String title, String action) throws Exception {
+		var result = mvc.perform(get("/tools/json-minifier?lang=" + language)).andExpect(status().isOk()).andReturn();
+		var response = result.getResponse();
+		String html = response.getContentAsString(StandardCharsets.UTF_8);
+		assertThat(html).contains("lang=\"" + language + "\"", title, action, "data-format-copy disabled", "data-format-clear disabled",
+				"role=\"region\" aria-labelledby=\"minifier-output-label\" tabindex=\"0\"", "<noscript>").doesNotContain("??", "th:", "onclick");
+		String workspace = html.substring(html.indexOf("<section data-json-minifier"), html.indexOf("</section>"));
+		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea", "data-format-indent");
+		assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
+		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-", "connect-src 'none'", "style-src-attr 'none'")
+				.doesNotContain("unsafe-inline", "unsafe-eval");
+		assertThat(result.getRequest().getSession(false)).isNull();
+		assertThat(response.getCookies()).noneMatch(cookie -> cookie.getName().equals("JSESSIONID"));
+		assertBodyMethodsDenied("/tools/json-minifier");
+	}
+
+	private void assertBodyMethodsDenied(String path) throws Exception {
+		var form = mvc.perform(get(path)).andExpect(status().isOk()).andReturn().getResponse();
+		var token = Pattern.compile("name=\"_csrf\"[^>]*value=\"([^\"]+)\"").matcher(form.getContentAsString());
+		assertThat(token.find()).isTrue();
+		for (var method : new org.springframework.http.HttpMethod[] { org.springframework.http.HttpMethod.POST, org.springframework.http.HttpMethod.PUT,
+				org.springframework.http.HttpMethod.PATCH, org.springframework.http.HttpMethod.DELETE, org.springframework.http.HttpMethod.OPTIONS }) {
+			mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.request(method, path)
+					.cookie(form.getCookie("XSRF-TOKEN")).param("_csrf", token.group(1))).andExpect(status().isForbidden());
+		}
 	}
 }

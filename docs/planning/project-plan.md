@@ -1,6 +1,6 @@
 # Feature delivery and PM plan
 
-Baseline: 2026-10-09. Capacity confirmed by the user: **10 focused owner hours per week, with AI assistance**. No calendar start date has been committed.
+Baseline: 2026-10-09; scope revision: 2026-10-18 ([ADR 007](../architecture/adr-007-focused-mvp.md)). Capacity: **10 focused owner hours per week, with AI assistance**. No delivery date is committed.
 
 ## Planning assumptions
 
@@ -8,9 +8,9 @@ Baseline: 2026-10-09. Capacity confirmed by the user: **10 focused owner hours p
 - Estimates are owner-time budgets with AI assistance already considered, including coding supervision, integration, tests, documentation and review. AI runtime is not a promise of equivalent human productivity.
 - Work is serially capacity-levelled. Dependency edges identify technical prerequisites; chart ordering also respects the single owner's capacity.
 - Three-point estimates are optimistic / planning / pessimistic hours. These are initial expert judgements, not measured velocity.
-- Add 20% shared contingency to the planning total; the pessimistic envelope is shown separately, not added to contingency.
-- Holidays, missed weeks and blocked decisions extend calendar duration. Relative week 1 starts when manual bootstrap work begins; no invented start date appears in the main Gantt.
-- Reforecast after foundations and JSON Formatter using actual hours. Never backdate progress to match a schedule.
+- Add 20% shared contingency to remaining V1 work only. Historical estimates and frozen V2 are not part of the remaining schedule.
+- Holidays, missed weeks and blocked decisions extend duration. Relative week 1 now starts when remaining work resumes; accepted features have no remaining Gantt bar.
+- F00–F06 are accepted. Actual effort is unreported, so revised estimates are provisional judgements, not measured velocity. Never infer elapsed effort from zero tracking values.
 
 ## Milestones
 
@@ -18,19 +18,33 @@ Baseline: 2026-10-09. Capacity confirmed by the user: **10 focused owner hours p
 |---|---|---|
 | M0 | Runnable, secure, localised foundation | F00–F05 accepted |
 | M1 | First usable release: JSON Formatter | F06 accepted with packaged-app evidence |
-| M2 | Complete developer-tool suite | F07–F12 accepted; all eight tools |
-| M3 | Learning pilot | F13–F14 accepted; reviewed pilot in EN/ES/FR |
-| M4 | Full Phase 1 local release candidate | F15–F16 accepted; complete course and full regression |
+| M2 | MVP JSON tools/local runtime | F07 and reduced F12 accepted; existing JAR workflow |
+| M3 | Learning pages and first unit | F13–F14 accepted; complete source-to-JVM unit in EN/ES/FR |
+| M4 | Polished V1 local release candidate | All V1 features including reduced F16 accepted; integrated website and retained quality gates |
 
-M1–M3 are demonstrations/intermediate releases. They do not silently reduce the original MVP. M4 does not include hosting, accounts or deployment.
+ADR 007 explicitly replaces the old all-tools/full-course exits. M4 does not require F08–F11/F15, Docker, hosting, accounts or deployment.
+
+## Remaining forecast and order
+
+| Stage | Provisional owner hours | Bounded outcome |
+|---|---:|---|
+| F07 | 10 | Reuse strict JSON processing/editor/worker for validation and minification |
+| F12 | 4 | Integrate published JSON catalogue and verify existing local JAR workflow |
+| F13 | 10 | Learn landing, course overview, unit navigation and safe local content rendering |
+| F14 | 10 | Short unit brief and one complete reviewed EN/ES/FR unit |
+| F16 | 8 | Shared-page polish, retained regression and concise local handoff |
+
+Total: **42h + 8.4h contingency = 50.4h**, approximately six capacity weeks, not a calendar promise. Forecasts roll up from tasks and preserve the original baseline. Review after each slice; content/translation review and integrated defects may exceed the allowance. F13 depends on F07, not F12 or deferred tools; F16 requires F12 and F14. Work remains serial in the order above.
+
+F13 verifies page infrastructure with synthetic content fixtures; F14 supplies the real reviewed unit. F16 enables production Learn navigation during integration once that unit is ready. This avoids making infrastructure closure depend on later content or exposing empty learning pages.
 
 ## Tracking
 
 `plan.json` is the single source for the Epic → Feature → UH → Task hierarchy, EARS requirements, Gherkin scenarios, verification mappings, owners, estimates, dependencies, status, actual effort, dates and evidence. The generated dashboard, Gantt and detailed story reader are views. They do not write progress automatically or sync GitHub. Update them after each work session or accepted PR. Start with [the hierarchy](hierarchy.md) and [execution rules](story-workflow.md).
 
-States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Use `blocked` with a concrete reason; F00 currently awaits the user's manual import and its first reading task is ready. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may still uncover work; `done` requires linked evidence and accepted children.
+States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Feature `release` is V1 or V2 (legacy completed features default to V1). V2 is frozen reference backlog, not a technical blocker. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may uncover work; `done` requires linked evidence and accepted children. Next eligible task: F07-UH01-T01; replanning does not start implementation.
 
-Use two progress indicators: accepted features / total features, and accepted baseline hours / total baseline hours. In-progress hours are effort spent, not earned completion. Show actual hours and estimate-to-complete separately in reviews. Preserve baseline estimates when revising the forecast.
+Progress indicators count V1 only: accepted features / V1 features, and accepted baseline hours / V1 baseline hours. These are scope-weighted acceptance indicators, not actual effort or evidence of increased productivity. Frozen V2 appears separately. Preserve baseline estimates; show actual effort and remaining forecast separately.
 
 ## Cadence
 

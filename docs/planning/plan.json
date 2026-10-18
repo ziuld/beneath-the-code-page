@@ -1,6 +1,8 @@
 {
   "schema_version": 2,
   "baseline_date": "2026-10-09",
+  "scope_revision_date": "2026-10-18",
+  "scope_decision": "docs/architecture/adr-007-focused-mvp.md",
   "start_date": null,
   "capacity_hours_per_week": 10,
   "ai_assistance_assumed": true,
@@ -9,6 +11,7 @@
   "features": [
     {
       "id": "F00",
+      "release": "V1",
       "name": "Manual Initializr import",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -174,6 +177,7 @@
     },
     {
       "id": "F01",
+      "release": "V1",
       "name": "Java baseline and boundaries",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -536,6 +540,7 @@
     },
     {
       "id": "F02",
+      "release": "V1",
       "name": "Frontend asset pipeline",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -876,6 +881,7 @@
     },
     {
       "id": "F03",
+      "release": "V1",
       "name": "Home and shared EN/ES/FR shell",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -1240,6 +1246,7 @@
     },
     {
       "id": "F04",
+      "release": "V1",
       "name": "Security and locale flow",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -1630,6 +1637,7 @@
     },
     {
       "id": "F05",
+      "release": "V1",
       "name": "Editor and CSP proof",
       "owner": "Ziuld with AI assistance",
       "milestone": "M0",
@@ -2000,6 +2008,7 @@
     },
     {
       "id": "F06",
+      "release": "V1",
       "name": "JSON Formatter",
       "owner": "Ziuld with AI assistance",
       "milestone": "M1",
@@ -2530,6 +2539,7 @@
     },
     {
       "id": "F07",
+      "release": "V1",
       "name": "JSON Validator and Minifier",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
@@ -2541,11 +2551,11 @@
       "depends_on": [
         "F06"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-18",
+      "actual_finish": "2026-10-18",
+      "evidence": ["harness/evidence/F07-UH01-json-validation.md", "harness/evidence/F07-UH02-json-minification.md"],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -2556,7 +2566,7 @@
           "description": "As a developer, I want to check whether text is valid JSON, so that I can identify syntax errors before using the document.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F06"
@@ -2564,10 +2574,10 @@
           "baseline_hours": 5,
           "forecast_hours": 5,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-18",
+          "actual_finish": "2026-10-18",
+          "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+          "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145", "ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
           "requirements": [
             {
               "id": "F07-UH01-R01",
@@ -2613,17 +2623,17 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F06"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T02",
@@ -2633,7 +2643,7 @@
               "baseline_hours": 1.5,
               "forecast_hours": 1.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01-T01"
@@ -2643,10 +2653,10 @@
                 "F07-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T03",
@@ -2656,7 +2666,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01-T02"
@@ -2665,10 +2675,10 @@
                 "F07-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T04",
@@ -2678,7 +2688,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01-T03"
@@ -2687,10 +2697,10 @@
                 "F07-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T05",
@@ -2700,7 +2710,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01-T04"
@@ -2710,13 +2720,13 @@
                 "F07-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "V1 only: reuse the accepted strict JSON engine, editor, diagnostics and worker lifecycle; no general-purpose tool framework or new dependency without demonstrated need."
         },
         {
           "id": "F07-UH02",
@@ -2725,7 +2735,7 @@
           "description": "As a developer, I want to remove unnecessary JSON whitespace, so that I obtain compact content without data changes.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F07-UH01"
@@ -2733,10 +2743,10 @@
           "baseline_hours": 5,
           "forecast_hours": 5,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-18",
+          "actual_finish": "2026-10-18",
+          "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+          "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
           "requirements": [
             {
               "id": "F07-UH02-R01",
@@ -2782,17 +2792,17 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+              "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T02",
@@ -2802,7 +2812,7 @@
               "baseline_hours": 1.5,
               "forecast_hours": 1.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T01"
@@ -2812,10 +2822,10 @@
                 "F07-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+              "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T03",
@@ -2825,7 +2835,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T02"
@@ -2834,10 +2844,10 @@
                 "F07-UH02-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+              "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T04",
@@ -2847,7 +2857,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T03"
@@ -2856,10 +2866,10 @@
                 "F07-UH02-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+              "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T05",
@@ -2869,7 +2879,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T04"
@@ -2879,18 +2889,19 @@
                 "F07-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
+              "commits": ["770aa98ea3ceafe7e7678c3e35109ec844d1d925"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "V1 only: preserve tokens through whitespace removal and reuse the existing workspace/lifecycle; no additional tool capabilities."
         }
       ]
     },
     {
       "id": "F08",
+      "release": "V2",
       "name": "Base64 Encoder/Decoder",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
@@ -3083,6 +3094,7 @@
     },
     {
       "id": "F09",
+      "release": "V2",
       "name": "UUID Generator",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
@@ -3275,6 +3287,7 @@
     },
     {
       "id": "F10",
+      "release": "V2",
       "name": "JWT Decoder",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
@@ -3467,6 +3480,7 @@
     },
     {
       "id": "F11",
+      "release": "V2",
       "name": "JSON and YAML converters",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
@@ -3874,20 +3888,17 @@
     },
     {
       "id": "F12",
-      "name": "Tool suite and local runtime",
+      "release": "V1",
+      "name": "MVP tool navigation and local runtime",
       "owner": "Ziuld with AI assistance",
       "milestone": "M2",
       "optimistic_hours": 10,
       "baseline_hours": 14,
       "pessimistic_hours": 26,
-      "forecast_hours": 14,
+      "forecast_hours": 4,
       "actual_hours": 0,
       "depends_on": [
-        "F07",
-        "F08",
-        "F09",
-        "F10",
-        "F11"
+        "F07"
       ],
       "status": "planned",
       "blocker": "",
@@ -3900,21 +3911,17 @@
         {
           "id": "F12-UH01",
           "parent_id": "F12",
-          "title": "Discover the complete published tool suite",
+          "title": "Discover the published MVP JSON tools",
           "description": "As a visitor, I want to find and open each available developer tool, so that I can choose the right operation.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "planned",
           "blocker": "",
           "depends_on": [
-            "F07",
-            "F08",
-            "F09",
-            "F10",
-            "F11"
+            "F07"
           ],
           "baseline_hours": 6,
-          "forecast_hours": 6,
+          "forecast_hours": 2,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -3924,7 +3931,7 @@
             {
               "id": "F12-UH01-R01",
               "pattern": "event",
-              "text": "When the complete tool catalogue is opened, Beneath the Code shall list all eight accepted Phase 1 tools with working destinations."
+              "text": "When the Tools catalogue is opened, Beneath the Code shall list only the published F06 and F07 JSON tools with working destinations."
             },
             {
               "id": "F12-UH01-R02",
@@ -3939,9 +3946,9 @@
               "requirement_ids": [
                 "F12-UH01-R01"
               ],
-              "given": "the eight tool implementations have passed their own acceptance criteria",
+              "given": "F06 and F07 have passed their own acceptance criteria and additional tools are frozen for V2",
               "when": "the visitor opens the Tools catalogue",
-              "then": "each tool has a labelled link to its server-rendered page",
+              "then": "Formatter, Validator and Minifier each have a labelled working link and no deferred tool is advertised as available",
               "verification": "Route traversal in EN/ES/FR and keyboard/accessible-name checks"
             },
             {
@@ -3968,11 +3975,7 @@
               "status": "planned",
               "blocker": "",
               "depends_on": [
-                "F07",
-                "F08",
-                "F09",
-                "F10",
-                "F11"
+                "F07"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
@@ -3985,9 +3988,9 @@
               "id": "F12-UH01-T02",
               "parent_id": "F12-UH01",
               "kind": "implementation",
-              "title": "Complete the tools catalogue and shared navigation using published tool metadata and translation resources",
+              "title": "Reuse the existing catalogue and shared navigation for Formatter, Validator and Minifier only",
               "baseline_hours": 1.75,
-              "forecast_hours": 1.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4010,7 +4013,7 @@
               "kind": "verification",
               "title": "Route traversal in EN/ES/FR and keyboard/accessible-name checks",
               "baseline_hours": 1.75,
-              "forecast_hours": 1.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4032,7 +4035,7 @@
               "kind": "verification",
               "title": "MockMvc status/error-body tests and captured-log sentinel checks",
               "baseline_hours": 1.5,
-              "forecast_hours": 1.5,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4054,7 +4057,7 @@
               "kind": "closure",
               "title": "Review the diff and evidence, create or record the coherent commit when authorised, and update the story only after acceptance",
               "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4072,13 +4075,13 @@
               "actual_finish": null
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "V1 catalogue integration only: Formatter, Validator and Minifier; F08–F11 remain frozen for V2."
         },
         {
           "id": "F12-UH02",
           "parent_id": "F12",
-          "title": "Run the complete tools locally in a hardened container",
-          "description": "As a maintainer, I want to run a reproducible local container, so that I can verify the integrated application without cloud infrastructure.",
+          "title": "Verify the existing packaged application locally",
+          "description": "As a maintainer, I want to use the existing packaged-JAR workflow, so that I can verify the MVP without adding container infrastructure.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "planned",
@@ -4087,7 +4090,7 @@
             "F12-UH01"
           ],
           "baseline_hours": 8,
-          "forecast_hours": 8,
+          "forecast_hours": 2,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -4097,7 +4100,7 @@
             {
               "id": "F12-UH02-R01",
               "pattern": "event",
-              "text": "When the documented local Compose workflow starts, the application shall become healthy using only loopback-published application access."
+              "text": "When the documented local packaged-JAR workflow starts, the application shall become healthy using loopback application access without a publicly exposed management endpoint."
             },
             {
               "id": "F12-UH02-R02",
@@ -4112,10 +4115,10 @@
               "requirement_ids": [
                 "F12-UH02-R01"
               ],
-              "given": "the pinned image is built and documented prerequisites are available",
-              "when": "the maintainer starts the Compose service",
+              "given": "the executable JAR is built and documented prerequisites are available",
+              "when": "the maintainer follows the existing local JAR workflow",
               "then": "the application becomes healthy and the management port is not published",
-              "verification": "Inspect UID/mounts/capabilities/limits; execute actual health command and graceful shutdown"
+              "verification": "Execute packaged-JAR startup, loopback/management isolation, actual health check and shutdown"
             },
             {
               "id": "F12-UH02-AC02",
@@ -4126,7 +4129,7 @@
               "given": "the release scan contains a finding classified as blocking",
               "when": "integrated verification runs",
               "then": "the release gate fails with a traceable finding record",
-              "verification": "Container/dependency/secret/SAST/SBOM evidence; documented expiring exceptions only"
+              "verification": "Review applicable dependency/secret/static-analysis evidence and unresolved findings; no container gate"
             }
           ],
           "tasks": [
@@ -4154,9 +4157,9 @@
               "id": "F12-UH02-T02",
               "parent_id": "F12-UH02",
               "kind": "implementation",
-              "title": "Build the multi-stage image and Compose configuration with non-root, read-only, restricted runtime and an available health probe",
+              "title": "Reuse and document packaged-JAR startup, safe local configuration, health and shutdown; no Docker/Compose",
               "baseline_hours": 2.5,
-              "forecast_hours": 2.5,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4177,9 +4180,9 @@
               "id": "F12-UH02-T03",
               "parent_id": "F12-UH02",
               "kind": "verification",
-              "title": "Inspect UID/mounts/capabilities/limits; execute actual health command and graceful shutdown",
+              "title": "Execute packaged-JAR startup, loopback/management isolation, actual health check and shutdown",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4199,9 +4202,9 @@
               "id": "F12-UH02-T04",
               "parent_id": "F12-UH02",
               "kind": "verification",
-              "title": "Container/dependency/secret/SAST/SBOM evidence; documented expiring exceptions only",
+              "title": "Review applicable dependency/secret/static-analysis evidence and unresolved findings; no container gate",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4223,7 +4226,7 @@
               "kind": "closure",
               "title": "Review the diff and evidence, create or record the coherent commit when authorised, and update the story only after acceptance",
               "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4241,22 +4244,23 @@
               "actual_finish": null
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Reuse the existing packaged-JAR workflow and applicable security evidence. Docker/Compose and container-specific hardening/scans are V2, not an MVP prerequisite."
         }
       ]
     },
     {
       "id": "F13",
+      "release": "V1",
       "name": "Learning pages and navigation",
       "owner": "Ziuld with AI assistance",
       "milestone": "M3",
       "optimistic_hours": 10,
       "baseline_hours": 16,
       "pessimistic_hours": 28,
-      "forecast_hours": 16,
+      "forecast_hours": 10,
       "actual_hours": 0,
       "depends_on": [
-        "F12"
+        "F07"
       ],
       "status": "planned",
       "blocker": "",
@@ -4276,10 +4280,10 @@
           "status": "planned",
           "blocker": "",
           "depends_on": [
-            "F12"
+            "F07"
           ],
           "baseline_hours": 8,
-          "forecast_hours": 8,
+          "forecast_hours": 5,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -4300,14 +4304,14 @@
           "scenarios": [
             {
               "id": "F13-UH01-AC01",
-              "name": "Navigate consecutive lessons",
+              "name": "Navigate the single published unit",
               "requirement_ids": [
                 "F13-UH01-R01"
               ],
-              "given": "two reviewed consecutive lessons are published",
-              "when": "the learner opens the first lesson",
-              "then": "its course context and next-lesson link are available",
-              "verification": "SSR/browser route tests, first/last boundaries and keyboard navigation"
+              "given": "a synthetic test catalogue contains exactly one publishable unit",
+              "when": "the learner follows Learn to the course overview and unit page",
+              "then": "course context, breadcrumbs and a return link are available without nonexistent previous or next links",
+              "verification": "SSR/browser single-unit journey and keyboard checks; synthetic two-unit fixtures verify future previous/next boundaries"
             },
             {
               "id": "F13-UH01-AC02",
@@ -4333,7 +4337,7 @@
               "status": "planned",
               "blocker": "",
               "depends_on": [
-                "F12"
+                "F07"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
@@ -4346,9 +4350,9 @@
               "id": "F13-UH01-T02",
               "parent_id": "F13-UH01",
               "kind": "implementation",
-              "title": "Implement course catalogue, overview and published lesson navigation through thin SSR adapters",
+              "title": "Implement Learn landing, course overview and single-unit navigation using shared SSR templates and minimal metadata",
               "baseline_hours": 2.5,
-              "forecast_hours": 2.5,
+              "forecast_hours": 2,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4369,9 +4373,9 @@
               "id": "F13-UH01-T03",
               "parent_id": "F13-UH01",
               "kind": "verification",
-              "title": "SSR/browser route tests, first/last boundaries and keyboard navigation",
+              "title": "Verify the single-unit SSR/browser journey and keyboard navigation; synthetic fixtures cover previous/next boundaries",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 1,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4393,7 +4397,7 @@
               "kind": "verification",
               "title": "Unknown/unpublished slugs in EN/ES/FR; no persistence dependency",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 1,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4433,7 +4437,7 @@
               "actual_finish": null
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Verify infrastructure with synthetic single/multi-unit fixtures; enable production Learn navigation only with F14's reviewed unit. No extra published units, CMS or speculative catalogue framework."
         },
         {
           "id": "F13-UH02",
@@ -4448,7 +4452,7 @@
             "F13-UH01"
           ],
           "baseline_hours": 8,
-          "forecast_hours": 8,
+          "forecast_hours": 5,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -4473,10 +4477,10 @@
               "requirement_ids": [
                 "F13-UH02-R01"
               ],
-              "given": "the Spanish version of a lesson is reviewed and published",
+              "given": "a synthetic published lesson fixture has complete Spanish content",
               "when": "the learner opens it with Spanish selected",
               "then": "the title, prose and exercise instructions are in Spanish",
-              "verification": "Content completeness and rendering checks for EN/ES/FR; immutable resource loading"
+              "verification": "Verify EN/ES/FR fixture completeness and immutable resource rendering; real unit review belongs to F14"
             },
             {
               "id": "F13-UH02-AC02",
@@ -4515,9 +4519,9 @@
               "id": "F13-UH02-T02",
               "parent_id": "F13-UH02",
               "kind": "implementation",
-              "title": "Build the classpath content port/adapter and safe Markdown rendering with language-specific content resources",
+              "title": "Load local EN/ES/FR content resources with safe rendering; add a content port only at a demonstrated boundary, not a CMS",
               "baseline_hours": 2.5,
-              "forecast_hours": 2.5,
+              "forecast_hours": 2,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4538,9 +4542,9 @@
               "id": "F13-UH02-T03",
               "parent_id": "F13-UH02",
               "kind": "verification",
-              "title": "Content completeness and rendering checks for EN/ES/FR; immutable resource loading",
+              "title": "Verify EN/ES/FR fixture completeness and immutable resource rendering; real unit review belongs to F14",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 1,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4562,7 +4566,7 @@
               "kind": "verification",
               "title": "Raw HTML disabled plus sanitisation tests; CSP/browser assertion",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 1,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4602,19 +4606,20 @@
               "actual_finish": null
             }
           ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
+          "scope_note": "Use local EN/ES/FR resources and safe shared rendering. Infrastructure acceptance uses synthetic fixtures; actual technical and language review of the first unit belongs to F14."
         }
       ]
     },
     {
       "id": "F14",
-      "name": "Course outline and pilot",
+      "release": "V1",
+      "name": "First complete learning unit",
       "owner": "Ziuld with AI assistance",
       "milestone": "M3",
       "optimistic_hours": 12,
       "baseline_hours": 18,
       "pessimistic_hours": 32,
-      "forecast_hours": 18,
+      "forecast_hours": 10,
       "actual_hours": 0,
       "depends_on": [
         "F13"
@@ -4630,8 +4635,8 @@
         {
           "id": "F14-UH01",
           "parent_id": "F14",
-          "title": "Agree a complete Java Fundamentals learning path",
-          "description": "As a learner, I want to follow an explicit set of learning outcomes, so that I know the prerequisites and what completing the course means.",
+          "title": "Understand the first unit scope and learning outcomes",
+          "description": "As a learner, I want to see the first unit prerequisites and learning outcomes, so that I understand what this published unit teaches without mistaking it for a complete course.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "planned",
@@ -4640,7 +4645,7 @@
             "F13"
           ],
           "baseline_hours": 6,
-          "forecast_hours": 6,
+          "forecast_hours": 2,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -4650,12 +4655,12 @@
             {
               "id": "F14-UH01-R01",
               "pattern": "event",
-              "text": "When the accepted course outline is published, the course overview shall state its prerequisites and ordered learning outcomes."
+              "text": "When the first unit is published, the course overview shall state its prerequisites and learning outcomes and identify the course as containing one available unit."
             },
             {
               "id": "F14-UH01-R02",
               "pattern": "unwanted",
-              "text": "If the proposed outline has not been accepted, then course planning shall retain its provisional status."
+              "text": "If additional course units are not reviewed and published, then the course overview shall not present them as available or claim course completion."
             }
           ],
           "scenarios": [
@@ -4665,21 +4670,21 @@
               "requirement_ids": [
                 "F14-UH01-R01"
               ],
-              "given": "the owner has accepted the course outline",
+              "given": "the owner has accepted a short brief for the source-to-JVM unit",
               "when": "the learner opens the overview",
-              "then": "prerequisites and ordered outcomes are visible",
-              "verification": "Owner content review recorded; compare overview to accepted outline"
+              "then": "the unit prerequisites and outcomes are visible and only one unit is presented as available",
+              "verification": "Record owner review of the unit brief and compare the course overview against it"
             },
             {
               "id": "F14-UH01-AC02",
-              "name": "Keep unreviewed syllabus provisional",
+              "name": "Keep additional units outside the MVP",
               "requirement_ids": [
                 "F14-UH01-R02"
               ],
-              "given": "the outline is still under owner review",
-              "when": "the course production milestone is evaluated",
-              "then": "bulk-content work is not reported as accepted scope",
-              "verification": "Inspect decision/evidence record and keep provisional lesson records unready"
+              "given": "only the first unit is reviewed and published and F15 is frozen for V2",
+              "when": "the learning navigation and course overview are reviewed",
+              "then": "no unavailable unit has a working lesson link and the course is not advertised as complete",
+              "verification": "Inspect published navigation, course claims and the V2 boundary without requiring a full syllabus"
             }
           ],
           "tasks": [
@@ -4707,9 +4712,9 @@
               "id": "F14-UH01-T02",
               "parent_id": "F14-UH01",
               "kind": "implementation",
-              "title": "Draft and obtain owner acceptance of the eight-lesson estimating outline, prerequisites and completion rubric",
+              "title": "Agree a short source-to-JVM unit brief, prerequisites and learning outcomes; no full-course syllabus",
               "baseline_hours": 1.75,
-              "forecast_hours": 1.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4730,9 +4735,9 @@
               "id": "F14-UH01-T03",
               "parent_id": "F14-UH01",
               "kind": "verification",
-              "title": "Owner content review recorded; compare overview to accepted outline",
+              "title": "Record owner review of the unit brief and compare the course overview against it",
               "baseline_hours": 1.75,
-              "forecast_hours": 1.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4752,9 +4757,9 @@
               "id": "F14-UH01-T04",
               "parent_id": "F14-UH01",
               "kind": "verification",
-              "title": "Inspect decision/evidence record and keep provisional lesson records unready",
+              "title": "Inspect published navigation, course claims and the V2 boundary without requiring a full syllabus",
               "baseline_hours": 1.5,
-              "forecast_hours": 1.5,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4776,7 +4781,7 @@
               "kind": "closure",
               "title": "Review the diff and evidence, create or record the coherent commit when authorised, and update the story only after acceptance",
               "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
+              "forecast_hours": 0.25,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4809,7 +4814,7 @@
             "F14-UH01"
           ],
           "baseline_hours": 12,
-          "forecast_hours": 12,
+          "forecast_hours": 8,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -4878,7 +4883,7 @@
               "kind": "implementation",
               "title": "Write the pilot explanation, diagram and verified code example",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 2,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4901,7 +4906,7 @@
               "kind": "implementation",
               "title": "Add the exercise/answer and EN/ES/FR translations with technical and language review",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 2,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4924,7 +4929,7 @@
               "kind": "verification",
               "title": "Compile/run the example with the baseline JDK and review diagram/content consistency",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 1.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4946,7 +4951,7 @@
               "kind": "verification",
               "title": "Manual educational review in EN/ES/FR and accessible answer presentation",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 1.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -4992,6 +4997,7 @@
     },
     {
       "id": "F15",
+      "release": "V2",
       "name": "Complete Java Fundamentals",
       "owner": "Ziuld with AI assistance",
       "milestone": "M4",
@@ -6359,16 +6365,18 @@
     },
     {
       "id": "F16",
-      "name": "Full Phase 1 acceptance",
+      "release": "V1",
+      "name": "MVP website polish and acceptance",
       "owner": "Ziuld with AI assistance",
       "milestone": "M4",
       "optimistic_hours": 12,
       "baseline_hours": 20,
       "pessimistic_hours": 36,
-      "forecast_hours": 20,
+      "forecast_hours": 8,
       "actual_hours": 0,
       "depends_on": [
-        "F15"
+        "F12",
+        "F14"
       ],
       "status": "planned",
       "blocker": "",
@@ -6381,17 +6389,18 @@
         {
           "id": "F16-UH01",
           "parent_id": "F16",
-          "title": "Verify the full Phase 1 acceptance set",
-          "description": "As a project owner, I want to review the integrated tools and complete course against their criteria, so that I can distinguish a finished MVP from partial demonstrations.",
+          "title": "Polish and accept the complete MVP website journey",
+          "description": "As a project owner, I want to use the JSON tools and first learning unit through a coherent polished website, so that the MVP demonstrates every retained page type without unfinished navigation.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "planned",
           "blocker": "",
           "depends_on": [
-            "F15"
+            "F12",
+            "F14"
           ],
           "baseline_hours": 12,
-          "forecast_hours": 12,
+          "forecast_hours": 5,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -6401,7 +6410,7 @@
             {
               "id": "F16-UH01-R01",
               "pattern": "event",
-              "text": "When full Phase 1 acceptance is evaluated, the release review shall reference evidence for every required feature."
+              "text": "When V1 acceptance is evaluated, the website shall provide coherent Home, Tools, JSON tool, Learn, course overview, unit, answer and error journeys in EN/ES/FR using the approved shared design system."
             },
             {
               "id": "F16-UH01-R02",
@@ -6416,10 +6425,10 @@
               "requirement_ids": [
                 "F16-UH01-R01"
               ],
-              "given": "all feature stories report completion with evidence",
+              "given": "all prerequisite V1 feature stories report completion with evidence and V2 features remain frozen",
               "when": "the owner evaluates M4",
-              "then": "the review covers all eight tools, the complete accepted course and shared quality gates",
-              "verification": "Trace all requirement/scenario/task IDs to actual test/review evidence"
+              "then": "the review covers F06/F07, one complete learning unit, every retained page type and shared quality gates without requiring V2 scope",
+              "verification": "Trace V1 criteria to evidence and review complete EN/ES/FR journeys, responsive styling, keyboard/zoom, errors and no-JS states"
             },
             {
               "id": "F16-UH01-AC02",
@@ -6445,7 +6454,8 @@
               "status": "planned",
               "blocker": "",
               "depends_on": [
-                "F15"
+                "F12",
+                "F14"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
@@ -6458,9 +6468,9 @@
               "id": "F16-UH01-T02",
               "parent_id": "F16-UH01",
               "kind": "implementation",
-              "title": "Run the packaged cross-browser, privacy, security and architecture verification matrix",
+              "title": "Complete Home/Tools/Learn/unit/error integration, enable Learn with F14's reviewed unit and polish shared responsive styling; no redesign",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 1.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6481,9 +6491,9 @@
               "id": "F16-UH01-T03",
               "parent_id": "F16-UH01",
               "kind": "implementation",
-              "title": "Complete manual keyboard/visual accessibility, translation and full-course review under the quality plan; resolve or explicitly triage defects",
+              "title": "Run retained cross-browser/privacy/security/architecture checks and manual keyboard, visual, zoom and EN/ES/FR review of MVP journeys",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 1.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6504,9 +6514,9 @@
               "id": "F16-UH01-T04",
               "parent_id": "F16-UH01",
               "kind": "verification",
-              "title": "Trace all requirement/scenario/task IDs to actual test/review evidence",
+              "title": "Trace V1 criteria to evidence and review complete EN/ES/FR journeys, responsive styling, keyboard/zoom, errors and no-JS states",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6528,7 +6538,7 @@
               "kind": "verification",
               "title": "Controlled status-validator fixture plus real defect triage; no waived scope by calendar date",
               "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6583,7 +6593,7 @@
             "F16-UH01"
           ],
           "baseline_hours": 8,
-          "forecast_hours": 8,
+          "forecast_hours": 3,
           "actual_hours": 0,
           "actual_start": null,
           "actual_finish": null,
@@ -6611,7 +6621,7 @@
               "given": "the accepted commit and pinned prerequisites are available",
               "when": "a maintainer follows the local runbook",
               "then": "the application becomes healthy and the documented smoke checks pass",
-              "verification": "Fresh checkout/container run and recorded version identity"
+              "verification": "Clean-checkout packaged-JAR run and recorded version identity; no Docker prerequisite"
             },
             {
               "id": "F16-UH02-AC02",
@@ -6650,9 +6660,9 @@
               "id": "F16-UH02-T02",
               "parent_id": "F16-UH02",
               "kind": "implementation",
-              "title": "Prepare local run instructions, release notes, SBOM references and rollback/handoff records for the reviewed commit",
+              "title": "Update the existing local JAR runbook, release notes, security evidence references and known limitations for the reviewed commit",
               "baseline_hours": 2.5,
-              "forecast_hours": 2.5,
+              "forecast_hours": 1,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6673,9 +6683,9 @@
               "id": "F16-UH02-T03",
               "parent_id": "F16-UH02",
               "kind": "verification",
-              "title": "Fresh checkout/container run and recorded version identity",
+              "title": "Clean-checkout packaged-JAR run and recorded version identity; no Docker prerequisite",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6697,7 +6707,7 @@
               "kind": "verification",
               "title": "Review runbook, known limitations and publication authorisation boundaries",
               "baseline_hours": 2.25,
-              "forecast_hours": 2.25,
+              "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
               "blocker": "",
@@ -6770,7 +6780,7 @@
     },
     {
       "id": "M2",
-      "name": "All eight developer tools",
+      "name": "MVP JSON tools and local JAR workflow",
       "requires": [
         "F00",
         "F01",
@@ -6780,16 +6790,12 @@
         "F05",
         "F06",
         "F07",
-        "F08",
-        "F09",
-        "F10",
-        "F11",
         "F12"
       ]
     },
     {
       "id": "M3",
-      "name": "Learning pilot in three languages",
+      "name": "Learning structure and one complete unit in three languages",
       "requires": [
         "F00",
         "F01",
@@ -6799,10 +6805,6 @@
         "F05",
         "F06",
         "F07",
-        "F08",
-        "F09",
-        "F10",
-        "F11",
         "F12",
         "F13",
         "F14"
@@ -6810,7 +6812,7 @@
     },
     {
       "id": "M4",
-      "name": "Full Phase 1 local release candidate",
+      "name": "Polished focused MVP local release candidate",
       "requires": [
         "F00",
         "F01",
@@ -6820,14 +6822,9 @@
         "F05",
         "F06",
         "F07",
-        "F08",
-        "F09",
-        "F10",
-        "F11",
         "F12",
         "F13",
         "F14",
-        "F15",
         "F16"
       ]
     }
@@ -6842,7 +6839,7 @@
     "id": "EPIC-MVP",
     "title": "Beneath the Code — Phase 1 MVP",
     "status": "planned",
-    "description": "Eight browser-local developer tools and a complete Java Fundamentals course in EN/ES/FR, built as one secure SSR application.",
+    "description": "A complete secure SSR website with F06/F07 JSON tools and one complete Java Fundamentals learning unit in EN/ES/FR; additional tools and units are frozen for V2.",
     "exclusions": [
       "Accounts",
       "Database without a persistence need",

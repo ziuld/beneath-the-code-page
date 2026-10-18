@@ -61,12 +61,17 @@ export function createFormatterSession(
     view.current(false);
   }
   return {
-    start(input: string, indentation: 2 | 4) {
+    start(input: string, operation: 2 | 4 | "validate" | "minify") {
       if (disposed) return false;
       invalidate();
       jobRevision = revision;
       jobInput = input;
-      return manager.start(`json-format-${indentation}`, input);
+      return manager.start(
+        operation === "validate" || operation === "minify"
+          ? `json-${operation}`
+          : `json-format-${operation}`,
+        input,
+      );
     },
     invalidate() {
       if (disposed) return;

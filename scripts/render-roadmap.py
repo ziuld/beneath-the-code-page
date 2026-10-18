@@ -11,7 +11,8 @@ PLAN = ROOT / 'docs/planning'
 
 
 def render(data):
-    features = data['features']
+    features = [f for f in data['features'] if f.get('release', 'V1') == 'V1']
+    deferred = [f for f in data['features'] if f.get('release', 'V1') == 'V2']
     capacity = data['capacity_hours_per_week']
     total = sum(f['forecast_hours'] for f in features)
     baseline = sum(f['baseline_hours'] for f in features)
@@ -19,37 +20,41 @@ def render(data):
     done = sum(f['status'] == 'done' for f in features)
     optimistic = sum(f['optimistic_hours'] for f in features)
     pessimistic = sum(f['pessimistic_hours'] for f in features)
-    reserve = total * data['contingency_fraction']
-    horizon = math.ceil((total + reserve) / capacity)
+    remaining = sum(f['forecast_hours'] for f in features if f['status'] != 'done')
+    reserve = remaining * data['contingency_fraction']
+    horizon = max(1, math.ceil((remaining + reserve) / capacity))
     rows = []
     cursor = 0
     ends = {}
     for f in features:
         start = cursor / capacity
-        cursor += f['forecast_hours']
+        if f['status'] != 'done':
+            cursor += f['forecast_hours']
         end = cursor / capacity
         ends[f['id']] = end
         rows.append((f, start, end))
     summary = (f'{done}/{len(features)} features accepted; '
                f'{accepted}/{baseline} baseline hours accepted ({accepted / baseline:.0%}). '
-               f'Forecast {total:g} owner hours + {reserve:g}h contingency = '
-               f'{total + reserve:g}h, approximately {math.ceil((total + reserve) / capacity)} weeks '
-               f'at {capacity:g}h/week. No start date committed.')
+               f'Remaining V1 forecast {remaining:g} owner hours + {reserve:g}h contingency = '
+               f'{remaining + reserve:g}h, approximately {math.ceil((remaining + reserve) / capacity)} weeks '
+               f'at {capacity:g}h/week. {len(deferred)} V2 features frozen and excluded. No delivery date committed.')
     md = ['# Generated roadmap', '', f'Baseline date: {data["baseline_date"]}.', '', summary, '',
-          f'Initial estimating envelope: {optimistic:g}–{pessimistic:g}h before contingency. '
-          'These are judgement ranges, not confidence intervals. AI assistance is already assumed.', '',
-          'Week 1 begins at project start. Fractional weeks show capacity, not exact appointments. '
-          'Bars are total-feature forecasts in planned order, not actual-date tracking; '
-          'completed bars retain their baseline slot and use their status label.', '',
-          '| ID | Feature | Hours | Elapsed weeks from start | Status | Depends on |',
+          f'Historical V1 baseline envelope: {optimistic:g}–{pessimistic:g}h; total-feature V1 forecast {total:g}h includes accepted work. '
+          'Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.', '',
+          'Week 1 begins when remaining work resumes. Accepted features have no remaining bar; '
+          'fractional weeks show capacity, not appointments. Shared contingency applies only to remaining V1 work.', '',
+          '| ID | Feature | Total-feature forecast hours | Weeks from resumption | Status | Depends on |',
           '|---|---|---:|---|---|---|']
     for f, start, end in rows:
+        window = 'Accepted' if f['status'] == 'done' else f'{start:.1f}–{end:.1f}'
         md.append(f'| {f["id"]} | {f["name"]} | {f["forecast_hours"]} | '
-                  f'{start:.1f}–{end:.1f} | {f["status"]} | '
+                  f'{window} | {f["status"]} | '
                   f'{", ".join(f["depends_on"]) or "—"} |')
-    md += ['', '## Milestones', '', '| ID | Exit | Elapsed weeks, before shared contingency |', '|---|---|---:|']
+    md += ['', '## Milestones', '', '| ID | Exit | Weeks from resumption, before shared contingency |', '|---|---|---:|']
     for m in data['milestones']:
         md.append(f'| {m["id"]} | {m["name"]} | {max(ends[x] for x in m["requires"]):.1f} |')
+    md += ['', '## Frozen V2 — not scheduled', '']
+    md += [f'- {f["id"]} — {f["name"]}; historical baseline {f["baseline_hours"]}h, not a V2 delivery commitment.' for f in deferred]
     md += ['', 'Source: [plan.json](plan.json). Run `python3 scripts/render-roadmap.py` from the project root after updates.', '']
 
     # Relative SVG chart: week numbers, not fabricated calendar commitments.
@@ -58,7 +63,7 @@ def render(data):
     height = top + (len(rows) + 1) * rowh + 50
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
            '<title id="title">Beneath the Code feature Gantt</title>',
-           f'<desc id="desc">Serial plan at {capacity:g} owner hours per week. All status and hours are also available in the adjacent feature table. No committed start date.</desc>',
+           f'<desc id="desc">Remaining V1 plan at {capacity:g} owner hours per week from resumption. Accepted work has no remaining bar; V2 is excluded. No committed delivery date.</desc>',
            '<rect width="100%" height="100%" fill="#0b0b0b"/>',
            '<g font-family="system-ui,sans-serif" font-size="13" fill="#edeae4">',
            '<text x="20" y="25" font-size="17">Feature schedule · relative weeks · AI-assisted</text>']
@@ -70,13 +75,13 @@ def render(data):
     for i, (f, start, end) in enumerate(rows):
         y = top + i * rowh
         x = left + start / horizon * plotw
-        barw = max(3, (end - start) / horizon * plotw)
+        barw = 0 if f['status'] == 'done' else max(3, (end - start) / horizon * plotw)
         label = f'{f["id"]} {f["name"]}'
         svg += [f'<text x="20" y="{y + 16}">{html.escape(label)}</text>',
                 f'<rect x="{x:.2f}" y="{y}" width="{barw:.2f}" height="22" fill="{"#9bb7a1" if f["status"] == "done" else "#92908b"}"><title>{html.escape(label)}: {f["forecast_hours"]}h, {html.escape(f["status"])}</title></rect>']
     y = top + len(rows) * rowh
     svg += [f'<text x="20" y="{y + 16}">Shared contingency · {reserve:g}h</text>',
-            f'<rect x="{left + total / capacity / horizon * plotw:.2f}" y="{y}" width="{reserve / capacity / horizon * plotw:.2f}" height="22" fill="#45433f"/>',
+            f'<rect x="{left + remaining / capacity / horizon * plotw:.2f}" y="{y}" width="{reserve / capacity / horizon * plotw:.2f}" height="22" fill="#45433f"/>',
             f'<text x="20" y="{height - 10}">Gray = scheduled effort, not completion. Accepted: {done}/{len(features)} features. Milestone timing excludes shared contingency.</text>',
             '</g></svg>']
     svg = '\n'.join(svg)
@@ -86,12 +91,13 @@ def render(data):
         table.append(f'<tr><th scope="row">{html.escape(f["id"])}</th><td><details><summary>{html.escape(f["name"])}</summary>'
                      f'<p><a href="backlog.html#{f["id"]}">Read feature, EARS, Gherkin and ordered tasks</a> · {len(f.get("stories",[]))} stories</p>'
                      f'<p>Owner: {html.escape(f["owner"])}. Dependencies: {html.escape(", ".join(f["depends_on"]) or "None")}.</p>'
-                     f'<p>Estimate O / baseline / P: {f["optimistic_hours"]} / {f["baseline_hours"]} / {f["pessimistic_hours"]}h. '
-                     f'Actual effort: {f["actual_hours"]}h.</p><p>{html.escape(f["blocker"] or "No recorded blocker")}</p>'
+                     f'<p>Historical estimate O / baseline / P: {f["optimistic_hours"]} / {f["baseline_hours"]} / {f["pessimistic_hours"]}h. '
+                     f'Actual effort (zero means unreported): {f["actual_hours"]}h.</p><p>{html.escape(f["blocker"] or "No recorded blocker")}</p>'
                      f'<p>Evidence: {evidence}</p></details></td><td>{html.escape(f["status"])}</td>'
-                     f'<td>{f["forecast_hours"]}h</td><td>{start:.1f}–{end:.1f}</td></tr>')
+                     f'<td>{f["forecast_hours"]}h</td><td>{"Accepted" if f["status"] == "done" else f"{start:.1f}–{end:.1f}"}</td></tr>')
     milestones = ''.join(f'<li><strong>{m["id"]}</strong> {html.escape(m["name"])} — '
-                         f'{max(ends[x] for x in m["requires"]):.1f} elapsed weeks before contingency</li>' for m in data['milestones'])
+                         f'{max(ends[x] for x in m["requires"]):.1f} weeks from resumption before contingency</li>' for m in data['milestones'])
+    frozen = ''.join(f'<li>{html.escape(f["id"])} — {html.escape(f["name"])}</li>' for f in deferred)
     page = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
@@ -109,13 +115,14 @@ summary{{cursor:pointer}}details p{{font-size:14px;color:#c0bdb7}}footer{{margin
 <h1>From foundations<br>to a complete first release.</h1>
 <p class="summary">{html.escape(summary)}</p>
 <p>Capacity: <strong>{capacity:g} owner hours/week with AI assistance</strong>. One owner, serial delivery.
-No actual dates are committed. Initial estimate range: {optimistic:g}–{pessimistic:g} hours before contingency.</p>
+No delivery date is committed. Remaining estimates are provisional; accepted work is not rescheduled.</p>
 <nav aria-label="Planning documents"><a href="backlog.html">Epic → Feature → UH → Task</a> · <a href="project-plan.md">PM plan</a> · <a href="feature-backlog.md">Acceptance criteria</a> · <a href="sprints.md">Sprints</a> · <a href="plan.json">Tracking data</a> · <a href="../bootstrap/manual-initializr.md">Manual import</a></nav>
-<h2>Feature Gantt</h2><p>Week 1 starts when work begins. Bars show planned effort, not work completed. Scroll the chart on smaller screens.</p>
+<h2>Remaining V1 Gantt</h2><p>Week 1 starts when work resumes. Accepted features have no remaining bar. V2 is excluded. Scroll the chart on smaller screens.</p>
 <div class="chart">{svg}</div><h2>Milestones</h2><ul>{milestones}</ul>
-<h2>Feature status</h2><p>Expand a feature for dependencies, estimates and evidence. Elapsed weeks are measured from project start (0.0).</p>
+<h2>V1 feature status</h2><p>Expand a feature for dependencies, total-feature estimates and evidence. Weeks are measured from resumption (0.0), not original project start.</p>
 <div class="table-wrap"><table><thead><tr><th>ID</th><th>Feature</th><th>Status</th><th>Forecast</th><th>Elapsed weeks</th></tr></thead><tbody>{''.join(table)}</tbody></table></div>
-<footer>Read-only generated view. Update plan.json, regenerate, and validate. This dashboard neither tracks GitHub automatically nor changes feature status. No application implementation has started in the baseline.</footer>
+<h2>Frozen V2 — not scheduled</h2><ul>{frozen}</ul>
+<footer>Read-only generated view. Update plan.json, regenerate, and validate. This dashboard neither tracks GitHub automatically nor changes feature status. Historical baseline estimates are preserved; zero actual hours means unreported effort.</footer>
 </main></body></html>
 '''
     # Mermaid requires dates; use an explicit synthetic anchor, never a real promised start.
@@ -125,8 +132,9 @@ No actual dates are committed. Initial estimate range: {optimistic:g}–{pessimi
     def synthetic_date(week):
         return (anchor + timedelta(weeks=week)).strftime('%Y-%m-%dT%H:%M')
     for f, start, end in rows:
-        mm.append(f'    {f["id"]} {f["name"]} :{f["id"]}, {synthetic_date(start)}, {synthetic_date(end)}')
-    mm += ['    section Contingency', f'    Shared reserve :reserve, {synthetic_date(total / capacity)}, {synthetic_date((total + reserve) / capacity)}', '']
+        if f['status'] != 'done':
+            mm.append(f'    {f["id"]} {f["name"]} :{f["id"]}, {synthetic_date(start)}, {synthetic_date(end)}')
+    mm += ['    section Contingency', f'    Shared reserve :reserve, {synthetic_date(remaining / capacity)}, {synthetic_date((remaining + reserve) / capacity)}', '']
     return {'roadmap.md': '\n'.join(md), 'roadmap.html': page, 'gantt.svg': svg,
             'gantt.mmd': '\n'.join(mm)}
 

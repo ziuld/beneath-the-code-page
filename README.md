@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: F00/F01 Java baseline and initial CI accepted; product features have not started.**
+**Stage: F00–F06 accepted; focused MVP replanned around JSON tools and one complete learning unit.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -21,7 +21,7 @@ The canonical tracking and story specification data is [plan.json](docs/planning
 
 ## Scope
 
-One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript tools; English, Spanish and French; no accounts or database in Phase 1. JSON Formatter is the first complete vertical slice. Full MVP includes all eight tools and Java Fundamentals.
+One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript; English, Spanish and French; no accounts or database. V1 includes F06 JSON Formatter, F07 Validator and Minifier, the complete retained website structure and one complete Java Fundamentals unit. Additional tools/units, containers and broad redesign are frozen for V2. See [ADR 007](docs/architecture/adr-007-focused-mvp.md) and the [remaining MVP plan](docs/planning/project-plan.md).
 
 The approved B logo has a standalone variant and a composition with its supplied background. See [brand rules](docs/brand/brand-application.md).
 
@@ -49,8 +49,8 @@ Verified local toolchain: Arch Linux OpenJDK/java/javac `25.0.4.1`, Maven `3.10.
 python3 scripts/smoke-java-baseline.py
 ```
 
-The executable is `target/beneath-the-code-0.1.0-SNAPSHOT.jar`. The smoke script checks its manifest, starts it on an ephemeral loopback port, verifies health and stops its child process. Generated security login/password behavior and the missing-template warning are expected at this baseline.
+The executable is `target/beneath-the-code-0.1.0-SNAPSHOT.jar`. The smoke script checks its manifest, starts it on an ephemeral loopback port, verifies health and stops its child process. Current implementation/acceptance evidence is recorded in the handoff; the F01 records below describe the historical baseline.
 
 Architecture tests import only production output. Absent capability packages produce explicit skipped checks, while compiled test-only fixtures verify the same strict rules against forbidden and permitted dependencies and cycles. New production packages activate their corresponding rules automatically. No production placeholders are required.
 
-See [final F01 acceptance](harness/evidence/F01-closure.md) and [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for executed checks, integration and limitations. Java CI is integrated and verified; product features and broader governance/security/release work remain planned. [Unfinished follow-ups](docs/planning/risks-and-decisions.md) are explicitly retained in the owner-approved closure scope. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).
+See [final F01 acceptance](harness/evidence/F01-closure.md) and [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for historical checks and limitations; see the [current handoff](harness/current-state.md) for accepted F00–F06 and the next step. [Unfinished follow-ups](docs/planning/risks-and-decisions.md) remain explicit. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).

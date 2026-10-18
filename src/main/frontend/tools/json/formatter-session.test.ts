@@ -34,6 +34,76 @@ function setup() {
 }
 
 describe("formatter result ownership", () => {
+  it("minifies through the same revision and deliberate Copy ownership", async () => {
+    const { session, reply, view, workers } = setup();
+    const write = vi.fn().mockResolvedValue(undefined);
+    session.start(' { "s": "a b" } ', "minify");
+    expect(workers[0]!.postMessage).toHaveBeenCalledWith({
+      id: 1,
+      operation: "json-minify",
+      input: ' { "s": "a b" } ',
+    });
+    reply({ status: "success", output: '{"s":"a b"}' });
+    await session.copy(write);
+    expect(write).toHaveBeenCalledExactlyOnceWith('{"s":"a b"}');
+    session.invalidate();
+    expect(view.status).toHaveBeenLastCalledWith("stale");
+    session.start("//comment", "minify");
+    reply({ status: "error", diagnostic: { code: "syntax", offset: 0 } });
+    expect(session.currentResult()).toBeUndefined();
+    await session.copy(write);
+    expect(write).toHaveBeenCalledTimes(1);
+    session.clear();
+    expect(view.output).toHaveBeenLastCalledWith("");
+    session.dispose();
+  });
+  it("validates with an empty acknowledgement but never copies a document", async () => {
+    const { session, reply, view, workers } = setup();
+    const write = vi.fn();
+    session.start("true", "validate");
+    expect(workers[0]!.postMessage).toHaveBeenCalledWith({
+      id: 1,
+      operation: "json-validate",
+      input: "true",
+    });
+    reply({ status: "success", output: "" });
+    expect(view.status).toHaveBeenLastCalledWith("success");
+    expect(view.current).toHaveBeenLastCalledWith(true);
+    await session.copy(write);
+    expect(write).not.toHaveBeenCalled();
+    session.invalidate();
+    expect(session.currentResult()).toBeUndefined();
+    expect(view.status).toHaveBeenLastCalledWith("ready");
+  });
+
+  it("invalidates validator errors and clears late validation work", () => {
+    const { session, reply, view, workers } = setup();
+    session.start("//comment", "validate");
+    reply({ status: "error", diagnostic: { code: "syntax", offset: 0 } });
+    expect(view.diagnostic).toHaveBeenCalledWith(
+      { code: "syntax", offset: 0 },
+      "//comment",
+    );
+    session.invalidate();
+    expect(view.status).toHaveBeenLastCalledWith("ready");
+    session.start("true", "validate");
+    const late = workers[1]!.onmessage!;
+    session.clear();
+    late({
+      data: {
+        id: 2,
+        operation: "json-validate",
+        status: "success",
+        output: "",
+      },
+    } as MessageEvent);
+    expect(view.status).toHaveBeenLastCalledWith("cleared");
+    expect(session.currentResult()).toBeUndefined();
+    session.dispose();
+    expect(session.start("true", "validate")).toBe(false);
+    expect(vi.getTimerCount()).toBe(0);
+  });
+
   it("copies exactly the current result only on explicit activation", async () => {
     const { session, reply, view } = setup();
     const write = vi.fn().mockResolvedValue(undefined);

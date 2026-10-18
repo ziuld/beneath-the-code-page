@@ -1,5 +1,270 @@
 # Current handoff
 
+F07 COMPLETE,2026-10-18: Validator+Minifier accepted, final three-tool catalogue at
+770aa98. Ubuntu Java39117056490/browser39117056486 SUCCESS: clean Maven185 frontend,
+207 Java(three existing architecture skips),17 packaged; Chromium110,Firefox64,
+WebKit61 passed/3 documented Validator reload TODOs (BTC-F07-WK-01,ADR008). Local
+Chromium110 and health pass; both owner reviews accepted, environment/build details
+unreported. Checklist14/14 subject to final planning checks; canonical UH02/F07 done.
+Actual effort unrecorded. Next MVP action is reduced F12, not started. Keep V2 frozen.
+No merge/release/spec-sync/archive; PR7 remains draft pending owner delivery choice.
+Closure records are documentation-only; all runtime/test code verified at770aa98.
+Earlier pending/blocked handoff entries below historical.
+
+Final local packaged Chromium110/110 passes at770aa98; no new runtime/test changes.
+Includes three Minifier catalogue journeys, locale Copy/Clear/privacy/fidelity and
+no-JS/worker retry plus retained regressions. Await existing Ubuntu Java39117056490/
+browser39117056486 watchers for final clean/cross-engine evidence. Checklist10/14;
+no feature closure inferred from local Chromium alone.
+
+Final F07 publication candidate770aa98 committed/pushed to draftPR7 with explicit
+owner permission; both tool reviews accepted, actual environment details unreported.
+Java39117056490/browser39117056486 confirmed running at exact head; watchers active.
+Final local Maven185/207(three skips)/17 and health pass; Chromium run active.
+Checklist10/14; UH02/F07 remain open pending actual final browser/clean-CI evidence.
+Three WebKit reload TODOs retained; no new test investigation or V2 work. PR title/
+body updated for both tools. No merge/release/spec sync/archive; previous unpushed/
+unadvertised/owner-review-pending notes historical. Reviewed preview on8083 is the
+accepted pre-catalogue JAR; final source adds only catalogue/link assertions since.
+
+Minifier owner review accepted ("perfect, continue"); browser/version/OS/viewport/
+exact build identity unreported, acceptance owner-reported not observed. Added final
+three-link Tools catalogue and EN/ES/FR Minifier journeys; V2/Learn absent. Final
+normal Maven185/207(three skips)/17 passes; packaged Chromium/health running.
+Owner explicitly approves commit/push of Minifier+acceptance records to draftPR7
+for final Ubuntu clean-build/three-engine CI. Checklist10/14;2.4/2.6/3.1/3.2 pending.
+No UH02/F07 closure until actual final evidence; no merge/release/sync/archive.
+
+Minifier build verification passes:185 frontend tests,207 Java(three existing skips),
+17 packaged integration tests and health. Normal Maven verify, not clean. Source
+implements token-preserving minify and EN/ES/FR SSR/shared Copy-Clear lifecycle;
+catalogue remains Formatter/Validator only. Checklist9/14;UH02 implementation done,
+packaged browser and owner acceptance pending. Project-local Chromium download
+active; preview launched on8083 from verified JAR (old8082 is Validator build).
+Next: actual browser result, verify preview readiness, owner keyboard/narrow/200%
+zoom/locales/actual Copy review. No new dependency/CSP/route wildcard or V2 work.
+
+F07 Minifier UH02 implementation started under owner's "continue" instruction.
+UH01 accepted at ab2f956; existing closure bookkeeping preserved. Added pure
+validated-token minification, explicit json-minify dispatch, shared session/mode,
+SSR/EN-ES-FR/exact security-locale-log mappings and focused tests. Catalogue still
+excludes Minifier until review. Checklist7/14; UH02-T01 done,implementation active.
+First Maven run compiled old HomeSecurity route negatives during an edit and
+failed2 stale assertions; corrected assertions already in source, rerun active.
+Project-local pinned Chromium download active (no system libraries). Next: actual
+Maven/browser/health results then owner Copy/Clear/keyboard/zoom/locale review.
+No new dependency/CSP/runtime-policy change; no speculative WebKit TODO investigation.
+
+Validator UH01 accepted,2026-10-18, at publication commit ab2f956. Actual Ubuntu
+Java39115413719/browser39115413739 succeed: Chromium103,Firefox57,WebKit54 passed
+plus3 explicit TODO skips (BTC-F07-WK-01,ADR008). Changed catalogue journeys and
+separate failure/worker-retry tests pass. Clean Maven166/204(three skips)/17,health
+and owner manual review pass; owner additionally confirms Chrome page works.
+Checklist6/14; canonical UH01 tasks done, F07 in progress. Next: Minifier UH02 using
+accepted shared seams; no further Validator fault-test investigation. Actual effort
+unrecorded; no merge/release/spec-sync/archive. Earlier blockers are historical.
+
+Publication candidate ab2f956 pushed to draft PR7. Clean Maven166/204(three skips)/17
+and health pass. Local Chromium could not launch because clean target lacks its
+browser binary; not an application assertion failure. Use already running Ubuntu
+Java39115413719/browser39115413739 at exact ab2f956; watchers active, no redundant
+local reinstall. Await actual publication/split-test results before UH01 closure.
+Three WebKit-only module-reload TODOs documented as BTC-F07-WK-01; important tests
+remain active. No Minifier/merge/release; checklist4/14 until verification arrives.
+
+F07 publication verification in progress: e5c8d7d Ubuntu Java succeeds; browser
+build/Chromium/Firefox pass, WebKit45/48. Busy-worker retry fixed by test no-store;
+only three injected-module reload cases deferred under owner-approved ADR008.
+Split them into WebKit-only fixme/TODO BTC-F07-WK-01; no-JS/failure feedback and
+worker-load retry remain active in all engines. Pending register documents risk.
+Added accepted Validator Tools link/localized description and three-locale journey
+checks; Minifier/V2/Learn unadvertised. Clean build for changed publication state
+running; no final verification or UH01 closure claimed yet. Checklist4/14, no
+Minifier/merge/release. Earlier running-CI/no-deferral notes are historical.
+
+F07 bounded fixture correction delivered,2026-10-18: e5c8d7d pushed to draftPR7;
+Java39114716031/browser39114716064 confirmed running at that exact head,watchers
+active. Only two test failure responses made non-cacheable; production code/CSP/
+cache/deadlines/assertions unchanged, no test skipped yet. ADR008 and pending-browser
+register capture owner's explicit75%-target/bounded-WebKit-debt policy, not measured
+coverage or permission to hide important failures. Checklist4/14; awaiting actual
+correctedCI, no catalogue promotion/closure/Minifier/merge/release. Local syntax,
+planning/rule21/strict OpenSpec9/whitespace pass; no redundant local Maven rerun for
+test-only edits. Earlier0ca9f94 WebKit44/48 is historical, not a new-head result.
+
+F07 bounded test follow-up authorised,2026-10-18: owner approves the targeted fixture
+correction and permits troublesome WebKit recovery checks as explicit TODO/pending
+debt rather than repeated delays;75% code-coverage target, not100%, no measured
+coverage claim. ADR008/pending-browser-tests register record this narrow policy;
+important engine/privacy/security/correctness checks and runtime behaviour unchanged.
+Applied only HTTP503/no-store lazy-failure fixture and no-store substituted busy
+worker with original CSP; all reload/retry/deadline/exact-input assertions retained.
+No tests deferred yet; deliver this bounded attempt through existing authorised
+PR7 path and inspect actualCI. Checklist4/14;owner review accepted, no catalogue
+promotion/UH01 closure/Minifier yet. Old0ca9f94 Java/Chrome94/Firefox48 pass,WebKit44/48;
+earlier unconditional-WebKit stop wording superseded only as documented in ADR008.
+
+F07 actual WebKit recovery-test pause,2026-10-18: PR7 head0ca9f94 Java39113573326
+SUCCESS; browser39113573357 clean Maven/Chromium94/Firefox48 pass,WebKit44/48. Three
+EN/ES/FR injected-lazy-abort tests fail readiness after unroute/reload(line187);
+bounds/deadline test reaches final retry(line234) but still times out after injected
+busy worker. Earlier source equality/depth/expected-timeout assertions reached;
+successful retry not proved. Retained F06/foundation and normal Validator privacy/
+diagnostic/history cases pass. Suspect immutable-asset injected-fault cache
+contamination, not confirmed. Proposed test-only failed lazy response/no-store and
+busy-worker response/no-store, keeping CSP,all reload/retry/exact-source assertions
+and production cache/deadline policy. Not applied; await functional-error guidance.
+Checklist4/14,1.4/UH01 verification/publication/closure blocked; owner review accepted,
+Minifier unstarted. Logs /tmp/opencode/f07-validator-ci-browser.log and
+f07-validator-ci-browser-failed.log. PR7 remains draft at0ca9f94; local delivery
+bookkeeping only, no further push/merge/release/runtime change. Earlier running/
+pending-WebKit notes superseded by this actual failure, no gate waiver.
+
+F07 Validator draft delivered,2026-10-18: committed/pushed0ca9f94 on new
+feature/F07-json-validator-and-minifier from merged main8de4639, including authorised
+MVP replan/proposal prerequisites. Draft PR7 https://github.com/ziuld/beneath-the-code-page/pull/7.
+Confirmed Java39113573326/browser39113573357 running at exact head; watchers active.
+Await actual required WebKit, not config/running jobs;4/14 tasks complete. Owner
+manual acceptance and local Maven166/204(three skips)/17,health,Chromium94/Firefox48
+pass. Catalogue Formatter-only; no1.6 publication/UH01 closure/Minifier/merge/release.
+Post-delivery evidence/real-commit tracking local; previous no-permission/no-delivery
+notes below historical. No runtime changes after committed tested slice.
+
+F07 draft delivery authorised,2026-10-18: owner approved committing/pushing current
+Validator slice and existing MVP planning updates to a new F07 draft PR for Ubuntu
+WebKit CI. Fetched merged origin/main8de4639; tracked tree equals old locald6455d4.
+Created feature/F07-json-validator-and-minifier from merged main, preserving all
+local work and old F06 branch. Prepare coherent delivery and inspect actualCI.
+Owner manual review already accepted; local Maven166/204(three skips)/17,health,
+Chromium94/94 and Firefox48/48 pass. Checklist4/14;1.4 actualWebKit and1.6 publication/
+closure pending. No merge/release/sync/archive/Minifier or WebKit waiver. Earlier
+delivery-permission blockers below superseded; authorisation is not passing CI.
+
+F07 validator owner review accepted,2026-10-18: in direct response to requested
+keyboard/Clear-Back/narrow/actual200%-zoom/EN-ES-FR checks, owner reports all work.
+Recorded as owner-reported manual acceptance, not measured/agent-observed results;
+browser/version/OS/viewport/build identity unreported.1.5 complete,checklist4/14.
+No runtime changes after clean Maven166 frontend/204 Java cases (three skips)/17
+packaged,health,Chromium94/94 and Firefox48/48 passes. Required Ubuntu WebKit still
+pending1.4; canonical closureT05 blocked on verification/publication/real commit,
+not manual review. Need explicit commit/push/new F07 draft-PR authorisation for
+CI (including existing MVP planning/proposal prerequisites); review report does
+not authorise external delivery. Catalogue Formatter-only,Minifier unstarted;
+no merge/release/sync/archive. Evidence F07-UH01-json-validation.md; preview8082
+unchanged. Earlier pending-manual notes below superseded; no WebKit waiver.
+
+F07 validator local verification complete/CI-owner gates,2026-10-18: corrected full
+document assertion retains exact equality; Chromium94/94 and Firefox48/48 pass all
+new Validator and retained F06/foundation cases, including1MiB/depth128 and real
+controlled deadline/retry. Clean Maven166 frontend/204 Java cases (three explicit
+architecture skips)/17 packaged and health pass; runtime unchanged since that build.
+Preview http://127.0.0.1:8082/tools/json-validator?lang=en (es/fr too),actualHTTP200
+locale/markup verified; manual observations not inferred. Required Ubuntu WebKit
+still pending: fallback host lacks libicu74/libxml2/libflite1. Need explicit commit/
+push/new F07 draft-PR authorisation, including current MVP planning/proposal work;
+PR6 read-only inspection confirms MERGED. No remote message/delivery performed.
+Owner keyboard/narrow/actual200%/EN-ES-FR acceptance also pending.3/14 tasks complete;
+1.4 unchecked,canonical F07/UH01/T03 blocked at remaining gates,implementationT02
+done. Catalogue Formatter-only; no Minifier,merge/release/sync/archive/system install
+or dependency/CSP/assertion relaxation. Evidence F07-UH01-json-validation.md; logs
+/tmp/opencode/f07-validator-chromium-fixed.log, f07-validator-firefox.log and
+f07-validator-review.log. Prior in-progress/fixture/style notes below historical.
+
+F07 validator local Chromium green,2026-10-18: owner authorised exact full-document
+test correction and continuation through UH01. Select All/copy event into local
+DataTransfer retains exact source equality; no real clipboard/app/limit/CSP change.
+Full Chromium94/94 now passes including1MiB/depth128/deadline/retry and retained F06
+regressions. Clean Maven166 frontend/204 Java cases (three skips)/17 packaged and
+health pass. Firefox verification running; WebKit installer confirms missing host
+libicu74/libxml2/libflite1, no system install. Need authorised new F07 draft-PR/Ubuntu
+CI path (read-only check confirms PR6 MERGED, not merged by this apply). No F07
+commit/push/PR/publication yet. Local reviewed JAR preview on127.0.0.1:8082; EN/ES/FR
+validator GETs return200 with correct locale/markup. Owner keyboard/narrow/actual200%
+zoom/locale acceptance unreported, catalogue still Formatter-only. Checklist3/14,
+1.4 unchecked;canonical F07/UH01/T03 blocked only on remaining gates,implementation
+T02 done. Minifier unstarted. Evidence F07-UH01-json-validation.md; logs
+/tmp/opencode/f07-validator-chromium-fixed.log and f07-validator-firefox.log. Existing
+MVP replan preserved; earlier style and Chromium fixture pauses are resolved.
+
+F07 validator browser-fixture pause,2026-10-18: routine style corrections explicitly
+authorised/applied. Clean Maven166 frontend/204 Java cases (three skips)/17 packaged
+and real health pass.1.3 complete,checklist3/14; exact SSR/session/route/locale/log
+integration prepared, catalogue Formatter-only and Minifier unstarted. Full Chromium
+93/94: all nine new EN/ES/FR validation/privacy/CSP/diagnostics/rejected-edit/Clear/
+Back/load-recovery cases and retained F06/foundation regressions pass. Final bounds
+case fails exact 1 MiB preservation at .cm-line DOM comparison (virtualised editor);
+valid verdict observed, but full document equality and later depth/deadline/retry
+assertions unproved. No fix/assertion relaxation. Pause under functional error rule;
+1.4 unchecked,canonical F07/UH01/T03 blocked,implementationT02 done. Recommend
+test-only Select All/copy event into in-memory DataTransfer using CodeMirror's
+state-based copy handler, retaining full exact equality without real clipboard
+read/app changes; await guidance. No Firefox/WebKit/manual acceptance yet. Logs
+/tmp/opencode/f07-validator-clean-maven.log, f07-validator-health.log and
+f07-validator-chromium.log; evidence F07-UH01-json-validation.md. Planning/rule21/
+strict OpenSpec/whitespace pass. No commit/push/merge/release/CSP/dependency/system
+changes; prior MVP replan preserved. Earlier style pauses below are resolved.
+
+F07 continuation/workspace style pause,2026-10-18: owner approved the original
+formatting and isolated planning-fixture fixes.77 focused tests/type/lint/style and
+all21 planning tests pass;1.2 complete,checklist2/14. Prepared1.3 shared validation
+session/workspace, EN/ES/FR SSR/resources, shared message fragment, exact controller/
+security/language-return/log identities and session/MVC tests. Catalogue Formatter
+only,Minifier unstarted. Clean Maven log /tmp/opencode/f07-validator-clean-maven.log
+passes full TypeScript/ESLint then fails Prettier on one formatter-workspace.ts
+feedback-query line wrap. Confirmed read-only formatting diff; no functional fix,
+assertion weakening or further correction. Pause under error rule;1.3 unchecked,
+canonical F07/UH01/T02 blocked. Unit/Java/package/health/browser gates not reached
+in this run; no manual acceptance or new-code WebKit pass. Next approve formatting
+correction (optionally routine style-only correction permission), rerun verification.
+Evidence F07-UH01-json-validation.md; prior MVP work preserved, no commit/push/merge/
+release/sync/archive/system install or new dependency/version/CSP change.
+
+F07 apply paused on formatting, 2026-10-18: explicit apply authorised. Baseline1.1
+complete (1/14), accepted F06/current uncommitted MVP replan preserved. Extracted
+existing strict validation to algorithms/validation.ts, retained Formatter writer
+and added json-validate dispatch/empty acknowledgement plus focused tests/docs.
+77 tests across four files,full TypeScript and touched-file ESLint pass. Prettier
+reports formatting differences in algorithms/formatter.ts and worker-protocol.test.ts;
+paused under owner error rule before correction. Task1.2 unchecked; canonical
+F07/UH01/T02 blocked,analysisT01 done. Evidence F07-UH01-json-validation.md and log
+/tmp/opencode/f07-validation-focused.log. Proposed next formatting-only correction
+and rerun checks, then1.3; await guidance. No page/session/SSR/browser/Maven/manual
+acceptance or Minifier yet; no catalogue promotion,dependency/CSP/CI/main-spec change,
+commit/push/merge/release/sync/archive. Owner effort unreported.
+Post-pause tracking checks: renderers/integrity/strict OpenSpec/whitespace pass;
+planning-rule20/21, stale live-data queue test still expects completedF07-UH01-T01
+as next. Renderer correctly says no unblocked task withT02 blocked. Recommend
+explicit initial-state test fixture, retaining assertions; await guidance, no fix.
+
+F07 proposal ready, 2026-10-18: owner requested planning only. Created spec-driven
+change f07-json-validator-and-minifier with proposal/design/tasks and deltas for
+new json-validator/json-minifier plus the existing json-formatter publication rule
+(formatter-only catalogue must admit accepted F07 pages). Reuse current strict
+parser/editor/worker/session; no new dependency, generic framework or CSP change.
+Design separates validation from pretty-output expansion, keeps one worker and
+empty validation acknowledgement, text-only output/history clearing and exact
+route/locale/log identities. All four artefact types ready; checklist0/14. Strict
+change validation,planning integrity,21 rule tests and whitespace pass; stable F07
+IDs/10h forecast/statuses unchanged. Evidence harness/evidence/F07-openspec-proposal.md.
+No application/main-spec/CI edits, build/browser/manual acceptance, apply, sync,
+archive,commit/push/merge/release. Prior uncommitted MVP replan preserved. Next review
+artefacts; await a new explicit request to apply. F07 implementation remains unstarted.
+
+Focused MVP replanned, 2026-10-18: owner authorised the reduced scope in ADR 007.
+F00–F06 remain accepted; F06 archived and its runtime evidence unchanged. V1 keeps
+F06/F07 JSON tools, full retained website journeys and one complete EN/ES/FR
+source-to-JVM unit. F08–F11/F15 frozen V2; Docker/Compose and broad redesign deferred.
+Remaining order F07 → reduced F12 (JSON catalogue/existing JAR) → F13 (learning
+structure with synthetic fixtures) → F14 (real reviewed unit) → F16 (enable Learn,
+shared-page polish/retained acceptance). F13 depends on F07, F16 on F12/F14; no V1
+dependency/milestone includes V2. Forecast42h +8.4h contingency, provisional, not
+measured velocity or committed dates; baseline298h and all IDs/statuses preserved.
+Both renderers, planning integrity,21 rule tests,strict OpenSpec8/8 and whitespace
+pass. Evidence harness/evidence/MVP-replan.md. Planning/tooling only, no runtime,
+application tests,CI or OpenSpec edits; no commit/push/merge/release. Next eligible
+F07-UH01-T01 remains unstarted; this request does not start F07 implementation.
+Earlier all-tools/full-course/bootstrap instructions are historical and superseded.
+
 F06 archived,2026-10-18: all22/22 tasks complete; spec synced and verified at
 openspec/specs/json-formatter/spec.md. Change archived to
 openspec/changes/archive/2026-10-18-f06-json-formatter/ including .openspec.yaml.
