@@ -1,5 +1,32 @@
 # Current handoff
 
+F07 COMPLETE,2026-10-18: Validator+Minifier accepted, final three-tool catalogue at
+770aa98. Ubuntu Java39117056490/browser39117056486 SUCCESS: clean Maven185 frontend,
+207 Java(three existing architecture skips),17 packaged; Chromium110,Firefox64,
+WebKit61 passed/3 documented Validator reload TODOs (BTC-F07-WK-01,ADR008). Local
+Chromium110 and health pass; both owner reviews accepted, environment/build details
+unreported. Checklist14/14 subject to final planning checks; canonical UH02/F07 done.
+Actual effort unrecorded. Next MVP action is reduced F12, not started. Keep V2 frozen.
+No merge/release/spec-sync/archive; PR7 remains draft pending owner delivery choice.
+Closure records are documentation-only; all runtime/test code verified at770aa98.
+Earlier pending/blocked handoff entries below historical.
+
+Final local packaged Chromium110/110 passes at770aa98; no new runtime/test changes.
+Includes three Minifier catalogue journeys, locale Copy/Clear/privacy/fidelity and
+no-JS/worker retry plus retained regressions. Await existing Ubuntu Java39117056490/
+browser39117056486 watchers for final clean/cross-engine evidence. Checklist10/14;
+no feature closure inferred from local Chromium alone.
+
+Final F07 publication candidate770aa98 committed/pushed to draftPR7 with explicit
+owner permission; both tool reviews accepted, actual environment details unreported.
+Java39117056490/browser39117056486 confirmed running at exact head; watchers active.
+Final local Maven185/207(three skips)/17 and health pass; Chromium run active.
+Checklist10/14; UH02/F07 remain open pending actual final browser/clean-CI evidence.
+Three WebKit reload TODOs retained; no new test investigation or V2 work. PR title/
+body updated for both tools. No merge/release/spec sync/archive; previous unpushed/
+unadvertised/owner-review-pending notes historical. Reviewed preview on8083 is the
+accepted pre-catalogue JAR; final source adds only catalogue/link assertions since.
+
 Minifier owner review accepted ("perfect, continue"); browser/version/OS/viewport/
 exact build identity unreported, acceptance owner-reported not observed. Added final
 three-link Tools catalogue and EN/ES/FR Minifier journeys; V2/Learn absent. Final

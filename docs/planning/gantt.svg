@@ -6,12 +6,10 @@
 <text x="20" y="25" font-size="17">Feature schedule · relative weeks · AI-assisted</text>
 <path d="M365.0 48 V517" stroke="#292927"/>
 <text x="365.0" y="43" text-anchor="middle">W1</text>
-<path d="M653.3 48 V517" stroke="#292927"/>
-<text x="653.3" y="43" text-anchor="middle">W3</text>
-<path d="M941.7 48 V517" stroke="#292927"/>
-<text x="941.7" y="43" text-anchor="middle">W5</text>
+<path d="M797.5 48 V517" stroke="#292927"/>
+<text x="797.5" y="43" text-anchor="middle">W3</text>
 <path d="M1230.0 48 V517" stroke="#292927"/>
-<text x="1230.0" y="43" text-anchor="middle">W7</text>
+<text x="1230.0" y="43" text-anchor="middle">W5</text>
 <text x="20" y="76">F00 Manual Initializr import</text>
 <rect x="365.00" y="60" width="0.00" height="22" fill="#9bb7a1"><title>F00 Manual Initializr import: 2h, done</title></rect>
 <text x="20" y="110">F01 Java baseline and boundaries</text>
@@ -27,16 +25,16 @@
 <text x="20" y="280">F06 JSON Formatter</text>
 <rect x="365.00" y="264" width="0.00" height="22" fill="#9bb7a1"><title>F06 JSON Formatter: 24h, done</title></rect>
 <text x="20" y="314">F07 JSON Validator and Minifier</text>
-<rect x="365.00" y="298" width="144.17" height="22" fill="#92908b"><title>F07 JSON Validator and Minifier: 10h, in_progress</title></rect>
+<rect x="365.00" y="298" width="0.00" height="22" fill="#9bb7a1"><title>F07 JSON Validator and Minifier: 10h, done</title></rect>
 <text x="20" y="348">F12 MVP tool navigation and local runtime</text>
-<rect x="509.17" y="332" width="57.67" height="22" fill="#92908b"><title>F12 MVP tool navigation and local runtime: 4h, planned</title></rect>
+<rect x="365.00" y="332" width="86.50" height="22" fill="#92908b"><title>F12 MVP tool navigation and local runtime: 4h, planned</title></rect>
 <text x="20" y="382">F13 Learning pages and navigation</text>
-<rect x="566.83" y="366" width="144.17" height="22" fill="#92908b"><title>F13 Learning pages and navigation: 10h, planned</title></rect>
+<rect x="451.50" y="366" width="216.25" height="22" fill="#92908b"><title>F13 Learning pages and navigation: 10h, planned</title></rect>
 <text x="20" y="416">F14 First complete learning unit</text>
-<rect x="711.00" y="400" width="144.17" height="22" fill="#92908b"><title>F14 First complete learning unit: 10h, planned</title></rect>
+<rect x="667.75" y="400" width="216.25" height="22" fill="#92908b"><title>F14 First complete learning unit: 10h, planned</title></rect>
 <text x="20" y="450">F16 MVP website polish and acceptance</text>
-<rect x="855.17" y="434" width="115.33" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
-<text x="20" y="484">Shared contingency · 8.4h</text>
-<rect x="970.50" y="468" width="121.10" height="22" fill="#45433f"/>
-<text x="20" y="542">Gray = scheduled effort, not completion. Accepted: 7/12 features. Milestone timing excludes shared contingency.</text>
+<rect x="884.00" y="434" width="173.00" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
+<text x="20" y="484">Shared contingency · 6.4h</text>
+<rect x="1057.00" y="468" width="138.40" height="22" fill="#45433f"/>
+<text x="20" y="542">Gray = scheduled effort, not completion. Accepted: 8/12 features. Milestone timing excludes shared contingency.</text>
 </g></svg>

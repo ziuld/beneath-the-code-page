@@ -8,6 +8,8 @@ reported as passing. See [ADR 008](../architecture/adr-008-bounded-browser-test-
 ## F07-UH01 — injected asset failure recovery
 
 Status: three WebKit-only reload checks deferred as `BTC-F07-WK-01`.
+Final F07 publication `770aa98`, run39117056486: Chromium110/Firefox64 pass;
+WebKit61 passed, the same3 deferred. No Minifier tests deferred or new exception.
 Final publication `ab2f956`, run39115413739: Chromium103/Firefox57 pass;
 WebKit54 passed,3 deferred. Important split failure/retry checks pass all engines.
 Tracking: draft PR7, head `e5c8d7d`, Ubuntu browser run39114716064:

@@ -1,6 +1,40 @@
 # F07-UH02 — JSON Minifier evidence
 
-Date: 2026-10-18. Status: implementation/verification in progress; not accepted.
+Date: 2026-10-18. Status: accepted; F07 complete with documented ADR008 test debt.
+
+## Final integrated acceptance
+
+Verified exact runtime/test publication head
+`770aa98ea3ceafe7e7678c3e35109ec844d1d925`:
+- [Ubuntu Java CI](https://github.com/ziuld/beneath-the-code-page/actions/runs/39117056490): success.
+- [Ubuntu packaged browser CI](https://github.com/ziuld/beneath-the-code-page/actions/runs/39117056486): success.
+- Actual clean Maven:185 frontend tests,207 Java cases(three existing architecture
+  skips),17 packaged integration tests, BUILD SUCCESS.
+- Chromium110/110, Firefox64/64, WebKit61 passed/3 skipped. Skips are the existing
+  owner-authorised Validator module-reload TODOs BTC-F07-WK-01, not passes.
+- Local packaged Chromium110/110 and health pass on the same publication source.
+- All three EN/ES/FR Home→Tools→Minifier journeys and exact three-tool catalogue
+  checks pass. Retained Formatter/Validator/foundation regressions remain active;
+  no V2/Learn publication, dependency, CSP or production-budget relaxation.
+
+Review of integrated diff/evidence confirms both UH02 scenarios, deliberate
+current-result Copy/stale gating, Clear/history, real worker fidelity, diagnostics
+and action privacy. Owner accepted the supplied manual checklist; actual browser
+environment/build identity unreported, no automated or speech-review substitution.
+Shared manager/session tests establish deadline/output-budget/clipboard-race
+behaviour; no expanding-minifier fixture or measured coverage percentage claimed.
+
+Canonical UH02 tasks and F07 close on this evidence; OpenSpec14/14 after final
+planning checks. Actual hours remain0/unrecorded, not an invented elapsed estimate.
+Next authorised MVP candidate is reduced F12; it is not started. No merge/release,
+main-spec sync or archive performed. Earlier pending-result notes are historical.
+Full CI log: `/tmp/opencode/f07-final-ci-browser.log`.
+
+Closure checks executed: regenerated both planning views; planning integrity and
+closure rules pass,21 planning-rule tests pass, strict OpenSpec9/9 and whitespace
+pass. Checklist14/14. Follow-up closure edits touch documentation/planning only;
+no runtime or test changes after verified770aa98. Commit/push of these acceptance
+records remains within the owner's explicit draftPR7 delivery authorisation.
 
 ## Baseline and scope
 
@@ -55,6 +89,17 @@ Rerun pending. Logs `/tmp/opencode/f07-minifier-maven.log` and
 no privileged/system dependency install. No acceptance inferred from tests authored.
 
 ## Executed build and health results
+
+Final local packaged Chromium succeeds: **110/110**, including all three Minifier
+catalogue journeys, locale fidelity/Copy/Clear/privacy and no-JS/worker retry cases,
+with retained Formatter/Validator/foundation regressions. Log:
+`/tmp/opencode/f07-final-chromium.log`. Ubuntu cross-engine/clean-CI result pending.
+
+Delivered `770aa98ea3ceafe7e7678c3e35109ec844d1d925` to existing draftPR7 under
+explicit owner approval. Final local publication health passes; Chromium running.
+Ubuntu Java39117056490/browser39117056486 confirmed running at this exact head,
+watchers active. No new-head CI or browser pass inferred from running workflows.
+PR updated to include Minifier, owner reviews and explicit WebKit TODO debt.
 
 Final three-link catalogue candidate also passes normal Maven verify:185 frontend,
 207 Java cases(three existing skips),17 packaged integration tests. Log

@@ -1,6 +1,6 @@
 # Task — F07-UH02 JSON Minifier
 
-Status / owner / date: implementation in progress / Ziuld with AI assistance / 2026-10-18.
+Status / owner / date: accepted / Ziuld with AI assistance / 2026-10-18.
 
 User outcome and authorised scope: continue F07 with browser-local strict JSON
 minification. Preserve tokens and reuse accepted worker/editor/Copy/Clear behaviour;
@@ -28,4 +28,6 @@ documented WebKit lazy-reload TODOs. Manual keyboard/narrow/200% zoom/locale/Cop
 review remains distinct from synthetic clipboard verification.
 
 Results/evidence: [Minifier evidence](../evidence/F07-UH02-json-minification.md).
-Actual effort unrecorded. Next: finish focused verification and prepare owner review.
+Actual effort unrecorded. Final770aa98 clean CI185/207(three skips)/17 passes;
+Chromium110/Firefox64/WebKit61 pass,3 existing TODOs retained. Owner review accepted.
+Next: reduced F12 only when requested; no merge/release/sync/archive.

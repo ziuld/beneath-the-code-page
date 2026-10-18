@@ -2,7 +2,9 @@
 
 Route: `/tools/json-minifier?lang=en` (also `es` and `fr`). The owner accepted the
 review checklist; the Tools link is present in the final publication candidate.
-Changed-state verification remains pending, not inferred from owner acceptance.
+Changed-state verification at770aa98 passes clean Ubuntu Java/browser CI:
+Chromium110,Firefox64,WebKit61 passed with3 existing documented reload TODOs.
+UH02 and integrated F07 accepted; no merge/deployment implied.
 
 The minifier validates complete strict JSON first, then joins original scanner
 token slices. Spaces inside strings, escapes, duplicate keys, ordering, large

@@ -1,6 +1,6 @@
 # Task — F07 JSON Validator and Minifier
 
-Status / owner / date: Validator accepted; Minifier next / Ziuld with AI assistance / 2026-10-18.
+Status / owner / date: F07 accepted / Ziuld with AI assistance / 2026-10-18.
 
 User outcome and authorised scope: apply `f07-json-validator-and-minifier`; Validator
 first, Minifier after accepted UH01. No publication before acceptance, no V2 work,
@@ -28,6 +28,10 @@ full Chromium and critical Firefox/WebKit; actual owner keyboard/zoom/locale rev
 planning/rule/OpenSpec/whitespace checks. Planned checks are not passes.
 
 Results/evidence: [Validator evidence](../evidence/F07-UH01-json-validation.md).
+Final Minifier/integrated evidence: [UH02](../evidence/F07-UH02-json-minification.md).
+770aa98 clean Ubuntu Java/browser succeeds:185/207(three skips)/17,Chromium110,
+Firefox64,WebKit61 pass/3 prior TODOs. Owner reviews accepted; checklist14/14.
+Next reduced F12 not started; no merge/release/sync/archive. Earlier notes historical.
 Final publication ab2f956: Java and browser CI succeed; Chromium103,Firefox57,
 WebKit54 passed/3 documented TODO skips. Owner confirms Chrome works. UH01 closed
 with ADR008 debt retained; checklist6/14. Earlier paused/pending notes historical.

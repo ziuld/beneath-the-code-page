@@ -2,7 +2,7 @@
 
 Baseline date: 2026-10-09.
 
-7/12 features accepted; 94/172 baseline hours accepted (55%). Remaining V1 forecast 42 owner hours + 8.4h contingency = 50.4h, approximately 6 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
+8/12 features accepted; 104/172 baseline hours accepted (60%). Remaining V1 forecast 32 owner hours + 6.4h contingency = 38.4h, approximately 4 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
 
 Historical V1 baseline envelope: 111–304h; total-feature V1 forecast 136h includes accepted work. Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.
 
@@ -17,11 +17,11 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F04 | Security and locale flow | 14 | Accepted | done | F03 |
 | F05 | Editor and CSP proof | 14 | Accepted | done | F04 |
 | F06 | JSON Formatter | 24 | Accepted | done | F05 |
-| F07 | JSON Validator and Minifier | 10 | 0.0–1.0 | in_progress | F06 |
-| F12 | MVP tool navigation and local runtime | 4 | 1.0–1.4 | planned | F07 |
-| F13 | Learning pages and navigation | 10 | 1.4–2.4 | planned | F07 |
-| F14 | First complete learning unit | 10 | 2.4–3.4 | planned | F13 |
-| F16 | MVP website polish and acceptance | 8 | 3.4–4.2 | planned | F12, F14 |
+| F07 | JSON Validator and Minifier | 10 | Accepted | done | F06 |
+| F12 | MVP tool navigation and local runtime | 4 | 0.0–0.4 | planned | F07 |
+| F13 | Learning pages and navigation | 10 | 0.4–1.4 | planned | F07 |
+| F14 | First complete learning unit | 10 | 1.4–2.4 | planned | F13 |
+| F16 | MVP website polish and acceptance | 8 | 2.4–3.2 | planned | F12, F14 |
 
 ## Milestones
 
@@ -29,9 +29,9 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 |---|---|---:|
 | M0 | Runnable secure foundation | 0.0 |
 | M1 | First usable JSON Formatter | 0.0 |
-| M2 | MVP JSON tools and local JAR workflow | 1.4 |
-| M3 | Learning structure and one complete unit in three languages | 3.4 |
-| M4 | Polished focused MVP local release candidate | 4.2 |
+| M2 | MVP JSON tools and local JAR workflow | 0.4 |
+| M3 | Learning structure and one complete unit in three languages | 2.4 |
+| M4 | Polished focused MVP local release candidate | 3.2 |
 
 ## Frozen V2 — not scheduled
 
