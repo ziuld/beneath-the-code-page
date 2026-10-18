@@ -1,5 +1,6 @@
 import { formatJson } from "./algorithms/formatter";
 import { validateJson } from "./algorithms/validation";
+import { minifyJson } from "./algorithms/minifier";
 
 /** No arbitrary operations, exception text or payload-bearing diagnostic messages. */
 export function processJsonRequest(value: unknown) {
@@ -16,13 +17,16 @@ export function processJsonRequest(value: unknown) {
   if (
     operation !== "json-format-2" &&
     operation !== "json-format-4" &&
-    operation !== "json-validate"
+    operation !== "json-validate" &&
+    operation !== "json-minify"
   )
     return { id, operation, status: "error" };
   const result =
     operation === "json-validate"
       ? validateJson(input)
-      : formatJson(input, operation === "json-format-4" ? 4 : 2);
+      : operation === "json-minify"
+        ? minifyJson(input)
+        : formatJson(input, operation === "json-format-4" ? 4 : 2);
   return result.status === "success"
     ? {
         id,

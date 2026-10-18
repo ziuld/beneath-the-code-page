@@ -31,7 +31,7 @@
         <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
         <h2 id="formatter-output-label" data-format-output-label th:text="#{formatter.output}"></h2>
         <pre id="formatter-output" data-format-output role="region" aria-labelledby="formatter-output-label" tabindex="0"></pre>
-        <div th:replace="~{fragments/json-workspace :: messages(false)}"></div>
+        <div th:replace="~{fragments/json-workspace :: messages(false, false)}"></div>
     </section>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>

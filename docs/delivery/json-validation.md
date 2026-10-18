@@ -39,8 +39,9 @@ and Firefox; WebKit45/48. The test-only no-store correction resolves busy-worker
 retry. Three WebKit injected-module reload checks are explicitly deferred under
 ADR008 with TODO BTC-F07-WK-01; normal failure feedback and worker retry remain
 active. See the [pending register](../quality/pending-browser-tests.md) for risk.
-The accepted Validator catalogue link and split tests are being verified; closure
-is not yet claimed. Review preview is on8082
+The accepted Validator catalogue link and split tests pass Ubuntu CI at ab2f956:
+Chromium103/Firefox57, WebKit54 passed with3 explicit reload TODO skips. UH01 is
+accepted with that documented debt. Review preview is on8082
 with the reviewed local JAR; it is not a deployment or an acceptance observation.
 Actual results belong in `harness/evidence/F07-UH01-json-validation.md`; this
 document does not claim product acceptance. Verify keyboard Escape/Tab, Clear,

@@ -20,6 +20,36 @@ not claimed. No automatic behavioural ownership migration or V2 work.
 
 ## Executed results
 
+### Accepted Validator closure — 2026-10-18
+
+At exact publication head `ab2f95635aea8cb21ae0d5c6102376a1dc85d095`:
+- [Java CI](https://github.com/ziuld/beneath-the-code-page/actions/runs/39115413719): success.
+- [Packaged browser CI](https://github.com/ziuld/beneath-the-code-page/actions/runs/39115413739): success;
+  Chromium103/103, Firefox57/57, WebKit54 passed and3 skipped, not57 passes.
+- Changed-state EN/ES/FR Home→Tools→Validator journeys, separate no-JS/failure
+  feedback and worker-load retry checks pass alongside retained F06 regressions.
+- Clean Maven166 frontend/204 Java(three existing architecture skips)/17 packaged
+  tests and local health pass. Owner additionally reports the page works perfectly
+  in Chrome; version/OS/viewport/build identity remain unreported.
+
+Reviewed the publication diff and acceptance evidence. Both canonical scenarios
+are satisfied; all UH01 tasks close with owner-approved ADR008 test debt explicitly
+retained as BTC-F07-WK-01. No full WebKit reload-recovery or measured coverage claim.
+Actual effort remains0/unrecorded, not a claim that no time was spent. Validator
+UH01 is accepted; F07 remains in progress with Minifier unstarted. No merge,
+release, spec sync or archive performed. Earlier blockers below are historical.
+
+### Publication candidate delivered — ab2f956
+
+Pushed `ab2f95635aea8cb21ae0d5c6102376a1dc85d095` to draft PR7. Local clean
+Maven and health smoke pass. Local Chromium cannot launch: the clean target tree
+lacks `target/browser-cache/chromium_headless_shell-1243/`; no application assertion
+result is established by that attempt. Avoid reinstalling local browsers during
+this bounded follow-up. Confirmed Ubuntu Java39115413719 and browser39115413739
+running at the exact publication head; watchers active. Await those actual results
+for catalogue journeys and split active failure/retry checks. Three WebKit reload
+tests remain explicit pending TODOs under ADR008, not passes. UH01 remains open.
+
 ### Bounded correction result and publication verification in progress
 
 Ubuntu Java39114716031 succeeds at `e5c8d7d`; browser39114716064 passes build,

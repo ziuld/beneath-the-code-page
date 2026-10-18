@@ -2551,8 +2551,8 @@
       "depends_on": [
         "F06"
       ],
-      "status": "blocked",
-      "blocker": "e5c8d7d Ubuntu Java/Chromium/Firefox pass; WebKit45/48. Three lazy-reload checks explicitly deferred as BTC-F07-WK-01 under ADR008. Catalogue publication and split active failure/retry tests are being verified; no final closure yet.",
+      "status": "in_progress",
+      "blocker": "",
       "actual_start": "2026-10-18",
       "actual_finish": null,
       "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
@@ -2566,8 +2566,8 @@
           "description": "As a developer, I want to check whether text is valid JSON, so that I can identify syntax errors before using the document.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "blocked",
-          "blocker": "Owner review accepted; busy-worker retry passes WebKit at e5c8d7d. Three injected-module reload checks deferred under ADR008. Changed catalogue and separate important failure/retry checks await verification before closure.",
+          "status": "done",
+          "blocker": "",
           "depends_on": [
             "F06"
           ],
@@ -2575,9 +2575,9 @@
           "forecast_hours": 5,
           "actual_hours": 0,
           "actual_start": "2026-10-18",
-          "actual_finish": null,
+          "actual_finish": "2026-10-18",
           "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-          "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
+          "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145", "ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
           "requirements": [
             {
               "id": "F07-UH01-R01",
@@ -2666,8 +2666,8 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "blocked",
-              "blocker": "e5c8d7d Ubuntu build/Chromium/Firefox pass; WebKit45/48 with busy-worker retry resolved. Only three WebKit lazy-reload checks deferred under ADR008; new split active tests and catalogue journeys await changed-state verification.",
+              "status": "done",
+              "blocker": "",
               "depends_on": [
                 "F07-UH01-T02"
               ],
@@ -2676,9 +2676,9 @@
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
               "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-              "commits": [],
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
               "actual_start": "2026-10-18",
-              "actual_finish": null
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T04",
@@ -2688,7 +2688,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01-T03"
@@ -2697,10 +2697,10 @@
                 "F07-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH01-T05",
@@ -2710,8 +2710,8 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "blocked",
-              "blocker": "Owner reports requested keyboard/Clear-Back/narrow/actual200%-zoom/EN-ES-FR checks pass. Canonical closure still awaits predecessor verification, required WebKit CI, catalogue publication and authorised commit evidence.",
+              "status": "done",
+              "blocker": "",
               "depends_on": [
                 "F07-UH01-T04"
               ],
@@ -2721,9 +2721,9 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "commits": ["ab2f95635aea8cb21ae0d5c6102376a1dc85d095"],
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             }
           ],
           "scope_note": "V1 only: reuse the accepted strict JSON engine, editor, diagnostics and worker lifecycle; no general-purpose tool framework or new dependency without demonstrated need."
@@ -2735,7 +2735,7 @@
           "description": "As a developer, I want to remove unnecessary JSON whitespace, so that I obtain compact content without data changes.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "in_progress",
           "blocker": "",
           "depends_on": [
             "F07-UH01"
@@ -2743,9 +2743,9 @@
           "baseline_hours": 5,
           "forecast_hours": 5,
           "actual_hours": 0,
-          "actual_start": null,
+          "actual_start": "2026-10-18",
           "actual_finish": null,
-          "evidence": [],
+          "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
           "commits": [],
           "requirements": [
             {
@@ -2792,17 +2792,17 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH01"
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T02",
@@ -2812,7 +2812,7 @@
               "baseline_hours": 1.5,
               "forecast_hours": 1.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T01"
@@ -2822,10 +2822,10 @@
                 "F07-UH02-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-18",
+              "actual_finish": "2026-10-18"
             },
             {
               "id": "F07-UH02-T03",
@@ -2835,7 +2835,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "in_progress",
               "blocker": "",
               "depends_on": [
                 "F07-UH02-T02"
@@ -2844,9 +2844,9 @@
                 "F07-UH02-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": ["harness/evidence/F07-UH02-json-minification.md"],
               "commits": [],
-              "actual_start": null,
+              "actual_start": "2026-10-18",
               "actual_finish": null
             },
             {
@@ -2880,7 +2880,7 @@
               "forecast_hours": 0.5,
               "actual_hours": 0,
               "status": "planned",
-              "blocker": "",
+              "blocker": "Owner review accepted; final publication/browser evidence and canonical predecessor verification still pending. Commit/push to existing draft PR7 authorised.",
               "depends_on": [
                 "F07-UH02-T04"
               ],

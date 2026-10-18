@@ -5,6 +5,7 @@ import { sourcePosition } from "./algorithms/position";
 
 export function enhanceFormatter(workspace: HTMLElement) {
   const validation = workspace.hasAttribute("data-json-validator");
+  const minification = workspace.hasAttribute("data-json-minifier");
   const feedback = workspace.querySelector<HTMLElement>(
     "[data-editor-feedback]",
   );
@@ -62,7 +63,13 @@ export function enhanceFormatter(workspace: HTMLElement) {
   run.addEventListener("click", () => {
     session.start(
       editor.content(),
-      validation ? "validate" : indentation?.value === "4" ? 4 : 2,
+      validation
+        ? "validate"
+        : minification
+          ? "minify"
+          : indentation?.value === "4"
+            ? 4
+            : 2,
     );
   });
   cancel.addEventListener("click", () => session.cancel());

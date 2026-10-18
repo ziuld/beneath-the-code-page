@@ -61,13 +61,15 @@ export function createFormatterSession(
     view.current(false);
   }
   return {
-    start(input: string, operation: 2 | 4 | "validate") {
+    start(input: string, operation: 2 | 4 | "validate" | "minify") {
       if (disposed) return false;
       invalidate();
       jobRevision = revision;
       jobInput = input;
       return manager.start(
-        operation === "validate" ? "json-validate" : `json-format-${operation}`,
+        operation === "validate" || operation === "minify"
+          ? `json-${operation}`
+          : `json-format-${operation}`,
         input,
       );
     },

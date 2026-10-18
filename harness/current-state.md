@@ -1,5 +1,50 @@
 # Current handoff
 
+Minifier owner review accepted ("perfect, continue"); browser/version/OS/viewport/
+exact build identity unreported, acceptance owner-reported not observed. Added final
+three-link Tools catalogue and EN/ES/FR Minifier journeys; V2/Learn absent. Final
+normal Maven185/207(three skips)/17 passes; packaged Chromium/health running.
+Owner explicitly approves commit/push of Minifier+acceptance records to draftPR7
+for final Ubuntu clean-build/three-engine CI. Checklist10/14;2.4/2.6/3.1/3.2 pending.
+No UH02/F07 closure until actual final evidence; no merge/release/sync/archive.
+
+Minifier build verification passes:185 frontend tests,207 Java(three existing skips),
+17 packaged integration tests and health. Normal Maven verify, not clean. Source
+implements token-preserving minify and EN/ES/FR SSR/shared Copy-Clear lifecycle;
+catalogue remains Formatter/Validator only. Checklist9/14;UH02 implementation done,
+packaged browser and owner acceptance pending. Project-local Chromium download
+active; preview launched on8083 from verified JAR (old8082 is Validator build).
+Next: actual browser result, verify preview readiness, owner keyboard/narrow/200%
+zoom/locales/actual Copy review. No new dependency/CSP/route wildcard or V2 work.
+
+F07 Minifier UH02 implementation started under owner's "continue" instruction.
+UH01 accepted at ab2f956; existing closure bookkeeping preserved. Added pure
+validated-token minification, explicit json-minify dispatch, shared session/mode,
+SSR/EN-ES-FR/exact security-locale-log mappings and focused tests. Catalogue still
+excludes Minifier until review. Checklist7/14; UH02-T01 done,implementation active.
+First Maven run compiled old HomeSecurity route negatives during an edit and
+failed2 stale assertions; corrected assertions already in source, rerun active.
+Project-local pinned Chromium download active (no system libraries). Next: actual
+Maven/browser/health results then owner Copy/Clear/keyboard/zoom/locale review.
+No new dependency/CSP/runtime-policy change; no speculative WebKit TODO investigation.
+
+Validator UH01 accepted,2026-10-18, at publication commit ab2f956. Actual Ubuntu
+Java39115413719/browser39115413739 succeed: Chromium103,Firefox57,WebKit54 passed
+plus3 explicit TODO skips (BTC-F07-WK-01,ADR008). Changed catalogue journeys and
+separate failure/worker-retry tests pass. Clean Maven166/204(three skips)/17,health
+and owner manual review pass; owner additionally confirms Chrome page works.
+Checklist6/14; canonical UH01 tasks done, F07 in progress. Next: Minifier UH02 using
+accepted shared seams; no further Validator fault-test investigation. Actual effort
+unrecorded; no merge/release/spec-sync/archive. Earlier blockers are historical.
+
+Publication candidate ab2f956 pushed to draft PR7. Clean Maven166/204(three skips)/17
+and health pass. Local Chromium could not launch because clean target lacks its
+browser binary; not an application assertion failure. Use already running Ubuntu
+Java39115413719/browser39115413739 at exact ab2f956; watchers active, no redundant
+local reinstall. Await actual publication/split-test results before UH01 closure.
+Three WebKit-only module-reload TODOs documented as BTC-F07-WK-01; important tests
+remain active. No Minifier/merge/release; checklist4/14 until verification arrives.
+
 F07 publication verification in progress: e5c8d7d Ubuntu Java succeeds; browser
 build/Chromium/Firefox pass, WebKit45/48. Busy-worker retry fixed by test no-store;
 only three injected-module reload cases deferred under owner-approved ADR008.

@@ -28,7 +28,7 @@ public final class LanguagePreferenceController {
 				.httpOnly(true).secure(cookies.secure(request)).sameSite("Lax").path("/").maxAge(31536000).build();
 		String[] targets = request.getParameterValues("returnTo");
 		String target = targets != null && targets.length == 1
-				&& java.util.Set.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator").contains(targets[0]) ? targets[0] : "/";
+				&& java.util.Set.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier").contains(targets[0]) ? targets[0] : "/";
 		// Exact trusted paths only: no decoding, queries, fragments or external redirects.
 		return ResponseEntity.status(HttpStatus.SEE_OTHER).header(HttpHeaders.SET_COOKIE, cookie.toString())
 				.header(HttpHeaders.LOCATION, target).header(HttpHeaders.CACHE_CONTROL, "no-store").build();

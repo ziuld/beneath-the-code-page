@@ -24,7 +24,7 @@
             <button class="button" type="button" data-format-clear disabled th:text="#{formatter.clear}"></button>
         </div>
         <p role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
-        <div th:replace="~{fragments/json-workspace :: messages(true)}"></div>
+        <div th:replace="~{fragments/json-workspace :: messages(true, false)}"></div>
     </section>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>

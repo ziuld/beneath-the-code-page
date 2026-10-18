@@ -27,7 +27,7 @@
 <text x="20" y="280">F06 JSON Formatter</text>
 <rect x="365.00" y="264" width="0.00" height="22" fill="#9bb7a1"><title>F06 JSON Formatter: 24h, done</title></rect>
 <text x="20" y="314">F07 JSON Validator and Minifier</text>
-<rect x="365.00" y="298" width="144.17" height="22" fill="#92908b"><title>F07 JSON Validator and Minifier: 10h, blocked</title></rect>
+<rect x="365.00" y="298" width="144.17" height="22" fill="#92908b"><title>F07 JSON Validator and Minifier: 10h, in_progress</title></rect>
 <text x="20" y="348">F12 MVP tool navigation and local runtime</text>
 <rect x="509.17" y="332" width="57.67" height="22" fill="#92908b"><title>F12 MVP tool navigation and local runtime: 4h, planned</title></rect>
 <text x="20" y="382">F13 Learning pages and navigation</text>

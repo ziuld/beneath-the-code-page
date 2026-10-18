@@ -34,6 +34,29 @@ function setup() {
 }
 
 describe("formatter result ownership", () => {
+  it("minifies through the same revision and deliberate Copy ownership", async () => {
+    const { session, reply, view, workers } = setup();
+    const write = vi.fn().mockResolvedValue(undefined);
+    session.start(' { "s": "a b" } ', "minify");
+    expect(workers[0]!.postMessage).toHaveBeenCalledWith({
+      id: 1,
+      operation: "json-minify",
+      input: ' { "s": "a b" } ',
+    });
+    reply({ status: "success", output: '{"s":"a b"}' });
+    await session.copy(write);
+    expect(write).toHaveBeenCalledExactlyOnceWith('{"s":"a b"}');
+    session.invalidate();
+    expect(view.status).toHaveBeenLastCalledWith("stale");
+    session.start("//comment", "minify");
+    reply({ status: "error", diagnostic: { code: "syntax", offset: 0 } });
+    expect(session.currentResult()).toBeUndefined();
+    await session.copy(write);
+    expect(write).toHaveBeenCalledTimes(1);
+    session.clear();
+    expect(view.output).toHaveBeenLastCalledWith("");
+    session.dispose();
+  });
   it("validates with an empty acknowledgement but never copies a document", async () => {
     const { session, reply, view, workers } = setup();
     const write = vi.fn();

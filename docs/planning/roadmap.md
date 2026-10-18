@@ -17,7 +17,7 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F04 | Security and locale flow | 14 | Accepted | done | F03 |
 | F05 | Editor and CSP proof | 14 | Accepted | done | F04 |
 | F06 | JSON Formatter | 24 | Accepted | done | F05 |
-| F07 | JSON Validator and Minifier | 10 | 0.0–1.0 | blocked | F06 |
+| F07 | JSON Validator and Minifier | 10 | 0.0–1.0 | in_progress | F06 |
 | F12 | MVP tool navigation and local runtime | 4 | 1.0–1.4 | planned | F07 |
 | F13 | Learning pages and navigation | 10 | 1.4–2.4 | planned | F07 |
 | F14 | First complete learning unit | 10 | 2.4–3.4 | planned | F13 |

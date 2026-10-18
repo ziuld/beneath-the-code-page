@@ -8,6 +8,11 @@ const workerPath = assetPath(manifest["__json-formatter-worker"].file);
 const lazyPath = assetPath(manifest["tools/json/formatter-workspace.ts"].file);
 const assets = new Set(Object.values(manifest).flatMap((entry) => [entry.file, ...(entry.css || [])]).map(assetPath));
 const failAsset = (route) => route.fulfill({ status: 503, contentType: "text/javascript", headers: { "cache-control": "no-store" }, body: "" });
+const minifierCopy = {
+  en: { run: "Minify JSON", current: "Current minified output", stale: "The previous output is no longer current. Minify again to update it.", copied: "Result copied.", cleared: "Workspace cleared." },
+  es: { run: "Minificar JSON", current: "Salida minificada actual", stale: "La salida anterior ya no está actualizada. Minifica de nuevo para actualizarla.", copied: "Resultado copiado.", cleared: "Espacio de trabajo vaciado." },
+  fr: { run: "Minifier le JSON", current: "Sortie minifiée actuelle", stale: "La sortie précédente n’est plus à jour. Minifiez à nouveau pour la mettre à jour.", copied: "Résultat copié.", cleared: "Espace de travail vidé." },
+};
 const messages = {
   en: { input: "Content editor", run: "Validate JSON", valid: "Valid JSON.", ready: "Ready to validate locally. No current verdict.", syntax: "Invalid JSON at line {0}, column {1}.", depth: "JSON exceeds the nesting limit of 128. Your input was kept.", limit: "Input exceeds the 1 MiB UTF-8 limit. Existing content was kept.", cleared: "Workspace cleared.", unavailable: "Processing is not available until JavaScript and the editor have loaded." },
   es: { input: "Editor de contenido", run: "Validar JSON", valid: "JSON válido.", ready: "Listo para validar localmente. No hay un resultado de validación actual.", syntax: "JSON no válido en la línea {0}, columna {1}.", depth: "El JSON supera el límite de anidamiento de 128. Se conservó la entrada.", limit: "La entrada supera el límite de 1 MiB en UTF-8. Se conservó el contenido anterior.", cleared: "Espacio de trabajo vaciado.", unavailable: "El procesamiento no está disponible hasta que se carguen JavaScript y el editor." },
@@ -33,7 +38,8 @@ for (const [locale, copy] of Object.entries(messages)) {
       await page.goto("/");
       await page.locator('main a[href="/tools"]').click();
       await expect(page.locator('main a[href="/tools/json-formatter"]')).toHaveCount(1);
-      await expect(page.locator('a[href="/tools/json-minifier"], a[href="/tools/base64"], a[href="/learn"]')).toHaveCount(0);
+      await expect(page.locator('main a[href="/tools/json-minifier"]')).toHaveCount(1);
+      await expect(page.locator('a[href="/tools/base64"], a[href="/learn"]')).toHaveCount(0);
       await page.locator('main a[href="/tools/json-validator"]').click();
       await expect(page).toHaveURL(/\/tools\/json-validator$/);
       await expect(page.locator("html")).toHaveAttribute("lang", locale);
@@ -272,4 +278,136 @@ test("JSON validator: real limits, controlled deadline and clean retry", async (
   await page.unroute(`**${workerPath}`);
   await run.click();
   await expect(page.locator("[data-format-status]")).toHaveText(messages.en.valid);
+});
+
+for (const [locale, copy] of Object.entries(minifierCopy)) {
+  test(`JSON minifier ${locale}: published Home to Tools to Minifier journey`, async ({ browser, baseURL }) => {
+    const page = await browser.newPage({ locale, baseURL });
+    try {
+      await page.goto("/");
+      await page.locator('main a[href="/tools"]').click();
+      for (const tool of ["formatter", "validator", "minifier"])
+        await expect(page.locator(`main a[href="/tools/json-${tool}"]`)).toHaveCount(1);
+      await expect(page.locator('a[href="/tools/base64"], a[href="/learn"]')).toHaveCount(0);
+      await page.locator('main a[href="/tools/json-minifier"]').click();
+      await expect(page).toHaveURL(/\/tools\/json-minifier$/);
+      await expect(page.locator("html")).toHaveAttribute("lang", locale);
+      await expect(page.locator("[data-json-minifier]")).toHaveAttribute("data-format-ready", "true");
+      await page.getByRole("textbox", { name: messages[locale].input, exact: true }).fill(" [ true, null ] ");
+      await page.getByRole("button", { name: copy.run, exact: true }).click();
+      await expect(page.locator("[data-format-output]")).toHaveText("[true,null]");
+    } finally { await page.close(); }
+  });
+
+  test(`JSON minifier ${locale}: fidelity, stale Copy, Clear and all-action privacy`, async ({ page, context, baseURL }) => {
+    const requests = [];
+    context.on("request", (request) => requests.push({ url: request.url(), method: request.method(), body: request.postData(), headers: request.headers() }));
+    await page.addInitScript(() => {
+      window.minifierWrites = [];
+      window.minifierViolations = [];
+      document.addEventListener("securitypolicyviolation", (event) => window.minifierViolations.push(event.violatedDirective));
+      Object.defineProperty(navigator, "clipboard", { configurable: true, value: {
+        readText: () => { throw new Error("Unexpected clipboard read"); },
+        writeText: async (text) => { window.minifierWrites.push(text); },
+      } });
+    });
+    await page.goto(`/tools/json-minifier?lang=${locale}`);
+    const workspace = page.locator("[data-json-minifier]");
+    await expect(workspace).toHaveAttribute("data-format-ready", "true");
+    const input = page.getByRole("textbox", { name: messages[locale].input, exact: true });
+    const run = page.getByRole("button", { name: copy.run, exact: true });
+    const output = page.locator("[data-format-output]");
+    const copyButton = page.locator("[data-format-copy]");
+    const status = page.locator("[data-format-status]");
+    const cookies = await context.cookies();
+    await expect(copyButton).toBeDisabled();
+    const sentinel = `SYNTHETIC_BTC_MINIFIER_${locale}<img src=x onerror=alert(1)>`;
+    const compact = `{"id":9007199254740993,"id":-0,"n":1.2300e+999,"s":"\\u0041\\/ a b","private":${JSON.stringify(sentinel)}}`;
+    const source = " \t" + compact.replace(/,/g, ", ") + " \n";
+    await paste(input, source);
+    await run.click();
+    await expect(output).toHaveText(compact);
+    expect((await input.locator(".cm-line").allTextContents()).join("\n")).toBe(source);
+    await expect(page.locator("[data-format-output-label]")).toHaveText(copy.current);
+    expect(await page.evaluate(() => window.minifierWrites)).toEqual([]);
+    await copyButton.click();
+    expect(await page.evaluate(() => window.minifierWrites)).toEqual([compact]);
+    await expect(status).toHaveText(copy.copied);
+    await input.fill("//PRIVATE_INVALID");
+    await expect(status).toHaveText(copy.stale);
+    await expect(copyButton).toBeDisabled();
+    await run.click();
+    await expect(status).toHaveText(messages[locale].syntax.replace("{0}", "1").replace("{1}", "1"));
+    await expect(output).toHaveText(compact);
+    await expect(copyButton).toBeDisabled();
+    await input.fill("true");
+    await page.evaluate(() => {
+      document.querySelector("[data-format-run]").click();
+      document.querySelector("[data-format-cancel]").click();
+    });
+    await expect(workspace).toHaveAttribute("data-format-state", "cancelled");
+    await expect(copyButton).toBeDisabled();
+    await page.evaluate(() => {
+      document.querySelector("[data-format-run]").click();
+      document.querySelector("[data-format-run]").click();
+    });
+    await expect(output).toHaveText("true");
+    await expect(copyButton).toBeEnabled();
+    await input.focus();
+    await input.press("Escape");
+    await input.press("Tab");
+    await expect(run).toBeFocused();
+    expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
+    await page.locator("[data-format-clear]").click();
+    await expect(status).toHaveText(copy.cleared);
+    await expect(page.locator("[data-format-clear]")).toBeFocused();
+    await expect(output).toBeEmpty();
+    await expect(copyButton).toBeDisabled();
+    await input.focus();
+    await input.press("Control+z");
+    expect(await input.textContent()).toBe("");
+    await input.fill("null");
+    await run.click();
+    await expect(output).toHaveText("null");
+    await page.goto("/tools");
+    await page.goBack();
+    await expect(page.locator("[data-format-output]")).toBeEmpty();
+    expect((await page.locator(".cm-content").allTextContents()).join("")).toBe("");
+    await expect(page.locator("[data-format-copy]")).toBeDisabled();
+    expect(await context.cookies()).toEqual(cookies);
+    expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
+    expect(await page.evaluate(() => window.minifierViolations)).toEqual([]);
+    for (const request of requests) {
+      const url = new URL(request.url);
+      expect(url.origin).toBe(new URL(baseURL).origin);
+      expect(request.method).toBe("GET");
+      expect(request.body).toBeNull();
+      expect(["/tools/json-minifier", "/tools"].includes(url.pathname) || assets.has(url.pathname)).toBe(true);
+      if (assets.has(url.pathname)) { expect(url.search).toBe(""); expect(url.hash).toBe(""); }
+      expect(JSON.stringify(request)).not.toContain("SYNTHETIC_BTC_MINIFIER_");
+    }
+    expect(readFileSync(new URL("../../target/home-browser-server.log", import.meta.url), "utf8")).not.toContain("SYNTHETIC_BTC_MINIFIER_");
+  });
+}
+
+test("JSON minifier: no-JS explanation and worker-load retry", async ({ browser, page, baseURL }) => {
+  const disabled = await browser.newContext({ javaScriptEnabled: false });
+  try {
+    const noJs = await disabled.newPage();
+    await noJs.goto(`${baseURL}/tools/json-minifier?lang=en`);
+    await expect(noJs.locator("noscript p")).toBeVisible();
+    await expect(noJs.locator("[data-format-run]")).toBeDisabled();
+    await expect(noJs.locator("[data-json-minifier] form")).toHaveCount(0);
+  } finally { await disabled.close(); }
+  await page.goto("/tools/json-minifier?lang=en");
+  await expect(page.locator("[data-json-minifier]")).toHaveAttribute("data-format-ready", "true");
+  await page.getByRole("textbox", { name: messages.en.input, exact: true }).fill(" [ 1, 2 ] ");
+  await page.route(`**${workerPath}`, failAsset);
+  await page.locator("[data-format-run]").click();
+  await expect(page.locator("[data-json-minifier]")).toHaveAttribute("data-format-state", "error");
+  await expect(page.locator("[data-format-copy]")).toBeDisabled();
+  expect(await page.locator(".cm-content").textContent()).toBe(" [ 1, 2 ] ");
+  await page.unroute(`**${workerPath}`);
+  await page.locator("[data-format-run]").click();
+  await expect(page.locator("[data-format-output]")).toHaveText("[1,2]");
 });

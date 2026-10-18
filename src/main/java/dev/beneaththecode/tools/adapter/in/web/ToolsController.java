@@ -40,4 +40,10 @@ public final class ToolsController {
 		shared(model, locale);
 		return "json-validator";
 	}
+
+	@GetMapping("/tools/json-minifier")
+	public String minifier(Model model, Locale locale) {
+		shared(model, locale);
+		return "json-minifier";
+	}
 }

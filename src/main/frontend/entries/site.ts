@@ -4,7 +4,7 @@ const workspace = document.querySelector<HTMLElement>(
   "[data-editor-workspace]",
 );
 const formatter = document.querySelector<HTMLElement>(
-  "[data-json-formatter], [data-json-validator]",
+  "[data-json-formatter], [data-json-validator], [data-json-minifier]",
 );
 if (formatter)
   void import("../tools/json/formatter-workspace")

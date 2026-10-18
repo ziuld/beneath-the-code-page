@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="messages(validation)" hidden>
-    <span data-format-message="ready" th:text="${validation} ? #{validator.ready} : #{formatter.ready}"></span>
+<div th:fragment="messages(validation, minification)" hidden>
+    <span data-format-message="ready" th:text="${validation} ? #{validator.ready} : (${minification} ? #{minifier.ready} : #{formatter.ready})"></span>
     <span data-format-message="copied" th:text="#{formatter.copied}"></span>
     <span data-format-message="copy-failed" th:text="#{formatter.copyFailed}"></span>
     <span data-format-message="copy-unavailable" th:text="#{formatter.copyUnavailable}"></span>
@@ -16,8 +16,8 @@
     <span data-format-message="output-limit" th:text="#{worker.limit}"></span>
     <span data-format-message="syntax" th:text="#{formatter.syntax}"></span>
     <span data-format-message="depth-limit" th:text="#{formatter.depthLimit}"></span>
-    <span data-format-message="stale" th:text="${validation} ? #{validator.ready} : #{formatter.stale}"></span>
-    <span data-format-message="current" th:text="#{formatter.current}"></span>
+    <span data-format-message="stale" th:text="${validation} ? #{validator.ready} : (${minification} ? #{minifier.stale} : #{formatter.stale})"></span>
+    <span data-format-message="current" th:text="${minification} ? #{minifier.current} : #{formatter.current}"></span>
     <span data-format-message="output" th:text="#{formatter.output}"></span>
     <span data-format-message="unavailable" th:text="#{formatter.unavailable}"></span>
 </div>
