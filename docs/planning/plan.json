@@ -2552,7 +2552,7 @@
         "F06"
       ],
       "status": "blocked",
-      "blocker": "Validator clean build/health, Chromium94/94 and Firefox48/48 pass; owner manual review accepted. F07 draft delivery authorised; actual required Ubuntu WebKit result, catalogue promotion and closure remain pending.",
+      "blocker": "PR7 head0ca9f94: Ubuntu Java/clean Maven/Chromium94/Firefox48 pass; WebKit44/48. Three injected lazy-failure reload checks remain unavailable and retry after injected busy worker still times out. Await test-fixture cache-isolation guidance; no runtime or assertion relaxation applied.",
       "actual_start": "2026-10-18",
       "actual_finish": null,
       "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
@@ -2567,7 +2567,7 @@
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
           "status": "blocked",
-          "blocker": "Owner manual review and draft-PR delivery authorised; task1.4 still needs actual Ubuntu WebKit evidence. Chromium94/94 and Firefox48/48 pass. Catalogue publication and canonical closure remain pending.",
+          "blocker": "Owner review accepted; required Ubuntu WebKit fails four injected-failure/recovery cases at0ca9f94 (44/48). Task1.4/publication/closure remain pending; proposed non-cacheable test failure fixtures require guidance.",
           "depends_on": [
             "F06"
           ],
@@ -2577,7 +2577,7 @@
           "actual_start": "2026-10-18",
           "actual_finish": null,
           "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-          "commits": [],
+          "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
           "requirements": [
             {
               "id": "F07-UH01-R01",
@@ -2631,7 +2631,7 @@
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-              "commits": [],
+              "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
               "actual_start": "2026-10-18",
               "actual_finish": "2026-10-18"
             },
@@ -2654,7 +2654,7 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F07-UH01-json-validation.md"],
-              "commits": [],
+              "commits": ["0ca9f940c60412341c68b6f46c82fb979cf90145"],
               "actual_start": "2026-10-18",
               "actual_finish": "2026-10-18"
             },
@@ -2667,7 +2667,7 @@
               "forecast_hours": 1.25,
               "actual_hours": 0,
               "status": "blocked",
-              "blocker": "Maven166 frontend/204 Java cases (three skips)/17 packaged, health and Chromium94/94 pass. Required remaining browser evidence pending; local WebKit lacks host libraries and Ubuntu CI delivery requires authorisation.",
+              "blocker": "Actual Ubuntu CI at0ca9f94 passes clean Maven/Chromium94/Firefox48; WebKit44/48 fails lazy-failure reload readiness in EN/ES/FR and final retry after injected timeout. No fixture/runtime/assertion correction applied pending guidance.",
               "depends_on": [
                 "F07-UH01-T02"
               ],

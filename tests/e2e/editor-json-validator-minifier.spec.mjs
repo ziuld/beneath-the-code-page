@@ -177,7 +177,13 @@ for (const [locale, copy] of Object.entries(messages)) {
     const context = await browser.newContext();
     try {
       const page = await context.newPage();
-      await page.route(`**${lazyPath}`, (route) => route.abort());
+      // An injected failure must not poison WebKit's immutable asset cache.
+      await page.route(`**${lazyPath}`, (route) => route.fulfill({
+        status: 503,
+        contentType: "text/javascript",
+        headers: { "cache-control": "no-store" },
+        body: "",
+      }));
       await page.goto(`${baseURL}/tools/json-validator?lang=${locale}`);
       await expect(page.locator("[data-json-validator]")).toHaveAttribute("data-format-ready", "false");
       await expect(page.locator("[data-format-run]")).toBeDisabled();
@@ -224,7 +230,11 @@ test("JSON validator: real limits, controlled deadline and clean retry", async (
   await input.fill("true");
   await page.route(`**${workerPath}`, async (route) => {
     const response = await route.fetch();
-    await route.fulfill({ response, body: "self.onmessage = () => { while (true) {} };" });
+    await route.fulfill({
+      response,
+      headers: { ...response.headers(), "cache-control": "no-store" },
+      body: "self.onmessage = () => { while (true) {} };",
+    });
   });
   await run.click();
   await expect(workspace).toHaveAttribute("data-format-state", "timeout");

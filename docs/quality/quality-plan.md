@@ -2,6 +2,14 @@
 
 Targets: the explicit keyboard/visual criteria below and applicable OWASP ASVS controls, not full WCAG 2.2 AA conformance or certification. F04 selects an exact ASVS release and maps applicable control IDs to tests; explain inapplicable auth/storage controls. Use primary sources in `../architecture/sources.md`.
 
+Owner refinement,2026-10-18: target75% code coverage rather than100%; no instrumented
+percentage is currently measured. Prioritise important MVP checks rather than
+adding tests just for a number. [ADR 008](../architecture/adr-008-bounded-browser-test-follow-up.md)
+permits explicitly documented WebKit fault-injection test debt after one bounded
+fixture correction; keep the engine's important checks active. Record any deferred
+checks in the [pending test register](pending-browser-tests.md), never as passes.
+Production privacy/security/correctness requirements are unchanged.
+
 Owner decision, 2026-10-15, reconciled project-wide on 2026-10-17: screen-reader compatibility and manual speech testing are excluded from acceptance, not passed or deferred to F16. The attempted Orca review did not establish audible output or compatibility. Preserve semantic markup, resource-backed labels, privacy-safe live statuses and existing automated checks. Non-visual usability is not verified; do not advertise screen-reader compatibility or full WCAG AA conformance.
 
 V1 scope revision, 2026-10-18 ([ADR 007](../architecture/adr-007-focused-mvp.md)):

@@ -1,5 +1,43 @@
 # Current handoff
 
+F07 bounded test follow-up authorised,2026-10-18: owner approves the targeted fixture
+correction and permits troublesome WebKit recovery checks as explicit TODO/pending
+debt rather than repeated delays;75% code-coverage target, not100%, no measured
+coverage claim. ADR008/pending-browser-tests register record this narrow policy;
+important engine/privacy/security/correctness checks and runtime behaviour unchanged.
+Applied only HTTP503/no-store lazy-failure fixture and no-store substituted busy
+worker with original CSP; all reload/retry/deadline/exact-input assertions retained.
+No tests deferred yet; deliver this bounded attempt through existing authorised
+PR7 path and inspect actualCI. Checklist4/14;owner review accepted, no catalogue
+promotion/UH01 closure/Minifier yet. Old0ca9f94 Java/Chrome94/Firefox48 pass,WebKit44/48;
+earlier unconditional-WebKit stop wording superseded only as documented in ADR008.
+
+F07 actual WebKit recovery-test pause,2026-10-18: PR7 head0ca9f94 Java39113573326
+SUCCESS; browser39113573357 clean Maven/Chromium94/Firefox48 pass,WebKit44/48. Three
+EN/ES/FR injected-lazy-abort tests fail readiness after unroute/reload(line187);
+bounds/deadline test reaches final retry(line234) but still times out after injected
+busy worker. Earlier source equality/depth/expected-timeout assertions reached;
+successful retry not proved. Retained F06/foundation and normal Validator privacy/
+diagnostic/history cases pass. Suspect immutable-asset injected-fault cache
+contamination, not confirmed. Proposed test-only failed lazy response/no-store and
+busy-worker response/no-store, keeping CSP,all reload/retry/exact-source assertions
+and production cache/deadline policy. Not applied; await functional-error guidance.
+Checklist4/14,1.4/UH01 verification/publication/closure blocked; owner review accepted,
+Minifier unstarted. Logs /tmp/opencode/f07-validator-ci-browser.log and
+f07-validator-ci-browser-failed.log. PR7 remains draft at0ca9f94; local delivery
+bookkeeping only, no further push/merge/release/runtime change. Earlier running/
+pending-WebKit notes superseded by this actual failure, no gate waiver.
+
+F07 Validator draft delivered,2026-10-18: committed/pushed0ca9f94 on new
+feature/F07-json-validator-and-minifier from merged main8de4639, including authorised
+MVP replan/proposal prerequisites. Draft PR7 https://github.com/ziuld/beneath-the-code-page/pull/7.
+Confirmed Java39113573326/browser39113573357 running at exact head; watchers active.
+Await actual required WebKit, not config/running jobs;4/14 tasks complete. Owner
+manual acceptance and local Maven166/204(three skips)/17,health,Chromium94/Firefox48
+pass. Catalogue Formatter-only; no1.6 publication/UH01 closure/Minifier/merge/release.
+Post-delivery evidence/real-commit tracking local; previous no-permission/no-delivery
+notes below historical. No runtime changes after committed tested slice.
+
 F07 draft delivery authorised,2026-10-18: owner approved committing/pushing current
 Validator slice and existing MVP planning updates to a new F07 draft PR for Ubuntu
 WebKit CI. Fetched merged origin/main8de4639; tracked tree equals old locald6455d4.

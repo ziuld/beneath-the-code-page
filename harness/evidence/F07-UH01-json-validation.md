@@ -20,6 +20,70 @@ not claimed. No automatic behavioural ownership migration or V2 work.
 
 ## Executed results
 
+### Authorised bounded fixture correction and testing policy
+
+Owner approved non-cacheable injected failures, then explicitly asked to prioritise
+important MVP tests, use a75% rather than100% coverage target and leave troublesome
+WebKit checks documented as TODO/pending if they delay delivery. ADR008 records
+this narrow verification-policy decision; production behaviour/CSP/budgets remain
+unchanged. No instrumented coverage percentage is claimed or new framework added.
+
+Changed only two test fixtures: failed lazy module now receives HTTP503/no-store;
+substituted busy-worker body now has no-store while retaining the real response's
+CSP. All same-context reload, same-page retry, deadline and exact source assertions
+remain. Pending-test register records the current four-case follow-up. No test is
+deferred yet; first verify this one bounded correction through the existing CI.
+No runtime change after tested0ca9f94; no redundant local Maven build required for
+test-only fixture edits. Actual corrected browser result is not yet claimed.
+
+### Actual Ubuntu CI result — WebKit recovery-fixture pause
+
+At exact head`0ca9f940c60412341c68b6f46c82fb979cf90145`, Java baseline
+run39113573326 **SUCCEEDS**. Browser run39113573357 completes with clean Maven,
+**Chromium94/94 and Firefox48/48 passing**, but **WebKit44/48, four failures**.
+These are actual supported-Ubuntu results, not the local missing-library limitation.
+Logs `/tmp/opencode/f07-validator-ci-browser.log` and
+`/tmp/opencode/f07-validator-ci-browser-failed.log` fetched from the completed run.
+
+Failure details:
+- EN/ES/FR no-JS/lazy/worker-failure cases reach line187 after an intentionally
+  aborted lazy-script request, unroute and page reload. Readiness stays false.
+  Subsequent worker-load failure/retry assertions are not reached in those cases.
+- Bounds/deadline case reaches line234, after full-source equality at1MiB/depth128
+  and the injected busy worker's expected timeout. The post-unroute retry still
+  times out instead of validating. Its expected successful retry is **not passed**.
+- All existing F06/foundation WebKit tests and ordinary Validator correctness,
+  privacy/CSP/diagnostics/rejected-edit/Clear/Back locale cases pass.
+
+Shared persistent failure after intercepted immutable assets suggests cache
+contamination by injected faults; this is a **hypothesis, not a proved cause**.
+Proposed test-only correction: serve a deliberately failed lazy-script response
+with `Cache-Control: no-store`, and make only the substituted busy-worker response
+non-cacheable while retaining its original CSP. Retain all current failure,
+same-context reload, same-page retry and exact source-preservation assertions.
+Do not weaken production immutable asset headers, CSP, deadlines, retries or
+coverage; no new runtime dependency or application fix is proposed without evidence.
+
+Paused under the functional-error rule before any correction. Checklist4/14;
+task1.4/publication/UH01 closure blocked, owner review retained and Minifier unstarted.
+Draft PR7 remains open at0ca9f94; no additional push, merge or release performed.
+Delivery-result bookkeeping remains local until a scoped follow-up is authorised.
+
+### Draft delivered — 2026-10-18
+
+Committed/pushed `0ca9f940c60412341c68b6f46c82fb979cf90145` on
+`feature/F07-json-validator-and-minifier`, based on merged `origin/main`8de4639.
+Authorised scope includes the existing MVP replan/proposal and reviewed Validator
+slice. Draft PR#7: https://github.com/ziuld/beneath-the-code-page/pull/7.
+Confirmed actual workflows at that exact head are in progress:
+- Java baseline run39113573326.
+- Packaged Home browser run39113573357 (clean build and three required engines).
+
+Watchers are running; no new-code WebKit pass inferred from configured/running CI.
+Checklist4/14;1.4, catalogue publication and UH01 closure pending. Bookkeeping after
+delivery is local until the next authorised scoped commit. No merge/release or
+Minifier work. All earlier no-delivery statements below are historical.
+
 ### Draft delivery authorised — 2026-10-18
 
 Owner explicitly approved committing/pushing the Validator slice plus existing MVP

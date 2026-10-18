@@ -1,6 +1,6 @@
 # Task — F07 JSON Validator and Minifier
 
-Status / owner / date: required-browser/owner-review gates pending / Ziuld with AI assistance / 2026-10-18.
+Status / owner / date: paused on actual WebKit recovery failures / Ziuld with AI assistance / 2026-10-18.
 
 User outcome and authorised scope: apply `f07-json-validator-and-minifier`; Validator
 first, Minifier after accepted UH01. No publication before acceptance, no V2 work,
@@ -28,6 +28,13 @@ full Chromium and critical Firefox/WebKit; actual owner keyboard/zoom/locale rev
 planning/rule/OpenSpec/whitespace checks. Planned checks are not passes.
 
 Results/evidence: [Validator evidence](../evidence/F07-UH01-json-validation.md).
+Actual CI at0ca9f94 on draftPR7: Java/clean Maven/Chromium94/Firefox48 pass;
+WebKit44/48 fails three lazy-abort/reload and one busy-worker/retry case. Suspect
+injected-fault cache contamination, not proved. Propose non-cacheable test failure
+responses retaining all assertions/CSP/deadlines. Await guidance; no correction,
+catalogue publication,closure or Minifier; checklist4/14. Earlier pending-CI notes
+below are superseded by actual failure evidence, not waived.
+
 Owner reports all requested manual checks pass;1.5 recorded,4/14 overall. Browser/
 version/OS/viewport unreported. Required Ubuntu WebKit still awaits explicit
 commit/push/new-draft-PR permission; no catalogue promotion/UH01 closure/Minifier.

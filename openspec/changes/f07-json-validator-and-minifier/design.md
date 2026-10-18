@@ -134,7 +134,10 @@ making completed F07 pages discoverable.
   grow a ≤1 MiB input beyond 8 MiB. Do not fabricate a production minifier case
   that cannot reach that limit or relax any assertion to obtain a pass.
 - Use the existing clean Maven/health/browser commands. Full Chromium plus critical
-  Firefox/WebKit remain required; a configured CI job is not a passing result.
+  Firefox/WebKit remain required; ADR 008 now allows explicitly documented,
+  owner-authorised WebKit fault-injection test debt after the bounded fixture
+  correction. Keep normal important checks active and report deferred cases
+  separately; a configured CI job or skipped test is not a passing result.
   Local WebKit library limitations remain explicit; use the existing supported
   Ubuntu CI path only when delivery is authorised, never install system libraries
   or waive the engine gate implicitly.

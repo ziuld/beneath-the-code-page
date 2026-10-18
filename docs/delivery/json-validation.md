@@ -34,8 +34,11 @@ large-document fixture uses the editor's explicit copy event into in-memory
 DataTransfer rather than its virtualised DOM; no real clipboard read or application
 change. Firefox also passes48/48. The owner reports all requested keyboard,
 Clear/Back, narrow-layout, actual200%-zoom and EN/ES/FR checks pass; browser/version,
-OS and viewport are unreported. Required Ubuntu WebKit and catalogue promotion
-remain pending. Review preview is available on loopback8082
+OS and viewport are unreported. Actual Ubuntu CI at0ca9f94 passes Java/clean build,
+Chromium94/94 and Firefox48/48; WebKit44/48 fails four injected-failure/recovery
+checks (lazy-script reload in three locales and retry after a busy-worker timeout).
+Test-cache contamination is suspected, not proved; no runtime or test correction
+applied. Catalogue promotion and closure remain pending. Review preview is on8082
 with the reviewed local JAR; it is not a deployment or an acceptance observation.
 Actual results belong in `harness/evidence/F07-UH01-json-validation.md`; this
 document does not claim product acceptance. Verify keyboard Escape/Tab, Clear,
