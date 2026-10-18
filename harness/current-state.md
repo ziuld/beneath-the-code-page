@@ -1,5 +1,102 @@
 # Current handoff
 
+F12 COMPLETE,2026-10-18: owner continued after the sole remaining coherent-commit
+item; local implementation71aeefc contains verified scanner/CI/policy/test/runbook
+and evidence.18 security+21 planning tests, actual gate and strict OpenSpec pass;
+committed executable/policy/lock/workflow hashes match the passing report. Both
+stories/all10 canonical tasks and OpenSpec5/5 done; final renderers, planning
+integrity,21 rule tests,strict OpenSpec/whitespace pass; apply state all_done.
+Boot4.1.1/runtime unchanged;8 CVEs remain visible under exact config-bound owner
+decisions until2026-11-01,16 annotated observations,0 remaining blockers;2 medium
+CVEs visible. Reassess on server/config changes and final V1 acceptance. Actual
+effort unreported. Next F13 not started. No push/remote CI/merge/release/sync/archive
+claimed; separate F07 archival edits preserved and excluded from F12 commits.
+Earlier pending/blocked F12 handoffs below historical. Final closure documentation
+follows the implementation commit; no new runtime or test changes.
+
+F12 bounded policy verified,2026-10-18: owner "then can you continue?" follows
+the explicit eight-finding proposal; implement that scope, expiry2026-11-01 UTC,
+with exact CVE/package/version and source+packaged-server fingerprint. Boot4.1.1
+unchanged.18 policy tests pass; actual full gate exit0/pass with all8 CVEs retained
+as16 annotated observations,0 remaining blockers and2 medium CVEs also visible.
+POM69/JAR59/npm166/e2e5;Semgrep35/35,no findings;secret scan none;DBs fresh.
+No runtime/build/browser/manual rerun. UH01 done against accepted770aa98;
+UH02/T04 done, UH02/T05+F12 in review pending a real coherent security commit;
+OpenSpec remains4/5 (3.2 pending), not falsely done using the F07 hash for new code.
+No further review task or version upgrade invented. No commit/push/release/sync/
+archive. Earlier blocked/pending-approval notes below superseded; evidence and
+redacted report record the exact policy/result. Existing F07 archival work intact.
+
+F12 version retained/triage complete,2026-10-18: owner keeps Boot4.1.1 through app
+completion unless genuinely blocked. No dependency edits. Advisory/source review
+and actual scan task3.1 complete; OpenSpec4/5, not feature acceptance. Prepared
+eight exact finding/version-specific applicability proposals in integrated
+evidence, expiry proposed2026-11-01 with configuration-change invalidation.
+Approval pending; keeping the version is not interpreted as risk acceptance.
+Gate still blocks all8, F12/UH02/T04 remain open/blocked;3.2 pending. No new
+build/browser/manual/scan run, exception, commit/push/release or F07 archive edits.
+
+F12 managed-upgrade investigation,2026-10-18: owner authorised recommended
+advisory-led stable Boot patch approach. CNA records confirm8 blocking affected
+versions; Tomcat fixes11.0.25, Jackson remaining3.1 fixes newer than3.1.6. Maven
+Central latest stable4.1 is4.1.1;4.1.2 BOM404.4.0.8 manages same11.0.24/3.1.5,
+so downgrade not a fix;4.2 milestones not selected. Source-level prerequisites
+not configured (no container FORM/DIGEST/constraints or untrusted typed-Jackson
+input/polymorphism/identity bindings); this is not an approved exception. No POM,
+dependency override, code/build/scan change. Evidence F12-integrated-acceptance.md
+contains authoritative sources/applicability table. F12 still blocked,3/5 tasks;
+await suitable stable managed release or explicit temporary-disposition decision.
+No new publication/commit/push or F07 archive changes.
+
+F12 inventory corrected/security findings pause,2026-10-18:3/5 OpenSpec tasks done
+(1.1,2.1,2.2). Authorised diagnosis confirms Trivy filesystem skips JARs; added
+local rootfs JAR scan without fs-only dev flag, retaining both Java requirements.
+13 policy tests pass. Actual candidate completes all scans: POM69 unique package
+names,JAR59,npm166/e2e5;Semgrep35/35 source files,no findings/errors;secret scan
+none;both DBs fresh. Gate correctly exits1/blocked on8 unique reported CVEs:
+Tomcat11.0.24 three critical;Jackson3.1.5 five high,each observed in POM+JAR.
+Two medium CVEs also retained. No exploitability/exception/fixed-version claim,
+dependency change or application-test rerun. Pause under apply blocker rule for
+advisory triage/remediation guidance; F12/UH02/T04 blocked,3.1/3.2 open. Earlier
+inventory-only blocker superseded. Evidence F12-integrated-acceptance.md;report
+target/security/summary.json. No commit/push/release; F07 archive work preserved.
+
+F12 security apply paused,2026-10-18:2/5 OpenSpec tasks complete (1.1,2.2).
+Owner-approved Python hashlib correction succeeds. Pinned project-local
+Trivy0.76.0/Semgrep1.181.0/uv0.13.1 installed; hashed Python lock/rules, fixed
+fail-closed command,10 passing policy tests and existing-Java-CI integration/runbook
+delivered. Actual synthetic secret+Java/TS findings/redaction and invalid-config
+failure propagation pass. Candidate gate exits1/incomplete-java-inventory on dirty
+3635912; npm checks reached, Java/JAR inventory and later application-source scans
+not established. No clean scan, remote CI or new application-test claim. UH02/T04
+blocked;2.1/3.1/3.2 unchecked. Inspect returned Java inventory before correction;
+pause under apply error rule, no weakened assertion. Evidence F12-integrated-
+acceptance.md; redacted result target/security/summary.json. Prior checksum-only
+pause below superseded; F07 archive preserved, no commit/push/sync/archive/release.
+
+F12 apply paused,2026-10-18: change f12-mvp-navigation-and-local-runtime,1/5 tasks
+complete. Task1.1 aligns canonical unknown-tool R02/AC02 with accepted safe403;
+runtime/CSP/allowlist unchanged, existing error evidence reused. Both renderers,
+planning integrity,21 rule tests and whitespace passed before task completion.
+Task2.1 read-only rule-metadata helper failed because Code Mode lacks
+crypto.subtle.digest; owner error rule requires pause. Proposed Python hashlib
+correction awaits guidance. No scanner installation/security implementation/CI
+edits or new application tests. Existing F07 archive and prior planning changes
+preserved. F12/stories open; UH01-T04 done,remaining security/closure uncompleted.
+Evidence: harness/evidence/F12-integrated-acceptance.md. No commit/push/release.
+
+F12 planning simplified,2026-10-18, at the owner's request: credit accepted F06/F07
+catalogue/locale/keyboard and existing documented loopback JAR smoke evidence;
+six task records done by inspection/evidence reuse, not new application test runs.
+Stable IDs and14h baseline retained; forecast4h→2h. No repeat build, browser/manual
+review, runtime launcher or separate management server. Only UH01-T04 (404/403
+requirement conflict) and UH02-T04 (missing security blocking-gate evidence) remain,
+plus two tracking entries served by one combined closure record. UH02 depends on
+F07 directly. F12/stories remain open; next task UH01-T04. No runtime/OpenSpec edits,
+commit/push or release; existing F07 archival changes preserved. See
+harness/evidence/F12-simplification.md for inherited evidence and validation results.
+Earlier statements that every F12 task is unstarted are historical.
+
 F07 COMPLETE,2026-10-18: Validator+Minifier accepted, final three-tool catalogue at
 770aa98. Ubuntu Java39117056490/browser39117056486 SUCCESS: clean Maven185 frontend,
 207 Java(three existing architecture skips),17 packaged; Chromium110,Firefox64,

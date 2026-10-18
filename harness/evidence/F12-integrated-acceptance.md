@@ -1,7 +1,7 @@
 # F12 — integrated acceptance evidence
 
-Date: 2026-10-18. Status: security verification passes with bounded dispositions;
-working-tree integration reviewed, final coherent security commit not yet recorded.
+Date: 2026-10-18. Status: F12 accepted with bounded applicability dispositions;
+implementation committed locally as `71aeefc9ff02ef611fefc38df192b072fc9e298b`.
 
 ## Inherited accepted results
 
@@ -280,10 +280,24 @@ UH01 closes against inherited accepted publication commit
 evidence above; no empty new commit or repeat catalogue review is needed.
 
 UH02 security verification T04 is complete with actual passing evidence under the
-approved dispositions. Its new scanner/CI/policy implementation remains uncommitted,
-so UH02/T05 and F12 are in review, not falsely done. A real coherent security commit
-is required by the project's story-closure tracking; do not use the inherited F07
-hash to claim the new security code was committed. OpenSpec3.2 remains unchecked
-until that integration record can be completed. No additional functional/manual
-review task is invented. Actual effort remains unreported. No commit, push,
-merge, release, spec sync or archive performed.
+approved dispositions. The owner instructed continuing after the coherent local
+commit was identified as the only outstanding item. Implementation commit
+`71aeefc9ff02ef611fefc38df192b072fc9e298b` now contains the scanner/CI/policy,
+tests, runbook and evidence. The committed scanner, policy, lockfiles and workflow
+inputs match their SHA-256 hashes in the passing candidate report. Evidence/status
+bookkeeping after that scan does not change the verified security implementation
+or runtime; no duplicate scan or application test run is inferred.
+
+Both stories/all canonical F12 tasks are accepted; OpenSpec5/5 and F12 done.
+Historical14h baseline and IDs remain; actual effort is unreported. No second
+manual review or empty commit was required. The eight applicability decisions
+expire2026-11-01 and invalidate on changed reviewed configuration; final V1
+acceptance must reassess them. This is not a zero-vulnerability or public-deployment
+claim. Local checks establish acceptance; the configured new remote CI steps have
+not run without publication, and no remote pass is claimed. No push, merge,
+release, spec sync or archive performed. Separate F07 archival edits remain intact.
+
+Final closure tracking checks executed: both planning renderers succeed;
+planning integrity and all21 planning-rule tests pass; strict OpenSpec validation
+and whitespace pass. CLI apply state is `all_done`,5/5. Final bookkeeping changes
+are documentation-only and follow the verified implementation commit.

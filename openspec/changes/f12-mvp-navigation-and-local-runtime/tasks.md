@@ -16,7 +16,7 @@ second owner review of those unchanged deliverables. Each task includes its chec
 ## 3. Integrated result and one closure record
 
 - [x] 3.1 (F12-UH02-T04) Run the new security verification against the actual candidate once, recording versions, input identity, database freshness, coverage and redacted findings; triage any blockers explicitly and confirm the integrated invocation cannot report success on scanner failure. Reuse this result for closure; no extra build/browser/manual-review cycle solely for F12. Record unavailable remote CI honestly and do not claim it ran without authorised delivery.
-- [ ] 3.2 (F12-UH01-T05 and F12-UH02-T05) Write one combined acceptance record linking inherited catalogue/JAR/error evidence and the new security result, then update both stories/F12 only when their criteria pass. Preserve IDs, baseline and honest actual effort; regenerate both planning views and verify planning integrity, all planning-rule tests, strict OpenSpec validation and whitespace. If unresolved findings or unavailable required verification remain, leave affected work open with a precise blocker, not another review task.
+- [x] 3.2 (F12-UH01-T05 and F12-UH02-T05) Write one combined acceptance record linking inherited catalogue/JAR/error evidence and the new security result, then update both stories/F12 only when their criteria pass. Preserve IDs, baseline and honest actual effort; regenerate both planning views and verify planning integrity, all planning-rule tests, strict OpenSpec validation and whitespace. If unresolved findings or unavailable required verification remain, leave affected work open with a precise blocker, not another review task.
 
 ## Workflow follow-up
 
