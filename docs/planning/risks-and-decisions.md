@@ -2,6 +2,12 @@
 
 Review weekly. Likelihood/impact are qualitative planning judgements, not measured probabilities.
 
+Scope revised by [ADR 007](../architecture/adr-007-focused-mvp.md), 2026-10-18:
+F00–F06 accepted; F08–F11/F15 and containers frozen for V2. Historical converter,
+bulk-course and bootstrap risks below apply only when that work is resumed. The
+remaining V1 forecast is provisional because owner effort is unreported; first-unit
+technical/language review and integrated visual defects are the main schedule risks.
+
 | ID | Risk | Likelihood / impact | Owner | Mitigation and trigger |
 |---|---|---|---|---|
 | R01 | Editor needs a CSP exception | Medium / high | Implementation owner | F05 proof before formatter; document narrow exception only if necessary |
@@ -23,7 +29,7 @@ Review weekly. Likelihood/impact are qualitative planning judgements, not measur
 | Standalone B/vector master | F03 small-format identity acceptance | Use supplied composition as reference; don't fake a font substitute |
 | Display/UI/mono font families and licences | F03 | Self-host only after selection/licence review |
 | Exact Node/frontend/test/scan package patches | F01/F02 | Pin compatible stable versions after actual build/advisory checks |
-| Course outline and completion standard | F14 | Eight-lesson estimating hypothesis only |
+| First unit brief and learning outcomes | F14 | One complete source-to-JVM unit; no full syllabus gate; remaining units frozen for V2 |
 | Human ES/FR review capacity | F14, and each tool's copy review | Owner review or explicitly tracked gap; don't claim fluency validation |
 | Start date and holidays | When owner schedules work | Relative weeks; no calendar commitment |
 | Actual baseline reference device/browser | F05 | Record chosen device and browser versions with benchmark evidence |

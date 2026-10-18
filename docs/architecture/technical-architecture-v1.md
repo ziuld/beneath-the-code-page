@@ -1,10 +1,10 @@
 # Beneath the Code Technical Architecture & Repository Bootstrap Specification v1
 
-Date: 2026-10-09. Status: architecture accepted by the user; implementation not started. This saved edition consolidates the agreed specification into repository documentation. Subsequent feasibility clarifications are explicit in `feasibility-review.md`; they do not silently replace product decisions.
+Date: 2026-10-09; scope revised 2026-10-18 by [ADR 007](adr-007-focused-mvp.md). Status: F00–F06 accepted; remaining MVP replanned. Historical bootstrap/version statements are qualified by actual evidence and the current handoff. Feasibility refinements remain explicit in `feasibility-review.md`.
 
 ## 1. Validated architecture
 
-One deployable Spring Boot application; MVC web adapter; Thymeleaf server-side HTML; selective TypeScript enhancement. All eight developer tools process payloads locally. Learn begins with Java Fundamentals. No Phase 1 accounts, database, microservices, SPA or cloud design. Remain stateless where practical so identical application instances can scale behind a future load balancer.
+One deployable Spring Boot application; MVC web adapter; Thymeleaf server-side HTML; selective TypeScript enhancement. V1 contains only F06/F07 JSON tools, all processing payloads locally, and one complete Java Fundamentals unit with its page structure. Additional tools and units are frozen for V2. No V1 accounts, database, microservices, SPA, CMS or cloud design. Preserve existing stateless behaviour without speculative scaling infrastructure.
 
 The supplied B image is the logo composition; the standalone B is the second approved variant. See `../brand/brand-application.md`.
 
@@ -40,7 +40,7 @@ Root `dev.beneaththecode` (an internal namespace, not a domain ownership claim):
 | `learning.adapter.in.web` | Learn controllers and view models |
 | `learning.adapter.out.content` | Classpath content loader |
 
-Create packages as needed. No backend formatting services and no empty interfaces for appearance. Keep Initializr's application entry point at the root initially; if moved into `bootstrap`, explicitly scan the root and verify discovery.
+Create packages as needed, not as a checklist. Use localised content resources and shared SSR templates; introduce the content port only at a demonstrated boundary. No backend formatting services, generic tool/plugin platform or empty interfaces. Keep the existing entry point; if moved into `bootstrap`, explicitly scan the root and verify discovery.
 
 ## 5. Dependencies
 
@@ -95,7 +95,7 @@ Headers: nosniff, DENY framing, no-referrer, camera/microphone/geolocation disab
 
 Browser limits initially: 1 MiB UTF-8 input, depth 128, output 8 MiB, two-second worker deadline, one active job. These are hypotheses until benchmarked. Enforce insertion limits before expensive editor work; cancel stale jobs; termination recreates a clean worker. Avoid recursive/unbounded conversion and duplicated huge intermediate structures.
 
-JSON Formatter/Validator/Minifier share strict syntax logic. Configure jsonc-parser to reject comments/trailing commas; format original tokens via edits, never JS-number serialisation. Preserve duplicate keys, escapes, numeric notation and ordering; validate complete input before output. YAML conversions use bounded single-document parsing, string mapping keys, no custom tags and explicit lossless conversion policies. Reject unsupported values or duplicate-key conversions rather than quietly losing data. Base64 defines UTF-8 mode; UUID uses cryptographic v4; JWT decoding is explicitly not signature verification.
+JSON Formatter/Validator/Minifier share the accepted strict syntax logic, editor, diagnostics and worker lifecycle. Reject comments/trailing commas; format/minify original tokens via whitespace edits, never JS-number serialisation. Preserve duplicate keys, escapes, numeric notation and ordering; validate complete input before output. YAML, Base64, UUID and JWT requirements remain in frozen V2 dossiers; do not implement their algorithms or supporting abstractions in V1.
 
 Use JUnit/AssertJ, MockMvc/Security Test, SpringBootTest, ArchUnit, Vitest, Playwright/axe. Surefire unit tests; Failsafe integration tests; packaged-app browser tests. Locations: `src/test/java` mirroring production, colocated TS `*.test.ts`, `tests/e2e`. Cases include precision, Unicode, invalid syntax, depth/output limits, cancellation, XSS-looking input, three languages, CSRF, CSP and keyboard accessibility. Privacy tests must inspect all document/worker requests and storage/logs, with synthetic sentinels only. See `../quality/quality-plan.md`.
 
@@ -105,13 +105,13 @@ ArchUnit prohibits framework dependencies in domain/application, outward depende
 
 ## 15. Local development
 
-Maven Wrapper plus project-local frontend tooling. Multi-stage Docker build with pinned base digests, minimal Java runtime, non-root UID, read-only root, tmpfs, dropped capabilities, no-new-privileges, resource limits, graceful shutdown and a tested health check. Compose contains the app only, bound to 127.0.0.1. No database, Redis, source/credential/socket mounts or cloud resources. Actuator on an unexposed separate port, health only; verify health probe execution without assuming curl is installed.
+Maven Wrapper plus project-local frontend tooling and the existing packaged-JAR workflow. Verify loopback access, safe management isolation, actual health and shutdown. No database, Redis or cloud resources. Docker/Compose and container-specific hardening/probes are deferred to V2 by ADR 007, not an MVP acceptance prerequisite; do not add a second runtime just for the first release.
 
 ## 16–17. Repository and CI
 
 Public remote is `ziuld/beneath-the-code-page`; protected main, short branches, PRs, squash, Conventional Commit-style titles, real CODEOWNERS, contribution/security guidance and dependency-update PRs. Public status does not settle licences for code, brand or course content.
 
-CI: static/type/i18n checks, frontend unit tests, Maven verification, packaged browser/privacy/CSP/a11y tests, container build/scan, dependency/secret/SAST checks, SBOM and reports. Pin actions by SHA; read-only default token; no privileged execution of untrusted PR code; expiry/owner for exceptions. Full Chromium PR suite plus Firefox/WebKit critical smoke; broad matrix scheduled/before release. No deployment job. See `../delivery/repository-and-ci.md`.
+CI: retain static/type/i18n checks, frontend unit tests, Maven verification and packaged browser/privacy/CSP/keyboard/visual checks, with applicable dependency/secret/static-analysis evidence. Container build/scan and container-specific release artifacts are V2. Reuse existing checks, not a new release platform. Pin actions by SHA; read-only default token; no privileged untrusted PR execution; expiry/owner for exceptions. Full Chromium suite plus required Firefox/WebKit critical coverage. No deployment job. See `../delivery/repository-and-ci.md`; ADR 007 controls the revised V1 scope.
 
 ## 18. Observability
 
@@ -123,4 +123,4 @@ See `repository-tree.md` for current planning files and the future implementatio
 
 ## 20. Backlog and sprints
 
-`../planning/plan.json` is the canonical feature tracker. `../planning/feature-backlog.md` defines acceptance; `../planning/sprints.md` defines Sprint 0/1 and subsequent feature sequence. F00 is manual import; F01–F05 foundations; F06 JSON Formatter is the first functional vertical slice. All eight tools and Java Fundamentals remain in the full Phase 1 scope. A pilot lesson is an intermediate milestone, not completion of the course.
+`../planning/plan.json` is the canonical tracker; `../planning/feature-backlog.md` defines scope and `../planning/sprints.md` the sequence. F00–F06 are accepted. Remaining V1 is F07 → reduced F12 → F13 → reduced F14 → reduced F16, with one complete learning unit and polished retained page types. F08–F11/F15 are frozen V2. A first unit completes the V1 content commitment, not the full course. Preserve original baseline estimates and completed evidence; schedule only unfinished V1 work.

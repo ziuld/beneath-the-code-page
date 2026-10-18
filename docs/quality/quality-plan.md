@@ -4,6 +4,11 @@ Targets: the explicit keyboard/visual criteria below and applicable OWASP ASVS c
 
 Owner decision, 2026-10-15, reconciled project-wide on 2026-10-17: screen-reader compatibility and manual speech testing are excluded from acceptance, not passed or deferred to F16. The attempted Orca review did not establish audible output or compatibility. Preserve semantic markup, resource-backed labels, privacy-safe live statuses and existing automated checks. Non-visual usability is not verified; do not advertise screen-reader compatibility or full WCAG AA conformance.
 
+V1 scope revision, 2026-10-18 ([ADR 007](../architecture/adr-007-focused-mvp.md)):
+apply retained checks to F06/F07, shared website journeys and one complete
+EN/ES/FR learning unit. Extra tools/units and containers are V2, not release
+prerequisites. Preserve existing checks; reducing scope is not a quality waiver.
+
 ## Threat boundaries
 
 Browser input → editor → worker → output is untrusted data. All source/diagnostics stay in memory. HTTP traffic contains page requests and locale preferences only, never tool payload. Bundled code and course content are trusted only after repository review. Dependencies, PR contributions and CI artifacts are separate supply-chain boundaries.
@@ -25,7 +30,7 @@ Browser input → editor → worker → output is untrusted data. All source/dia
 - TypeScript: Vitest pure processing and state transitions; ESLint restricted imports; typecheck and translation-key parity.
 - Browser: Playwright Chromium full suite; critical Firefox/WebKit editor/CSP smoke each PR; broader matrix before release.
 - Keyboard/visual accessibility: existing axe checks plus keyboard-only navigation, visible/unobscured focus and return, editor Escape/Tab, labelled controls, dialog focus management, no colour-only status, reduced motion, actual 200% browser zoom, narrow reflow and EN/ES/FR review. Retain WCAG 2.2 AA text/non-text contrast thresholds for the applicable roles; these specific criteria and automated results do not establish full conformance.
-- Security: static/dependency/secret/container scans. No real token or user payload fixtures. Scanner errors fail visibly.
+- Security: applicable static/dependency/secret scans; container scans are V2 with the deferred runtime. No real token or user payload fixtures. Scanner errors fail visibly.
 
 ## Privacy test protocol
 

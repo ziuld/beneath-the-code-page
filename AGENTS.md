@@ -6,7 +6,7 @@ Read `harness/current-state.md`, `docs/architecture/technical-architecture-v1.md
 
 ## Current boundary
 
-This repository is in documentation/bootstrap preparation. The user will manually import Spring Initializr. Do not generate, download or implement the application before that handoff. Once the user asks to start a feature, complete its authorised scope without inventing additional permission gates.
+F00–F06 are accepted; manual Initializr import and bootstrap are complete. V1 is limited by ADR 007 to F06/F07 JSON tools, the complete retained website structure and one complete EN/ES/FR learning unit. F08–F11/F15, containers and broad redesign are frozen for V2. Do not restart bootstrap or build speculative extension frameworks. Once the user asks to start a feature, complete its authorised scope without inventing additional permission gates.
 
 ## Architecture
 
@@ -25,7 +25,7 @@ This repository is in documentation/bootstrap preparation. The user will manuall
 5. Record actual evidence in `harness/evidence/`; never invent a passing test or completion date.
 6. Update plan status, actual effort, decisions and current handoff. Regenerate roadmap views and run planning checks.
 
-The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Task effort rolls up to story/feature effort; do not double-count. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. OpenSpec is initialised; behavioural ownership migrates story by story (ADR 004), not automatically for the whole backlog.
+The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Feature `release` separates V1 from frozen V2; never make V1 depend on V2. Task effort rolls up to story/feature effort; preserve historical baseline estimates and revise forecasts only. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. Epic acceptance counts V1 only, without calling V2 done. OpenSpec is initialised; behavioural ownership migrates story by story (ADR 004), not automatically for the whole backlog.
 
 Custom files under `harness/` are project conventions, not automatically executed agent features. `AGENTS.md` provides discoverable guidance. Do not create global configuration or unattended automations.
 

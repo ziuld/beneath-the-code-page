@@ -4,7 +4,7 @@ Feature: F13-UH02 — Read localised course content safely
 
   @F13-UH02-AC01 @F13-UH02-R01
   Scenario: Read the Spanish lesson
-    Given the Spanish version of a lesson is reviewed and published
+    Given a synthetic published lesson fixture has complete Spanish content
     When the learner opens it with Spanish selected
     Then the title, prose and exercise instructions are in Spanish
 

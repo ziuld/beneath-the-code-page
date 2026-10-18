@@ -34,4 +34,10 @@ public final class ToolsController {
 		model.addAttribute("sections", java.util.List.of());
 		model.addAttribute("language", locale.getLanguage());
 	}
+
+	@GetMapping("/tools/json-validator")
+	public String validator(Model model, Locale locale) {
+		shared(model, locale);
+		return "json-validator";
+	}
 }

@@ -2,9 +2,9 @@
 
 At ten hours/week, a two-week iteration has at most 20 owner hours. “Sprint 0” and “Sprint 1” name delivery stages; they are not promises to fit every foundation or formatter task into two weeks. Split each stage into two-week planning increments and carry explicit remaining work.
 
-## Before Sprint 0 — F00
+## Accepted history — F00 through F06
 
-User manually generates/imports the prescribed Initializr ZIP. Inspect collisions and generated settings. No agent-generated project skeleton substitutes for this handoff.
+F00 manual import, F01–F05 foundations and F06 JSON Formatter are accepted. Do not repeat bootstrap or reopen completed architecture. F06 is archived with actual three-engine and owner acceptance evidence.
 
 ## Sprint 0 — F01 through F05
 
@@ -20,15 +20,17 @@ First complete feature: server-rendered JSON Formatter, CodeMirror, local worker
 
 Suggested increments: processing/correctness; workspace/error states; packaged browser/security/a11y acceptance. Finish the feature before starting another tool.
 
-## Subsequent feature stages
+## Remaining V1 stages — revised 2026-10-18
 
 - F07: JSON Validator and JSON Minifier, separate user-visible tools sharing tested infrastructure.
-- F08–F10: Base64, UUID, JWT.
-- F11: both YAML converters; separate acceptance for each direction.
-- F12: developer-tool suite/container integration; M2.
-- F13–F14: learning infrastructure, course outline, one complete translated pilot; M3.
-- F15: remaining agreed Java Fundamentals lessons, exercises, answers and EN/ES/FR review.
-- F16: full Phase 1 regression and local release candidate; M4.
+- F12: published JSON catalogue integration and existing local JAR workflow; M2.
+- F13: Learn landing, course overview, unit navigation and safe local content rendering.
+- F14: short unit brief and one complete translated source-to-JVM unit; M3.
+- F16: complete shared-page integration, responsive visual polish, retained quality checks and local handoff; M4.
+
+F08–F11/F15, Docker/Compose and a broad redesign are frozen for V2. No framework work in anticipation of those features. See [ADR 007](../architecture/adr-007-focused-mvp.md) and the [remaining forecast](project-plan.md#remaining-forecast-and-order).
+
+The provisional remaining budget is 42h plus 20% contingency, not a promise that individual stages fit a single iteration. F13 no longer depends on the all-tools runtime gate; F16 no longer depends on completing the course.
 
 ## Definition of ready
 

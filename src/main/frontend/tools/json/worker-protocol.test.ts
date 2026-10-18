@@ -2,6 +2,28 @@ import { describe, expect, it } from "vitest";
 import { processJsonRequest } from "./worker-protocol";
 
 describe("formatter worker boundary", () => {
+  it("acknowledges validation without returning input or a transformed document", () => {
+    expect(
+      processJsonRequest({ id: 1, operation: "json-validate", input: "true" }),
+    ).toEqual({
+      id: 1,
+      operation: "json-validate",
+      status: "success",
+      output: "",
+    });
+    expect(
+      processJsonRequest({
+        id: 2,
+        operation: "json-validate",
+        input: "//private",
+      }),
+    ).toEqual({
+      id: 2,
+      operation: "json-validate",
+      status: "error",
+      diagnostic: { code: "syntax", offset: 0 },
+    });
+  });
   it.each([2, 4])(
     "accepts only explicit indentation operation %i",
     (indentation) => {

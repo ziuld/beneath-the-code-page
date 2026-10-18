@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Negative fixtures for controls that prevent false closure and broken traceability."""
 import copy
+import importlib.util
 import json
 import sys
 import unittest
@@ -115,5 +116,63 @@ class PlanningRulesTest(unittest.TestCase):
     def test_ears_has_a_named_response(self):
         self.story['requirements'][0]['text']='Make it nice.'
         self.expect_error('invalid EARS structure')
+
+    def test_release_must_be_explicitly_supported(self):
+        self.feature['release']='later'
+        self.expect_error('invalid release')
+
+    def test_v1_cannot_depend_on_v2_at_any_hierarchy_level(self):
+        for level in ('feature','story','task'):
+            with self.subTest(level=level):
+                data=copy.deepcopy(BASE)
+                feature=next(f for f in data['features'] if f['id']=='F16')
+                node={'feature':feature,'story':feature['stories'][0],
+                      'task':feature['stories'][0]['tasks'][0]}[level]
+                node['depends_on']=['F15']
+                self.assertTrue(any('V1 depends on frozen V2' in e for e in validate_hierarchy(data,ROOT)))
+
+    def test_v1_milestone_cannot_include_v2(self):
+        self.data['milestones'][-1]['requires'].append('F15')
+        self.expect_error('V1 milestone includes frozen V2')
+
+    def test_epic_can_close_with_evidenced_v1_and_open_v2(self):
+        evidence=['harness/evidence/F00-F01-java-baseline.md']
+        for feature in self.data['features']:
+            if feature.get('release','V1')=='V1':
+                for node in [feature]+feature['stories']+[t for s in feature['stories'] for t in s['tasks']]:
+                    node.update(status='done',evidence=evidence,actual_finish='2026-10-18',commits=['synthetic-fixture-only'])
+        self.data['epic'].update(status='done',evidence=evidence)
+        self.assertEqual([],validate_hierarchy(self.data,ROOT))
+        self.assertTrue(any(f['status']!='done' for f in self.data['features'] if f.get('release')=='V2'))
+        self.data['epic']['evidence']=[]
+        self.expect_error('Epic cannot close')
+
+    def test_v1_open_story_still_blocks_epic_closure(self):
+        self.data['epic'].update(status='done',evidence=['harness/evidence/F00-F01-java-baseline.md'])
+        self.expect_error('Epic cannot close')
+
+    def test_generated_views_schedule_only_remaining_v1(self):
+        # This fixture describes the replan's initial state, not live task progress.
+        data=copy.deepcopy(BASE)
+        for feature in data['features']:
+            if feature['id'] in {'F07','F12','F13','F14','F16'}:
+                for node in [feature]+feature['stories']+[t for s in feature['stories'] for t in s['tasks']]:
+                    node.update(status='planned',blocker='',actual_start=None,actual_finish=None)
+        def renderer(name):
+            spec=importlib.util.spec_from_file_location(name,ROOT/'scripts'/f'{name}.py')
+            module=importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+            return module.render(data)
+        backlog=renderer('render-backlog')
+        queue=backlog['execution-order.md']
+        self.assertIn('Current next action: F07-UH01-T01',queue)
+        for fid in ('F00','F06','F08','F09','F10','F11','F15'):
+            self.assertNotIn(f'[{fid}-UH',queue)
+        self.assertIn('Frozen for V2',backlog['features/F15.md'])
+        roadmap=renderer('render-roadmap')
+        self.assertIn('Remaining V1 forecast 42 owner hours',roadmap['roadmap.md'])
+        for fid in ('F00','F06','F08','F09','F10','F11','F15'):
+            self.assertNotIn(f':{fid},',roadmap['gantt.mmd'])
+        self.assertIn(':F07,',roadmap['gantt.mmd'])
 
 if __name__=='__main__':unittest.main()

@@ -57,6 +57,7 @@ public final class SecurityResponseHeaders extends GenericFilterBean {
 				case "/" -> "home";
 				case "/tools" -> "tools-index";
 				case "/tools/json-formatter" -> "json-formatter";
+				case "/tools/json-validator" -> "json-validator";
 				case "/preferences/language" -> "language-preference";
 				case "/actuator/health" -> "health";
 				default -> "unmatched";

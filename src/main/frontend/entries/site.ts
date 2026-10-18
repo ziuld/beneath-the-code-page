@@ -3,7 +3,9 @@ import "../design-system/styles/base.css";
 const workspace = document.querySelector<HTMLElement>(
   "[data-editor-workspace]",
 );
-const formatter = document.querySelector<HTMLElement>("[data-json-formatter]");
+const formatter = document.querySelector<HTMLElement>(
+  "[data-json-formatter], [data-json-validator]",
+);
 if (formatter)
   void import("../tools/json/formatter-workspace")
     .then((module) => module.enhanceFormatter(formatter))
