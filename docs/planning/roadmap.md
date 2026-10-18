@@ -2,9 +2,9 @@
 
 Baseline date: 2026-10-09.
 
-8/12 features accepted; 104/172 baseline hours accepted (60%). Remaining V1 forecast 32 owner hours + 6.4h contingency = 38.4h, approximately 4 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
+8/12 features accepted; 104/172 baseline hours accepted (60%). Remaining V1 forecast 30 owner hours + 6h contingency = 36h, approximately 4 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
 
-Historical V1 baseline envelope: 111–304h; total-feature V1 forecast 136h includes accepted work. Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.
+Historical V1 baseline envelope: 111–304h; total-feature V1 forecast 134h includes accepted work. Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.
 
 Week 1 begins when remaining work resumes. Accepted features have no remaining bar; fractional weeks show capacity, not appointments. Shared contingency applies only to remaining V1 work.
 
@@ -18,10 +18,10 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F05 | Editor and CSP proof | 14 | Accepted | done | F04 |
 | F06 | JSON Formatter | 24 | Accepted | done | F05 |
 | F07 | JSON Validator and Minifier | 10 | Accepted | done | F06 |
-| F12 | MVP tool navigation and local runtime | 4 | 0.0–0.4 | planned | F07 |
-| F13 | Learning pages and navigation | 10 | 0.4–1.4 | planned | F07 |
-| F14 | First complete learning unit | 10 | 1.4–2.4 | planned | F13 |
-| F16 | MVP website polish and acceptance | 8 | 2.4–3.2 | planned | F12, F14 |
+| F12 | MVP tool navigation and local runtime | 2 | 0.0–0.2 | in_review | F07 |
+| F13 | Learning pages and navigation | 10 | 0.2–1.2 | planned | F07 |
+| F14 | First complete learning unit | 10 | 1.2–2.2 | planned | F13 |
+| F16 | MVP website polish and acceptance | 8 | 2.2–3.0 | planned | F12, F14 |
 
 ## Milestones
 
@@ -29,9 +29,9 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 |---|---|---:|
 | M0 | Runnable secure foundation | 0.0 |
 | M1 | First usable JSON Formatter | 0.0 |
-| M2 | MVP JSON tools and local JAR workflow | 0.4 |
-| M3 | Learning structure and one complete unit in three languages | 2.4 |
-| M4 | Polished focused MVP local release candidate | 3.2 |
+| M2 | MVP JSON tools and local JAR workflow | 0.2 |
+| M3 | Learning structure and one complete unit in three languages | 2.2 |
+| M4 | Polished focused MVP local release candidate | 3.0 |
 
 ## Frozen V2 — not scheduled
 

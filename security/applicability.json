@@ -1,0 +1,57 @@
+{
+  "owner": "Ziuld",
+  "approved_on": "2026-10-18",
+  "expires": "2026-11-01",
+  "approval_reference": "harness/evidence/F12-integrated-acceptance.md#approved-bounded-dispositions",
+  "configuration_sha256": "7e6eea0facef77419d223a2804849abd03858ebb05b9a3a07adc87155f2f6c3e",
+  "findings": [
+    {
+      "id": "CVE-2026-65182",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.24",
+      "reason": "Reviewed application has no servlet-container security constraints; access control uses the Spring Security allowlist."
+    },
+    {
+      "id": "CVE-2026-65905",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.24",
+      "reason": "Reviewed application does not configure Tomcat DIGEST authentication."
+    },
+    {
+      "id": "CVE-2026-68525",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.24",
+      "reason": "Reviewed application does not configure Tomcat FORM authentication or container method-specific security constraints."
+    },
+    {
+      "id": "CVE-2026-89407",
+      "package": "tools.jackson.core:jackson-core",
+      "version": "3.1.5",
+      "reason": "Reviewed application accepts no typed JSON request bodies; its Jackson usage reads trusted manifest data into a tree without string-to-number coercion."
+    },
+    {
+      "id": "CVE-2026-89425",
+      "package": "tools.jackson.core:jackson-core",
+      "version": "3.1.5",
+      "reason": "Reviewed application does not create a JSON parser from DataInput; trusted manifest parsing uses InputStream."
+    },
+    {
+      "id": "CVE-2026-68497",
+      "package": "tools.jackson.core:jackson-databind",
+      "version": "3.1.5",
+      "reason": "Reviewed application does not deserialize untrusted JSON into XML Duration or XMLGregorianCalendar values."
+    },
+    {
+      "id": "CVE-2026-91776",
+      "package": "tools.jackson.core:jackson-databind",
+      "version": "3.1.5",
+      "reason": "Reviewed application has no name-based polymorphic JSON binding or defaultImpl fallback accepting untrusted type identifiers."
+    },
+    {
+      "id": "CVE-2026-91777",
+      "package": "tools.jackson.core:jackson-databind",
+      "version": "3.1.5",
+      "reason": "Reviewed application has no identity-enabled JSON collection/map deserialization or JsonIdentityInfo bindings."
+    }
+  ]
+}

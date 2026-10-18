@@ -12,4 +12,4 @@ Feature: F12-UH01 — Discover the published MVP JSON tools
   Scenario: Handle an unknown tool
     Given the route names a tool that is not in the catalogue
     When the visitor opens that route
-    Then a safe localised 404 appears without a stack trace
+    Then a safe localised 403 appears without a stack trace or disclosure of request data

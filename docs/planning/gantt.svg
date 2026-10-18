@@ -27,14 +27,14 @@
 <text x="20" y="314">F07 JSON Validator and Minifier</text>
 <rect x="365.00" y="298" width="0.00" height="22" fill="#9bb7a1"><title>F07 JSON Validator and Minifier: 10h, done</title></rect>
 <text x="20" y="348">F12 MVP tool navigation and local runtime</text>
-<rect x="365.00" y="332" width="86.50" height="22" fill="#92908b"><title>F12 MVP tool navigation and local runtime: 4h, planned</title></rect>
+<rect x="365.00" y="332" width="43.25" height="22" fill="#92908b"><title>F12 MVP tool navigation and local runtime: 2h, in_review</title></rect>
 <text x="20" y="382">F13 Learning pages and navigation</text>
-<rect x="451.50" y="366" width="216.25" height="22" fill="#92908b"><title>F13 Learning pages and navigation: 10h, planned</title></rect>
+<rect x="408.25" y="366" width="216.25" height="22" fill="#92908b"><title>F13 Learning pages and navigation: 10h, planned</title></rect>
 <text x="20" y="416">F14 First complete learning unit</text>
-<rect x="667.75" y="400" width="216.25" height="22" fill="#92908b"><title>F14 First complete learning unit: 10h, planned</title></rect>
+<rect x="624.50" y="400" width="216.25" height="22" fill="#92908b"><title>F14 First complete learning unit: 10h, planned</title></rect>
 <text x="20" y="450">F16 MVP website polish and acceptance</text>
-<rect x="884.00" y="434" width="173.00" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
-<text x="20" y="484">Shared contingency · 6.4h</text>
-<rect x="1057.00" y="468" width="138.40" height="22" fill="#45433f"/>
+<rect x="840.75" y="434" width="173.00" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
+<text x="20" y="484">Shared contingency · 6h</text>
+<rect x="1013.75" y="468" width="129.75" height="22" fill="#45433f"/>
 <text x="20" y="542">Gray = scheduled effort, not completion. Accepted: 8/12 features. Milestone timing excludes shared contingency.</text>
 </g></svg>

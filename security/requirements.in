@@ -1,0 +1,2 @@
+# Upstream Semgrep 1.181.0 Linux x86-64 wheel; hash verified against PyPI metadata.
+semgrep @ https://files.pythonhosted.org/packages/b0/1d/aed54e9cea5491f0dd54286126216f97ef817a356734d3c9d5e40c124c34/semgrep-1.181.0-cp310.cp311.cp312.cp313.cp314.py310.py311.py312.py313.py314-none-manylinux_2_34_x86_64.whl#sha256=c142ec04a2ed144970cb0a92f6877651dd3c088505eec737bb7f4db7ae5f0ffa

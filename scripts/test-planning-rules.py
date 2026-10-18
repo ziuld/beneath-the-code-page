@@ -155,6 +155,12 @@ class PlanningRulesTest(unittest.TestCase):
         # This fixture describes the replan's initial state, not live task progress.
         data=copy.deepcopy(BASE)
         for feature in data['features']:
+            if feature['id']=='F12':
+                feature['forecast_hours']=4
+                for story in feature['stories']:
+                    story['forecast_hours']=2
+                    for task,hours in zip(story['tasks'],(0.5,0.5,0.5,0.25,0.25),strict=True):
+                        task['forecast_hours']=hours
             if feature['id'] in {'F07','F12','F13','F14','F16'}:
                 for node in [feature]+feature['stories']+[t for s in feature['stories'] for t in s['tasks']]:
                     node.update(status='planned',blocker='',actual_start=None,actual_finish=None)
