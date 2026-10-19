@@ -8,6 +8,12 @@
     <nav th:replace="~{fragments/learning :: breadcrumbs}"></nav>
     <h1 th:text="${course.title}"></h1>
     <p th:text="${course.summary}"></p>
+    <p class="status" th:text="#{learning.scope}"></p>
+    <h2 th:text="#{learning.prerequisites}"></h2>
+    <p th:text="${course.prerequisites}"></p>
+    <h2 th:text="#{learning.outcomes}"></h2>
+    <p th:text="${course.outcomes}"></p>
+    <h2 th:text="#{learning.units}"></h2>
     <ol><li th:each="unit : ${units}"><a th:href="${unit.href}" th:text="${unit.title}"></a></li></ol>
     <a th:href="@{/learn(lang=${language})}" th:text="#{learning.back}"></a>
 </main>

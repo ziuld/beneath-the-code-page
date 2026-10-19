@@ -20,9 +20,40 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LearningContentTests {
 
 	@Test
-	void productionCatalogueIsIntentionallyEmpty() {
+	void productionCatalogueContainsExactlyTheCompleteRealUnit() {
 		var catalogue = new ClasspathCourseContentSource(getClass().getClassLoader()).load();
-		assertThat(catalogue.units()).isEmpty();
+		assertThat(catalogue.units()).extracting(LearningCatalogue.Unit::slug).containsExactly("source-to-jvm");
+		assertThat(catalogue.translations()).containsOnlyKeys("en", "es", "fr");
+		String expectedCode = null;
+		for (String language : LearningCatalogue.LANGUAGES) {
+			var text = catalogue.units().getFirst().translations().get(language);
+			assertThat(text.markdown()).contains("javac -d out Main.java", "java -cp out Main", "Hello, JVM!", "Hello, bytecode!")
+					.doesNotContain("F13_PRIVATE_", "window.fixtureExecuted", "synthetic fixture");
+			var code = java.util.regex.Pattern.compile("```java\\n(.*?)```", java.util.regex.Pattern.DOTALL).matcher(text.markdown());
+			assertThat(code.find()).isTrue();
+			if (expectedCode == null) expectedCode = code.group(1);
+			assertThat(code.group(1)).isEqualTo(expectedCode);
+		}
+	}
+
+	@Test
+	void emptyCatalogueNeedsNoMetadataAndPublishesNothing() {
+		assertThat(source(Map.of("catalogue.properties", "published-units=")).load().units()).isEmpty();
+	}
+
+	@Test
+	void everyPublishedLocaleRequiresNonblankPrerequisitesAndOutcomes() {
+		for (String language : LearningCatalogue.LANGUAGES) {
+			for (String field : List.of("course.prerequisites", "course.outcomes")) {
+				var resources = fixture("first");
+				String path = language + "/metadata.properties";
+				String incomplete = resources.get(path).replaceAll("(?m)^" + java.util.regex.Pattern.quote(field) + "=.*\\n", "");
+				resources.put(path, incomplete);
+				assertInvalid(resources);
+				resources.put(path, incomplete + field + "= \n");
+				assertInvalid(resources);
+			}
+		}
 	}
 
 	@Test
@@ -95,7 +126,8 @@ class LearningContentTests {
 		var values = new HashMap<String, String>();
 		values.put("catalogue.properties", "published-units=" + slugs);
 		for (String locale : LearningCatalogue.LANGUAGES) {
-			String metadata = "course.title=Course " + locale + "\ncourse.summary=Summary " + locale + "\n";
+			String metadata = "course.title=Course " + locale + "\ncourse.summary=Summary " + locale + "\n"
+					+ "course.prerequisites=Prerequisites " + locale + "\ncourse.outcomes=Outcomes " + locale + "\n";
 			for (String slug : slugs.split(",")) {
 				metadata += "unit." + slug + ".title=Introducción " + slug + "\n";
 				values.put(locale + "/" + slug + ".md", "## " + locale + "\nExercice " + slug + "\n");

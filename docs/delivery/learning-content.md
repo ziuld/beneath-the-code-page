@@ -2,12 +2,15 @@
 
 The ordered `published-units` list in
 `src/main/resources/content/java-fundamentals/catalogue.properties` is the sole
-publication list. It is intentionally empty for F13; file presence never publishes
-a draft. Slugs contain lowercase letters/digits separated by single hyphens.
+publication list. F13 verified an empty list; the F14 local review candidate lists
+only `source-to-jvm`. File presence never publishes a draft. Slugs contain lowercase
+letters/digits separated by single hyphens. Final owner content review is recorded
+in F14 evidence; Home/shared promotion remains F16 and no deployment is implied.
 
 For each published slug, all `en`, `es`, `fr` directories require:
 
-- UTF-8 `metadata.properties` with `course.title`, `course.summary` and
+- UTF-8 `metadata.properties` with nonblank `course.title`, `course.summary`,
+  `course.prerequisites`, `course.outcomes` and
   `unit.<slug>.title` entries.
 - Nonblank `<slug>.md` body resources, preserved as authored text for rendering.
 
@@ -16,7 +19,10 @@ Duplicates, invalid identities and missing/blank locale resources fail with
 `BTC_LEARNING_CONTENT_INVALID`, never content excerpts or resource paths. An empty
 published list needs no unit/metadata files. Do not use JSON binding, filesystem
 paths, a CMS or per-request resource lookup. Synthetic resources belong only to
-tests; real unit authoring/review is F14 and Learn promotion is F16.
+tests; real unit authoring/review is F14 and Learn promotion is F16. The copied-JAR
+harness replaces overlapping fixture content entries once, verifies unique ZIP
+names and preserves the normal executable's digest. Empty-catalogue behaviour
+remains covered by explicit loader/MVC fixtures rather than production assumptions.
 
 ## Rendering and route policy
 

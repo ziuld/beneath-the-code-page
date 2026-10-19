@@ -1,5 +1,40 @@
 # Current handoff
 
+F14 sign-off,2026-10-19: owner explicitly approved all3 requested items: EN/ES/FR
+content/page checklist, same8 bounded F14 decisions until2026-11-01, scoped local
+commits after passing gate(no push,archives excluded). No detailed manual notes
+supplied/invented. PreviewPID140430 verified and stopped(SIGTERM/exit143).
+Fingerprint f0114f9e…c1550a matched proposed scope; policy reference/fingerprint
+updated only.18 policy tests and actual gate PASS,44 source files,16 approved
+observations+4 medium,0 blockers;target/f14-approved-security.log. Reuse unchanged
+Maven254+17/185 frontend and Chromium125 results. OpenSpec7/8; closure in_review
+pending actual local implementation hash/bookkeeping. Existing archival edits
+preserved. Boot4.1.1 and expiry unchanged; Home/shared Learn promotion remains off.
+
+F14 implementation candidate,2026-10-19: owner approved brief; metadata/overview,
+EN/ES/FR real source-to-jvm lesson/diagram/exercise/answer and one-unit catalogue
+implemented. BaselineJDK25.0.4.1 verifies example/stale-class/recompile/failure
+caveat; all locale Java/shell blocks identical. Maven254+17 Java/185 frontend and
+Chromium125/125 PASS; logs target/f14-verified-candidate.log,f14-chromium.log.
+Explicit empty/draft/fixture tests retained; copied-JAR unique entries/digest pass.
+OpenSpec5/8. Preview RUNNING http://127.0.0.1:35291/learn?lang=en,PID140430,
+shell sh_152fae786001sMqLyX6OEFpN5I; stop after owner review. Real content/keyboard/
+translation/narrow/actual200%-zoom review pending. Security18 tests PASS; scan same8
+high/critical CVEs(no new findings),44 sources; gate correctly rejects old scope.
+Proposed same8 exact decisions/expiry2026-11-01 for new f0114f9e…c1550a fingerprint,
+await explicit approval; policy unchanged. Evidence F14-integrated-acceptance.md.
+Boot4.1.1/Chromium-only unchanged; no F16 promotion, commit/push or archival edits.
+
+F14 proposal ready,2026-10-19: f14-first-complete-learning-unit contains proposal,
+two learning-capability deltas,design and8 unchecked implementation tasks. Short
+source-to-JVM brief, two overview metadata fields, same-page answer/text diagram
+and real-unit/copied-fixture test transition planned;18h baseline/10h forecast,
+all11 canonical IDs preserved. Strict change validation/requirement-ID checks and
+whitespace PASS. Planning only: no code/content implementation, canonical status
+advance, security renewal, commit/push or main-spec sync. F14 remains planned;
+start apply only after a new user request. Chromium only; F16 promotion/V2 frozen
+scope unchanged. F07/F12/F13 archival edits remain separate and preserved.
+
 F13 COMPLETE,2026-10-19: local implementation0742b43815243f9539eef74fa934cfa2722795ee
 contains71 scoped files; separate F07/F12 archival/main-spec/task/evidence edits
 excluded, F13 handoff staged selectively. Both stories/all10 tasks and OpenSpec6/6

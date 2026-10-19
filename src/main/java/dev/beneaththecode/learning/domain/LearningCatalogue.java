@@ -26,9 +26,10 @@ public record LearningCatalogue(Map<String, CourseText> translations, List<Unit>
 		return new IllegalArgumentException("BTC_LEARNING_INVALID_CATALOGUE");
 	}
 
-	public record CourseText(String title, String summary) {
+	public record CourseText(String title, String summary, String prerequisites, String outcomes) {
 		public CourseText {
-			if (title == null || title.isBlank() || summary == null || summary.isBlank()) throw invalid();
+			if (title == null || title.isBlank() || summary == null || summary.isBlank()
+					|| prerequisites == null || prerequisites.isBlank() || outcomes == null || outcomes.isBlank()) throw invalid();
 		}
 	}
 

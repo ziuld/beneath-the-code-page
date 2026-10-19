@@ -17,7 +17,8 @@ public class LearningFixtureConfiguration {
 			var courses = new HashMap<String, LearningCatalogue.CourseText>();
 			var units = new HashMap<String, LearningCatalogue.UnitText>();
 			for (String language : LearningCatalogue.LANGUAGES) {
-				courses.put(language, new LearningCatalogue.CourseText("Course " + language, "Summary " + language));
+				courses.put(language, new LearningCatalogue.CourseText("Course " + language, "Summary " + language,
+						"Prerequisites " + language + " <script>", "Outcomes " + language));
 				units.put(language, new LearningCatalogue.UnitText("Unit " + language,
 						"## " + language + "\n\nExercise " + language + "\n\n<script>window.fixtureExecuted=true</script>\n\n${7 * 7}\n"));
 			}

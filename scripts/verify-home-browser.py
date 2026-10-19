@@ -40,6 +40,8 @@ def component_fixture(jar):
            for field in ("imports", "dynamicImports") if field in value}
     } for key, value in manifest.items()}
     manifest["__worker-proof-resource"] = {"file": workers[0]}
+    overlays = {"BOOT-INF/classes/content/java-fundamentals/" + resource.relative_to(classes / "learning-fixture").as_posix():
+                resource.read_bytes() for resource in sorted((classes / "learning-fixture").rglob("*")) if resource.is_file()}
     with ZipFile(jar) as original, ZipFile(output, "w") as fixture:
         names = original.namelist()
         if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name
@@ -48,8 +50,11 @@ def component_fixture(jar):
         catalogue = "BOOT-INF/classes/content/java-fundamentals/catalogue.properties"
         entries = [line.strip() for line in original.read(catalogue).decode().splitlines()
                    if line.strip() and not line.lstrip().startswith(("#", "!"))]
-        if entries != ["published-units="]:
-            raise RuntimeError("F13 requires the normal learning catalogue to remain empty")
+        if entries != ["published-units=source-to-jvm"]:
+            raise RuntimeError("Expected exactly the real source-to-jvm production unit")
+        if not all(f"BOOT-INF/classes/content/java-fundamentals/{language}/source-to-jvm.md" in names
+                   for language in ("en", "es", "fr")):
+            raise RuntimeError("Real unit locale resources missing from normal executable")
         for info in original.infolist():
             data = original.read(info)
             if info.filename == "BOOT-INF/classes/asset-manifest.json":
@@ -59,14 +64,12 @@ def component_fixture(jar):
             if info.filename == "META-INF/MANIFEST.MF":
                 data = data.replace(b"Start-Class: dev.beneaththecode.BeneathTheCodeApplication",
                                      b"Start-Class: btc.fixtures.ShellFixtureApplication")
-            if info.filename == catalogue:
-                data = (classes / "learning-fixture/catalogue.properties").read_bytes()
+            if info.filename in overlays:
+                data = overlays[info.filename]
             fixture.writestr(info, data)
-        for resource in sorted((classes / "learning-fixture").rglob("*")):
-            if resource.is_file() and resource.name != "catalogue.properties":
-                fixture.writestr("BOOT-INF/classes/content/java-fundamentals/" +
-                                 resource.relative_to(classes / "learning-fixture").as_posix(),
-                                 resource.read_bytes(), compress_type=ZIP_DEFLATED)
+        for name, data in overlays.items():
+            if name not in names:
+                fixture.writestr(name, data, compress_type=ZIP_DEFLATED)
         for asset in (proof / "static/assets").iterdir():
             fixture.writestr("BOOT-INF/classes/static/assets/" + asset.name, asset.read_bytes(), compress_type=ZIP_DEFLATED)
         for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity", "EditorFixtureController"):
@@ -75,7 +78,9 @@ def component_fixture(jar):
         fixture.writestr("BOOT-INF/classes/templates/shell-fixture.html",
                           (classes / "templates/shell-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
         fixture.writestr("BOOT-INF/classes/templates/editor-fixture.html",
-                         (classes / "templates/editor-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+                          (classes / "templates/editor-fixture.html").read_bytes(), compress_type=ZIP_DEFLATED)
+        if len(fixture.namelist()) != len(set(fixture.namelist())):
+            raise RuntimeError("Duplicate resource entries in copied executable")
     return output
 
 

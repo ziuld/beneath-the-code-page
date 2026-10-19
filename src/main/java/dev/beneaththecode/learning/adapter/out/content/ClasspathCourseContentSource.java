@@ -39,7 +39,8 @@ public final class ClasspathCourseContentSource implements CourseContentSource {
 			for (String language : LearningCatalogue.LANGUAGES) {
 				Properties values = properties(language + "/metadata.properties");
 				metadata.put(language, values);
-				courses.put(language, new CourseText(values.getProperty("course.title"), values.getProperty("course.summary")));
+				courses.put(language, new CourseText(values.getProperty("course.title"), values.getProperty("course.summary"),
+						values.getProperty("course.prerequisites"), values.getProperty("course.outcomes")));
 			}
 			var units = new ArrayList<Unit>();
 			for (String candidate : slugs) {

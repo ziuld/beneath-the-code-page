@@ -61,8 +61,8 @@ class HomeSecurityTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/draft" })
-	void emptyProductionLearningCatalogueIsNotPublished(String path) throws Exception {
+	@ValueSource(strings = { "/learn/java-fundamentals/draft", "/learn/java-fundamentals/fixture-unit", "/learn/java-fundamentals/missing" })
+	void unpublishedLearningContentRemainsMissing(String path) throws Exception {
 		mvc.perform(get(path)).andExpect(status().isNotFound());
 		mvc.perform(head(path)).andExpect(status().isNotFound());
 	}

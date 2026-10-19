@@ -47,7 +47,7 @@ class LanguagePreferenceTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "https://example.invalid/", "//example.invalid/", "/tools?lang=en", "/tools/json-formatter#main", "/learn", "/?lang=en",
+	@ValueSource(strings = { "https://example.invalid/", "//example.invalid/", "/tools?lang=en", "/tools/json-formatter#main", "/learn/java-fundamentals/draft", "/?lang=en",
 		"/#main", "%2f%2fexample.invalid", "/%2e%2e", "javascript:alert(1)", "", "/" })
 	void neverReflectsNonAllowlistedRedirects(String target) throws Exception {
 		var form = form();
@@ -56,6 +56,17 @@ class LanguagePreferenceTests {
 						+ "&language=es&returnTo=" + encoded(target)))
 				.andExpect(status().isSeeOther()).andReturn().getResponse();
 		assertThat(response.getHeader("Location")).isEqualTo("/");
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = { "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/source-to-jvm" })
+	void returnsOnlyToTheExactPublishedLearningPage(String target) throws Exception {
+		var form = form();
+		var response = mvc.perform(post("/preferences/language").cookie(form.cookie())
+				.contentType("application/x-www-form-urlencoded").content("_csrf=" + encoded(form.token())
+						+ "&language=es&returnTo=" + encoded(target)))
+				.andExpect(status().isSeeOther()).andReturn().getResponse();
+		assertThat(response.getHeader("Location")).isEqualTo(target);
 	}
 
 	@ParameterizedTest

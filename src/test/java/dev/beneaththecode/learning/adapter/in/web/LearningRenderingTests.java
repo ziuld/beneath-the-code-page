@@ -40,6 +40,10 @@ class LearningRenderingTests {
 			assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
 			assertThat(response.getHeader("Content-Security-Policy")).contains("connect-src 'none'").doesNotContain("unsafe-inline");
 			assertThat(result.getRequest().getSession(false)).isNull();
+			if (path.equals("/learn/java-fundamentals")) {
+				assertThat(html).contains("Prerequisites " + language + " &lt;script&gt;", "Outcomes " + language)
+						.doesNotContain("<script>");
+			}
 			assertThat(response.getCookies()).noneMatch(cookie -> cookie.getName().equals("JSESSIONID") || cookie.getName().equals("BTC_LANGUAGE"));
 			mvc.perform(head(path)).andExpect(status().isOk());
 		}
