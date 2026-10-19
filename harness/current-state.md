@@ -1,5 +1,17 @@
 # Current handoff
 
+F13 COMPLETE,2026-10-19: local implementation0742b43815243f9539eef74fa934cfa2722795ee
+contains71 scoped files; separate F07/F12 archival/main-spec/task/evidence edits
+excluded, F13 handoff staged selectively. Both stories/all10 tasks and OpenSpec6/6
+done with actual commit reference. Maven243+17 Java/185 frontend,Chromium119/119,
+owner page approval,18 security tests and gate PASS reused for unchanged inputs;
+staged runtime/security/workflow hashes match reviewed scan. Boot4.1.1 unchanged;
+8 exact config-bound CVE decisions visible until2026-11-01, final reassessment
+required. Chromium-only MVP policy; Firefox/WebKit optional after MVP. Empty
+production catalogue/Learn promotion off. Next F14, not started. Owner effort
+unreported. No push/remote CI/merge/release/spec sync/archive. Evidence F13-integrated-
+acceptance.md; earlier incomplete/refusal handoffs historical and superseded.
+
 F13 local commit authorised,2026-10-19: owner "yes" to coherent local F13 commit
 excluding unrelated F07/F12 archival changes, no push. Stage implementation and
 reviewed evidence first, then record its actual hash for closure; no invented

@@ -1,9 +1,15 @@
 # Task — F13 learning pages and navigation
 
-Status / owner / date: security and page review approved; local commit closure in review / Ziuld with AI assistance / 2026-10-19.
+Status / owner / date: complete / Ziuld with AI assistance / 2026-10-19.
 
 User outcome and authorised scope: apply the six F13 tasks, not F14 content or
 F16 production Learn promotion. Keep Boot 4.1.1 and existing archive edits intact.
+
+Final result: implementation0742b43815243f9539eef74fa934cfa2722795ee committed locally
+with archival changes excluded. All F13 criteria pass under ADR009; both stories/
+all10 tasks and OpenSpec6/6 complete. Existing runtime/Chromium/security evidence
+reused and staged security inputs verified unchanged. No push/sync/archive; F14
+not started. Historical intermediate notes below do not reopen accepted work.
 
 Owner policy update,2026-10-19(ADR009): Chromium-only browser acceptance across all
 remaining F13/F14/F16 work and final MVP closure. Firefox/WebKit are optional

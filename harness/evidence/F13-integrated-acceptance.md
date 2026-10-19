@@ -1,6 +1,34 @@
 # F13 — integrated acceptance evidence
 
-Date: 2026-10-18. Status: implementation started; no acceptance claimed.
+Started:2026-10-18. Accepted:2026-10-19 under the Chromium-only MVP policy (ADR009).
+
+## Combined acceptance and local implementation commit
+
+Implementation commit:`0742b43815243f9539eef74fa934cfa2722795ee`
+(`feat(learning): add safe localised learning pages`).71 F13 files committed,
+including reviewed server/resources/tests, bounded security approval and Chromium
+CI policy. Archived F07/F12 paths, their main-spec changes and task/evidence edits
+excluded; only the F13 handoff prefix staged, preserving unrelated working edits.
+Staged runtime/security/workflow inputs were compared with passing scan hashes
+before committing:PASS. No new runtime/build/browser result is claimed by a commit.
+
+Both F13 stories/all10 canonical tasks complete; OpenSpec6/6. Acceptance combines
+the recorded243 Surefire+17 Failsafe/185 frontend passes, Chromium119/119, owner
+preview checklist approval,18 policy tests and passing security gate. Eight CVEs
+remain visible under owner-approved exact configuration-bound decisions expiring
+2026-11-01; no zero-vulnerability or deployment claim. Remaining Firefox/WebKit
+evaluation is optional post-MVP work, not a gate. Production catalogue stays empty
+and Learn promotion off; real reviewed content belongs to F14. Owner effort remains
+unreported, not inferred from elapsed time. Earlier incomplete/declined notes below
+are historical and superseded by explicit approval and verified acceptance.
+
+Closure bookkeeping records this real implementation hash; no push, remote CI,
+merge, release, main-spec sync or archive is authorised/claimed.
+
+Final closure validation: both planning renderers, planning integrity,22 planning-
+rule tests, strict F13 OpenSpec validation and whitespace checks PASS. Apply reports
+6/6 and `all_done`. No repeated build/browser/scanner run for documentation-only
+closure. Archive edits remain separate and uncommitted.
 
 ## Local commit authorisation (2026-10-19)
 

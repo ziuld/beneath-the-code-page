@@ -2,7 +2,7 @@
 
 Baseline date: 2026-10-09.
 
-9/12 features accepted; 118/172 baseline hours accepted (69%). Remaining V1 forecast 28 owner hours + 5.6h contingency = 33.6h, approximately 4 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
+10/12 features accepted; 134/172 baseline hours accepted (78%). Remaining V1 forecast 18 owner hours + 3.6h contingency = 21.6h, approximately 3 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
 
 Historical V1 baseline envelope: 111–304h; total-feature V1 forecast 134h includes accepted work. Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.
 
@@ -19,9 +19,9 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F06 | JSON Formatter | 24 | Accepted | done | F05 |
 | F07 | JSON Validator and Minifier | 10 | Accepted | done | F06 |
 | F12 | MVP tool navigation and local runtime | 2 | Accepted | done | F07 |
-| F13 | Learning pages and navigation | 10 | 0.0–1.0 | in_review | F07 |
-| F14 | First complete learning unit | 10 | 1.0–2.0 | planned | F13 |
-| F16 | MVP website polish and acceptance | 8 | 2.0–2.8 | planned | F12, F14 |
+| F13 | Learning pages and navigation | 10 | Accepted | done | F07 |
+| F14 | First complete learning unit | 10 | 0.0–1.0 | planned | F13 |
+| F16 | MVP website polish and acceptance | 8 | 1.0–1.8 | planned | F12, F14 |
 
 ## Milestones
 
@@ -30,8 +30,8 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | M0 | Runnable secure foundation | 0.0 |
 | M1 | First usable JSON Formatter | 0.0 |
 | M2 | MVP JSON tools and local JAR workflow | 0.0 |
-| M3 | Learning structure and one complete unit in three languages | 2.0 |
-| M4 | Polished focused MVP local release candidate | 2.8 |
+| M3 | Learning structure and one complete unit in three languages | 1.0 |
+| M4 | Polished focused MVP local release candidate | 1.8 |
 
 ## Frozen V2 — not scheduled
 
