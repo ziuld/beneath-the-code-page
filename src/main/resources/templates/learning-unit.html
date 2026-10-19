@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head th:replace="~{fragments/learning :: head(${unitTitle})}"></head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header(${currentPath})}"></header>
+<main id="main" class="page learning-prose" tabindex="-1">
+    <nav th:replace="~{fragments/learning :: breadcrumbs}"></nav>
+    <article><h1 th:text="${unitTitle}"></h1><div th:utext="${bodyHtml}"></div></article>
+    <nav th:aria-label="#{learning.units}">
+        <a th:if="${previous != null}" rel="prev" th:href="${previous.href}" th:text="#{learning.previous}"></a>
+        <a th:if="${next != null}" rel="next" th:href="${next.href}" th:text="#{learning.next}"></a>
+    </nav>
+    <a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="#{learning.courseBack}"></a>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+@layer btc-base {
+  .learning-prose {
+    max-inline-size: 72ch;
+    overflow-wrap: anywhere;
+  }
+
+  .learning-prose pre {
+    max-inline-size: 100%;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .learning-breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-inline-start: 1.5rem;
+  }
+}

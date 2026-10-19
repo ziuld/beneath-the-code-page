@@ -1,5 +1,17 @@
 # Pending browser verification
 
+## Current policy — optional post-MVP evaluation
+
+Owner decision,2026-10-19 ([ADR 009](../architecture/adr-009-chromium-only-mvp-verification.md)):
+Chromium is the only required browser for remaining MVP work and final acceptance.
+Firefox/WebKit are not pending MVP gates; evaluate their value after the MVP.
+Retain existing tests, results and known issues below as historical/optional
+follow-up, not passes or compulsory final-project work. Their earlier execution/
+revisit schedule is superseded; no Firefox/Safari compatibility is guaranteed.
+Security, privacy, correctness and manual-review requirements remain unchanged.
+
+## Historical bounded follow-up policy
+
 Owner decision, 2026-10-18: prioritise working MVP behaviour and important checks;
 do not pursue 100% coverage or repeatedly block delivery on troublesome WebKit
 fault-injection tests. Deferred checks must be explicit TODOs with follow-up, not

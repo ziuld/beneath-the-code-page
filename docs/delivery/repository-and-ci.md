@@ -22,13 +22,23 @@ F01 closure disposition (2026-10-09): contributor guidance, CODEOWNERS and PR te
 |---|---|---|
 | Java | Maven verify, unit/integration/architecture | F01 |
 | Frontend | npm lockfile, types, lint, unit, translations, build | F02–F03 |
-| Browser | Packaged JAR, CSP/privacy/a11y; engine smoke | F05–F06 |
+| Browser | Packaged JAR, CSP/privacy/a11y; Chromium only for remaining MVP (ADR 009) | F05–F06 |
 | Supply chain | Dependencies, secrets, SAST; report failures | F01 onward |
 | Container | Build, non-root/runtime probe, image scan, image SBOM | V2 — deferred, not an MVP gate |
 
 Pin action SHAs; default token read-only; no secrets/elevated token for untrusted PR execution; avoid privileged pull_request_target checkout. Use Gitleaks, Trivy and CodeQL (public repository eligibility/configuration verified during setup) or a documented SAST substitute. Choose exact tool/ruleset versions at installation. Critical/high exploitable findings block release; triage disputed/non-applicable findings with owner and expiry rather than silent suppression.
 
 The initial Java workflow is integrated in `.github/workflows/java.yml`: real Maven verification, executable-JAR smoke and planning checks on PRs/main pushes, SHA-pinned actions, read-only token and no persisted checkout credentials. PR #1 proved actual pass/failure/restored-pass reporting; PR #2 integrated the wrapper checksum correction; both post-merge main runs passed. See [final acceptance](../../harness/evidence/F01-closure.md), [CI evidence](../../harness/evidence/F01-java-ci.md) and [contributor guidance](../../CONTRIBUTING.md). GitHub's non-failing Node.js 20 action-runtime warning and maintenance follow-up are recorded separately. No branch-protection or required-check setting has been changed. The F12 security steps below are now configured; configuration is not evidence of an actual remote CI run or a passing scan.
+
+## Remaining MVP browser gate
+
+Remaining MVP browser policy: [ADR 009](../architecture/adr-009-chromium-only-mvp-verification.md)
+requires Chromium only, including final F16 acceptance. Firefox/WebKit are optional
+post-MVP evaluation, not required CI steps. `.github/workflows/home-browser.yml`
+now runs the existing packaged Chromium suite only; their automatic steps are
+removed, while Playwright definitions/results are retained. This local edit does
+not establish a remote CI pass or change remote required-check settings. No pushes
+or CI runs are authorised here.
 
 ## F12 application security gate
 

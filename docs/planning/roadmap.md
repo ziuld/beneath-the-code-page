@@ -19,7 +19,7 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F06 | JSON Formatter | 24 | Accepted | done | F05 |
 | F07 | JSON Validator and Minifier | 10 | Accepted | done | F06 |
 | F12 | MVP tool navigation and local runtime | 2 | Accepted | done | F07 |
-| F13 | Learning pages and navigation | 10 | 0.0–1.0 | planned | F07 |
+| F13 | Learning pages and navigation | 10 | 0.0–1.0 | in_review | F07 |
 | F14 | First complete learning unit | 10 | 1.0–2.0 | planned | F13 |
 | F16 | MVP website polish and acceptance | 8 | 2.0–2.8 | planned | F12, F14 |
 

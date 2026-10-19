@@ -19,7 +19,7 @@ CLI = TESTS / "node_modules/@playwright/test/cli.js"
 
 
 def component_fixture(jar):
-    """Copy only the shell fixture into a separate executable; never change the normal JAR."""
+    """Overlay shell/learning test resources in a copy; never change the normal JAR."""
     output = ROOT / "target/shell-browser-fixture.jar"
     classes = ROOT / "target/test-classes"
     frontend = ROOT / "src/main/frontend"
@@ -42,8 +42,14 @@ def component_fixture(jar):
     manifest["__worker-proof-resource"] = {"file": workers[0]}
     with ZipFile(jar) as original, ZipFile(output, "w") as fixture:
         names = original.namelist()
-        if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name for name in names):
+        if any("btc/fixtures/" in name or "shell-fixture" in name or "editor-fixture" in name
+               or "learning-fixture" in name or "fixture-unit" in name for name in names):
             raise RuntimeError("Fixture leaked into normal executable")
+        catalogue = "BOOT-INF/classes/content/java-fundamentals/catalogue.properties"
+        entries = [line.strip() for line in original.read(catalogue).decode().splitlines()
+                   if line.strip() and not line.lstrip().startswith(("#", "!"))]
+        if entries != ["published-units="]:
+            raise RuntimeError("F13 requires the normal learning catalogue to remain empty")
         for info in original.infolist():
             data = original.read(info)
             if info.filename == "BOOT-INF/classes/asset-manifest.json":
@@ -52,8 +58,15 @@ def component_fixture(jar):
                 data += f"\nbtc:\n  worker-proof-script: /{entry.removeprefix('static/')}\n".encode()
             if info.filename == "META-INF/MANIFEST.MF":
                 data = data.replace(b"Start-Class: dev.beneaththecode.BeneathTheCodeApplication",
-                                    b"Start-Class: btc.fixtures.ShellFixtureApplication")
+                                     b"Start-Class: btc.fixtures.ShellFixtureApplication")
+            if info.filename == catalogue:
+                data = (classes / "learning-fixture/catalogue.properties").read_bytes()
             fixture.writestr(info, data)
+        for resource in sorted((classes / "learning-fixture").rglob("*")):
+            if resource.is_file() and resource.name != "catalogue.properties":
+                fixture.writestr("BOOT-INF/classes/content/java-fundamentals/" +
+                                 resource.relative_to(classes / "learning-fixture").as_posix(),
+                                 resource.read_bytes(), compress_type=ZIP_DEFLATED)
         for asset in (proof / "static/assets").iterdir():
             fixture.writestr("BOOT-INF/classes/static/assets/" + asset.name, asset.read_bytes(), compress_type=ZIP_DEFLATED)
         for name in ("ShellFixtureApplication", "ShellFixtureController", "ShellFixtureSecurity", "EditorFixtureController"):
@@ -97,7 +110,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--install", action="store_true", help="install locked tooling and the selected engine project-locally")
     parser.add_argument("--engine", choices=("chromium", "firefox", "webkit"), default="chromium",
-                        help="Chromium full suite (default); Firefox/WebKit editor critical smoke")
+                        help="Chromium full suite (default); Firefox/WebKit editor/learning critical smoke")
     parser.add_argument("--snapshot", type=Path, help="capture EN/ES/FR narrow/wide Home screenshots instead of running tests")
     parser.add_argument("--snapshot-reference-css", type=Path, help="snapshot only: substitute a reference stylesheet in the browser")
     parser.add_argument("--with-deps", action="store_true", help="CI only: install selected engine OS dependencies; may invoke sudo")
@@ -128,7 +141,7 @@ def main():
                 fixture = component_fixture(jar)
                 environment["BTC_COMPONENT_URL"] = stack.enter_context(running_jar(fixture, ROOT / "target/shell-browser-server.log", environment))
                 environment["BTC_PREFERENCES_URL"] = stack.enter_context(running_jar(
-                    jar, ROOT / "target/preferences-browser-server.log", environment, "--spring.profiles.active=local"))
+                    fixture, ROOT / "target/preferences-browser-server.log", environment, "--spring.profiles.active=local"))
             subprocess.run([str(NODE), str(CLI), "--version"], cwd=TESTS, env=environment, check=True, timeout=10)
             command = ([str(NODE), str(TESTS / "capture-home.mjs"), str(args.snapshot.resolve())]
                        if args.snapshot else [str(NODE), str(CLI), "test", "--project", args.engine])

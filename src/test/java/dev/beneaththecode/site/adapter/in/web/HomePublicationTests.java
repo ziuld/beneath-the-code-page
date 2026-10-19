@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
+import btc.fixtures.LearningFixtureConfiguration;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /** F03-UH01-R02/AC02: mapped/public fixtures, using production Home rendering and filters. */
 @SpringBootTest
 @AutoConfigureMockMvc
-@Import({ HomePublicationTests.Destinations.class, HomePublicationTests.PublicationSecurity.class })
+@Import(LearningFixtureConfiguration.class)
 class HomePublicationTests {
 
 	@Autowired MockMvc mvc;
@@ -40,8 +40,8 @@ class HomePublicationTests {
 		String html = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		for (var section : descriptors) {
 			assertThat(html.contains("href=\"" + section.path() + "\"")).isEqualTo(section.published());
-			// Tools now has real exact public routes; Home promotion still waits for F06 acceptance.
-			mvc.perform(get(section.path())).andExpect(section.published() || section.path().equals("/tools") ? status().isOk() : status().isForbidden());
+			// Both destinations have published fixture data, independently of Home promotion.
+			mvc.perform(get(section.path())).andExpect(status().isOk());
 		}
 		assertThat(html).contains("designed to process your input locally", "beginning with Java fundamentals");
 		assertThat(Pattern.compile(">Not yet available<").matcher(html).results().count())
@@ -52,24 +52,4 @@ class HomePublicationTests {
 		}
 	}
 
-	@RestController
-	static class Destinations {
-		@GetMapping("/learn")
-		String fixture() {
-			return "Mapped publication fixture only";
-		}
-	}
-
-	@TestConfiguration(proxyBeanMethods = false)
-	static class PublicationSecurity {
-		@Bean
-		@Order(0)
-		SecurityFilterChain fixturePublishedRoutes(HttpSecurity http, HomeNavigation navigation) throws Exception {
-			return http.securityMatcher(request ->
-					(request.getMethod().equals("GET") || request.getMethod().equals("HEAD"))
-					&& navigation.sections().stream().anyMatch(section -> section.published()
-							&& section.path().equals(request.getRequestURI())))
-					.authorizeHttpRequests(authorize -> authorize.anyRequest().permitAll()).build();
-		}
-	}
 }

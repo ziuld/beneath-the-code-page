@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head th:replace="~{fragments/learning :: head(#{learning.title})}"></head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header(${currentPath})}"></header>
+<main id="main" class="page learning-prose" tabindex="-1">
+    <h1 th:text="#{learning.title}"></h1>
+    <h2><a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="${course.title}"></a></h2>
+    <p th:text="${course.summary}"></p>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body>
+</html>

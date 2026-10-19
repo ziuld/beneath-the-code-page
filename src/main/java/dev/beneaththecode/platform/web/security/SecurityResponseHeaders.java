@@ -32,20 +32,7 @@ public final class SecurityResponseHeaders extends GenericFilterBean {
 			throws IOException, ServletException {
 		var request = (HttpServletRequest) servletRequest;
 		var response = (HttpServletResponse) servletResponse;
-		if (request.getAttribute(NONCE_ATTRIBUTE) == null) {
-			byte[] bytes = new byte[16];
-			random.nextBytes(bytes);
-			request.setAttribute(NONCE_ATTRIBUTE, Base64.getEncoder().encodeToString(bytes));
-		}
-		response.setHeader("Content-Security-Policy", policy((String) request.getAttribute(NONCE_ATTRIBUTE)));
-		response.setHeader("X-Content-Type-Options", "nosniff");
-		response.setHeader("X-Frame-Options", "DENY");
-		response.setHeader("Referrer-Policy", "no-referrer");
-		response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
-		response.setHeader("Cache-Control", "no-store");
-		if (!cookies.localHttpAllowed() && request.isSecure()) {
-			response.setHeader("Strict-Transport-Security", "max-age=31536000");
-		}
+		applyPolicy(request, response);
 		long started = System.nanoTime();
 		boolean completed = false;
 		try {
@@ -59,12 +46,32 @@ public final class SecurityResponseHeaders extends GenericFilterBean {
 				case "/tools/json-formatter" -> "json-formatter";
 				case "/tools/json-validator" -> "json-validator";
 				case "/tools/json-minifier" -> "json-minifier";
+				case "/learn" -> "learning-index";
+				case "/learn/java-fundamentals" -> "learning-course";
 				case "/preferences/language" -> "language-preference";
 				case "/actuator/health" -> "health";
-				default -> "unmatched";
+				default -> request.getRequestURI().matches("/learn/java-fundamentals/[^/]+") ? "learning-unit" : "unmatched";
 			};
 			EVENTS.info("BTC_HTTP_RESPONSE id={} route={} status={} elapsedMs={}", UUID.randomUUID(), route,
 					completed ? response.getStatus() : 500, (System.nanoTime() - started) / 1_000_000);
+		}
+	}
+
+	/** Also used for container rejections which cannot reach the servlet filters. */
+	void applyPolicy(HttpServletRequest request, HttpServletResponse response) {
+		if (request.getAttribute(NONCE_ATTRIBUTE) == null) {
+			byte[] bytes = new byte[16];
+			random.nextBytes(bytes);
+			request.setAttribute(NONCE_ATTRIBUTE, Base64.getEncoder().encodeToString(bytes));
+		}
+		response.setHeader("Content-Security-Policy", policy((String) request.getAttribute(NONCE_ATTRIBUTE)));
+		response.setHeader("X-Content-Type-Options", "nosniff");
+		response.setHeader("X-Frame-Options", "DENY");
+		response.setHeader("Referrer-Policy", "no-referrer");
+		response.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+		response.setHeader("Cache-Control", "no-store");
+		if (!cookies.localHttpAllowed() && request.isSecure()) {
+			response.setHeader("Strict-Transport-Security", "max-age=31536000");
 		}
 	}
 

@@ -1,9 +1,9 @@
 {
   "owner": "Ziuld",
-  "approved_on": "2026-10-18",
+  "approved_on": "2026-10-19",
   "expires": "2026-11-01",
-  "approval_reference": "harness/evidence/F12-integrated-acceptance.md#approved-bounded-dispositions",
-  "configuration_sha256": "7e6eea0facef77419d223a2804849abd03858ebb05b9a3a07adc87155f2f6c3e",
+  "approval_reference": "harness/evidence/F13-integrated-acceptance.md#approved-bounded-f13-dispositions",
+  "configuration_sha256": "36d5e839f2dae13614162f61cd4182a960ad853c3fde0ed31753973bfc43a333",
   "findings": [
     {
       "id": "CVE-2026-65182",
