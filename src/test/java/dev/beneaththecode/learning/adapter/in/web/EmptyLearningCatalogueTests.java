@@ -28,6 +28,9 @@ class EmptyLearningCatalogueTests {
 	@ParameterizedTest
 	@ValueSource(strings = { "en", "es", "fr" })
 	void emptyCatalogueStillReturnsLocalisedMissingPages(String language) throws Exception {
+		mvc.perform(get("/").queryParam("lang", language))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("href=\"/learn"))));
 		for (String path : List.of("/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/source-to-jvm")) {
 			mvc.perform(get(path).queryParam("lang", language).accept("text/html"))
 					.andExpect(status().isNotFound()).andExpect(header().string("Cache-Control", "no-store"))

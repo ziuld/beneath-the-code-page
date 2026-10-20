@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <header th:fragment="header(currentPath)" class="site-header page">
-    <a class="wordmark" href="/" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{brand.name}"></a>
+    <a class="wordmark" th:href="@{/(lang=${language})}" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{brand.name}"></a>
     <nav th:aria-label="#{navigation.label}">
         <ul class="navigation">
-            <li><a href="/" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{navigation.home}"></a></li>
+            <li><a th:href="@{/(lang=${language})}" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{navigation.home}"></a></li>
             <li th:each="section : ${sections}">
-                <a th:if="${section.published}" th:href="${section.path}" th:aria-current="${currentPath == section.path ? 'page' : null}" th:text="#{${section.titleKey()}}"></a>
+                <a th:if="${section.published}" th:href="@{${section.path}(lang=${language})}" th:aria-current="${currentPath == section.path ? 'page' : null}" th:text="#{${section.titleKey()}}"></a>
                 <span th:unless="${section.published}" class="unavailable" th:text="#{${section.titleKey()}}"></span>
             </li>
         </ul>

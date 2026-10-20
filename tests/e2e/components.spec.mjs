@@ -20,8 +20,8 @@ for (const { locale, label } of [
         await expect(buttons.nth(0)).toBeEnabled();
         await expect(buttons.nth(1)).toBeDisabled();
         await expect(buttons.nth(0)).toHaveAttribute("type", "button");
-        await expect(page.locator("nav [aria-current=page]")).toHaveAttribute("href", "/tools");
-        await expect(page.locator("a[href='/learn']")).toHaveCount(0);
+        await expect(page.locator("nav [aria-current=page]")).toHaveAttribute("href", `/tools?lang=${locale}`);
+        await expect(page.locator("a[href^='/learn']")).toHaveCount(0);
         if (javaScriptEnabled) {
           await page.evaluate(() => {
             window.activations = 0;

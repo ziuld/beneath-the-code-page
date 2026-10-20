@@ -11,7 +11,7 @@
     <h1 th:text="#{error.title}"></h1>
     <p th:text="#{error.description}"></p>
     <p th:text="${status}"></p>
-    <a href="/" th:text="#{error.home}"></a>
+    <a th:href="${'/?lang=' + language}" th:text="#{error.home}"></a>
 </main>
 </body>
 </html>

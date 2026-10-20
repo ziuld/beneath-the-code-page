@@ -89,7 +89,7 @@ for (const language of ["en", "es", "fr"]) {
       } finally { await context.close(); }
     });
 
-    test(`F14: ${language} real unit and explanatory answer, JS=${javaScriptEnabled}`, async ({ browser, baseURL }) => {
+    test(`F14/F16-UH01-AC01: ${language} Home to real unit and explanatory answer, JS=${javaScriptEnabled}`, async ({ browser, baseURL }) => {
       const context = await browser.newContext({ javaScriptEnabled, locale: "en", viewport: { width: 320, height: 900 } });
       try {
         const page = await context.newPage();
@@ -100,7 +100,11 @@ for (const language of ["en", "es", "fr"]) {
         });
         page.on("request", request => requests.push(request));
         page.on("pageerror", error => errors.push(error.message));
-        await page.goto(`${baseURL}/learn?lang=${language}`);
+        await context.addCookies([{ name: "BTC_LANGUAGE", value: "en", url: baseURL, httpOnly: true, sameSite: "Lax" }]);
+        await page.goto(`${baseURL}/?lang=${language}`);
+        await expect(page.locator(`main a[href="/learn?lang=${language}"]`)).toHaveCount(1);
+        await page.locator(`main a[href="/learn?lang=${language}"]`).click();
+        await expect(page).toHaveURL(`${baseURL}/learn?lang=${language}`);
         await page.keyboard.press("Tab");
         await expect(page.locator(".skip-link")).toBeFocused();
         await page.keyboard.press("Enter");
@@ -129,12 +133,12 @@ for (const language of ["en", "es", "fr"]) {
         for (const request of requests) {
           const url = new URL(request.url());
           expect(url.origin).toBe(new URL(baseURL).origin);
-          expect(url.pathname).toMatch(/^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
+          expect(url.pathname).toMatch(/^\/$|^\/brand\/b-composition\.png$|^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
           expect(request.resourceType()).not.toBe("worker");
           expect(request.method()).toBe("GET");
           expect(request.postData()).toBeNull();
         }
-        expect((await context.cookies()).some(cookie => cookie.name === "BTC_LANGUAGE")).toBe(false);
+        expect((await context.cookies()).find(cookie => cookie.name === "BTC_LANGUAGE").value).toBe("en");
         const response = await page.reload();
         if (javaScriptEnabled) {
           await page.setViewportSize({ width: 1280, height: 900 });

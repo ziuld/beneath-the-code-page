@@ -52,3 +52,11 @@ The dependency's original BSD licence is retained at `META-INF/LICENSE.txt` insi
 the unmodified nested `BOOT-INF/lib/commonmark-0.30.1.jar`. Its notices apply to
 that dependency, not to this project's code, branding or lesson content. Dependency
 advisory reassessment and packaged/browser acceptance are separate recorded gates.
+
+## F16 site integration
+
+Home and shared Learn promotion use the same immutable published catalogue as
+learning routes, composed in LearningConfiguration. A nonempty reviewed catalogue
+enables Learn; an empty catalogue leaves it unlinked and retains safe learning
+404s. Synthetic content stays in the copied test executable. The production
+catalogue still contains exactly one source-to-jvm unit, not a complete course.

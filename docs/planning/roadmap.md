@@ -21,7 +21,7 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F12 | MVP tool navigation and local runtime | 2 | Accepted | done | F07 |
 | F13 | Learning pages and navigation | 10 | Accepted | done | F07 |
 | F14 | First complete learning unit | 10 | Accepted | done | F13 |
-| F16 | MVP website polish and acceptance | 8 | 0.0–0.8 | planned | F12, F14 |
+| F16 | MVP website polish and acceptance | 8 | 0.0–0.8 | in_progress | F12, F14 |
 
 ## Milestones
 

@@ -11,7 +11,7 @@
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
 <header th:replace="~{fragments/shell :: header('/tools/json-minifier')}"></header>
 <main id="main" class="page" tabindex="-1">
-    <a href="/tools" th:text="#{tools.title}"></a>
+    <a th:href="@{/tools(lang=${language})}" th:text="#{tools.title}"></a>
     <h1 th:text="#{minifier.title}"></h1>
     <p th:text="#{minifier.description}"></p>
     <section data-json-minifier data-editor-workspace aria-labelledby="minifier-input-label">

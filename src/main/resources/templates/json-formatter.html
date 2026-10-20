@@ -11,7 +11,7 @@
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
 <header th:replace="~{fragments/shell :: header('/tools/json-formatter')}"></header>
 <main id="main" class="page" tabindex="-1">
-    <a href="/tools" th:text="#{tools.title}"></a>
+    <a th:href="@{/tools(lang=${language})}" th:text="#{tools.title}"></a>
     <h1 th:text="#{formatter.title}"></h1>
     <p th:text="#{formatter.description}"></p>
     <section data-json-formatter data-editor-workspace aria-labelledby="formatter-input-label">

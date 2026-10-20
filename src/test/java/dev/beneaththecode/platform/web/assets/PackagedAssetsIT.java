@@ -116,7 +116,7 @@ class PackagedAssetsIT {
 						+ "/assets/__http-failure?lang=" + language)).header("Accept", "text/html").GET().build(),
 						HttpResponse.BodyHandlers.ofString());
 				assertThat(response.statusCode()).isEqualTo(500);
-				assertThat(response.body()).contains("lang=\"" + language + "\"", "<h1", "href=\"/\"")
+				assertThat(response.body()).contains("lang=\"" + language + "\"", "<h1", "href=\"/?lang=" + language + "\"")
 						.doesNotContain("SYNTHETIC_HTTP_PRIVATE_SENTINEL", "Exception", "<form", "_csrf");
 				assertThat(response.headers().firstValue("cache-control")).hasValue("no-store");
 				assertThat(response.headers().firstValue("content-security-policy")).isPresent();

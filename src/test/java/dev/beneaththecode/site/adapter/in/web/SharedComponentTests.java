@@ -36,10 +36,10 @@ class SharedComponentTests {
 	void rendersNativeButtonsAndCorrectCurrentRoute(String locale, String label) throws Exception {
 		String html = mvc.perform(get("/__shell-fixture").header("Accept-Language", locale))
 				.andExpect(status().isOk()).andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		assertThat(html).contains("lang=\"" + locale + "\"", "href=\"/tools\" aria-current=\"page\"",
+		assertThat(html).contains("lang=\"" + locale + "\"", "href=\"/tools?lang=" + locale + "\" aria-current=\"page\"",
 				"class=\"button\" type=\"button\">" + label + "</button>",
 				"type=\"button\" disabled=\"disabled\">" + label + "</button>")
-				.doesNotContain("href=\"/\" aria-current", "href=\"/learn\"", "th:", "??", "onclick");
+				.doesNotContain("href=\"/?lang=" + locale + "\" aria-current", "href=\"/learn?lang=" + locale + "\"", "th:", "??", "onclick");
 	}
 
 	@Test

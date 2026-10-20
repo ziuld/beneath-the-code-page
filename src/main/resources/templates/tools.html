@@ -13,9 +13,9 @@
     <h1 th:text="#{tools.title}"></h1>
     <p th:text="#{tools.description}"></p>
     <ul>
-        <li><a href="/tools/json-formatter" th:text="#{formatter.title}"></a></li>
-        <li><a href="/tools/json-validator" th:text="#{validator.title}"></a></li>
-        <li><a href="/tools/json-minifier" th:text="#{minifier.title}"></a></li>
+        <li><a th:href="@{/tools/json-formatter(lang=${language})}" th:text="#{formatter.title}"></a></li>
+        <li><a th:href="@{/tools/json-validator(lang=${language})}" th:text="#{validator.title}"></a></li>
+        <li><a th:href="@{/tools/json-minifier(lang=${language})}" th:text="#{minifier.title}"></a></li>
     </ul>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>

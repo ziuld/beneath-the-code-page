@@ -54,3 +54,12 @@ java -jar target/shell-browser-fixture.jar --server.address=127.0.0.1 --server.p
 Review `http://127.0.0.1:8081/__shell-fixture` in the same locale/zoom/keyboard matrix. The fixture-only Tools link has no destination page and must not be mistaken for a published product route; test its focus/current state, not a fictitious Tools page. Check the enabled/disabled translated buttons and card states. Stop both servers with Ctrl+C. The normal browser runner cleans up its fixture copy on the next automated run.
 
 Record reviewer, date, browser/version, locale, viewport size, browser-UI zoom level, actions and observed results separately. Report any issue, and do not treat owner acceptance alone as proof that these reviews ran. Final clean Maven/health/integration checks and accepted closure follow this review.
+
+## F16 integrated navigation
+
+SharedNavigationAdvice supplies the catalogue-aware HomeNavigation descriptors to
+Home, tool and learning controllers without importing another capability's adapter.
+The component fixture keeps its explicit alternate publication state. Shared Home/
+Tools/Learn links, section cards, tool links/breadcrumbs and error recovery carry
+the resolved EN/ES/FR language. GET navigation never changes the saved preference;
+the native preference POST still returns to the exact clean allowlisted page.

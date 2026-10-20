@@ -24,15 +24,15 @@ for (const [locale, copy] of Object.entries(messages)) {
     const page = await browser.newPage({ locale, baseURL });
     try {
       await page.goto("/");
-      await expect(page.locator('a[href="/learn"]')).toHaveCount(0);
-      await page.locator('main a[href="/tools"]').click();
-      await expect(page).toHaveURL(/\/tools$/);
-      await expect(page.locator('main a[href="/tools/json-formatter"]')).toHaveCount(1);
-      await expect(page.locator('main a[href="/tools/json-validator"]')).toHaveCount(1);
-      await expect(page.locator('main a[href="/tools/json-minifier"]')).toHaveCount(1);
+      await expect(page.locator(`a[href="/learn?lang=${locale}"]`)).toHaveCount(2);
+      await page.locator(`main a[href="/tools?lang=${locale}"]`).click();
+      await expect(page).toHaveURL(`${baseURL}/tools?lang=${locale}`);
+      await expect(page.locator(`main a[href="/tools/json-formatter?lang=${locale}"]`)).toHaveCount(1);
+      await expect(page.locator(`main a[href="/tools/json-validator?lang=${locale}"]`)).toHaveCount(1);
+      await expect(page.locator(`main a[href="/tools/json-minifier?lang=${locale}"]`)).toHaveCount(1);
       await expect(page.locator('a[href="/tools/base64"]')).toHaveCount(0);
-      await page.locator('main a[href="/tools/json-formatter"]').click();
-      await expect(page).toHaveURL(/\/tools\/json-formatter$/);
+      await page.locator(`main a[href="/tools/json-formatter?lang=${locale}"]`).click();
+      await expect(page).toHaveURL(`${baseURL}/tools/json-formatter?lang=${locale}`);
       await expect(page.locator("html")).toHaveAttribute("lang", locale);
       await expect(page.locator("[data-json-formatter]")).toHaveAttribute("data-format-ready", "true");
       await page.getByRole("textbox", { name: copy.input, exact: true }).fill('{"id":9007199254740993}');

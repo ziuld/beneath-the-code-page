@@ -39,7 +39,7 @@ class SafeHttpErrorsTests {
 					.andReturn();
 			var response = result.getResponse();
 			assertThat(response.getStatus()).isEqualTo(status);
-			assertThat(response.getContentAsString()).contains("lang=\"" + language + "\"", "<h1", "href=\"/\"")
+			assertThat(response.getContentAsString()).contains("lang=\"" + language + "\"", "<h1", "href=\"/?lang=" + language + "\"")
 					.doesNotContain("SYNTHETIC_PRIVATE_SENTINEL", "Exception", "_csrf", "<form", "${", "#{");
 			assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
 			assertThat(response.getHeader("Content-Security-Policy")).contains("default-src 'none'");

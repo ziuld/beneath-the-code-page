@@ -43,6 +43,6 @@ class PublishedLearningTests {
 				.doesNotContain("fixture-unit", "window.fixtureExecuted", "rel=\"prev\"", "rel=\"next\"", "data-editor-workspace", "data-json-");
 		mvc.perform(head("/learn/java-fundamentals/source-to-jvm")).andExpect(status().isOk());
 		String home = mvc.perform(get("/")).andReturn().getResponse().getContentAsString();
-		assertThat(home).doesNotContain("href=\"/learn\"");
+		assertThat(home).contains("href=\"/learn?lang=en\"");
 	}
 }
