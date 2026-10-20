@@ -1,7 +1,7 @@
 # F15-UH01 — Values, types and numeric limits review candidate
 
-Date:2026-10-20. Status: technically verified; actual owner EN/ES/FR content review
-pending. This is the first of the two selected ADR010 stories. F15-UH02 remains
+Date:2026-10-20. Current status: owner-approved and closed; see the acceptance
+and commit records below. Earlier pending statements describe the review checkpoint. This is the first of the two selected ADR010 stories. F15-UH02 remains
 planned until its prerequisite is accepted; UH03–UH07 remain deferred. F15 as a
 whole is not done. No new lesson acceptance, commit, push, PR or deployment claimed.
 
@@ -60,7 +60,7 @@ target/f15-values-full-browser-results.json, target/f15-values-reading-layout.lo
 target/f15-values-security.log and target/security/summary.json. Final scan retains
 input hashes; ignored diagnostic files are not published source/secret excerpts.
 
-## Pending owner review and preview
+## Historical candidate review and preview
 
 F15-UH01-T05 requires actual owner review of explanation, exercise and reasoned
 answer in EN/ES/FR; previous F16 approval does not apply. Review clarity, technical

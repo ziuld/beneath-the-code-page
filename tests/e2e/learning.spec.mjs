@@ -115,7 +115,7 @@ for (const language of ["en", "es", "fr"]) {
         await expect(page.getByRole("heading", { name: realCopy[language].prerequisites, exact: true })).toBeVisible();
         await expect(page.getByRole("heading", { name: realCopy[language].outcomes, exact: true })).toBeVisible();
         await expect(page.locator("main .status")).toBeVisible();
-        await expect(page.locator("main > ol a")).toHaveCount(2);
+        await expect(page.locator("main > ol a")).toHaveCount(3);
         await page.locator("main > ol a").first().focus();
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${baseURL}${realPath}?lang=${language}`);
@@ -168,67 +168,75 @@ for (const language of ["en", "es", "fr"]) {
     });
   }
 
-  for (const javaScriptEnabled of [true, false]) {
-    test(`F15-UH01: ${language} ordered values lesson and locale return, JS=${javaScriptEnabled}`, async ({ browser, baseURL }) => {
-      const base = baseURL;
-      const path = "/learn/java-fundamentals/values-types-numeric-limits";
-      const titles = { en: "Values, types and numeric limits", es: "Valores, tipos y límites numéricos", fr: "Valeurs, types et limites numériques" };
-      const context = await browser.newContext({ javaScriptEnabled, viewport: { width: 320, height: 900 } });
-      try {
-        const page = await context.newPage();
-        const errors = [], requests = [];
-        page.on("pageerror", error => errors.push(error.message));
-        page.on("request", request => requests.push(request));
-        await context.addInitScript(() => {
-          window.readingViolations = [];
-          document.addEventListener("securitypolicyviolation", event => window.readingViolations.push(event.violatedDirective));
-        });
-        await page.goto(`${base}${realPath}?lang=${language}`);
-        await page.locator("[rel=next]").focus();
-        await page.keyboard.press("Enter");
-        await expect(page).toHaveURL(`${base}${path}?lang=${language}`);
-        await expect(page.getByRole("heading", { level: 1 })).toHaveText(titles[language]);
-        await expect(page.getByRole("heading", { name: realCopy[language].answer, exact: true })).toBeVisible();
-        await expect(page.locator("article pre code.language-java")).toHaveCount(2);
-        await expect(page.locator("article")).toContainText("0.30000000000000004");
-        await expect(page.locator("article")).toContainText("-294967296");
-        await expect(page.locator("article script, article img, .cm-editor, [rel=next]")).toHaveCount(0);
-        await expect(page.locator("[rel=prev]")).toHaveAttribute("href", `${realPath}?lang=${language}`);
-        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-        await page.screenshot({ path: `../../target/f15-values-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: false });
-        if (javaScriptEnabled) {
-          const response = await page.reload();
-          await page.setViewportSize({ width: 1280, height: 900 });
-          await addTestStyle(page, response, ":root { zoom: 2; }");
+  for (const lesson of [
+    { story: "F15-UH01", slug: "values-types-numeric-limits", previous: "source-to-jvm", next: "control-flow-tracing", artifact: "values", content: ["0.30000000000000004", "-294967296"], titles: { en: "Values, types and numeric limits", es: "Valores, tipos y límites numéricos", fr: "Valeurs, types et limites numériques" } },
+    { story: "F15-UH02", slug: "control-flow-tracing", previous: "values-types-numeric-limits", next: null, artifact: "flow", content: ["public class ControlFlowTrace", "public class ControlFlowExercise"], titles: { en: "Control flow and tracing", es: "Flujo de control y trazas", fr: "Flot de contrôle et traces d’exécution" } },
+  ]) {
+    for (const javaScriptEnabled of [true, false]) {
+      test(`${lesson.story}: ${language} ordered ${lesson.artifact} lesson and locale return, JS=${javaScriptEnabled}`, async ({ browser, baseURL }) => {
+        const base = baseURL;
+        const path = `/learn/java-fundamentals/${lesson.slug}`;
+        const previousPath = `/learn/java-fundamentals/${lesson.previous}`;
+        const titles = lesson.titles;
+        const context = await browser.newContext({ javaScriptEnabled, viewport: { width: 320, height: 900 } });
+        try {
+          const page = await context.newPage();
+          const errors = [], requests = [];
+          page.on("pageerror", error => errors.push(error.message));
+          page.on("request", request => requests.push(request));
+          await context.addInitScript(() => {
+            window.readingViolations = [];
+            document.addEventListener("securitypolicyviolation", event => window.readingViolations.push(event.violatedDirective));
+          });
+          await page.goto(`${base}${previousPath}?lang=${language}`);
+          await page.locator("[rel=next]").focus();
+          await page.keyboard.press("Enter");
+          await expect(page).toHaveURL(`${base}${path}?lang=${language}`);
+          await expect(page.getByRole("heading", { level: 1 })).toHaveText(titles[language]);
+          await expect(page.getByRole("heading", { name: realCopy[language].answer, exact: true })).toBeVisible();
+          await expect(page.locator("article pre code.language-java")).toHaveCount(2);
+          for (const text of lesson.content) await expect(page.locator("article")).toContainText(text);
+          await expect(page.locator("article script, article img, .cm-editor")).toHaveCount(0);
+          await expect(page.locator("[rel=prev]")).toHaveAttribute("href", `${previousPath}?lang=${language}`);
+          if (lesson.next) await expect(page.locator("[rel=next]")).toHaveAttribute("href", `/learn/java-fundamentals/${lesson.next}?lang=${language}`);
+          else await expect(page.locator("[rel=next]")).toHaveCount(0);
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-          await page.screenshot({ path: `../../target/f15-values-${language}-css-zoom.png`, fullPage: false });
-        }
-        await page.locator("[rel=prev]").click();
-        await expect(page).toHaveURL(`${base}${realPath}?lang=${language}`);
-        await page.locator("[rel=next]").click();
-        if (javaScriptEnabled) expect(await page.evaluate(() => window.readingViolations)).toEqual([]);
-        for (const request of requests) {
-          const url = new URL(request.url());
-          expect(url.origin).toBe(new URL(base).origin);
-          expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits)$|^\/assets\/[\w-]+\.(?:css|js)$/);
-          expect(request.resourceType()).not.toBe("worker");
-          expect(request.method()).toBe("GET");
-          expect(request.postData()).toBeNull();
-        }
-        const nextLanguage = language === "fr" ? "es" : "fr";
-        await page.locator("select[name=language]").selectOption(nextLanguage);
-        const submitted = page.waitForResponse(result => result.request().method() === "POST");
-        await page.locator(".language-preference button").click();
-        const post = await submitted;
-        expect(post.status()).toBe(303);
-        expect(post.headers().location).toBe(path);
-        await expect(page).toHaveURL(`${base}${path}`);
-        await expect(page.getByRole("heading", { level: 1 })).toHaveText(titles[nextLanguage]);
-        expect((await context.cookies()).some(cookie => cookie.name === "JSESSIONID")).toBe(false);
-        expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
-        expect(errors).toEqual([]);
-      } finally { await context.close(); }
-    });
+          await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: false });
+          if (javaScriptEnabled) {
+            const response = await page.reload();
+            await page.setViewportSize({ width: 1280, height: 900 });
+            await addTestStyle(page, response, ":root { zoom: 2; }");
+            expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+            await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-css-zoom.png`, fullPage: false });
+          }
+          await page.locator("[rel=prev]").click();
+          await expect(page).toHaveURL(`${base}${previousPath}?lang=${language}`);
+          await page.locator("[rel=next]").click();
+          if (javaScriptEnabled) expect(await page.evaluate(() => window.readingViolations)).toEqual([]);
+          for (const request of requests) {
+            const url = new URL(request.url());
+            expect(url.origin).toBe(new URL(base).origin);
+            expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits|control-flow-tracing)$|^\/assets\/[\w-]+\.(?:css|js)$/);
+            expect(request.resourceType()).not.toBe("worker");
+            expect(request.method()).toBe("GET");
+            expect(request.postData()).toBeNull();
+          }
+          const nextLanguage = language === "fr" ? "es" : "fr";
+          await page.locator("select[name=language]").selectOption(nextLanguage);
+          const submitted = page.waitForResponse(result => result.request().method() === "POST");
+          await page.locator(".language-preference button").click();
+          const post = await submitted;
+          expect(post.status()).toBe(303);
+          expect(post.headers().location).toBe(path);
+          await expect(page).toHaveURL(`${base}${path}`);
+          await expect(page.getByRole("heading", { level: 1 })).toHaveText(titles[nextLanguage]);
+          expect((await context.cookies()).some(cookie => cookie.name === "JSESSIONID")).toBe(false);
+          expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });
+          expect(errors).toEqual([]);
+        } finally { await context.close(); }
+      });
+    }
+
   }
 
   test(`F13: ${language} production fixture absence and bounded missing responses`, async ({ request, baseURL }) => {

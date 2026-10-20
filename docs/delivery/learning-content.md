@@ -3,8 +3,9 @@
 The ordered `published-units` list in
 `src/main/resources/content/java-fundamentals/catalogue.properties` is the sole
 publication list. F13 verified an empty list; F14/F16 accepted `source-to-jvm`.
-The current local F15 review candidate adds `values-types-numeric-limits`;
-its owner review is pending and it is not yet a release acceptance. File presence never publishes a draft. Slugs contain lowercase
+F15-UH01 values/types and F15-UH02 control flow/tracing have both been
+owner-approved. The catalogue now lists three complete reviewed units, not a
+complete course; publication/deployment is not implied by local acceptance. File presence never publishes a draft. Slugs contain lowercase
 letters/digits separated by single hyphens. Final owner content review is recorded
 in the relevant story evidence; F16 completed Home/shared promotion and no
 deployment is implied.
@@ -60,6 +61,6 @@ advisory reassessment and packaged/browser acceptance are separate recorded gate
 Home and shared Learn promotion use the same immutable published catalogue as
 learning routes, composed in LearningConfiguration. A nonempty reviewed catalogue
 enables Learn; an empty catalogue leaves it unlinked and retains safe learning
-404s. Synthetic content stays in the copied test executable. The current local catalogue contains the accepted source-to-JVM unit and the
-values/types review candidate, not a complete course. No new routes or navigation
+404s. Synthetic content stays in the copied test executable. The current local catalogue contains accepted source-to-JVM and values/types
+units plus the accepted control-flow unit, not a complete course. No new routes or navigation
 framework are needed: the existing ordered snapshot supplies previous/next links.

@@ -1,5 +1,17 @@
 # Current handoff
 
+F15-UH02 candidate,2026-10-20: control-flow/tracing local draft complete in
+EN/ES/FR; three-unit catalogue uses existing native navigation. Maven260+17 Java/
+185 frontend, Chromium137/137, security0 findings/0 exceptions, policy20/planning23/
+strict15 PASS. All12 F15 Java blocks run across3 locales plus4 terminating boundary
+variants. CSS zoom automated only; new actual owner content/reading review pending.
+UH02 T01–T04 done,T05 in progress,T06 planned. F15 stays partial; other5 stories
+are deferred. First push/PR follows approval/closure of this second selected unit.
+Preview RUNNING http://127.0.0.1:41511/learn/java-fundamentals/control-flow-tracing?lang=en
+PID188609/session43863; loopback/local-profile. Old preview is stopped. Evidence:
+harness/evidence/F15-control-flow-review.md. No new UH02 commit/push/PR yet.
+
+
 F15-UH01 COMPLETE,2026-10-20: owner explicitly approved the EN/ES/FR content and
 reading-review request (“Approved continue”). All6 tasks complete; implementation
 b2e240760ac93d3b09acde88935debb4a7e35c0c. Maven258+17/185 frontend, Chromium131+affected6,

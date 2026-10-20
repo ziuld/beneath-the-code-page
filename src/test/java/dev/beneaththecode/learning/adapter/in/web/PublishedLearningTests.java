@@ -48,7 +48,16 @@ class PublishedLearningTests {
 		assertThat(numeric).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
 				"public class NumericValues", "public class NumericExercise", "-294967296", "4000000000",
 				"rel=\"prev\"", "href=\"/learn/java-fundamentals/source-to-jvm?lang=" + language + "\"")
+				.doesNotContain("data-editor-workspace", "data-json-", "??");
+		assertThat(numeric).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/control-flow-tracing?lang=" + language + "\"");
+		String flow = mvc.perform(get("/learn/java-fundamentals/control-flow-tracing").queryParam("lang", language))
+				.andExpect(status().isOk()).andExpect(header().string("Cache-Control", "no-store"))
+				.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+		assertThat(flow).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
+				"public class ControlFlowTrace", "public class ControlFlowExercise", "rel=\"prev\"",
+				"href=\"/learn/java-fundamentals/values-types-numeric-limits?lang=" + language + "\"")
 				.doesNotContain("rel=\"next\"", "data-editor-workspace", "data-json-", "??");
+		mvc.perform(head("/learn/java-fundamentals/control-flow-tracing")).andExpect(status().isOk());
 		mvc.perform(head("/learn/java-fundamentals/values-types-numeric-limits")).andExpect(status().isOk());
 		mvc.perform(head("/learn/java-fundamentals/source-to-jvm")).andExpect(status().isOk());
 		String home = mvc.perform(get("/")).andReturn().getResponse().getContentAsString();

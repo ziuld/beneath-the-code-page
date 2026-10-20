@@ -34,3 +34,9 @@ bounded for/while loops, include initial/test/body/update/final-test states, bou
 cases and termination reasoning. Exclude switch/patterns/streams and unsafe
 infinite-loop exercises. Use original examples and complete EN/ES/FR answers.
 References: Java25 JLS14.9,14.12,14.14.1. Next: author and verify UH02.
+
+UH02 candidate technical checks complete: Maven260+17/185 frontend, Chromium137,
+security0 findings/0 exceptions, policy20/planning23/strict15 PASS. T05 actual
+EN/ES/FR review pending; evidence:harness/evidence/F15-control-flow-review.md.
+Preview41511/PID188609/session43863. After approval close the selected story and
+prepare the authorised first push/PR, keeping the other5 F15 stories deferred.
