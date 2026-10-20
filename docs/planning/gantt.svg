@@ -6,8 +6,6 @@
 <text x="20" y="25" font-size="17">Feature schedule · relative weeks · AI-assisted</text>
 <path d="M365.0 48 V517" stroke="#292927"/>
 <text x="365.0" y="43" text-anchor="middle">W1</text>
-<path d="M941.7 48 V517" stroke="#292927"/>
-<text x="941.7" y="43" text-anchor="middle">W3</text>
 <text x="20" y="76">F00 Manual Initializr import</text>
 <rect x="365.00" y="60" width="0.00" height="22" fill="#9bb7a1"><title>F00 Manual Initializr import: 2h, done</title></rect>
 <text x="20" y="110">F01 Java baseline and boundaries</text>
@@ -29,10 +27,10 @@
 <text x="20" y="382">F13 Learning pages and navigation</text>
 <rect x="365.00" y="366" width="0.00" height="22" fill="#9bb7a1"><title>F13 Learning pages and navigation: 10h, done</title></rect>
 <text x="20" y="416">F14 First complete learning unit</text>
-<rect x="365.00" y="400" width="288.33" height="22" fill="#92908b"><title>F14 First complete learning unit: 10h, in_review</title></rect>
+<rect x="365.00" y="400" width="0.00" height="22" fill="#9bb7a1"><title>F14 First complete learning unit: 10h, done</title></rect>
 <text x="20" y="450">F16 MVP website polish and acceptance</text>
-<rect x="653.33" y="434" width="230.67" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
-<text x="20" y="484">Shared contingency · 3.6h</text>
-<rect x="884.00" y="468" width="103.80" height="22" fill="#45433f"/>
-<text x="20" y="542">Gray = scheduled effort, not completion. Accepted: 10/12 features. Milestone timing excludes shared contingency.</text>
+<rect x="365.00" y="434" width="692.00" height="22" fill="#92908b"><title>F16 MVP website polish and acceptance: 8h, planned</title></rect>
+<text x="20" y="484">Shared contingency · 1.6h</text>
+<rect x="1057.00" y="468" width="138.40" height="22" fill="#45433f"/>
+<text x="20" y="542">Gray = scheduled effort, not completion. Accepted: 11/12 features. Milestone timing excludes shared contingency.</text>
 </g></svg>

@@ -1,16 +1,27 @@
 # Task — F14 first complete learning unit
 
-Status / owner / date: owner-approved candidate and security gate pass; local closure in review / Ziuld with AI assistance / 2026-10-19.
+Status / owner / date: complete / Ziuld with AI assistance / 2026-10-19.
 
 User outcome and authorised scope: implement the approved F14 change; one complete
 EN/ES/FR source-to-JVM unit, not F16 promotion or extra V2 units.
+
+Final result: local implementation7ccc77338b7f88c2ae546822e1198ed6542a8d38, both
+stories/all11 tasks and OpenSpec8/8 complete. Actual JDK/Maven/Chromium/security
+evidence and owner approvals recorded; preview stopped. Separate archive edits
+excluded; no push/sync/archive or F16 implementation. Historical notes below do
+not reopen accepted work.
 
 Prerequisites and files read: accepted F13; current handoff/architecture/feasibility,
 F14 EARS/scenarios/canonical tasks and OpenSpec proposal/specs/design/checklist;
 existing learning model/loader/templates, fixtures and publication tests.
 
-Acceptance criteria: `openspec/changes/f14-first-complete-learning-unit/specs/`;
+Acceptance criteria: `openspec/changes/archive/2026-10-20-f14-first-complete-learning-unit/specs/`;
 canonical ownership remains unchanged.
+
+Archive follow-up, 2026-10-20: owner requested archival and selected Sync now.
+Both capability deltas merged and verified; all four artifacts/eight tasks complete.
+Archive evidence: `harness/evidence/F14-openspec-archive.md`. Earlier no-sync/archive
+statements describe implementation closure, not the current archive state.
 
 Implementation steps: approved brief → metadata/overview → verified localised
 content → normal publication/harness transition → Chromium/owner review → scoped

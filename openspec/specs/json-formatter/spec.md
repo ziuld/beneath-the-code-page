@@ -116,13 +116,13 @@ When the developer clears the workspace, it SHALL remove current input and outpu
 
 ### Requirement: Publish a localised formatter journey
 
-The application SHALL publish GET/HEAD `/tools` and `/tools/json-formatter` with shared EN/ES/FR styling and navigation. The Tools index SHALL list only the completed formatter. The formatter SHALL provide keyboard-operable labelled controls, visible focus, a read-only result and resource-backed statuses without an input-submitting form.
+The application SHALL publish GET/HEAD `/tools` and `/tools/json-formatter` with shared EN/ES/FR styling and navigation. The Tools index SHALL list only completed F06/F07 JSON tools, adding each F07 link after its story and relevant integrated acceptance pass. The formatter SHALL provide keyboard-operable labelled controls, visible focus, a read-only result and resource-backed statuses without an input-submitting form.
 
 #### Scenario: Discover the formatter without publishing unfinished tools
 
 - **GIVEN** all three F06 stories and integrated acceptance have passed
 - **WHEN** a visitor follows Home → Tools → JSON Formatter
-- **THEN** both destination pages exist, the formatter is reachable and unfinished tools/learning pages remain unpublished and denied
+- **THEN** both destination pages exist, the formatter remains reachable and unfinished tools/learning pages remain unpublished and denied
 - **AND** the published routes retain the accepted security headers, no-store HTML, no sessions and exact route/method restrictions
 
 #### Scenario: Verify feature-wide privacy across all actions
@@ -148,3 +148,12 @@ The application SHALL publish GET/HEAD `/tools` and `/tools/json-formatter` with
 - **THEN** editor escape, focus, control labels, contrast, reflow and status feedback remain usable under unchanged document and worker CSP
 - **AND** Home and the Tools index do not fetch formatter editor/worker assets
 - **AND** no screen-reader compatibility or manual speech-testing pass is claimed
+
+#### Scenario: Publish accepted F07 destinations without a formatter regression
+
+- **GIVEN** the validator or minifier story has passed its relevant automated, integrated and owner acceptance
+- **WHEN** its catalogue link is published and a visitor opens Tools in EN, ES or FR
+- **THEN** the completed page is reachable alongside Formatter and has an operation-specific label
+- **AND** any unaccepted F07 operation remains unadvertised, deferred tools and Learn remain unpublished, and Formatter retains its accepted behaviour
+- **WHEN** both F07 stories and integrated acceptance pass
+- **THEN** the index lists Formatter, Validator and Minifier without advertising V2 tools

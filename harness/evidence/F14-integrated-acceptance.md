@@ -1,6 +1,31 @@
 # F14 — integrated acceptance evidence
 
-Started:2026-10-19. Implementation in progress; no feature acceptance claimed.
+Started/accepted:2026-10-19 under the Chromium-only MVP policy(ADR009).
+
+## Combined acceptance and implementation commit
+
+Local implementation:`7ccc77338b7f88c2ae546822e1198ed6542a8d38`
+(`feat(learning): publish the first source-to-JVM unit`).43 scoped F14 files,
+including real EN/ES/FR resources, metadata/template/harness changes, tests and
+approved security policy. Separate F07/F12/F13 archival/main-spec/task/evidence
+edits excluded; only F14 handoff paragraphs staged. Before commit, staged
+runtime/security/browser inputs compared with passing scan hashes:PASS.
+
+Both stories/all11 canonical tasks complete; OpenSpec8/8. Acceptance combines
+baseline-JDK example/locale parity,254 Surefire+17 Failsafe/185 frontend passes,
+Chromium125/125, owner checklist approval,18 policy tests and actual passing
+security gate. Eight CVEs remain visible under exact owner-approved decisions
+expiring2026-11-01; final V1 reassessment remains required. No zero-vulnerability,
+independent translation certification or Firefox/Safari compatibility claim.
+
+Exactly one complete unit is available through the existing learning routes.
+Home/shared Learn promotion remains off for F16; no external deployment. Preview
+stopped. Owner effort remains unreported, not inferred from elapsed time.
+Existing successful evidence reused for unchanged inputs; earlier pending and
+failed-test notes below are historical, not unresolved acceptance results.
+
+Closure bookkeeping records the actual implementation hash separately. No push,
+remote CI, release, merge, main-spec sync, archive or F16 implementation claimed.
 
 ## Owner review and local commit approval
 

@@ -1,5 +1,27 @@
 # Current handoff
 
+F14 OpenSpec synced and archived, 2026-10-20, at the owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-20-f14-first-complete-learning-unit/.
+Added two requirements/four scenarios to each existing learning-navigation and
+localised-learning-content main spec; existing titles/Purpose/requirements retained.
+Both delta bodies verified exactly; strict 13-spec validation PASS before move.
+All four artifacts/eight tasks complete; all six archived file hashes unchanged,
+including .openspec.yaml. Canonical status/behaviour ownership unchanged. No runtime,
+browser or security rerun, commit/push/release or F16 implementation. Separate
+archive/closure edits preserved. Evidence: harness/evidence/F14-openspec-archive.md.
+
+F14 COMPLETE,2026-10-19: implementation7ccc77338b7f88c2ae546822e1198ed6542a8d38
+contains43 scoped files; F07/F12/F13 archival/main-spec/task/evidence edits excluded
+and handoff staged selectively. Both stories/all11 tasks,OpenSpec8/8 done. One
+EN/ES/FR source-to-jvm unit, honest overview, same-page answer; baseline-JDK example
+and locale parity verified. Maven254+17 Java/185 frontend,Chromium125/125, owner
+review,18 policy tests and actual security gate PASS reused unchanged. Staged
+runtime/security/browser hashes match passing scan. Boot4.1.1 retained;8 visible
+exact CVE decisions expire2026-11-01, final V1 reassessment required. Chromium-only;
+Firefox/WebKit optional post-MVP. Home/shared Learn promotion off; nextF16 not
+started. Preview stopped; effort unreported. No push/remote CI/merge/release/spec
+sync/archive. Evidence F14-integrated-acceptance.md; earlier pending notes historical.
+
 F14 sign-off,2026-10-19: owner explicitly approved all3 requested items: EN/ES/FR
 content/page checklist, same8 bounded F14 decisions until2026-11-01, scoped local
 commits after passing gate(no push,archives excluded). No detailed manual notes
@@ -34,6 +56,18 @@ whitespace PASS. Planning only: no code/content implementation, canonical status
 advance, security renewal, commit/push or main-spec sync. F14 remains planned;
 start apply only after a new user request. Chromium only; F16 promotion/V2 frozen
 scope unchanged. F07/F12/F13 archival edits remain separate and preserved.
+
+F13 OpenSpec synced and archived,2026-10-19, at owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-19-f13-learning-pages-and-navigation/.
+Created main learning-navigation(4 requirements/8 scenarios) and localised-learning-
+content(3/6), preserving delta Purpose/bodies exactly. Updated only F04-UH02-R01
+in secure-http-responses; existing title/Purpose/other requirement unchanged.
+All3 capabilities verified fully synced; strict13-spec validation PASS before
+move. All4 artifacts/6 tasks complete;7 files including .openspec.yaml unchanged
+by move. F13 remains accepted at0742b43/a64b7d2; canonical ownership/status unchanged.
+No new runtime/test/scan claim, commit/push or F14 implementation. F07/F12 archival
+edits preserved; this archive bookkeeping also remains local/uncommitted. Evidence
+harness/evidence/F13-openspec-archive.md.
 
 F13 COMPLETE,2026-10-19: local implementation0742b43815243f9539eef74fa934cfa2722795ee
 contains71 scoped files; separate F07/F12 archival/main-spec/task/evidence edits
@@ -188,6 +222,17 @@ progress; no story/feature acceptance. Boot4.1.1 unchanged, no security-fingerpr
 refresh, commit/push or archive changes. Evidence F13-integrated-acceptance.md;
 test log target/f13-catalogue-tests.log. Existing F07/F12 archives preserved.
 
+F12 OpenSpec synced and archived,2026-10-18, at owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-18-f12-mvp-navigation-and-local-runtime/.
+New main supply-chain-verification spec preserves delta Purpose and3 requirements/
+5 scenarios; exact canonical comparison and strict11-spec validation pass before
+move. All4 artifacts/5 tasks complete; metadata preserved; no active changes.
+Task-record path updated; canonical behaviour ownership/status unchanged. F12
+remains accepted at71aeefc/cfd8d14, Boot4.1.1 unchanged, bounded decisions still
+expire2026-11-01 and invalidate on config changes. No new runtime/test/scan claim,
+commit/push/release; F07 archival edits intact. Archive bookkeeping local/uncommitted.
+Evidence harness/evidence/F12-openspec-archive.md. Next F13 not started here.
+
 F12 COMPLETE,2026-10-18: owner continued after the sole remaining coherent-commit
 item; local implementation71aeefc contains verified scanner/CI/policy/test/runbook
 and evidence.18 security+21 planning tests, actual gate and strict OpenSpec pass;
@@ -284,6 +329,18 @@ F07 directly. F12/stories remain open; next task UH01-T04. No runtime/OpenSpec e
 commit/push or release; existing F07 archival changes preserved. See
 harness/evidence/F12-simplification.md for inherited evidence and validation results.
 Earlier statements that every F12 task is unstarted are historical.
+
+F07 OpenSpec synchronised and archived,2026-10-18, at the owner's explicit request
+and selected "Sync now" option. Archive:
+openspec/changes/archive/2026-10-18-f07-json-validator-and-minifier/.
+New main json-validator(4 requirements)/json-minifier(5) specs preserve delta Purpose
+and scenarios; Formatter catalogue requirement updated with prior content intact.
+All artefacts and14/14 tasks complete; exact post-sync comparisons and strict10-spec
+validation pass before moving. Canonical plan behaviour ownership unchanged (ADR004);
+no code/runtime change or new test claim. F07 remains done with3 documented WebKit
+TODOs; F12 next,unstarted. Archive changes local/uncommitted; no archive commit/push,
+merge or release inferred. See harness/evidence/F07-openspec-archive.md.
+Earlier no-sync/no-archive statements below historical and superseded.
 
 F07 COMPLETE,2026-10-18: Validator+Minifier accepted, final three-tool catalogue at
 770aa98. Ubuntu Java39117056490/browser39117056486 SUCCESS: clean Maven185 frontend,

@@ -26,7 +26,7 @@ by page approval; final acceptance remains blocked. No unchanged approval retry.
 Prerequisites and files read: F07/F12 accepted; F13 dossier, architecture,
 feasibility/ADR007, current handoff and all proposal/design/delta/task artifacts.
 
-Acceptance criteria: `openspec/changes/f13-learning-pages-and-navigation/specs/`;
+Acceptance criteria: `openspec/changes/archive/2026-10-19-f13-learning-pages-and-navigation/specs/`;
 canonical IDs remain plan-owned. No automatic behaviour ownership migration.
 
 Implementation steps: catalogue/loader; SSR/security/locale integration; safe

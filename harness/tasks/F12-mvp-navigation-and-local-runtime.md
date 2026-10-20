@@ -3,7 +3,7 @@
 Status / owner / date: complete / Ziuld with AI assistance / 2026-10-18.
 
 User outcome and authorised scope: implement the five tasks in
-`openspec/changes/f12-mvp-navigation-and-local-runtime/tasks.md`. Credit accepted
+`openspec/changes/archive/2026-10-18-f12-mvp-navigation-and-local-runtime/tasks.md`. Credit accepted
 catalogue/runtime checks; reconcile 403 and supply only the missing security gate.
 
 Prerequisites and files read: F07 accepted; current handoff, F12 requirements,

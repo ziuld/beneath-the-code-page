@@ -4622,11 +4622,11 @@
       "depends_on": [
         "F13"
       ],
-      "status": "in_review",
+      "status": "done",
       "blocker": "",
       "actual_start": "2026-10-19",
-      "actual_finish": null,
-      "evidence": [],
+      "actual_finish": "2026-10-19",
+      "evidence": ["harness/evidence/F14-integrated-acceptance.md"],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -4637,7 +4637,7 @@
           "description": "As a learner, I want to see the first unit prerequisites and learning outcomes, so that I understand what this published unit teaches without mistaking it for a complete course.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "in_review",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F13"
@@ -4646,9 +4646,9 @@
           "forecast_hours": 2,
           "actual_hours": 0,
           "actual_start": "2026-10-19",
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_finish": "2026-10-19",
+          "evidence": ["harness/evidence/F14-integrated-acceptance.md"],
+          "commits": ["7ccc77338b7f88c2ae546822e1198ed6542a8d38"],
           "requirements": [
             {
               "id": "F14-UH01-R01",
@@ -4781,7 +4781,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "in_review",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F14-UH01-T04"
@@ -4792,9 +4792,9 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F14-integrated-acceptance.md"],
-              "commits": [],
+              "commits": ["7ccc77338b7f88c2ae546822e1198ed6542a8d38"],
               "actual_start": "2026-10-19",
-              "actual_finish": null
+              "actual_finish": "2026-10-19"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied. ADR009: Chromium-only MVP browser acceptance; Firefox/WebKit optional post-MVP evaluation."
@@ -4806,7 +4806,7 @@
           "description": "As a learner, I want to understand how Java source becomes running code, so that I can explain compilation and execution beyond syntax.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "in_review",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F14-UH01-T02"
@@ -4815,9 +4815,9 @@
           "forecast_hours": 8,
           "actual_hours": 0,
           "actual_start": "2026-10-19",
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_finish": "2026-10-19",
+          "evidence": ["harness/evidence/F14-integrated-acceptance.md"],
+          "commits": ["7ccc77338b7f88c2ae546822e1198ed6542a8d38"],
           "requirements": [
             {
               "id": "F14-UH02-R01",
@@ -4973,7 +4973,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "in_review",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F14-UH02-T05"
@@ -4984,9 +4984,9 @@
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": ["harness/evidence/F14-integrated-acceptance.md"],
-              "commits": [],
+              "commits": ["7ccc77338b7f88c2ae546822e1198ed6542a8d38"],
               "actual_start": "2026-10-19",
-              "actual_finish": null
+              "actual_finish": "2026-10-19"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied. ADR009: Chromium-only MVP browser acceptance; Firefox/WebKit optional post-MVP evaluation."
