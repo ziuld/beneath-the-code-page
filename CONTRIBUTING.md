@@ -11,6 +11,13 @@ Read [AGENTS.md](AGENTS.md), the [current handoff](harness/current-state.md), th
 - The initial check to require once remotely verified is **Java verification** from **Java baseline**. Branch protection, required-check configuration and merge policy are intended conventions, not settings changed by these files.
 - A failing or absent check is not a passed check. A commit or a green local build alone does not close a story; use the [closure rules](docs/planning/story-workflow.md).
 
+## Local release handoff
+
+Follow the [local release runbook](docs/delivery/local-release.md) for candidate
+identity, clean-checkout reproduction and packaged runtime checks. Keep generated
+filesystem preview separate from normal classpath-packaged evidence. Use the
+recorded tested revision rather than treating local acceptance as a deployment.
+
 ## Local checks matching initial CI
 
 Use Java 25. Local OpenJDK 25.0.4.1 is verified; CI pins Temurin jdk-25.0.4.1+1. Adoptium represents that build as SemVer `25.0.4+101.0.LTS`, which is the exact input expected by setup-java. Maven 3.10.0 comes from the existing wrapper, and Boot remains 4.1.1.

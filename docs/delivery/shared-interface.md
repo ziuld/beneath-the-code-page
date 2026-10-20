@@ -16,7 +16,7 @@ The skip link has a 0.75rem top inset when revealed, keeping its offset outline 
 
 `button(labelKey, disabled)` is an escaped, resource-backed native `type="button"` action foundation. Its enabled/hover/pressed/disabled/focus states use shared roles and immediate rendering without motion. Real action/submit semantics belong to the consuming feature. Home has no invented button action. The enabled/disabled cases are rendered inside a form only in `src/test/resources/templates/shell-fixture.html` to detect accidental submission. Test-only listeners observe native activation; they are not a product feature.
 
-After Maven verification, `python3 scripts/verify-home-browser.py` runs both the normal Home executable and an isolated copied component-fixture executable. The normal JAR is checked for fixture exclusion and unchanged digest; copied fixture classes/security/template are cleaned up with bounded process termination. Production routing/security are unchanged, and fixture-only published descriptors do not publish `/tools` in the application.
+After Maven verification, `python3 scripts/verify-home-browser.py` runs both the normal Home executable and an isolated copied component-fixture executable. The normal JAR is checked for fixture exclusion and unchanged digest; copied fixture classes/security/template are cleaned up with bounded process termination. The normal app publishes the accepted Tools and learning routes; fixture descriptors only select alternate component states. Use the [local release runbook](local-release.md) for current complete-site verification.
 
 ## Visual regression capture
 
@@ -42,7 +42,7 @@ Start the normal executable on loopback:
 java -jar target/beneath-the-code-0.1.0-SNAPSHOT.jar --server.address=127.0.0.1 --server.port=8080
 ```
 
-Review `http://127.0.0.1:8080/` at actual **200% browser-menu zoom**, not CSS zoom or display scaling. Repeat narrow/wide layouts and Tab/Shift+Tab/skip-link activation; check complete focus outlines, no trap, clipped text or lost controls, original B legibility and no colour-only information. Resolve EN/ES/FR by changing browser preferred languages (the application has no language selector yet); verify the document language and review shared copy/accessible names against `src/main/resources/i18n/messages*.properties`.
+Review `http://127.0.0.1:8080/` at actual **200% browser-menu zoom**, not CSS zoom or display scaling. Repeat narrow/wide layouts and Tab/Shift+Tab/skip-link activation; check complete focus outlines, no trap, clipped text or lost controls, original B legibility and no colour-only information. Use the native language selector, or explicit `?lang=en`, `?lang=es`, `?lang=fr` for non-persistent reading; verify the document language and review shared copy/accessible names against `src/main/resources/i18n/messages*.properties`.
 
 For the real shared button and alternate current-page fixture, create a separate test-only executable after Maven verification:
 
@@ -51,7 +51,7 @@ python3 -c 'import runpy; from pathlib import Path; module = runpy.run_path("scr
 java -jar target/shell-browser-fixture.jar --server.address=127.0.0.1 --server.port=8081
 ```
 
-Review `http://127.0.0.1:8081/__shell-fixture` in the same locale/zoom/keyboard matrix. The fixture-only Tools link has no destination page and must not be mistaken for a published product route; test its focus/current state, not a fictitious Tools page. Check the enabled/disabled translated buttons and card states. Stop both servers with Ctrl+C. The normal browser runner cleans up its fixture copy on the next automated run.
+Review `http://127.0.0.1:8081/__shell-fixture` in the same locale/zoom/keyboard matrix. The fixture retains an alternate publication state with Tools enabled and Learn unavailable; test its focus/current state separately from the normal complete website journey. Check the enabled/disabled translated buttons and card states. Stop both servers with Ctrl+C. The normal browser runner cleans up its fixture copy on the next automated run.
 
 Record reviewer, date, browser/version, locale, viewport size, browser-UI zoom level, actions and observed results separately. Report any issue, and do not treat owner acceptance alone as proof that these reviews ran. Final clean Maven/health/integration checks and accepted closure follow this review.
 

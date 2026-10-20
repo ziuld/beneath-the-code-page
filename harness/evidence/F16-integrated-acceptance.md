@@ -153,3 +153,21 @@ security inputs match their passing evidence; no repeat build/browser run needed
 Owner checklist accepted, detailed observations not supplied. UH01 automated/manual/
 security and controlled status criteria pass; actual local commit reference is
 pending. UH02 and the epic remain open until local reproduction/handoff completes.
+
+## UH01 local integration and UH02 handoff preparation
+
+Authorised coherent implementation commit: 3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608 (49 scoped files).
+Staged runtime/test/browser inputs matched passing scan hashes before commit;
+no unrelated archives staged. UH01 all6 canonical tasks and all acceptance gates
+complete; OpenSpec2.4 checked after actual commit identity exists. UH02 now starts
+from that real accepted implementation, with existing runbook/limitations reviewed.
+Feature/epic stay open until clean-checkout reproduction and final handoff pass.
+
+UH02 runbook authored and reviewed against existing commands/configuration:
+docs/delivery/local-release.md, README/CONTRIBUTING links and affected existing
+asset/shared/locale/repository guidance. Stale health-only/Home-only/no-selector
+claims corrected. Build pins match actual wrapper/POM; normal empty-directory
+packaged startup and native local-profile preview separated. Wrapper/JVM temp
+paths are project-local; only ignored dependency-cache reuse is permitted. No
+account/cloud/Docker/publication step. OpenSpec3.1 complete; actual clean-checkout
+build/run is next, not claimed as passed by documentation review.

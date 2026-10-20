@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: F00–F06 accepted; focused MVP replanned around JSON tools and one complete learning unit.**
+**Stage: JSON tools and the reviewed EN/ES/FR learning unit integrated; final local-release verification in progress.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -17,7 +17,7 @@ Repository: https://github.com/ziuld/beneath-the-code-page (public). The local d
 7. [Feature acceptance criteria](docs/planning/feature-backlog.md).
 8. [Current handoff](harness/current-state.md).
 
-The canonical tracking and story specification data is [plan.json](docs/planning/plan.json). It contains the epic, features, EARS requirements, Gherkin scenarios and ordered tasks. The dashboard and story documents are generated, read-only views. Update the data and regenerate them; they do not automatically observe GitHub or implementation progress.
+The canonical tracker is [plan.json](docs/planning/plan.json). It holds the hierarchy, status, tasks and unmigrated behaviour. Stories with `behaviour_spec` use their linked main OpenSpec specification as the sole editable requirements/scenario source. The dashboard and story documents are generated, read-only views. Update the data and regenerate them; they do not automatically observe GitHub or implementation progress.
 
 ## Scope
 
@@ -36,6 +36,12 @@ python3 scripts/check-planning.py
 ```
 
 These commands validate documentation and planning data only.
+
+## Local release
+
+Use the [local release runbook](docs/delivery/local-release.md) for the reviewed
+revision, pinned prerequisites, packaged startup/smoke/shutdown and limitations.
+Local acceptance does not authorise publication or deployment.
 
 ## Java baseline
 
