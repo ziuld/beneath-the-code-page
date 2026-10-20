@@ -1,18 +1,13 @@
 # Current handoff
 
-F15-UH01 candidate,2026-10-20: values/types/numeric limits complete as a local
-review draft in EN/ES/FR with two verified programs and reasoned answer. Catalogue
-now has source-to-JVM → values/types using existing native navigation; no templates,
-CSS, algorithms or architecture changes. Maven258+17 Java/185 frontend, full
-Chromium131 and affected6 rerun after layout assertions PASS; security0 findings/
-0 exceptions, policy20/planning23/strict15 PASS. Actual200% browser zoom and owner
-content/language acceptance are pending; CSS zoom is automated only. T01–T04 done,
-T05 in progress, T06 planned. UH02 waits for accepted UH01; other5 stories deferred.
-Preview RUNNING http://127.0.0.1:37907/learn/java-fundamentals/values-types-numeric-limits?lang=en
-PID174802/session50649, loopback/local-profile; keep for review then stop. Evidence:
-harness/evidence/F15-values-types-review.md. No new commit/push/PR or acceptance.
-Branch:planning/v2-delivery-sequence. Actual effort unreported.
-
+F15-UH01 COMPLETE,2026-10-20: owner explicitly approved the EN/ES/FR content and
+reading-review request (“Approved continue”). All6 tasks complete; implementation
+b2e240760ac93d3b09acde88935debb4a7e35c0c. Maven258+17/185 frontend, Chromium131+affected6,
+security0 findings/policy20/planning23/strict15 PASS. No detailed owner observations
+invented. F15 remains in progress; UH02 control flow/tracing now active, T01 done,
+T02 in progress. Other5 stories stay deferred. No push/PR yet; first PR follows
+both selected lessons. The old preview will be replaced for the next review.
+Evidence:harness/evidence/F15-values-types-review.md.
 
 F17 COMPLETE,2026-10-20: full Maven257+17 Java/185 frontend, packaged
 health smoke, Chromium125/125, policy20/planning23 and strict15 main specs PASS.

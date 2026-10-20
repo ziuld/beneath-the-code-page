@@ -1,6 +1,6 @@
 # Task — F15 selected Java lessons
 
-Status / owner / date: F15-UH01 in progress / Ziuld with AI / 2026-10-20.
+Status / owner / date: F15-UH01 accepted; F15-UH02 in progress / Ziuld with AI / 2026-10-20.
 
 Authorised outcome: ADR010 selects only F15-UH01 values/types/numeric limits and
 F15-UH02 control flow/tracing. Other five stories stay deferred. First push/PR
@@ -27,3 +27,10 @@ EN/ES/FR review. No earlier F16 approval applies to this new content. Record
 technical results separately from pending owner acceptance. Actual effort unreported.
 
 Evidence: harness/evidence/F15-values-types-review.md. Next: prepare verified preview.
+
+Owner accepted UH01 on2026-10-20 (“Approved continue”). Read UH02 requirements,
+scenarios and tasks; prerequisite is accepted. Next unit brief: trace if/else and
+bounded for/while loops, include initial/test/body/update/final-test states, boundary
+cases and termination reasoning. Exclude switch/patterns/streams and unsafe
+infinite-loop exercises. Use original examples and complete EN/ES/FR answers.
+References: Java25 JLS14.9,14.12,14.14.1. Next: author and verify UH02.

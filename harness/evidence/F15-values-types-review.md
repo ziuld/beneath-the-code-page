@@ -86,3 +86,7 @@ and reading-review request. This accepts F15-UH01 only; no detailed observations
 are supplied or invented. T05 is complete. T06 records the scoped local commit
 and integration review before the dependent control-flow story starts. Earlier
 pending-review statements describe the candidate checkpoint, not current status.
+
+F15-UH01 CLOSED: all6 tasks complete; implementation commit `b2e240760ac93d3b09acde88935debb4a7e35c0c`.
+Owner approval applies to this lesson; F15 remains partial with UH02 next.
+The earlier running preview is superseded when the control-flow candidate starts.
