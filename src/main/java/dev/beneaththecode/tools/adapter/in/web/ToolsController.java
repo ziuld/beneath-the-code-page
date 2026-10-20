@@ -30,8 +30,6 @@ public final class ToolsController {
 
 	private void shared(Model model, Locale locale) {
 		model.addAttribute("assets", manifest.site());
-		// These static pages use Home navigation plus their explicit Tools breadcrumb.
-		model.addAttribute("sections", java.util.List.of());
 		model.addAttribute("language", locale.getLanguage());
 	}
 

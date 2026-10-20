@@ -2,17 +2,11 @@ package dev.beneaththecode.site.adapter.in.web;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 
 /** Publication is code-owned; publishing requires a real public GET route and its tests. */
-@Component
 public final class HomeNavigation {
 
 	private final List<Section> sections;
-
-	public HomeNavigation() {
-		this(true, false);
-	}
 
 	public HomeNavigation(boolean toolsPublished, boolean learningPublished) {
 		sections = List.of(new Section("tools", "/tools", toolsPublished),

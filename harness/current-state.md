@@ -1,5 +1,61 @@
 # Current handoff
 
+F16 OpenSpec synced and archived,2026-10-20: owner explicitly requested archive
+and selected Sync now. Archive: openspec/changes/archive/2026-10-20-f16-mvp-website-polish-and-acceptance/.
+Added1 requirement/3 scenarios to learning-navigation, preserving all existing
+content/title/Purpose; created local-release-handoff(2/2) and mvp-acceptance(2/3)
+with delta Purpose/bodies verbatim. All3 fully synced; strict15 main specs PASS
+before move; all4 artifacts/10 tasks complete. All7 file hashes incl.openspec.yaml
+unchanged by move. F16/epic acceptance, canonical ownership/status/effort unchanged.
+Archive bookkeeping remains local/uncommitted; no runtime/browser/security rerun,
+commit/push/deployment. Evidence: harness/evidence/F16-openspec-archive.md.
+
+F16 COMPLETE,2026-10-20: implementation3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608;
+runbook/handoff tested from clean checkout a6ed966ec2a03548bca8100b5054b0f0c93de127.
+Both stories/all11 canonical tasks/OpenSpec10of10 complete; all retained V1
+features and EPIC-MVP locally accepted. Five V2 features remain frozen, not done.
+Catalogue-aware Learn promotion/shared navigation and EN/ES/FR links integrated;
+no redesign. Maven257+17 Java/185 frontend and Chromium125 PASS; explicit owner
+review, bounded F16 security scope and scoped local commits approved. Actual gate
+PASS after final docs/fixtures, all45 source files,16 visible approved observations
+plus4 medium,0 blockers. Boot4.1.1/expiry2026-11-01 unchanged. Planning22/strict14
+items/whitespace PASS; negative fixtures explicitly open copied V1 states.
+Clean checkout freshly built without copied target/node_modules; temporary Maven
+cache link removed. Whole JAR identical SHA256 d5a13164…42db and approved scope
+86448545…9250. Runbook health,24 localised page/6 safe-error/3 packaged-asset
+responses PASS from separate normal-profile run directory; all servers stopped.
+Local runbook docs/delivery/local-release.md; evidence harness/evidence/F16-integrated-acceptance.md.
+Actual effort unreported. No push, remote CI claim, public release/deployment or
+OpenSpec sync/archive/ownership migration. Change ready for separate authorised
+archive workflow. Earlier pending candidate notes below are historical.
+
+F16 candidate verified, 2026-10-20: apply implemented catalogue-aware Learn
+promotion, shared Home/Tools/Learn descriptors and locale-preserving native links,
+including tool/error recovery. Empty/draft/synthetic boundaries retained. Maven
+257+17 Java/185 frontend and Chromium125/125 PASS; planning22/security-policy18
+PASS. OpenSpec4/10 (1.1,1.2,1.3,2.1). Actual scan fresh DBs/all45 production sources,
+same8 bounded CVEs+2 medium; old F14 fingerprint correctly rejected changed scope.
+Proposed F16 fingerprint86448545…9250, same expiry2026-11-01; policy unchanged.
+Owner review/security-scope/local-commit questions pending. Local-profile preview
+RUNNING http://127.0.0.1:34365, PID76706, exec session50621; stop after review.
+F16/UH01 in progress, T01/T02 done; UH02 depends on accepted UH01/real revision.
+No owner acceptance, security renewal, commit/push/release/sync/archive. Effort
+unreported. Evidence: harness/evidence/F16-integrated-acceptance.md.
+
+F16 proposal ready, 2026-10-20: explicit /opsx-propose F16 produced
+f16-mvp-website-polish-and-acceptance with proposal, design, three capability
+deltas and 10 unchecked slices covering all 11 canonical tasks/four R/four AC IDs.
+Catalogue-aware Learn promotion, shared explicit-language links, retained Chromium/
+owner/privacy/security acceptance and clean-checkout local JAR handoff proposed.
+Strict change and all-spec validation PASS (14 items); planning integrity and
+22 rule tests PASS; ID/whitespace checks PASS. F16 remains planned, 20h baseline/
+8h forecast; owner effort unreported. No runtime/build/browser/security/manual
+acceptance, policy renewal, commit/push, sync/archive or ownership migration.
+Eight bounded security decisions require final V1 reassessment; expiry unchanged.
+Local-profile filesystem preview is separate from packaged-JAR evidence. Next:
+review proposal and begin apply only after a new explicit user request.
+Evidence: harness/evidence/F16-openspec-proposal.md.
+
 F14 OpenSpec synced and archived, 2026-10-20, at the owner's request and selected
 Sync now. Archive: openspec/changes/archive/2026-10-20-f14-first-complete-learning-unit/.
 Added two requirements/four scenarios to each existing learning-navigation and

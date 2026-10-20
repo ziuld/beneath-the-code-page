@@ -39,14 +39,14 @@ class HomePublicationTests {
 		when(navigation.sections()).thenReturn(descriptors);
 		String html = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		for (var section : descriptors) {
-			assertThat(html.contains("href=\"" + section.path() + "\"")).isEqualTo(section.published());
+			assertThat(html.contains("href=\"" + section.path() + "?lang=en\"")).isEqualTo(section.published());
 			// Both destinations have published fixture data, independently of Home promotion.
 			mvc.perform(get(section.path())).andExpect(status().isOk());
 		}
 		assertThat(html).contains("designed to process your input locally", "beginning with Java fundamentals");
 		assertThat(Pattern.compile(">Not yet available<").matcher(html).results().count())
 				.isEqualTo((tools ? 0 : 1) + (learning ? 0 : 1));
-		var links = Pattern.compile("href=\"(/tools|/learn)\"").matcher(html);
+		var links = Pattern.compile("href=\"(/tools\\?lang=en|/learn\\?lang=en)\"").matcher(html);
 		while (links.find()) {
 			mvc.perform(get(links.group(1))).andExpect(status().isOk());
 		}

@@ -3,7 +3,7 @@
 <body>
 <article th:fragment="sectionCard(section)" class="section-card" th:aria-labelledby="${section.id + '-heading'}">
     <h2 th:id="${section.id + '-heading'}">
-        <a th:if="${section.published}" th:href="${section.path}" th:text="#{${section.titleKey()}}"></a>
+        <a th:if="${section.published}" th:href="@{${section.path}(lang=${language})}" th:text="#{${section.titleKey()}}"></a>
         <span th:unless="${section.published}" th:text="#{${section.titleKey()}}"></span>
     </h2>
     <p th:text="#{${section.descriptionKey()}}"></p>

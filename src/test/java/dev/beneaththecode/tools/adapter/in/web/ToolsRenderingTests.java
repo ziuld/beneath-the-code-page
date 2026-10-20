@@ -63,10 +63,10 @@ class ToolsRenderingTests {
 	@Test
 	void indexListsAcceptedJsonToolsAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		assertThat(index).contains("href=\"/tools/json-formatter\"", "href=\"/tools/json-validator\"", "href=\"/tools/json-minifier\"")
-				.doesNotContain("/tools/base64", "href=\"/learn\"");
+		assertThat(index).contains("href=\"/tools/json-formatter?lang=en\"", "href=\"/tools/json-validator?lang=en\"", "href=\"/tools/json-minifier?lang=en\"")
+				.contains("href=\"/learn?lang=en\"").doesNotContain("/tools/base64");
 		String home = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
-		assertThat(home).contains("href=\"/tools\"").doesNotContain("href=\"/learn\"");
+		assertThat(home).contains("href=\"/tools?lang=en\"").contains("href=\"/learn?lang=en\"");
 	}
 
 	@ParameterizedTest

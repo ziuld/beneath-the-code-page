@@ -94,9 +94,9 @@ Multi-stage pinned build/runtime images, Java 25, no Node runtime in final image
 
 Structured safe stdout logs, request IDs and normalised routes; bounded Micrometer labels; no request bodies or raw URI/query/header dumps. Only necessary Actuator health exposed locally, no details. Local rotation initially seven days. No external telemetry service, cloud deployment, production domain or release publication in Phase 1 planning.
 
-## Eventual local release procedure
+## Local release procedure
 
-For V1, reproduce the reviewed commit using the existing clean Maven build and
-packaged-JAR runbook; record health/smoke results, security evidence and known
-limitations. Do not require a container or new release automation. Any tagging,
+For V1, follow the [local release runbook](local-release.md) to reproduce the
+reviewed revision with the existing Maven build and packaged JAR. The F16 evidence
+records source/artifact identity, health/route smoke/shutdown, security and limits. Do not require a container or new release automation. Any tagging,
 public release or deployment remains a separately authorised action.

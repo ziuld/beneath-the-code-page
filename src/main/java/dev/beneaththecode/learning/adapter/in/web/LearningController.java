@@ -1,6 +1,5 @@
 package dev.beneaththecode.learning.adapter.in.web;
 
-import java.util.List;
 import java.util.Locale;
 
 import dev.beneaththecode.learning.application.LearningPages;
@@ -50,7 +49,6 @@ public final class LearningController {
 	private void shared(Model model, Locale locale, String currentPath) {
 		if (pages.catalogue().units().isEmpty()) throw missing();
 		model.addAttribute("assets", assets.site());
-		model.addAttribute("sections", List.of());
 		model.addAttribute("language", locale.getLanguage());
 		model.addAttribute("currentPath", currentPath);
 		model.addAttribute("course", pages.catalogue().translations().get(locale.getLanguage()));

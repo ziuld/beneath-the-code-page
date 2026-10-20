@@ -36,12 +36,12 @@ class HomeRenderingTests {
 
 	@Test
 	void rendersSemanticHomeAndManifestReferences() throws Exception {
-		when(navigation.sections()).thenReturn(new HomeNavigation().sections());
+		when(navigation.sections()).thenReturn(new HomeNavigation(true, true).sections());
 		String html = home("en");
 		assertThat(html).contains("<main", "<header", "<footer", "<nav", "Beneath the Code",
 				"id=\"home-heading\"", "Tools", "Learn", "Java fundamentals", "locally in your browser",
-				"src=\"/brand/b-composition.png\"", "type=\"module\"", manifest.site().script(), "href=\"/tools\"")
-				.doesNotContain("th:", "onclick", "asset-manifest.json", "href=\"/learn\"");
+				"src=\"/brand/b-composition.png\"", "type=\"module\"", manifest.site().script(), "href=\"/tools?lang=en\"")
+				.doesNotContain("th:", "onclick", "asset-manifest.json");
 		assertThat(Pattern.compile("<h1\\b").matcher(html).results().count()).isEqualTo(1);
 		for (String path : manifest.site().stylesheets()) {
 			assertThat(html).contains("href=\"" + path + "\"");
@@ -53,7 +53,7 @@ class HomeRenderingTests {
 	@ParameterizedTest
 	@CsvSource({ "en,Tools,Learn", "es,Herramientas,Aprender", "fr,Outils,Apprendre", "de,Tools,Learn" })
 	void rendersSupportedRequestLocalesWithEnglishFallback(String language, String tools, String learn) throws Exception {
-		when(navigation.sections()).thenReturn(new HomeNavigation().sections());
+		when(navigation.sections()).thenReturn(new HomeNavigation(true, true).sections());
 		String html = home(language);
 		String resolved = language.equals("de") ? "en" : language;
 		assertThat(html).contains("lang=\"" + resolved + "\"", tools, learn)
@@ -68,7 +68,7 @@ class HomeRenderingTests {
 		when(navigation.sections()).thenReturn(descriptors);
 		String html = home("en");
 		for (var section : descriptors) {
-			assertThat(html.contains("href=\"" + section.path() + "\"")).isEqualTo(section.published());
+			assertThat(html.contains("href=\"" + section.path() + "?lang=en\"")).isEqualTo(section.published());
 		}
 		assertThat(html).doesNotContain("href=\"#\"", "onclick", "aria-disabled");
 		assertThat(html).contains("action=\"/preferences/language\"", "method=\"post\"");
@@ -92,7 +92,7 @@ class HomeRenderingTests {
 	@ParameterizedTest
 	@ValueSource(strings = { "en", "es", "fr", "de" })
 	void rendersExactSharedLabelsFromResolvedResources(String requested) throws Exception {
-		when(navigation.sections()).thenReturn(new HomeNavigation().sections());
+		when(navigation.sections()).thenReturn(new HomeNavigation(true, true).sections());
 		String html = home(requested);
 		Locale locale = Locale.forLanguageTag(requested.equals("de") ? "en" : requested);
 		for (String key : List.of("navigation.skip", "navigation.home", "brand.name", "footer.statement",
@@ -145,7 +145,7 @@ class HomeRenderingTests {
 		assertThat(Pattern.compile("<footer\\b").matcher(html).results().count()).isEqualTo(1);
 		assertThat(Pattern.compile("<nav\\b").matcher(html).results().count()).isEqualTo(1);
 		assertThat(Pattern.compile("aria-current=\"page\"").matcher(html).results().count()).isEqualTo(2);
-		assertThat(html).contains("href=\"/\" aria-current=\"page\"", "Navigation principale",
+		assertThat(html).contains("href=\"/?lang=fr\" aria-current=\"page\"", "Navigation principale",
 				"aria-labelledby=\"tools-heading\"", "aria-labelledby=\"learn-heading\"",
 				"id=\"tools-heading\"", "id=\"learn-heading\"", "Outils", "Apprendre")
 				.doesNotContain("th:", "Not yet available");
