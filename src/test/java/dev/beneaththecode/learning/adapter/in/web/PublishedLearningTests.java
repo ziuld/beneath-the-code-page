@@ -40,7 +40,16 @@ class PublishedLearningTests {
 		String answer = Map.of("en", "Answer and reasoning", "es", "Respuesta y razonamiento", "fr", "Réponse et raisonnement").get(language);
 		assertThat(html).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>", "public class Main",
 				"javac -d out Main.java", "java -cp out Main", "Hello, JVM!", "Hello, bytecode!")
-				.doesNotContain("fixture-unit", "window.fixtureExecuted", "rel=\"prev\"", "rel=\"next\"", "data-editor-workspace", "data-json-");
+				.doesNotContain("fixture-unit", "window.fixtureExecuted", "rel=\"prev\"", "data-editor-workspace", "data-json-");
+		assertThat(html).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/values-types-numeric-limits?lang=" + language + "\"");
+		String numeric = mvc.perform(get("/learn/java-fundamentals/values-types-numeric-limits").queryParam("lang", language))
+				.andExpect(status().isOk()).andExpect(header().string("Cache-Control", "no-store"))
+				.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+		assertThat(numeric).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
+				"public class NumericValues", "public class NumericExercise", "-294967296", "4000000000",
+				"rel=\"prev\"", "href=\"/learn/java-fundamentals/source-to-jvm?lang=" + language + "\"")
+				.doesNotContain("rel=\"next\"", "data-editor-workspace", "data-json-", "??");
+		mvc.perform(head("/learn/java-fundamentals/values-types-numeric-limits")).andExpect(status().isOk());
 		mvc.perform(head("/learn/java-fundamentals/source-to-jvm")).andExpect(status().isOk());
 		String home = mvc.perform(get("/")).andReturn().getResponse().getContentAsString();
 		assertThat(home).contains("href=\"/learn?lang=en\"");

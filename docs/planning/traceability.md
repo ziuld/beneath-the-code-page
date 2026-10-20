@@ -59,9 +59,9 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F14-UH02-R01 | [F14-UH02](features/F14.md#f14-uh02) | F14-UH02-AC01 | F14-UH02-T04 | Compile/run the example with the baseline JDK and review diagram/content consistency |
 | F14-UH02-R02 | [F14-UH02](features/F14.md#f14-uh02) | F14-UH02-AC02 | F14-UH02-T05 | Manual educational review in EN/ES/FR and accessible answer presentation |
 | F15-UH01-R01 | [F15-UH01](features/F15.md#f15-uh01) | F15-UH01-AC01 | F15-UH01-T04 | Compile/run all lesson examples; technical review: Numeric boundaries, floating-point caveats and reference-versus-value terminology |
-| F15-UH01-R02 | [F15-UH01](features/F15.md#f15-uh01) | F15-UH01-AC02 | F15-UH01-T05 | Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate |
+| F15-UH01-R02 | [F15-UH01](features/F15.md#f15-uh01) | F15-UH01-AC02 | F15-UH01-T05 | Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only |
 | F15-UH02-R01 | [F15-UH02](features/F15.md#f15-uh02) | F15-UH02-AC01 | F15-UH02-T04 | Compile/run all lesson examples; technical review: Branch boundaries, loop termination and off-by-one misconceptions |
-| F15-UH02-R02 | [F15-UH02](features/F15.md#f15-uh02) | F15-UH02-AC02 | F15-UH02-T05 | Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate |
+| F15-UH02-R02 | [F15-UH02](features/F15.md#f15-uh02) | F15-UH02-AC02 | F15-UH02-T05 | Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only |
 | F15-UH03-R01 | [F15-UH03](features/F15.md#f15-uh03) | F15-UH03-AC01 | F15-UH03-T04 | Compile/run all lesson examples; technical review: Parameter passing, return values and stack-frame mental model |
 | F15-UH03-R02 | [F15-UH03](features/F15.md#f15-uh03) | F15-UH03-AC02 | F15-UH03-T05 | Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate |
 | F15-UH04-R01 | [F15-UH04](features/F15.md#f15-uh04) | F15-UH04-AC01 | F15-UH04-T04 | Compile/run all lesson examples; technical review: Aliasing, null and conceptual heap diagrams without claiming physical layout guarantees |

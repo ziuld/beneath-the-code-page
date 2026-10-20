@@ -1,5 +1,19 @@
 # Current handoff
 
+F15-UH01 candidate,2026-10-20: values/types/numeric limits complete as a local
+review draft in EN/ES/FR with two verified programs and reasoned answer. Catalogue
+now has source-to-JVM → values/types using existing native navigation; no templates,
+CSS, algorithms or architecture changes. Maven258+17 Java/185 frontend, full
+Chromium131 and affected6 rerun after layout assertions PASS; security0 findings/
+0 exceptions, policy20/planning23/strict15 PASS. Actual200% browser zoom and owner
+content/language acceptance are pending; CSS zoom is automated only. T01–T04 done,
+T05 in progress, T06 planned. UH02 waits for accepted UH01; other5 stories deferred.
+Preview RUNNING http://127.0.0.1:37907/learn/java-fundamentals/values-types-numeric-limits?lang=en
+PID174802/session50649, loopback/local-profile; keep for review then stop. Evidence:
+harness/evidence/F15-values-types-review.md. No new commit/push/PR or acceptance.
+Branch:planning/v2-delivery-sequence. Actual effort unreported.
+
+
 F17 COMPLETE,2026-10-20: full Maven257+17 Java/185 frontend, packaged
 health smoke, Chromium125/125, policy20/planning23 and strict15 main specs PASS.
 Boot4.1.1 retained; Tomcat11.0.27/Jackson BOM3.1.8 patches under ADR011. Fresh

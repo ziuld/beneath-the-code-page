@@ -2,10 +2,12 @@
 
 The ordered `published-units` list in
 `src/main/resources/content/java-fundamentals/catalogue.properties` is the sole
-publication list. F13 verified an empty list; the F14 local review candidate lists
-only `source-to-jvm`. File presence never publishes a draft. Slugs contain lowercase
+publication list. F13 verified an empty list; F14/F16 accepted `source-to-jvm`.
+The current local F15 review candidate adds `values-types-numeric-limits`;
+its owner review is pending and it is not yet a release acceptance. File presence never publishes a draft. Slugs contain lowercase
 letters/digits separated by single hyphens. Final owner content review is recorded
-in F14 evidence; Home/shared promotion remains F16 and no deployment is implied.
+in the relevant story evidence; F16 completed Home/shared promotion and no
+deployment is implied.
 
 For each published slug, all `en`, `es`, `fr` directories require:
 
@@ -19,7 +21,7 @@ Duplicates, invalid identities and missing/blank locale resources fail with
 `BTC_LEARNING_CONTENT_INVALID`, never content excerpts or resource paths. An empty
 published list needs no unit/metadata files. Do not use JSON binding, filesystem
 paths, a CMS or per-request resource lookup. Synthetic resources belong only to
-tests; real unit authoring/review is F14 and Learn promotion is F16. The copied-JAR
+tests; real units require their own authoring and owner review. The copied-JAR
 harness replaces overlapping fixture content entries once, verifies unique ZIP
 names and preserves the normal executable's digest. Empty-catalogue behaviour
 remains covered by explicit loader/MVC fixtures rather than production assumptions.
@@ -58,5 +60,6 @@ advisory reassessment and packaged/browser acceptance are separate recorded gate
 Home and shared Learn promotion use the same immutable published catalogue as
 learning routes, composed in LearningConfiguration. A nonempty reviewed catalogue
 enables Learn; an empty catalogue leaves it unlinked and retains safe learning
-404s. Synthetic content stays in the copied test executable. The production
-catalogue still contains exactly one source-to-jvm unit, not a complete course.
+404s. Synthetic content stays in the copied test executable. The current local catalogue contains the accepted source-to-JVM unit and the
+values/types review candidate, not a complete course. No new routes or navigation
+framework are needed: the existing ordered snapshot supplies previous/next links.

@@ -5479,9 +5479,9 @@
       "depends_on": [
         "F14"
       ],
-      "status": "planned",
+      "status": "in_progress",
       "blocker": "",
-      "actual_start": null,
+      "actual_start": "2026-10-20",
       "actual_finish": null,
       "evidence": [],
       "parent_id": "EPIC-MVP",
@@ -5494,7 +5494,7 @@
           "description": "As a learner, I want to predict primitive values and recognise numeric limits, so that I can explain Java behaviour using a concrete mental model.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "in_review",
           "blocker": "",
           "depends_on": [
             "F14",
@@ -5503,9 +5503,11 @@
           "baseline_hours": 12,
           "forecast_hours": 12,
           "actual_hours": 0,
-          "actual_start": null,
+          "actual_start": "2026-10-20",
           "actual_finish": null,
-          "evidence": [],
+          "evidence": [
+            "harness/evidence/F15-values-types-review.md"
+          ],
           "commits": [],
           "requirements": [
             {
@@ -5540,7 +5542,7 @@
               "given": "the lesson is selected in French",
               "when": "the learner reads its explanation, exercise and answer",
               "then": "all three sections are present in reviewed French without untranslated placeholders",
-              "verification": "Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate"
+              "verification": "Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only"
             }
           ],
           "tasks": [
@@ -5552,7 +5554,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F14",
@@ -5560,10 +5562,12 @@
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F15-values-types-review.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-20",
+              "actual_finish": "2026-10-20"
             },
             {
               "id": "F15-UH01-T02",
@@ -5573,7 +5577,7 @@
               "baseline_hours": 2.75,
               "forecast_hours": 2.75,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F15-UH01-T01"
@@ -5583,10 +5587,12 @@
                 "F15-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F15-values-types-review.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-20",
+              "actual_finish": "2026-10-20"
             },
             {
               "id": "F15-UH01-T03",
@@ -5596,7 +5602,7 @@
               "baseline_hours": 2.75,
               "forecast_hours": 2.75,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F15-UH01-T02"
@@ -5606,10 +5612,12 @@
                 "F15-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F15-values-types-review.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-20",
+              "actual_finish": "2026-10-20"
             },
             {
               "id": "F15-UH01-T04",
@@ -5619,7 +5627,7 @@
               "baseline_hours": 2.75,
               "forecast_hours": 2.75,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F15-UH01-T03"
@@ -5628,20 +5636,22 @@
                 "F15-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F15-values-types-review.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-20",
+              "actual_finish": "2026-10-20"
             },
             {
               "id": "F15-UH01-T05",
               "parent_id": "F15-UH01",
               "kind": "verification",
-              "title": "Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate",
+              "title": "Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only",
               "baseline_hours": 2.75,
               "forecast_hours": 2.75,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F15-UH01-T04"
@@ -5650,10 +5660,12 @@
                 "F15-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
+              "evidence": [
+                "harness/evidence/F15-values-types-review.md"
+              ],
               "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-20",
+              "actual_finish": "2026-10-20"
             },
             {
               "id": "F15-UH01-T06",
@@ -5663,7 +5675,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "in_progress",
               "blocker": "",
               "depends_on": [
                 "F15-UH01-T05"
@@ -5675,11 +5687,11 @@
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
               "evidence": [],
               "commits": [],
-              "actual_start": null,
+              "actual_start": "2026-10-20",
               "actual_finish": null
             }
           ],
-          "scope_note": "Provisional lesson identity: confirm or revise after F14 outline acceptance."
+          "scope_note": "Selected by ADR010: values/types/numeric limits, following the accepted source-to-JVM unit. Remaining course scope is not a prerequisite. New EN/ES/FR content requires actual owner review."
         },
         {
           "id": "F15-UH02",
@@ -5733,7 +5745,7 @@
               "given": "the lesson is selected in French",
               "when": "the learner reads its explanation, exercise and answer",
               "then": "all three sections are present in reviewed French without untranslated placeholders",
-              "verification": "Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate"
+              "verification": "Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only"
             }
           ],
           "tasks": [
@@ -5829,7 +5841,7 @@
               "id": "F15-UH02-T05",
               "parent_id": "F15-UH02",
               "kind": "verification",
-              "title": "Repeat completeness and human language review for EN/ES/FR; retain provisional syllabus gate",
+              "title": "Repeat completeness and actual owner language/content review for EN/ES/FR; record acceptance for this selected lesson only",
               "baseline_hours": 2.75,
               "forecast_hours": 2.75,
               "actual_hours": 0,
@@ -5871,7 +5883,7 @@
               "actual_finish": null
             }
           ],
-          "scope_note": "Provisional lesson identity: confirm or revise after F14 outline acceptance."
+          "scope_note": "Selected by ADR010: control flow/tracing follows acceptance of F15-UH01. Other course stories remain deferred; no complete-syllabus prerequisite."
         },
         {
           "id": "F15-UH03",
