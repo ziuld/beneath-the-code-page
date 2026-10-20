@@ -1,8 +1,8 @@
 # F16 integrated acceptance evidence
 
-Date: 2026-10-20. Owner: Ziuld with AI assistance. Status: implementation in progress.
-Authorised: apply f16-mvp-website-polish-and-acceptance. No commit, push, deployment,
-security approval renewal, main-spec sync/archive or owner acceptance inferred.
+Date: 2026-10-20. Owner: Ziuld with AI assistance. Status: locally accepted; runtime and clean-checkout handoff verified.
+Authorised: apply plus explicit owner review, bounded F16 security approval and
+scoped local commits. No push, deployment or main-spec sync/archive authorised.
 
 ## Prerequisites and acceptance matrix
 
@@ -10,26 +10,27 @@ F12 is accepted at 71aeefc9ff02ef611fefc38df192b072fc9e298b; F14 at
 7ccc77338b7f88c2ae546822e1198ed6542a8d38, with separate accepted archives.
 Read current handoff, architecture/feasibility, F16 EARS/Gherkin/ordered tasks,
 OpenSpec artifacts, quality/security policies and relevant existing implementation.
-F16-UH01-T01 analysis is complete; implementation and acceptance remain open.
+All11 canonical F16 tasks and all four acceptance scenarios are complete.
+Earlier progress notes below are historical; final results supersede pending notes.
 
 | Criteria | Verification/evidence | Current result |
 |---|---|---|
-| F16-UH01-R01 / AC01 | Complete EN/ES/FR Home/Tools/F06/F07/Learn/course/unit-answer/error journeys; normal/copy JAR, Chromium, owner review | Pending |
-| F16-UH01-R02 / AC02 | Planning negative fixtures plus real defect triage; failure keeps epic open | Pending |
-| F16-UH02-R01 / AC01 | Accepted local candidate revision, clean-checkout build, packaged asset/health/route smoke/shutdown, digest/version identity | Pending; depends on UH01 |
-| F16-UH02-R02 / AC02 | Reviewed runbook/limitations, local scope without accounts/cloud/publication | Pending; depends on UH01 |
-| F00–F05 foundation | Accepted evidence remains historical baseline; rerun integrated build/architecture/CSP/locale/keyboard regressions for F16 | Pending integrated checks |
-| F06/F07 correctness/privacy | Existing token-preserving JSON, diagnostics, worker/copy/clear and traffic/storage/log tests | Pending integrated checks |
-| F12 local runtime/supply chain | Final build/smoke/security review with actual candidate scope | Pending |
-| F13/F14 learning | One real reviewed unit; safe empty/draft/synthetic/error cases, no-JS/native locale, no editor | Pending integrated checks |
-| Shared manual quality | Owner EN/ES/FR, keyboard/focus/dialogs, narrow/wide, actual browser 200% zoom | Pending; no observation invented |
-| Final V1 security | Actual dependency/secret/SAST gate and reassessment of eight bounded decisions | Pending; no policy renewal authorised |
+| F16-UH01-R01 / AC01 | Complete EN/ES/FR Home/Tools/F06/F07/Learn/course/unit-answer/error journeys; normal/copy JAR, Chromium, owner review | PASS; details and provenance below |
+| F16-UH01-R02 / AC02 | Planning negative fixtures plus real defect triage; failure keeps epic open | PASS; details and provenance below |
+| F16-UH02-R01 / AC01 | Accepted local candidate revision, clean-checkout build, packaged asset/health/route smoke/shutdown, digest/version identity | PASS; details and provenance below |
+| F16-UH02-R02 / AC02 | Reviewed runbook/limitations, local scope without accounts/cloud/publication | PASS; details and provenance below |
+| F00–F05 foundation | Accepted evidence remains historical baseline; rerun integrated build/architecture/CSP/locale/keyboard regressions for F16 | PASS; details and provenance below |
+| F06/F07 correctness/privacy | Existing token-preserving JSON, diagnostics, worker/copy/clear and traffic/storage/log tests | PASS; details and provenance below |
+| F12 local runtime/supply chain | Final build/smoke/security review with actual candidate scope | PASS; details and provenance below |
+| F13/F14 learning | One real reviewed unit; safe empty/draft/synthetic/error cases, no-JS/native locale, no editor | PASS; details and provenance below |
+| Shared manual quality | Owner EN/ES/FR, keyboard/focus/dialogs, narrow/wide, actual browser 200% zoom | PASS; details and provenance below |
+| Final V1 security | Actual dependency/secret/SAST gate and reassessment of eight bounded decisions | PASS; details and provenance below |
 
 All V2 features remain frozen; Chromium is the sole required browser. No speech
 review/full-WCAG or optional Firefox/WebKit compatibility claim. Actual owner
 effort unreported. CSS zoom/screenshots cannot establish actual browser zoom.
 
-## Implementation and checks
+## Historical implementation progress (superseded by final results below)
 
 Task 1.1: HomeNavigation is composed from LearningPages' published catalogue in
 bootstrap rather than an unconditional enabled flag or a site-to-outbound import.
@@ -171,3 +172,55 @@ packaged startup and native local-profile preview separated. Wrapper/JVM temp
 paths are project-local; only ignored dependency-cache reuse is permitted. No
 account/cloud/Docker/publication step. OpenSpec3.1 complete; actual clean-checkout
 build/run is next, not claimed as passed by documentation review.
+
+## Clean-checkout reproduction and final local acceptance
+
+Implementation:3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608.
+Tested runbook/handoff checkout:a6ed966ec2a03548bca8100b5054b0f0c93de127.
+Created a separate detached checkout at target/f16-clean-checkout, initially clean
+with no target/node_modules/generated artifacts. Reused only the original ignored
+Maven dependency archive cache through a task-created link, then removed that link
+without deleting the cache. Source checkout remained clean. Wrapper downloads and
+JVM temporary directories were project-local; no global install/sudo/container.
+
+Executed documented build with MAVEN_USER_HOME pointing at the project dependency
+cache: PASS257 Java+17 packaged integration+185 frontend cases. Log:
+target/f16-clean-checkout-build.log. Fresh compiled/package entries all match the
+reviewed artifact exactly, including the whole JAR SHA-256:
+`d5a13164d6cc3ec91bf5a650ba76b4f98515917565873cac29cb8277dbed42db`.
+Approved server fingerprint also matches exactly. Prior Chromium125/owner/security
+results apply to the identical runtime; no repeat browser install/run was needed.
+
+Executed the clean checkout's documented scripts/smoke-java-baseline.py: PASS
+manifest/start/health200-UP/child shutdown (exit143 after intentional SIGTERM).
+Then ran the documented normal-profile Java command from target/local-release-run
+on127.0.0.1:8080 with project-local JVM tmp; no generated frontend tree in that
+working directory. All four documented curl commands PASS. Extended route smoke:
+24 pages (eight routes times EN/ES/FR), six safe404/403 responses, three linked
+packaged CSS/JS/B assets with exact JAR bytes, no-store/CSP/localised HTML and
+language-preserving recovery all PASS. Health is UP with only its existing probe
+group names, no component details. The first ad hoc exact-health-object assertion
+was over-specific; corrected to the documented UP/no-details contract and rerun,
+without runtime or required test changes. Final server shut down cleanly (exit143).
+Logs:target/f16-clean-checkout-smoke.log,target/f16-clean-packaged-server.log,
+target/f16-runbook-curl-smoke.log; structured identity/route outcomes:
+target/f16-clean-checkout-identity.json. No preview/reproduction process remains.
+
+Runbook/limitations reviewed against executed commands: one unit, Chromium-only
+required coverage, visible bounded security findings/expiry, no full-WCAG/speech
+claim, no licence grant or implied cloud/account/Docker/publication step. Accepted
+owner checklist provenance above is unchanged. F16-UH02 AC01/AC02 and all retained
+V1 criteria pass; no unresolved release-blocking defect remains. Two planning
+negative fixtures now explicitly open copied V1 feature/story states rather than
+relying on the real baseline remaining unfinished. The validator and acceptance
+policy are unchanged; no fake fixture status/evidence enters the canonical plan.
+
+Local F16/epic completion references the actual implementation/handoff commits
+above. A later closure commit records these results and generated status views;
+it does not pretend to be the clean-checkout revision. V2 stays frozen, owner
+actual effort remains unreported, and no push/public release/deployment or OpenSpec
+main-spec sync/archive occurs. Final closure checks PASS: planning integrity,22 negative/positive rule tests,
+strict OpenSpec across14 items and whitespace. The actual final security gate
+PASS again after runbook/planning-fixture changes (target/f16-final-security.log),
+with45 production sources, unchanged exact bounded decisions and zero blockers.
+No application/browser input changed after its passing build/Chromium review.

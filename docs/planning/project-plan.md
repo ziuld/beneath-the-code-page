@@ -2,6 +2,11 @@
 
 Baseline: 2026-10-09; scope revision: 2026-10-18 ([ADR 007](../architecture/adr-007-focused-mvp.md)). Capacity: **10 focused owner hours per week, with AI assistance**. No delivery date is committed.
 
+Current outcome,2026-10-20: all retained V1 features are locally accepted;
+remaining V1 work is zero. V2 stays frozen. See [F16 acceptance](../../harness/evidence/F16-integrated-acceptance.md)
+and the [local release runbook](../delivery/local-release.md). Forecasts below are
+historical planning baselines, not remaining delivery commitments.
+
 ## Planning assumptions
 
 - One owner reviews and integrates work; no parallel staffing or sub-agent delegation is assumed.
@@ -10,7 +15,7 @@ Baseline: 2026-10-09; scope revision: 2026-10-18 ([ADR 007](../architecture/adr-
 - Three-point estimates are optimistic / planning / pessimistic hours. These are initial expert judgements, not measured velocity.
 - Add 20% shared contingency to remaining V1 work only. Historical estimates and frozen V2 are not part of the remaining schedule.
 - Holidays, missed weeks and blocked decisions extend duration. Relative week 1 now starts when remaining work resumes; accepted features have no remaining Gantt bar.
-- F00–F06 are accepted. Actual effort is unreported, so revised estimates are provisional judgements, not measured velocity. Never infer elapsed effort from zero tracking values.
+- All retained V1 features are locally accepted; the F00–F06 checkpoint below is historical. Actual effort is unreported, so revised estimates are provisional judgements, not measured velocity. Never infer elapsed effort from zero tracking values.
 
 ## Milestones
 
@@ -42,7 +47,9 @@ F13 verifies page infrastructure with synthetic content fixtures; F14 supplies t
 
 `plan.json` is the single source for the Epic → Feature → UH → Task hierarchy, EARS requirements, Gherkin scenarios, verification mappings, owners, estimates, dependencies, status, actual effort, dates and evidence. The generated dashboard, Gantt and detailed story reader are views. They do not write progress automatically or sync GitHub. Update them after each work session or accepted PR. Start with [the hierarchy](hierarchy.md) and [execution rules](story-workflow.md).
 
-States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Feature `release` is V1 or V2 (legacy completed features default to V1). V2 is frozen reference backlog, not a technical blocker. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may uncover work; `done` requires linked evidence and accepted children. F12 is done at implementation commit71aeefc, with Boot4.1.1 unchanged and eight configuration-bound applicability decisions expiring2026-11-01. Reassess them when server configuration changes and at final V1 acceptance. Next eligible task is F13-UH01-T01; F13 is not started by F12 closure.
+States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Feature `release` is V1 or V2 (legacy completed features default to V1). V2 is frozen reference backlog, not a technical blocker. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may uncover work; `done` requires linked evidence and accepted children. F12 is done at implementation commit71aeefc, with Boot4.1.1 unchanged and eight configuration-bound applicability decisions expiring2026-11-01. Reassess them when server configuration changes and at final V1 acceptance. That F12 checkpoint originally queued F13; F13/F14/F16 are now accepted with
+linked evidence, and final F16 security reassessment is complete for its reviewed
+scope. The exact eight decisions retain the2026-11-01 expiry.
 
 Progress indicators count V1 only: accepted features / V1 features, and accepted baseline hours / V1 baseline hours. These are scope-weighted acceptance indicators, not actual effort or evidence of increased productivity. Frozen V2 appears separately. Preserve baseline estimates; show actual effort and remaining forecast separately.
 
@@ -59,4 +66,5 @@ The generated [roadmap](roadmap.md) shows totals and milestone windows. The [das
 
 Ziuld: product decisions, visual acceptance, manual import, final review and content accuracy. AI assistant: authorised implementation, documentation, test execution and evidence preparation. AI-written EN/ES/FR copy requires human language/content review; if that capacity is unavailable, record a release risk rather than pretending the review happened.
 
-No GitHub issues, projects, branch rules, commits or pushes are created in this documentation step. Repository settings and optional GitHub Projects mapping are subsequent bootstrap actions.
+These planning conventions authorise no GitHub issues, projects, branch rules or
+pushes. F16 local commits were separately authorised and recorded in evidence. Repository settings and optional GitHub Projects mapping are subsequent bootstrap actions.

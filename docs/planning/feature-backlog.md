@@ -1,10 +1,13 @@
 # Feature backlog and acceptance
 
-This is the feature-level scope summary. Canonical descriptions, EARS requirements, Gherkin scenarios, tasks, statuses and estimates now live in `plan.json`; start with the [detailed hierarchy](hierarchy.md). All UI features inherit EN/ES/FR, responsive layout, keyboard access, safe errors, approved design-system use and privacy checks. The detailed stories refine these commitments rather than replacing them.
+This is the feature-level scope summary. Canonical tracking and unmigrated behaviour live in `plan.json`; stories with
+`behaviour_spec` use their linked main OpenSpec specification for requirements/scenarios; start with the [detailed hierarchy](hierarchy.md). All UI features inherit EN/ES/FR, responsive layout, keyboard access, safe errors, approved design-system use and privacy checks. The detailed stories refine these commitments rather than replacing them.
 
-Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md): F00–F06 are accepted; remaining V1 is F07/F12/F13/F14/F16. **F08–F11 and F15 are frozen for V2**, retained below only for traceability. No implementation or preparatory framework work for deferred scope.
+Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md): that checkpoint accepted F00–F06 and queued F07/F12/F13/F14/F16. All retained V1
+features are now locally accepted (2026-10-20), with final F16 evidence linked
+from the tracker. **F08–F11 and F15 are frozen for V2**, retained below only for traceability. No implementation or preparatory framework work for deferred scope.
 
-All future features and final F16 acceptance use the explicit keyboard/visual criteria in the [quality plan](../quality/quality-plan.md): labels/semantics, focus, contrast, zoom/reflow, reduced motion and existing axe/browser checks remain required. Screen-reader compatibility and manual speech testing are excluded by owner decision, not deferred to release; neither full WCAG AA conformance nor verified non-visual usability is claimed.
+Retained V1 acceptance uses the explicit keyboard/visual criteria in the [quality plan](../quality/quality-plan.md): labels/semantics, focus, contrast, zoom/reflow, reduced motion and existing axe/browser checks remain required. Screen-reader compatibility and manual speech testing are excluded by owner decision, not deferred to release; neither full WCAG AA conformance nor verified non-visual usability is claimed.
 
 | ID | Outcome | Acceptance evidence |
 |---|---|---|

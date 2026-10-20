@@ -3,7 +3,8 @@
 Preserve all 11 canonical F16 task IDs and their dependency order, the 20h baseline
 and 8h forecast (UH01 5h / UH02 3h). Each checkbox below is a bounded work slice;
 canonical tasks close only when all mapped work and evidence are complete. Effort
-remains unreported. Discovery is recorded in design.md; no implementation is done.
+remains unreported. Discovery is recorded in design.md; actual implementation/verification results
+are recorded in harness/evidence/F16-integrated-acceptance.md.
 
 ## 1. Catalogue-aware promotion and shared locale integration
 
@@ -21,8 +22,8 @@ remains unreported. Discovery is recorded in design.md; no implementation is don
 ## 3. Reproducible local release handoff
 
 - [x] 3.1 (F16-UH02-T01/T02) After UH01 completion, update README/CONTRIBUTING, existing local JAR runbook pages and concise local release notes for its actual candidate commit. Include pinned prerequisites and wrapper identity, configuration/build/start/health/route-smoke/shutdown commands, security evidence, one-unit scope and Chromium/compatibility limitations. Distinguish generated-filesystem local-profile preview from classpath-packaged verification. Verify every instruction against the reviewed candidate and remove stale Home-only locale/publication or provisional version claims in the affected runbook sections; require no Docker, account, hosting or publication.
-- [ ] 3.2 (F16-UH02-T03) From a separate clean checkout under the project at the recorded candidate revision, follow the documented build and normal packaged-JAR procedure without copying generated assets, target, node_modules or working-tree runtime sources. Record exact revision, tool versions, artifact digest, configuration, health, retained route smoke and verified shutdown in F16 evidence. Exercise local-profile native preference review separately if needed. Missing network/prerequisites or a failed command blocks the check; runtime fixes require a new candidate and affected re-verification.
-- [ ] 3.3 (F16-UH02-T04/T05) Review the executed runbook, security evidence/freshness, known limitations and absence of implied publication/account/cloud steps; confirm all four F16 ACs and retained V1 gates have real evidence. Record an authorised coherent local handoff/evidence commit and distinguish it from the clean-checkout tested implementation revision. Then update canonical story/feature/epic status only as justified, retaining all IDs/effort and frozen V2 status; regenerate both views and run planning integrity/rule tests, strict OpenSpec and whitespace checks. Leave any failing criterion open; do not claim remote CI, push, public release or deployment.
+- [x] 3.2 (F16-UH02-T03) From a separate clean checkout under the project at the recorded candidate revision, follow the documented build and normal packaged-JAR procedure without copying generated assets, target, node_modules or working-tree runtime sources. Record exact revision, tool versions, artifact digest, configuration, health, retained route smoke and verified shutdown in F16 evidence. Exercise local-profile native preference review separately if needed. Missing network/prerequisites or a failed command blocks the check; runtime fixes require a new candidate and affected re-verification.
+- [x] 3.3 (F16-UH02-T04/T05) Review the executed runbook, security evidence/freshness, known limitations and absence of implied publication/account/cloud steps; confirm all four F16 ACs and retained V1 gates have real evidence. Record an authorised coherent local handoff/evidence commit and distinguish it from the clean-checkout tested implementation revision. Then update canonical story/feature/epic status only as justified, retaining all IDs/effort and frozen V2 status; regenerate both views and run planning integrity/rule tests, strict OpenSpec and whitespace checks. Leave any failing criterion open; do not claim remote CI, push, public release or deployment.
 
 ## Workflow follow-up
 

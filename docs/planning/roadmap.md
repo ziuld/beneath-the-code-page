@@ -2,7 +2,7 @@
 
 Baseline date: 2026-10-09.
 
-11/12 features accepted; 152/172 baseline hours accepted (88%). Remaining V1 forecast 8 owner hours + 1.6h contingency = 9.6h, approximately 1 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
+12/12 features accepted; 172/172 baseline hours accepted (100%). Remaining V1 forecast 0 owner hours + 0h contingency = 0h, approximately 0 weeks at 10h/week. 5 V2 features frozen and excluded. No delivery date committed.
 
 Historical V1 baseline envelope: 111–304h; total-feature V1 forecast 134h includes accepted work. Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.
 
@@ -21,7 +21,7 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | F12 | MVP tool navigation and local runtime | 2 | Accepted | done | F07 |
 | F13 | Learning pages and navigation | 10 | Accepted | done | F07 |
 | F14 | First complete learning unit | 10 | Accepted | done | F13 |
-| F16 | MVP website polish and acceptance | 8 | 0.0–0.8 | in_progress | F12, F14 |
+| F16 | MVP website polish and acceptance | 8 | Accepted | done | F12, F14 |
 
 ## Milestones
 
@@ -31,7 +31,7 @@ Week 1 begins when remaining work resumes. Accepted features have no remaining b
 | M1 | First usable JSON Formatter | 0.0 |
 | M2 | MVP JSON tools and local JAR workflow | 0.0 |
 | M3 | Learning structure and one complete unit in three languages | 0.0 |
-| M4 | Polished focused MVP local release candidate | 0.8 |
+| M4 | Polished focused MVP local release candidate | 0.0 |
 
 ## Frozen V2 — not scheduled
 

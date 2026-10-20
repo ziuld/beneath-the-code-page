@@ -1,5 +1,24 @@
 # Current handoff
 
+F16 COMPLETE,2026-10-20: implementation3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608;
+runbook/handoff tested from clean checkout a6ed966ec2a03548bca8100b5054b0f0c93de127.
+Both stories/all11 canonical tasks/OpenSpec10of10 complete; all retained V1
+features and EPIC-MVP locally accepted. Five V2 features remain frozen, not done.
+Catalogue-aware Learn promotion/shared navigation and EN/ES/FR links integrated;
+no redesign. Maven257+17 Java/185 frontend and Chromium125 PASS; explicit owner
+review, bounded F16 security scope and scoped local commits approved. Actual gate
+PASS after final docs/fixtures, all45 source files,16 visible approved observations
+plus4 medium,0 blockers. Boot4.1.1/expiry2026-11-01 unchanged. Planning22/strict14
+items/whitespace PASS; negative fixtures explicitly open copied V1 states.
+Clean checkout freshly built without copied target/node_modules; temporary Maven
+cache link removed. Whole JAR identical SHA256 d5a13164…42db and approved scope
+86448545…9250. Runbook health,24 localised page/6 safe-error/3 packaged-asset
+responses PASS from separate normal-profile run directory; all servers stopped.
+Local runbook docs/delivery/local-release.md; evidence harness/evidence/F16-integrated-acceptance.md.
+Actual effort unreported. No push, remote CI claim, public release/deployment or
+OpenSpec sync/archive/ownership migration. Change ready for separate authorised
+archive workflow. Earlier pending candidate notes below are historical.
+
 F16 candidate verified, 2026-10-20: apply implemented catalogue-aware Learn
 promotion, shared Home/Tools/Learn descriptors and locale-preserving native links,
 including tool/error recovery. Empty/draft/synthetic boundaries retained. Maven

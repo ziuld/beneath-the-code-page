@@ -122,6 +122,8 @@ class PlanningRulesTest(unittest.TestCase):
         first['depends_on']=[last['id']]
         self.expect_error('Dependency cycle')
     def test_epic_cannot_close_early(self):
+        # Keep the negative fixture explicit after every real V1 feature is accepted.
+        next(f for f in self.data['features'] if f['id']=='F16')['status']='in_progress'
         self.data['epic']['status']='done'
         self.expect_error('Epic cannot close')
     def test_ears_has_a_named_response(self):
@@ -159,6 +161,9 @@ class PlanningRulesTest(unittest.TestCase):
         self.expect_error('Epic cannot close')
 
     def test_v1_open_story_still_blocks_epic_closure(self):
+        feature=next(f for f in self.data['features'] if f['id']=='F16')
+        feature['status']='in_progress'
+        feature['stories'][0]['status']='planned'
         self.data['epic'].update(status='done',evidence=['harness/evidence/F00-F01-java-baseline.md'])
         self.expect_error('Epic cannot close')
 

@@ -1,6 +1,6 @@
 # EPIC-MVP — Beneath the Code Phase 1
 
-Status: in delivery; F00–F06 accepted. Owner: Ziuld, supported by AI. Hierarchy: **Epic → Feature → User Story (UH) → Task**. Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md).
+Status: V1 locally accepted,2026-10-20; all retained V1 features accepted with evidence. Owner: Ziuld, supported by AI. Hierarchy: **Epic → Feature → User Story (UH) → Task**. Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md).
 
 ## Outcome
 
@@ -20,4 +20,8 @@ F08–F11 and F15 are frozen for V2: Base64, UUID, JWT, JSON/YAML conversion and
 
 All V1 feature stories/tasks are accepted with evidence; F06/F07 and the complete first unit work in EN/ES/FR; Home → Tools → JSON operations and Home → Learn → course → unit/answer journeys work without dead links. Shared privacy/security/keyboard/visual/architecture criteria pass; the local build/JAR run is reproducible; no unresolved release-blocking defects remain. Deferred V2 work neither blocks closure nor counts as completed.
 
-The original 298-hour all-backlog baseline is historical, not remaining MVP effort. Remaining V1 has a provisional 42-hour forecast plus 20% contingency (50.4 hours), approximately six capacity weeks at 10 hours/week. Actual owner effort is unreported; this is not a measured delivery promise. No product completion is awarded for replanning.
+The original 298-hour all-backlog baseline and the October18 remaining-V1 forecast
+of42h plus20% contingency were planning history. Remaining V1 work is now zero;
+V2 is still frozen, not completed. [Final local acceptance evidence](../../harness/evidence/F16-integrated-acceptance.md)
+records the tested implementation/handoff revisions and limitations. No remote
+release or deployment is implied. Actual owner effort is unreported; this is not a measured delivery promise. No product completion is awarded for replanning.

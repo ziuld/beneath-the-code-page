@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: JSON tools and the reviewed EN/ES/FR learning unit integrated; final local-release verification in progress.**
+**Stage: V1 locally accepted — three JSON tools, one reviewed EN/ES/FR unit and a reproduced packaged-JAR handoff. Additional tools/units remain frozen V2.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
