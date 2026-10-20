@@ -1,13 +1,13 @@
 # Current handoff
 
-F17 candidate verified,2026-10-20: full Maven257+17 Java/185 frontend, packaged
+F17 COMPLETE,2026-10-20: full Maven257+17 Java/185 frontend, packaged
 health smoke, Chromium125/125, policy20/planning23 and strict15 main specs PASS.
 Boot4.1.1 retained; Tomcat11.0.27/Jackson BOM3.1.8 patches under ADR011. Fresh
 actual scan covers45 main sources and POM70/JAR60/npm166+5 packages:0 findings,
 0 blockers,0 active exceptions. Original F16 approval JSON preserved byte-for-byte
 in security/history/ with unchanged expiry; no fingerprint or approval renewed.
-Docs now distinguish accepted V1 history from selected V2. T01–T03 done; T04
-candidate review/scoped commit in progress. Evidence:F17-security-maintenance.md.
+Docs now distinguish accepted V1 history from selected V2. All4 tasks/story/feature complete; implementation commit e38cb17b48348d749b428b0d066dc893cf073d87.
+Evidence:harness/evidence/F17-security-maintenance.md. Next:F15-UH01.
 Branch:planning/v2-delivery-sequence, based on merged main790b578. No push/PR yet;
 first push/PR follows the two lessons. No UI/lesson changes or new owner acceptance.
 

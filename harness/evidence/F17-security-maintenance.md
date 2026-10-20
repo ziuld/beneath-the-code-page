@@ -75,3 +75,11 @@ claimed. Build-plugin/test-only Maven dependencies, full Git history and full
 security/a11y conformance remain outside the scanner's stated coverage. Zero
 findings is a result of this bounded scan, not a vulnerability-free guarantee.
 Actual owner effort unreported. First push/PR remains after the two lessons.
+
+## Closure
+
+Implementation/planning commit: `e38cb17b48348d749b428b0d066dc893cf073d87`. All four canonical tasks and the
+F17 story/feature are complete after the scoped diff/integration review and actual
+checks above. Closure tracking/documentation is a separate local commit; application,
+POM and security-policy inputs remain those tested. No push or PR yet. Next selected
+work is F15-UH01 followed by F15-UH02; first push/PR follows those reviewed lessons.
