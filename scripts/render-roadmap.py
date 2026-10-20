@@ -5,6 +5,7 @@ import json
 import math
 from datetime import datetime, timedelta
 from pathlib import Path
+from planning_delivery import phase_markdown, phase_html
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / 'docs/planning'
@@ -37,7 +38,7 @@ def render(data):
                f'{accepted}/{baseline} baseline hours accepted ({accepted / baseline:.0%}). '
                f'Remaining V1 forecast {remaining:g} owner hours + {reserve:g}h contingency = '
                f'{remaining + reserve:g}h, approximately {math.ceil((remaining + reserve) / capacity)} weeks '
-               f'at {capacity:g}h/week. {len(deferred)} V2 features frozen and excluded. No delivery date committed.')
+               f'at {capacity:g}h/week. {len(deferred)} V2 follow-up features excluded from V1; see the selected V2 sequence below. No delivery date committed.')
     md = ['# Generated roadmap', '', f'Baseline date: {data["baseline_date"]}.', '', summary, '',
           f'Historical V1 baseline envelope: {optimistic:g}–{pessimistic:g}h; total-feature V1 forecast {total:g}h includes accepted work. '
           'Remaining forecasts are provisional judgements, not measured velocity. Recorded zero actual hours means unreported effort.', '',
@@ -53,8 +54,9 @@ def render(data):
     md += ['', '## Milestones', '', '| ID | Exit | Weeks from resumption, before shared contingency |', '|---|---|---:|']
     for m in data['milestones']:
         md.append(f'| {m["id"]} | {m["name"]} | {max(ends[x] for x in m["requires"]):.1f} |')
-    md += ['', '## Frozen V2 — not scheduled', '']
-    md += [f'- {f["id"]} — {f["name"]}; historical baseline {f["baseline_hours"]}h, not a V2 delivery commitment.' for f in deferred]
+    md += ['', *phase_markdown(data)]
+    md += ['', '## V2 feature reference — selected stories shown above', '']
+    md += [f'- {f["id"]} — {f["name"]}; historical baseline {f["baseline_hours"]}h, see selected-story scope; not a whole-feature delivery commitment.' for f in deferred]
     md += ['', 'Source: [plan.json](plan.json). Run `python3 scripts/render-roadmap.py` from the project root after updates.', '']
 
     # Relative SVG chart: week numbers, not fabricated calendar commitments.
@@ -121,7 +123,8 @@ No delivery date is committed. Remaining estimates are provisional; accepted wor
 <div class="chart">{svg}</div><h2>Milestones</h2><ul>{milestones}</ul>
 <h2>V1 feature status</h2><p>Expand a feature for dependencies, total-feature estimates and evidence. Weeks are measured from resumption (0.0), not original project start.</p>
 <div class="table-wrap"><table><thead><tr><th>ID</th><th>Feature</th><th>Status</th><th>Forecast</th><th>Elapsed weeks</th></tr></thead><tbody>{''.join(table)}</tbody></table></div>
-<h2>Frozen V2 — not scheduled</h2><ul>{frozen}</ul>
+{phase_html(data)}
+<h2>V2 feature reference</h2><ul>{frozen}</ul>
 <footer>Read-only generated view. Update plan.json, regenerate, and validate. This dashboard neither tracks GitHub automatically nor changes feature status. Historical baseline estimates are preserved; zero actual hours means unreported effort.</footer>
 </main></body></html>
 '''

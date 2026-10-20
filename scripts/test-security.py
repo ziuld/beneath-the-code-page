@@ -27,6 +27,23 @@ class SecurityTests(unittest.TestCase):
                                 'version': finding['version'], 'reason': 'Synthetic applicability proof'}]}
         return finding, policy, datetime(2026, 10, 18, tzinfo=timezone.utc)
 
+    def test_no_exception_policy_preserves_all_blockers_even_after_old_expiry(self):
+        finding, _, _ = self.applicability_fixture()
+        source = [finding, {**finding, 'kind': 'Secrets'},
+                  {**finding, 'scanner': 'semgrep'}]
+        before = copy.deepcopy(source)
+        result = security.apply_dispositions(source, {'mode': 'none', 'findings': []},
+                                             'changed', datetime(2027, 1, 1, tzinfo=timezone.utc))
+        self.assertEqual(before, result)
+        self.assertTrue(all(item['blocking'] for item in result))
+
+    def test_no_exception_mode_cannot_hide_waivers_or_unknown_fields(self):
+        finding, _, now = self.applicability_fixture()
+        for policy in ({'mode': 'none', 'findings': [{'id': finding['id']}]},
+                       {'mode': 'none'}, {'mode': 'none', 'findings': [], 'extra': True}):
+            with self.assertRaisesRegex(ValueError, 'invalid-applicability-scope'):
+                security.apply_dispositions([finding], policy, 'changed', now)
+
     def test_exact_approved_finding_is_visible_but_non_blocking(self):
         finding, policy, now = self.applicability_fixture()
         for target in ('pom.xml', 'Java'):
@@ -128,12 +145,18 @@ class SecurityTests(unittest.TestCase):
             packages = {**manifest.get('dependencies', {}), **manifest.get('devDependencies', {})}
             results.append({'Target': lock, 'Type': 'npm',
                             'Packages': [{'Name': name, 'Version': version} for name, version in packages.items()]})
-        boot = {'Name': 'org.springframework.boot:spring-boot', 'Version': '4.1.1'}
-        results.append({'Target': 'pom.xml', 'Type': 'pom', 'Packages': [boot]})
+        java = [{'Name': name, 'Version': version} for name, version in security.expected_java_versions().items()]
+        results.append({'Target': 'pom.xml', 'Type': 'pom', 'Packages': java})
         with self.assertRaisesRegex(ValueError, 'incomplete-java-inventory'):
             security.dependency_inventory({'Results': results})
-        results.append({'Target': 'Java', 'Type': 'jar', 'Packages': [boot]})
+        results.append({'Target': 'Java', 'Type': 'jar', 'Packages': java})
         self.assertEqual(4, len(security.dependency_inventory({'Results': results})))
+        for kind_index in (2, 3):
+            for package_index in range(len(java)):
+                stale = copy.deepcopy(results)
+                stale[kind_index]['Packages'][package_index]['Version'] = 'stale-synthetic'
+                with self.assertRaisesRegex(ValueError, 'incomplete-java-inventory'):
+                    security.dependency_inventory({'Results': stale})
 
     def test_identified_clean_trivy_report_without_results(self):
         self.assertEqual([], security.trivy_findings({

@@ -40,20 +40,24 @@ Install/run instructions and failure policy are in
 
 ## Bounded applicability decisions
 
-`applicability.json` records the eight owner-approved CVE/package/version decisions
-for the current Boot4.1.1 configuration, expiring at the start of2026-11-01 UTC.
-Findings remain in reports with their original severity, default blocking status,
-reason, owner and expiry. Only the exact POM/JAR observations become non-blocking;
-new CVEs, versions, targets, secrets and SAST findings are unaffected.
+The active `applicability.json` uses the exact no-exception policy
+`{"mode":"none","findings":[]}`. It does not suppress or reclassify any finding;
+all default dependency/secret/SAST blockers remain blocking. Unknown extra fields
+or waiver entries cannot be attached to this mode. No approval date, expiry or
+configuration fingerprint is renewed by selecting zero exceptions.
 
-The approval fingerprint covers the POM, server Java source, non-i18n server
-configuration/webapp files and packaged server classes/configuration. A new or
-changed server class/configuration invalidates it, including before rebuilding;
-changed packaged classes invalidate it too. JAR timestamps and translated UI prose
-do not. Do not refresh the fingerprint automatically: reassess affected advisory
-prerequisites and obtain approval. Expired, invalid or changed-scope decisions fail
-closed. Final V1 acceptance must reassess these decisions; they are not permanent
-guarantees or permission for public deployment.
+The original eight owner-approved decisions for the F16 Boot4.1.1 configuration
+are preserved byte-for-byte in `history/F16-applicability.json` as historical
+approval evidence, retaining their original expiry at2026-11-01 UTC. The gate
+loads only the active policy. Legacy bounded-policy checks still require an exact
+POM/server-source/packaged-code fingerprint, owner reference and unexpired exact
+CVE/package/version match; tests retain those failure cases.
+
+F17 retains Boot4.1.1 with Tomcat11.0.27 and Jackson BOM3.1.8 security patches;
+see [ADR011](../docs/architecture/adr-011-bounded-security-dependency-patches.md).
+Both POM and shipped-JAR inventories must contain the Boot/Tomcat/Jackson versions
+selected by the POM. Actual scan results belong in the
+[F17 evidence](../harness/evidence/F17-security-maintenance.md), not in this policy.
 
 Scanner source/download metadata: GitHub release APIs for Trivy/uv, PyPI for the
 Semgrep wheel, and immutable semgrep-rules source. Downloaded scanner resources

@@ -1,5 +1,12 @@
 # EPIC-MVP — Beneath the Code Phase 1
 
+Current scope, 2026-10-20: V1 is accepted and F16 merged. [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
+and the [selected V2 sequence](roadmap.md#v2-delivery-sequence) supersede the blanket freeze and remaining-V1
+forecasts below. Only two additional lessons are selected; design agreement precedes
+remaining tools, then final browser review and Docker Desktop/second-PC handoff.
+Earlier estimates, scope exclusions and pending statements below are historical
+where superseded; they do not reopen V1 or claim new checks have passed.
+
 Status: V1 locally accepted,2026-10-20; all retained V1 features accepted with evidence. Owner: Ziuld, supported by AI. Hierarchy: **Epic → Feature → User Story (UH) → Task**. Scope revised 2026-10-18 in [ADR 007](../architecture/adr-007-focused-mvp.md).
 
 ## Outcome

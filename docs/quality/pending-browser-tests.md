@@ -1,6 +1,11 @@
 # Pending browser verification
 
-## Current policy — optional post-MVP evaluation
+Current follow-up,2026-10-20: [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
+schedules final Firefox/WebKit review under F19 after design/tools, plus separate
+real Safari evidence or an explicit pending limitation. Existing ADR009 policy
+continues for intermediate features; historical results below are not new passes.
+
+## Historical V1 policy — optional post-MVP evaluation
 
 Owner decision,2026-10-19 ([ADR 009](../architecture/adr-009-chromium-only-mvp-verification.md)):
 Chromium is the only required browser for remaining MVP work and final acceptance.

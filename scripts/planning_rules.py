@@ -84,6 +84,23 @@ def validate_hierarchy(data, root):
     for milestone in data.get('milestones',[]):
         if any(releases.get(dep)=='V2' for dep in milestone['requires']):
             error(f'{milestone["id"]}: V1 milestone includes frozen V2 work')
+    # Selected V2 phases may deliberately include only part of a feature.
+    selected=[]; phase_ids=set()
+    story_ids={s['id'] for s in stories}
+    for phase in data.get('v2_delivery_phases',[]):
+        if phase['id'] in phase_ids: error('Duplicate V2 phase ID')
+        phase_ids.add(phase['id'])
+        if not phase.get('story_ids') or not phase.get('exit'): error('V2 phase needs selected stories and an exit')
+        for sid in phase.get('story_ids',[]):
+            if sid not in story_ids or releases.get(sid)!='V2': error(f'Invalid selected V2 story: {sid}')
+            if sid in selected: error(f'Duplicate selected V2 story: {sid}')
+            selected.append(sid)
+    selected_order={sid:i for i,sid in enumerate(selected)}
+    for sid in selected:
+        for dep in nodes.get(sid,{}).get('depends_on',[]):
+            prerequisites=[dep] if dep in selected_order else [s['id'] for s in stories if s['parent_id']==dep and s['id'] in selected_order]
+            if any(selected_order[prerequisite]>=selected_order[sid] for prerequisite in prerequisites):
+                error(f'{sid}: selected V2 prerequisite is scheduled later')
     visiting=set();visited=set()
     def visit(key):
         if key in visiting:

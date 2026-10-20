@@ -1,5 +1,12 @@
 # Execution sequence
 
+Current scope, 2026-10-20: V1 is accepted and F16 merged. [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
+and the [selected V2 sequence](roadmap.md#v2-delivery-sequence) supersede the blanket freeze and remaining-V1
+forecasts below. Only two additional lessons are selected; design agreement precedes
+remaining tools, then final browser review and Docker Desktop/second-PC handoff.
+Earlier estimates, scope exclusions and pending statements below are historical
+where superseded; they do not reopen V1 or claim new checks have passed.
+
 At ten hours/week, a two-week iteration has at most 20 owner hours. “Sprint 0” and “Sprint 1” name delivery stages; they are not promises to fit every foundation or formatter task into two weeks. Split each stage into two-week planning increments and carry explicit remaining work.
 
 ## Accepted history — F00 through F06
@@ -20,17 +27,15 @@ First complete feature: server-rendered JSON Formatter, CodeMirror, local worker
 
 Suggested increments: processing/correctness; workspace/error states; packaged browser/security/a11y acceptance. Finish the feature before starting another tool.
 
-## Remaining V1 stages — revised 2026-10-18
+## Current delivery sequence — ADR010,2026-10-20
 
-- F07: JSON Validator and JSON Minifier, separate user-visible tools sharing tested infrastructure.
-- F12: published JSON catalogue integration and existing local JAR workflow; M2.
-- F13: Learn landing, course overview, unit navigation and safe local content rendering.
-- F14: short unit brief and one complete translated source-to-JVM unit; M3.
-- F16: complete shared-page integration, responsive visual polish, retained quality checks and local handoff; M4.
-
-F08–F11/F15, Docker/Compose and a broad redesign are frozen for V2. No framework work in anticipation of those features. See [ADR 007](../architecture/adr-007-focused-mvp.md) and the [remaining forecast](project-plan.md#remaining-forecast-and-order).
-
-The provisional remaining budget is 42h plus 20% contingency, not a promise that individual stages fit a single iteration. F13 no longer depends on the all-tools runtime gate; F16 no longer depends on completing the course.
+All retained V1 stages F07/F12/F13/F14/F16 are accepted; earlier remaining-hour
+forecasts are historical. Execute the selected V2 phases in the generated
+[roadmap](roadmap.md#v2-delivery-sequence) and [queue](execution-order.md):
+security/docs → two lessons → push/PR checkpoint → agreed design page by page →
+remaining tools → final browser review → Docker Desktop/second-PC handoff.
+F15-UH03–UH07 remain deferred. Do not require a complete course or change accepted
+V1 history. New selected work is planned, not already verified.
 
 ## Definition of ready
 

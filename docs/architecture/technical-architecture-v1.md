@@ -1,6 +1,13 @@
 # Beneath the Code Technical Architecture & Repository Bootstrap Specification v1
 
-Date: 2026-10-09; scope revised 2026-10-18 by [ADR 007](adr-007-focused-mvp.md). Status: F00–F06 accepted; remaining MVP replanned. Historical bootstrap/version statements are qualified by actual evidence and the current handoff. Feasibility refinements remain explicit in `feasibility-review.md`.
+Current scope, 2026-10-20: V1 is accepted and F16 merged. [ADR010](adr-010-v2-delivery-and-portable-handoff.md)
+and the [selected V2 sequence](../planning/roadmap.md#v2-delivery-sequence) supersede the blanket freeze and remaining-V1
+forecasts below. Only two additional lessons are selected; design agreement precedes
+remaining tools, then final browser review and Docker Desktop/second-PC handoff.
+Earlier estimates, scope exclusions and pending statements below are historical
+where superseded; they do not reopen V1 or claim new checks have passed.
+
+Date: 2026-10-09; scope revised 2026-10-18 by [ADR 007](adr-007-focused-mvp.md). Status: retained V1 accepted; selected V2 follow-ups under ADR010. Historical bootstrap/version statements are qualified by actual evidence and the current handoff. Feasibility refinements remain explicit in `feasibility-review.md`.
 
 ## 1. Validated architecture
 
@@ -10,11 +17,11 @@ The supplied B image is the logo composition; the standalone B is the second app
 
 ## 2. Versions
 
-Java 25 LTS without preview features; Temurin `25.0.4.1+1`; Spring Boot `4.1.1`; Boot-managed MVC/Security/Thymeleaf/Tomcat; Maven `3.9.16` via wrapper; Node 24 LTS for tooling. Revalidate exact patches, advisories and availability during bootstrap. Node patch and frontend dependencies must be pinned in Sprint 0; no nonexistent lockfile is implied. Primary sources are recorded in `sources.md`.
+Java 25 LTS without preview features; Temurin `25.0.4.1+1`; Spring Boot `4.1.1`; Boot-managed MVC/Security/Thymeleaf/Tomcat; Maven `3.10.0` via wrapper; Node 24 LTS for tooling. Revalidate exact patches, advisories and availability during bootstrap. Node patch and frontend dependencies must be pinned in Sprint 0; no nonexistent lockfile is implied. Primary sources are recorded in `sources.md`.
 
 ## 3. Maven strategy
 
-One module, `dev.beneaththecode:beneath-the-code:0.1.0-SNAPSHOT`, executable JAR, compiler release 25. Use Boot dependency management; do not independently pin its managed components. Select MVC, Thymeleaf, Security, Validation and Actuator; add testing and ArchUnit. No unused persistence/reactive/message dependencies.
+One module, `dev.beneaththecode:beneath-the-code:0.1.0-SNAPSHOT`, executable JAR, compiler release 25. Use Boot dependency management. ADR011 permits only the current Tomcat11.0.27 and Jackson BOM3.1.8 security overrides; return to default management when a compatible Boot patch includes these fixes. Do not independently version Jackson modules or introduce unrelated overrides. Select MVC, Thymeleaf, Security, Validation and Actuator; add testing and ArchUnit. No unused persistence/reactive/message dependencies.
 
 Maven owns the distributable build: install pinned frontend tooling project-locally, `npm ci`, type/lint/unit checks, frontend bundle, generated resource inclusion, Java compile/unit/architecture tests, packaging and integration verification. Clean `./mvnw verify` must build from source. Browser end-to-end tests run against the packaged application in a separate CI job. Avoid globally installed npm tools.
 

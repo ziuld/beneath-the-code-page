@@ -1,5 +1,10 @@
 # Quality, security and verification plan
 
+Current follow-up,2026-10-20: [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
+schedules final Firefox/WebKit review under F19 after design/tools, plus separate
+real Safari evidence or an explicit pending limitation. Existing ADR009 policy
+continues for intermediate features; historical results below are not new passes.
+
 Targets: the explicit keyboard/visual criteria below and applicable OWASP ASVS controls, not full WCAG 2.2 AA conformance or certification. F04 selects an exact ASVS release and maps applicable control IDs to tests; explain inapplicable auth/storage controls. Use primary sources in `../architecture/sources.md`.
 
 Browser policy,2026-10-19: [ADR 009](../architecture/adr-009-chromium-only-mvp-verification.md)

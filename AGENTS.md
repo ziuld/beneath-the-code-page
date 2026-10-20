@@ -6,7 +6,14 @@ Read `harness/current-state.md`, `docs/architecture/technical-architecture-v1.md
 
 ## Current boundary
 
-F00–F06 are accepted; manual Initializr import and bootstrap are complete. V1 is limited by ADR 007 to F06/F07 JSON tools, the complete retained website structure and one complete EN/ES/FR learning unit. F08–F11/F15, containers and broad redesign are frozen for V2. Do not restart bootstrap or build speculative extension frameworks. Once the user asks to start a feature, complete its authorised scope without inventing additional permission gates.
+All retained V1 features are accepted; bootstrap and F16 are complete. ADR010 and
+`plan.json` select the V2 sequence: F17 maintenance → F15-UH01/UH02 lessons →
+push/PR checkpoint → F18 page-by-page agreed design → F08–F11 tools → F19 final
+Firefox/WebKit and separate Safari review → F20 Docker Desktop/second-PC handoff.
+F15-UH03 through UH07 remain deferred. Preserve accepted V1 history. Design
+prompts and owner concepts/agreement precede visual implementation. No speculative
+extension frameworks, cloud deployment or image publication. Complete authorised
+scope without inventing additional permission gates.
 
 ## Architecture
 
@@ -25,7 +32,7 @@ F00–F06 are accepted; manual Initializr import and bootstrap are complete. V1 
 5. Record actual evidence in `harness/evidence/`; never invent a passing test or completion date.
 6. Update plan status, actual effort, decisions and current handoff. Regenerate roadmap views and run planning checks.
 
-The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Feature `release` separates V1 from frozen V2; never make V1 depend on V2. Task effort rolls up to story/feature effort; preserve historical baseline estimates and revise forecasts only. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. Epic acceptance counts V1 only, without calling V2 done. OpenSpec is initialised; behavioural ownership migrates story by story (ADR 004), not automatically for the whole backlog.
+The required hierarchy is Epic → Feature → User Story (UH) → Task. Retain stable IDs and link requirements to scenarios and verification tasks. Feature `release` separates historical V1 from V2 follow-ups; selected stories follow `v2_delivery_phases`; never make V1 depend on V2. Task effort rolls up to story/feature effort; preserve historical baseline estimates and revise forecasts only. Regenerate with both `scripts/render-backlog.py` and `scripts/render-roadmap.py`. Close a story only after all tasks, acceptance evidence and integration review are complete; a commit by itself is not completion. Epic acceptance counts V1 only, without calling V2 done. OpenSpec is initialised; behavioural ownership migrates story by story (ADR 004), not automatically for the whole backlog.
 
 Custom files under `harness/` are project conventions, not automatically executed agent features. `AGENTS.md` provides discoverable guidance. Do not create global configuration or unattended automations.
 

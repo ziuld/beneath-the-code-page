@@ -1,5 +1,26 @@
 # Current handoff
 
+F17 candidate verified,2026-10-20: full Maven257+17 Java/185 frontend, packaged
+health smoke, Chromium125/125, policy20/planning23 and strict15 main specs PASS.
+Boot4.1.1 retained; Tomcat11.0.27/Jackson BOM3.1.8 patches under ADR011. Fresh
+actual scan covers45 main sources and POM70/JAR60/npm166+5 packages:0 findings,
+0 blockers,0 active exceptions. Original F16 approval JSON preserved byte-for-byte
+in security/history/ with unchanged expiry; no fingerprint or approval renewed.
+Docs now distinguish accepted V1 history from selected V2. T01–T03 done; T04
+candidate review/scoped commit in progress. Evidence:F17-security-maintenance.md.
+Branch:planning/v2-delivery-sequence, based on merged main790b578. No push/PR yet;
+first push/PR follows the two lessons. No UI/lesson changes or new owner acceptance.
+
+Selected V2 order (ADR010/plan.json): F17 maintenance → F15-UH01/UH02 → push/PR →
+F18 prompts/owner concepts/agreed design implementation page by page → F08–F11 →
+F19 final Firefox/WebKit/separate Safari → F20 Docker Desktop/second-PC handoff.
+F15-UH03–UH07 remain deferred. V1 acceptance and baseline estimates are preserved.
+
+## Historical handoffs — superseded status statements below
+
+The notes below record earlier checkpoints. Pending commits, archives, previews,
+pushes and the blanket V2 freeze are historical, not current instructions.
+
 F16 OpenSpec synced and archived,2026-10-20: owner explicitly requested archive
 and selected Sync now. Archive: openspec/changes/archive/2026-10-20-f16-mvp-website-polish-and-acceptance/.
 Added1 requirement/3 scenarios to learning-navigation, preserving all existing

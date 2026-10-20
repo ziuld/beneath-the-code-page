@@ -10,6 +10,7 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('security_install', ROOT / 'scripts/install-security-tools.py')
@@ -61,6 +62,17 @@ def trivy_findings(report):
     return findings
 
 
+def expected_java_versions():
+    pom = ET.parse(ROOT / 'pom.xml').getroot()
+    ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
+    return {
+        'org.springframework.boot:spring-boot': pom.findtext('m:parent/m:version', namespaces=ns),
+        'org.apache.tomcat.embed:tomcat-embed-core': pom.findtext('m:properties/m:tomcat.version', namespaces=ns),
+        'tools.jackson.core:jackson-core': pom.findtext('m:properties/m:jackson-bom.version', namespaces=ns),
+        'tools.jackson.core:jackson-databind': pom.findtext('m:properties/m:jackson-bom.version', namespaces=ns),
+    }
+
+
 def dependency_inventory(report):
     inventory = {}
     for item in report.get('Results', []):
@@ -77,7 +89,8 @@ def dependency_inventory(report):
     java = [item for item in report.get('Results', []) if item.get('Type') in ('pom', 'jar')]
     for kind in ('pom', 'jar'):
         packages = [p for item in java if item['Type'] == kind for p in item.get('Packages', [])]
-        if not any(p['Name'] == 'org.springframework.boot:spring-boot' and p['Version'] == '4.1.1' for p in packages):
+        actual = {p['Name']: p['Version'] for p in packages}
+        if any(not version or actual.get(name) != version for name, version in expected_java_versions().items()):
             raise ValueError('incomplete-java-inventory')
     return {target: len(packages) for target, packages in inventory.items()}
 
@@ -140,6 +153,10 @@ def configuration_digest(root=ROOT):
 
 def apply_dispositions(findings, policy, digest, now):
     """Apply only explicit, current, exact package/version/CVE applicability decisions."""
+    # Explicit no-exception policy changes no finding and needs no approval/expiry.
+    # Accept only this exact shape, never a mode flag attached to waiver entries.
+    if policy == {'mode': 'none', 'findings': []}:
+        return findings
     if (not isinstance(policy, dict) or policy.get('owner') != 'Ziuld' or not policy.get('approval_reference')
             or policy.get('configuration_sha256') != digest):
         raise ValueError('invalid-applicability-scope')
@@ -263,10 +280,12 @@ def main():
         policy = json.loads((ROOT / 'security/applicability.json').read_text())
         digest = configuration_digest()
         summary['findings'] = apply_dispositions(summary['findings'], policy, digest, datetime.now(timezone.utc))
-        summary['applicability'] = {'configuration_sha256': digest, 'owner': policy['owner'],
-                                    'expires': policy['expires'], 'approval_reference': policy['approval_reference']}
+        summary['applicability'] = {'configuration_sha256': digest,
+                                    'mode': policy.get('mode', 'bounded'),
+                                    'owner': policy.get('owner'), 'expires': policy.get('expires'),
+                                    'approval_reference': policy.get('approval_reference')}
         summary['status'] = 'blocked' if any(f['blocking'] for f in summary['findings']) else 'pass'
-    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile, subprocess.SubprocessError) as error:
+    except (OSError, ValueError, KeyError, TypeError, zipfile.BadZipFile, ET.ParseError, subprocess.SubprocessError) as error:
         # Scanner stdout/stderr and exception messages can contain secret/source values.
         summary['error'] = str(error) if isinstance(error, ValueError) and str(error) in {
             'scanner-process-failure', 'invalid-scanner-report', 'scanner-warning-or-error',

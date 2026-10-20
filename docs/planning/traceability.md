@@ -76,3 +76,11 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F16-UH01-R02 | [F16-UH01](features/F16.md#f16-uh01) | F16-UH01-AC02 | F16-UH01-T05 | Controlled status-validator fixture plus real defect triage; no waived scope by calendar date |
 | F16-UH02-R01 | [F16-UH02](features/F16.md#f16-uh02) | F16-UH02-AC01 | F16-UH02-T03 | Clean-checkout packaged-JAR run and recorded version identity; no Docker prerequisite |
 | F16-UH02-R02 | [F16-UH02](features/F16.md#f16-uh02) | F16-UH02-AC02 | F16-UH02-T04 | Review runbook, known limitations and publication authorisation boundaries |
+| F17-UH01-R01 | [F17-UH01](features/F17.md#f17-uh01) | F17-UH01-AC01 | F17-UH01-T03 | Run affected verification and fresh security scanning; inspect current-state links and historical qualifications |
+| F17-UH01-R02 | [F17-UH01](features/F17.md#f17-uh01) | F17-UH01-AC02 | F17-UH01-T03 | Inspect negative policy checks, unchanged expiry rules and the actual scanner result |
+| F18-UH01-R01 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC01 | F18-UH01-T05 | Record prompts, returned concepts and owner choices; begin with Learn |
+| F18-UH01-R02 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC02 | F18-UH01-T05 | Run affected functional/Chromium/privacy checks and owner visual, keyboard, zoom and locale review |
+| F19-UH01-R01 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC01 | F19-UH01-T03 | Run the existing harness per engine and manual journey checks; preserve meaningful assertions and report unavailable environments |
+| F19-UH01-R02 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC02 | F19-UH01-T03 | Owner Safari review on available Apple hardware; do not invent device coverage or install system dependencies without approval |
+| F20-UH01-R01 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC01 | F20-UH01-T03 | Build and start the image; inspect non-root runtime, health, management isolation, local HTTP locale flow, shutdown and image/dependency findings |
+| F20-UH01-R02 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC02 | F20-UH01-T03 | Record second-PC Docker Desktop startup and smoke evidence or leave acceptance pending; document build/run/stop and optional save/load commands |

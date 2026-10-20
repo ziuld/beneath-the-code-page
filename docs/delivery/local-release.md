@@ -1,11 +1,14 @@
 # Local MVP release runbook
 
-This is a local handoff, with no hosting, account setup, upload or publication
-step. The implementation is `3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608`.
-The [F16 evidence](../../harness/evidence/F16-integrated-acceptance.md) records the
-exact clean-checkout reproduction revision, artifact identity and actual results.
-Later documentation/closure commits do not change the tested application by
-implication. Use the recorded tested revision when reproducing accepted results.
+Use this runbook for local packaged-JAR builds and startup; no hosting, account
+setup, upload or publication is required. The historical accepted F16 implementation
+is `3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608`; its exact reproduction revision and
+artifact identity remain in [F16 evidence](../../harness/evidence/F16-integrated-acceptance.md).
+For the current F17 candidate, use its own
+[maintenance evidence](../../harness/evidence/F17-security-maintenance.md) and
+record `git rev-parse HEAD` plus dirty state. F16's JAR hash/results do not certify
+new dependency patches. Do not combine current documentation with an old checkout
+and assume identical results.
 
 ## Prerequisites and clean source
 
@@ -13,7 +16,9 @@ Use JDK/java/javac 25.0.4.1 (Java25 without preview), Git, Python3 and a shell.
 The tested host is Linux x86_64. The Maven Wrapper pins Maven3.10.0, Wrapper3.3.4
 and the distribution checksum; no global Maven or Node installation is required.
 Maven installs Node24.21.0/npm11.21.0 project-locally and uses locked npm packages.
-Spring Boot4.1.1 manages runtime dependencies. Network access is needed for missing
+Spring Boot4.1.1 manages runtime dependencies with the bounded Tomcat11.0.27 and
+Jackson BOM3.1.8 overrides recorded in ADR011. For historical F16 reproduction,
+use its original dependency versions and policy instead. Network access is needed for missing
 wrapper/Maven/npm artifacts and fresh security databases. Security tooling
 supports Python3.10–3.14 on Linux x86_64.
 
@@ -106,10 +111,10 @@ python3 scripts/verify-security.py
 The browser install is project-local; do not add --with-deps or install system
 packages. Scanners analyse locally; source is not uploaded. Missing scanners/data,
 incomplete coverage, stale databases, secrets and unresolved blocking findings
-fail visibly. The eight exact bounded decisions in security/applicability.json
-are scoped to the reviewed server configuration and expire at the start of
-2026-11-01 UTC. Source/configuration changes, unmatched findings or expiry require
-reassessment and explicit owner approval; never refresh the fingerprint silently.
+fail visibly. The active policy applies no exceptions. The historical eight F16
+decisions remain under security/history/ with their original expiry/fingerprint;
+they are not used for the current candidate. Actual passing security results
+require matching source and packaged inventories and fresh databases.
 
 ## Release notes and limitations
 
@@ -118,16 +123,19 @@ reassessment and explicit owner approval; never refresh the fingerprint silently
 - JSON Formatter/Validator/Minifier process input in browser memory under the
   existing syntax, precision, size/depth/output and worker lifecycle controls.
 - Exactly one source-to-JVM learning unit is available; Java Fundamentals is not
-  a complete course. Additional tools/units and containers remain frozen V2.
+  a complete course. Two more lessons, agreed design, remaining tools and Docker Desktop portability
+  are selected V2 follow-ups, not delivered capabilities.
 - Chromium is the sole required browser. Firefox/WebKit compatibility is not
-  guaranteed; optional historical issues remain in the pending browser register.
+  guaranteed; F19 schedules final Firefox/WebKit and separate actual Safari review.
+  Historical issues remain explicit in the pending browser register.
 - Keyboard/visual criteria, narrow reflow and actual200% zoom were owner-approved;
   no full-WCAG or screen-reader compatibility claim is made. No measured code
   coverage percentage is asserted.
-- Security retains visible bounded findings and a fixed expiry. Local acceptance
+- Security uses no active exceptions; the actual F17 scan records current findings. Local acceptance
   is not a public-deployment security guarantee. Fresh databases are required.
 - No licence has been selected; public repository visibility does not grant rights
   to redistribute code, course content, logo or fonts.
 - There are no accounts, persisted progress, database, analytics or cloud runtime.
-  Pushes, tags, public releases, deployment and OpenSpec archive remain separate
-  authorised actions.
+  Scoped pushes and a PR are authorised after maintenance and two lessons. Tags,
+  public releases, deployment, image publication and OpenSpec archival remain
+  separate actions.

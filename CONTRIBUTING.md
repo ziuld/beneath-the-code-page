@@ -20,7 +20,7 @@ recorded tested revision rather than treating local acceptance as a deployment.
 
 ## Local checks matching initial CI
 
-Use Java 25. Local OpenJDK 25.0.4.1 is verified; CI pins Temurin jdk-25.0.4.1+1. Adoptium represents that build as SemVer `25.0.4+101.0.LTS`, which is the exact input expected by setup-java. Maven 3.10.0 comes from the existing wrapper, and Boot remains 4.1.1.
+Use Java 25. Local OpenJDK 25.0.4.1 is verified; CI pins Temurin jdk-25.0.4.1+1. Adoptium represents that build as SemVer `25.0.4+101.0.LTS`, which is the exact input expected by setup-java. Maven 3.10.0 comes from the existing wrapper, and Boot remains 4.1.1. [ADR011](docs/architecture/adr-011-bounded-security-dependency-patches.md) records Tomcat11.0.27 and Jackson BOM3.1.8 security overrides and their regression requirements.
 
 ```sh
 python3 scripts/verify-java-baseline.py
