@@ -16,6 +16,15 @@ ROOT=Path(__file__).resolve().parents[1]
 BASE=json.loads((ROOT/'docs/planning/plan.json').read_text())
 
 class PlanningRulesTest(unittest.TestCase):
+    def test_selected_v2_phases_reject_invalid_duplicate_and_reversed_stories(self):
+        for sid in ('missing', 'F16-UH01', 'F17-UH01'):
+            data=copy.deepcopy(BASE)
+            data['v2_delivery_phases'][1]['story_ids'].append(sid)
+            self.assertTrue(any('selected V2 story' in e for e in validate_hierarchy(data,ROOT)))
+        data=copy.deepcopy(BASE)
+        data['v2_delivery_phases'][0],data['v2_delivery_phases'][1]=data['v2_delivery_phases'][1],data['v2_delivery_phases'][0]
+        self.assertTrue(any('scheduled later' in e for e in validate_hierarchy(data,ROOT)))
+
     def test_migrated_story_reads_behaviour_without_mutating_tracking(self):
         data=copy.deepcopy(BASE)
         story=next(f for f in data['features'] if f['id']=='F02')['stories'][0]
@@ -168,8 +177,9 @@ class PlanningRulesTest(unittest.TestCase):
         self.expect_error('Epic cannot close')
 
     def test_generated_views_schedule_only_remaining_v1(self):
-        # This fixture describes the replan's initial state, not live task progress.
+        # This fixture describes the old V1-only replan before selected V2 phases.
         data=copy.deepcopy(BASE)
+        data.pop('v2_delivery_phases',None)
         for feature in data['features']:
             if feature['id']=='F12':
                 feature['forecast_hours']=4
@@ -190,7 +200,7 @@ class PlanningRulesTest(unittest.TestCase):
         self.assertIn('Current next action: F07-UH01-T01',queue)
         for fid in ('F00','F06','F08','F09','F10','F11','F15'):
             self.assertNotIn(f'[{fid}-UH',queue)
-        self.assertIn('Frozen for V2',backlog['features/F15.md'])
+        self.assertIn('Other stories remain deferred',backlog['features/F15.md'])
         roadmap=renderer('render-roadmap')
         self.assertIn('Remaining V1 forecast 42 owner hours',roadmap['roadmap.md'])
         for fid in ('F00','F06','F08','F09','F10','F11','F15'):

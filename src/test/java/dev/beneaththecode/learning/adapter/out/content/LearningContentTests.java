@@ -20,9 +20,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class LearningContentTests {
 
 	@Test
-	void productionCatalogueContainsExactlyTheCompleteRealUnit() {
+	void productionCatalogueContainsTheReviewedUnitsAndControlFlowCandidate() {
 		var catalogue = new ClasspathCourseContentSource(getClass().getClassLoader()).load();
-		assertThat(catalogue.units()).extracting(LearningCatalogue.Unit::slug).containsExactly("source-to-jvm");
+		assertThat(catalogue.units()).extracting(LearningCatalogue.Unit::slug).containsExactly("source-to-jvm", "values-types-numeric-limits", "control-flow-tracing");
 		assertThat(catalogue.translations()).containsOnlyKeys("en", "es", "fr");
 		String expectedCode = null;
 		for (String language : LearningCatalogue.LANGUAGES) {

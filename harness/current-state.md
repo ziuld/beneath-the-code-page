@@ -1,5 +1,52 @@
 # Current handoff
 
+First selected V2 delivery accepted,2026-10-20: F17 maintenance and F15-UH01/UH02
+complete with explicit owner EN/ES/FR content/reading approval. Three units use
+existing ordered navigation. F15 stays planned/open for its five deferred stories,
+not active WIP or a complete course. Final refreshed Maven260+17/185 frontend,
+actual security0 findings/0 exceptions, policy20/planning23/strict15 PASS; full
+Chromium137 applies to unchanged lesson/runtime inputs. Preview stopped.
+Branch:planning/v2-delivery-sequence, based on merged main790b578. Scoped push and
+first PR explicitly authorised; use the attached GitHub PR for live publication
+and remote-CI state. Local evidence does not claim a remote pass. No merge,
+deployment, tag, registry publication or new OpenSpec archival authorised.
+Evidence:harness/evidence/V2-first-delivery-pr.md and the linked F17/F15 evidence.
+Next:F18 Learn-first page-by-page design prompts and owner-generated concepts;
+agreement precedes visual implementation. Other tools then F19/F20 follow ADR010.
+Actual effort remains unreported.
+
+## Earlier accepted delivery checkpoints
+
+F15-UH01 COMPLETE,2026-10-20: owner explicitly approved the EN/ES/FR content and
+reading-review request (“Approved continue”). All6 tasks complete; implementation
+b2e240760ac93d3b09acde88935debb4a7e35c0c. Maven258+17/185 frontend, Chromium131+affected6,
+security0 findings/policy20/planning23/strict15 PASS. No detailed owner observations
+invented. F15 remains in progress; UH02 control flow/tracing now active, T01 done,
+T02 in progress. Other5 stories stay deferred. No push/PR yet; first PR follows
+both selected lessons. The old preview will be replaced for the next review.
+Evidence:harness/evidence/F15-values-types-review.md.
+
+F17 COMPLETE,2026-10-20: full Maven257+17 Java/185 frontend, packaged
+health smoke, Chromium125/125, policy20/planning23 and strict15 main specs PASS.
+Boot4.1.1 retained; Tomcat11.0.27/Jackson BOM3.1.8 patches under ADR011. Fresh
+actual scan covers45 main sources and POM70/JAR60/npm166+5 packages:0 findings,
+0 blockers,0 active exceptions. Original F16 approval JSON preserved byte-for-byte
+in security/history/ with unchanged expiry; no fingerprint or approval renewed.
+Docs now distinguish accepted V1 history from selected V2. All4 tasks/story/feature complete; implementation commit e38cb17b48348d749b428b0d066dc893cf073d87.
+Evidence:harness/evidence/F17-security-maintenance.md. Next:F15-UH01.
+Branch:planning/v2-delivery-sequence, based on merged main790b578. No push/PR yet;
+first push/PR follows the two lessons. No UI/lesson changes or new owner acceptance.
+
+Selected V2 order (ADR010/plan.json): F17 maintenance → F15-UH01/UH02 → push/PR →
+F18 prompts/owner concepts/agreed design implementation page by page → F08–F11 →
+F19 final Firefox/WebKit/separate Safari → F20 Docker Desktop/second-PC handoff.
+F15-UH03–UH07 remain deferred. V1 acceptance and baseline estimates are preserved.
+
+## Historical handoffs — superseded status statements below
+
+The notes below record earlier checkpoints. Pending commits, archives, previews,
+pushes and the blanket V2 freeze are historical, not current instructions.
+
 F16 OpenSpec synced and archived,2026-10-20: owner explicitly requested archive
 and selected Sync now. Archive: openspec/changes/archive/2026-10-20-f16-mvp-website-polish-and-acceptance/.
 Added1 requirement/3 scenarios to learning-navigation, preserving all existing

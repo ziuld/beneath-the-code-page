@@ -2,13 +2,12 @@
 
 Public remote: https://github.com/ziuld/beneath-the-code-page. No push or settings changes are part of the planning delivery.
 
-V1 scope is governed by [ADR 007](../architecture/adr-007-focused-mvp.md): F06/F07
-JSON tools, complete retained website journeys and one learning unit. Use the
-existing packaged JAR and CI checks; Docker/Compose and container-specific work
-are frozen for V2. Historical bootstrap follow-ups below are not new frameworks
-or evidence that external repository settings have been configured.
+V1 is accepted and F16 merged. [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
+selects maintenance, two lessons, design, tools, final browser review and portable
+Docker handoff. The current JAR workflow remains supported. Historical bootstrap
+follow-ups are not evidence that external repository settings were configured.
 
-## Repository conventions to establish during F01
+## Repository conventions and historical F01 follow-ups
 
 Main branch, short feature branches such as `feature/F06-json-formatter`, PRs, squash merges, Conventional Commit-style titles, required checks, resolved discussions, real maintainer CODEOWNERS and dependency-update PRs. A solo owner must be able to merge; do not require impossible self-approval. Public visibility does not choose a licence; discuss code and brand/course licensing separately.
 
@@ -16,7 +15,7 @@ Add contributor guidance, security-reporting method with real contact, PR templa
 
 F01 closure disposition (2026-10-09): contributor guidance, CODEOWNERS and PR template are delivered. The owner accepted Java-baseline closure while retaining security-reporting guidance/contact, issue templates, dependency-update configuration and main protection/required-check enforcement as unfinished follow-ups. Their owner/next decisions are recorded in [risks and decisions](../planning/risks-and-decisions.md); closure does not claim these settings/deliverables exist.
 
-## CI jobs to implement
+## CI coverage and planned follow-ups
 
 | Job | Checks | Introduced |
 |---|---|---|
@@ -30,15 +29,14 @@ Pin action SHAs; default token read-only; no secrets/elevated token for untruste
 
 The initial Java workflow is integrated in `.github/workflows/java.yml`: real Maven verification, executable-JAR smoke and planning checks on PRs/main pushes, SHA-pinned actions, read-only token and no persisted checkout credentials. PR #1 proved actual pass/failure/restored-pass reporting; PR #2 integrated the wrapper checksum correction; both post-merge main runs passed. See [final acceptance](../../harness/evidence/F01-closure.md), [CI evidence](../../harness/evidence/F01-java-ci.md) and [contributor guidance](../../CONTRIBUTING.md). GitHub's non-failing Node.js 20 action-runtime warning and maintenance follow-up are recorded separately. No branch-protection or required-check setting has been changed. The F12 security steps below are now configured; configuration is not evidence of an actual remote CI run or a passing scan.
 
-## Remaining MVP browser gate
+## Browser verification
 
-Remaining MVP browser policy: [ADR 009](../architecture/adr-009-chromium-only-mvp-verification.md)
-requires Chromium only, including final F16 acceptance. Firefox/WebKit are optional
-post-MVP evaluation, not required CI steps. `.github/workflows/home-browser.yml`
-now runs the existing packaged Chromium suite only; their automatic steps are
-removed, while Playwright definitions/results are retained. This local edit does
-not establish a remote CI pass or change remote required-check settings. No pushes
-or CI runs are authorised here.
+[ADR009](../architecture/adr-009-chromium-only-mvp-verification.md) governed the
+accepted Chromium-only V1 gate. The existing home-browser workflow retains
+Chromium. ADR010 schedules final Firefox/WebKit and separate actual Safari review
+under F19, after design/tools; it does not claim those checks have run or silently
+add them to every intermediate feature. Push and the first PR are authorised after
+maintenance and the two lessons; no remote CI pass is inferred from local edits.
 
 ## F12 application security gate
 
@@ -76,19 +74,26 @@ must be present before the gate can finish successfully.
 database freshness and redacted finding identities/locations. The command does not
 print raw scanner output or store secret values/source excerpts in shared reports.
 Do not upload downloaded rules or raw scanner output. No blanket scanner ignore is
-used. `security/applicability.json` contains only the eight approved exact finding/
-package/version decisions for the reviewed Boot4.1.1 configuration, expiring on
-2026-11-01. Their source/packaged-code fingerprint must still match; changes require
-reassessment, not automatic renewal. Reports retain the original findings and the
-owner/reason/expiry. Secrets, SAST, unrelated findings and scanner failures remain
-blocking. Fix applicable findings; further dispositions require explicit approval.
+used. `security/applicability.json` applies no exceptions. Historical F16 decisions
+remain under `security/history/` with their original fingerprint and expiry;
+only the active file is loaded. ADR011 records the narrow patch overrides. Both
+POM and packaged-JAR inventories must match the selected Boot/Tomcat/Jackson
+versions. New or unresolved blocking findings stay blocking; any future bounded
+disposition requires actual reassessment and explicit owner approval.
 Never use `continue-on-error`, stale reports or
 empty scanner output as a substitute for a passing gate. Reuse applicable results
 for unchanged inputs; rerun only affected verification when inputs/data change.
 
-## V2 local container acceptance — deferred
+## Planned Docker Desktop handoff — F20
 
-Multi-stage pinned build/runtime images, Java 25, no Node runtime in final image, non-root, read-only root, tmpfs, no-new-privileges, dropped capabilities, CPU/memory limits, graceful shutdown. Compose app port binds 127.0.0.1 only. No DB/Redis/Docker socket/credential mounts. Separate unpublished health management endpoint; select a probe actually available in the image. Validate failing and recovering readiness, not just HTTP success once.
+Keep a single-app image and no Node runtime in the final image. Verify a non-root
+runtime, packaged assets, health, management isolation, safe local HTTP locale flow
+and graceful shutdown. Bind the published application port to loopback by default.
+Document build/run/stop and optional image save/load for another PC, supported CPU
+architectures and actual second-PC results. Compose is optional if useful; no
+DB/Redis, Kubernetes, cloud, Docker socket/credential mounts or automatic registry
+publication. Choose further container restrictions from actual runtime needs;
+this plan is not a claim that a container or image scan already passed.
 
 ## Operations baseline
 

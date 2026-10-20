@@ -50,10 +50,15 @@ def component_fixture(jar):
         catalogue = "BOOT-INF/classes/content/java-fundamentals/catalogue.properties"
         entries = [line.strip() for line in original.read(catalogue).decode().splitlines()
                    if line.strip() and not line.lstrip().startswith(("#", "!"))]
-        if entries != ["published-units=source-to-jvm"]:
-            raise RuntimeError("Expected exactly the real source-to-jvm production unit")
-        if not all(f"BOOT-INF/classes/content/java-fundamentals/{language}/source-to-jvm.md" in names
-                   for language in ("en", "es", "fr")):
+        if original.read(catalogue) != (ROOT / "src/main/resources/content/java-fundamentals/catalogue.properties").read_bytes():
+            raise RuntimeError("Packaged learning catalogue differs from current source")
+        if len(entries) != 1 or not entries[0].startswith("published-units="):
+            raise RuntimeError("Expected one explicit production publication list")
+        slugs = entries[0].split("=", 1)[1].split(",")
+        if len(set(slugs)) != len(slugs) or not all(re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug) for slug in slugs):
+            raise RuntimeError("Invalid production unit identities")
+        if not all(f"BOOT-INF/classes/content/java-fundamentals/{language}/{slug}.md" in names
+                   for language in ("en", "es", "fr") for slug in slugs):
             raise RuntimeError("Real unit locale resources missing from normal executable")
         for info in original.infolist():
             data = original.read(info)

@@ -2,13 +2,13 @@
 
 **EPIC-MVP: Beneath the Code — Phase 1 MVP**
 
-A complete secure SSR website with F06/F07 JSON tools and one complete Java Fundamentals learning unit in EN/ES/FR; additional tools and units are frozen for V2.
+Accepted V1 baseline: secure SSR website with F06/F07 JSON tools and one complete Java Fundamentals unit in EN/ES/FR. Selected V2 follow-ups are planned separately; they do not reopen or count toward V1 acceptance.
 
 This is the requested project hierarchy. UH means User Story. IDs are local planning identifiers, not created Jira issue keys. Product and enabling features both contain stories with explicit beneficiaries.
 
 Read [the epic](epic-mvp.md), then a feature below. Every story contains EARS requirements, tagged Gherkin scenarios and ordered tasks. The [execution queue](execution-order.md) shows the next steps.
 
-V2 entries are frozen reference backlog, excluded from V1 scheduling and acceptance.
+Selected V2 stories follow the delivery sequence below; other V2 stories remain deferred. V2 is excluded from historical V1 acceptance.
 
 | Feature | Release | Kind | Stories | Tasks | Baseline hours |
 |---|---|---|---:|---:|---:|
@@ -29,6 +29,26 @@ V2 entries are frozen reference backlog, excluded from V1 scheduling and accepta
 | [F14 — First complete learning unit](features/F14.md) | V1 | product | 2 | 11 | 18 |
 | [F15 — Complete Java Fundamentals](features/F15.md) | V2 | product | 7 | 42 | 84 |
 | [F16 — MVP website polish and acceptance](features/F16.md) | V1 | enabler | 2 | 11 | 20 |
+| [F17 — Security maintenance and current documentation](features/F17.md) | V2 | enabler | 1 | 4 | 8 |
+| [F18 — Page-by-page design agreement and implementation](features/F18.md) | V2 | enabler | 1 | 6 | 12 |
+| [F19 — Final Firefox, WebKit and Safari compatibility review](features/F19.md) | V2 | enabler | 1 | 4 | 8 |
+| [F20 — Portable Docker Desktop handoff and final closure](features/F20.md) | V2 | enabler | 1 | 4 | 8 |
+
+## V2 delivery sequence
+
+Only listed stories are selected for this sequence. F15-UH03 through UH07 remain deferred; completing the full course is not a release gate. Estimates are provisional owner hours, not deadlines. V1 acceptance remains historical; portable V1 handoff is an additional deliverable tracked in V2.
+
+| Phase | Selected stories | Forecast hours | Exit / checkpoint |
+|---|---|---:|---|
+| V2-P1 — Security maintenance and stale documentation | F17-UH01 | 8 | Current security findings and documentation verified; unresolved findings remain explicit. |
+| V2-P2 — Two additional Java lessons | F15-UH01, F15-UH02 | 24 | Values/types/numeric limits and control flow/tracing reviewed in EN/ES/FR. Then push the scoped changes and open the first PR; complete this checkpoint before design exploration. |
+| V2-P3 — Agree and implement the design page by page | F18-UH01 | 12 | Learn first, then course/unit, Tools/workspace and Home/shared shell. Owner-generated Nano Banana concepts and explicit agreement precede implementation. |
+| V2-P4 — Complete the remaining tools | F08-UH01, F09-UH01, F10-UH01, F11-UH01, F11-UH02 | 42 | Base64, UUID, JWT and bounded JSON/YAML conversion accepted individually after final design agreement. |
+| V2-P5 — Final frontend compatibility review | F19-UH01 | 8 | Chromium/Firefox/WebKit results and separate real Safari evidence or pending limitation; demonstrated defects triaged without false coverage claims. |
+| V2-P6 — Docker Desktop portability and final handoff | F20-UH01 | 8 | Single-app container and second-PC runbook verified; actual second-PC evidence and owner closure, or an explicit pending item. No automatic image publication or deployment. |
+
+Selected remaining V2 forecast: 70h + 14h contingency = 84 owner hours at 10h/week. Provisional capacity budget, not a delivery commitment. Zero actual hours means unreported effort.
+
 
 ## Ownership and progress
 
