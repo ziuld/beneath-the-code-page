@@ -8,7 +8,7 @@ Protect the public server-rendered application through explicit HTTP access rule
 
 ### Requirement: F04-UH02-R01 — Apply the documented response security policy
 
-When Beneath the Code serves an HTML page, it SHALL apply the documented response security policy. It SHALL allow only published GET/HEAD routes, required assets, health and CSRF-protected preference POST, deny other routes/methods, and permit necessary internal error dispatch. HTML and errors SHALL be non-cacheable and safe; non-local hashed public assets SHALL be immutable. Security handling SHALL NOT create sessions, login redirects or sensitive diagnostics.
+When Beneath the Code serves an HTML page, it SHALL apply the documented response security policy. It SHALL allow only published GET/HEAD routes and learning GET/HEAD lookups, required assets, health and CSRF-protected preference POST, deny other routes/methods, and permit necessary internal error dispatch. HTML and errors SHALL be non-cacheable and safe; non-local hashed public assets SHALL be immutable. Security handling SHALL NOT create sessions, login redirects or sensitive diagnostics.
 
 #### Scenario: F04-UH02-AC01 — Protect an ordinary page
 
@@ -30,7 +30,9 @@ When Beneath the Code serves an HTML page, it SHALL apply the documented respons
 - **WHEN** anonymous GET/HEAD requests target Home, required public assets, the approved logo or `/actuator/health`
 - **THEN** they remain available through the security filters without login redirects or JSESSIONID
 - **AND** only POST is allowed for `/preferences/language` and requires a valid CSRF token
-- **AND** unlisted routes, unpublished tools/learning pages, direct `/error` requests and other methods remain denied with safe 403 responses
+- **AND** unlisted routes outside the reserved learning shapes, unpublished tools, direct `/error` requests and other methods remain denied with safe 403 responses
+- **AND** GET/HEAD `/learn`, `/learn/java-fundamentals` and `/learn/java-fundamentals/{lessonSlug}` (one path segment only) reach publication-aware lookup; missing/unpublished content and an empty learning catalogue return safe localised 404 without exposing draft lessons
+- **AND** this exception does not allow `/learn/**`, arbitrary course paths, nested lesson paths or body-bearing learning methods
 - **AND** necessary internal error dispatch can render a safe error and the private asset manifest remains unavailable
 
 #### Scenario: Distinguish HTML and hashed-asset cache policies

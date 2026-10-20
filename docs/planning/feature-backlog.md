@@ -20,7 +20,7 @@ All future features and final F16 acceptance use the explicit keyboard/visual cr
 | F09 | V2 frozen — UUID Generator | Historical requirements retained; no V1 gate |
 | F10 | V2 frozen — JWT Decoder | Historical requirements retained; no V1 gate |
 | F11 | V2 frozen — JSON/YAML converters | Historical requirements retained; no V1 gate |
-| F12 | MVP JSON navigation/local runtime | Published Formatter/Validator/Minifier links only; unknown tool 404; reuse local JAR startup/health/shutdown and safe configuration; applicable application security evidence; no Docker prerequisite |
+| F12 | MVP JSON navigation/local runtime | Credit accepted three-tool catalogue and local JAR evidence without repeated tests/review; retain safe localised 403 for unknown tools; supply missing security blocking-gate evidence; one shared closure; no Docker prerequisite |
 | F13 | Learn pages and navigation | Learn landing, course overview and unit templates with breadcrumbs/return navigation; safe localised content resources; unknown/unpublished 404; synthetic single/multi-unit fixtures; production navigation waits for F14; no CMS/progress storage |
 | F14 | First complete learning unit | Short accepted unit brief; source→bytecode→JVM explanation, worked example, exercise and explanatory answer in EN/ES/FR; verified code, technical/language review and references/rights; no full-course syllabus gate |
 | F15 | V2 frozen — Additional Java Fundamentals units | Original seven remaining units retained as provisional backlog, not an approved complete syllabus or V1 gate |

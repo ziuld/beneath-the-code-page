@@ -11,7 +11,7 @@ bookkeeping preserved. Read F07 EARS/scenarios/tasks, change design/minifier del
 shared algorithm/protocol/session/workspace/templates and exact route mappings.
 
 Acceptance criteria: [F07 dossier](../../docs/planning/features/F07.md#f07-uh02)
-and [minifier delta](../../openspec/changes/f07-json-validator-and-minifier/specs/json-minifier/spec.md).
+and [archived minifier delta](../../openspec/changes/archive/2026-10-18-f07-json-validator-and-minifier/specs/json-minifier/spec.md).
 
 Implementation steps:
 1. Validate then concatenate original scanner token slices; add explicit operation.

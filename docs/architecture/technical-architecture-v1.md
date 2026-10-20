@@ -111,7 +111,7 @@ Maven Wrapper plus project-local frontend tooling and the existing packaged-JAR 
 
 Public remote is `ziuld/beneath-the-code-page`; protected main, short branches, PRs, squash, Conventional Commit-style titles, real CODEOWNERS, contribution/security guidance and dependency-update PRs. Public status does not settle licences for code, brand or course content.
 
-CI: retain static/type/i18n checks, frontend unit tests, Maven verification and packaged browser/privacy/CSP/keyboard/visual checks, with applicable dependency/secret/static-analysis evidence. Container build/scan and container-specific release artifacts are V2. Reuse existing checks, not a new release platform. Pin actions by SHA; read-only default token; no privileged untrusted PR execution; expiry/owner for exceptions. Full Chromium suite plus required Firefox/WebKit critical coverage. No deployment job. See `../delivery/repository-and-ci.md`; ADR 007 controls the revised V1 scope.
+CI: retain static/type/i18n checks, frontend unit tests, Maven verification and packaged browser/privacy/CSP/keyboard/visual checks, with applicable dependency/secret/static-analysis evidence. Container build/scan and container-specific release artifacts are V2. Reuse existing checks, not a new release platform. Pin actions by SHA; read-only default token; no privileged untrusted PR execution; expiry/owner for exceptions. Chromium is the sole required browser for remaining MVP features, PRs and final acceptance; Firefox/WebKit are optional post-MVP evaluation under ADR 009, not release gates. No deployment job. See `../delivery/repository-and-ci.md`; ADR 007 controls the revised V1 scope.
 
 ## 18. Observability
 

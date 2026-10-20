@@ -3,11 +3,18 @@ package dev.beneaththecode.platform.web.security;
 import dev.beneaththecode.platform.web.i18n.PreferenceCookiePolicy;
 import jakarta.servlet.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration(proxyBeanMethods = false)
 public class HttpBoundaryConfiguration {
+
+	@Bean
+	WebServerFactoryCustomizer<TomcatServletWebServerFactory> containerRejectionHeaders(PreferenceCookiePolicy cookies) {
+		return factory -> factory.addEngineValves(new ContainerRejectionHeaders(cookies));
+	}
 
 	@Bean
 	FilterRegistrationBean<PreferenceRequestBoundary> preferenceRequestBoundary(SafeHttpErrors errors) {

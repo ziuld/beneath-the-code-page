@@ -7,6 +7,9 @@ def markdown_documents(root):
     excluded = {'target', 'node_modules', '.git', '.mvn', 'reference'}
     for directory, children, files in os.walk(root, followlinks=False):
         children[:] = sorted(name for name in children if name not in excluded)
+        # Executable hostile Markdown samples are not authored documentation.
+        if Path(directory) == root / 'src/test/resources':
+            children[:] = [name for name in children if name != 'learning-fixture']
         for name in sorted(files):
             if name.endswith('.md'):
                 yield Path(directory) / name

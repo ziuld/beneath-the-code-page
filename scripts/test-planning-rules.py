@@ -67,12 +67,23 @@ class PlanningRulesTest(unittest.TestCase):
             root=Path(directory)
             names=['docs/authored.md','harness/evidence/result.md','.opencode/commands/apply.md',
                    'target/npm/readme.md','src/main/frontend/node_modules/pkg/README.md',
-                   '.mvn/cache/readme.md','.git/internal.md','docs/reference/source.md']
+                   '.mvn/cache/readme.md','.git/internal.md','docs/reference/source.md',
+                   'src/test/resources/learning-fixture/en/fixture-unit.md']
             for name in names:
                 path=root/name
                 path.parent.mkdir(parents=True,exist_ok=True)
                 path.write_text('[broken](absent.md)')
             self.assertEqual(set(names[:3]),{str(p.relative_to(root)) for p in markdown_documents(root)})
+    def test_markdown_scan_keeps_docs_adjacent_to_learning_fixtures(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'target') as directory:
+            root=Path(directory)
+            names=['src/test/resources/README.md', 'docs/learning-fixture/policy.md',
+                   'src/test/resources/learning-fixture/en/fixture-unit.md']
+            for name in names:
+                path=root/name
+                path.parent.mkdir(parents=True,exist_ok=True)
+                path.write_text('[unsafe](javascript:test)')
+            self.assertEqual(set(names[:2]),{str(p.relative_to(root)) for p in markdown_documents(root)})
     def setUp(self):
         self.data=copy.deepcopy(BASE)
         self.feature=self.data['features'][6]
@@ -155,6 +166,12 @@ class PlanningRulesTest(unittest.TestCase):
         # This fixture describes the replan's initial state, not live task progress.
         data=copy.deepcopy(BASE)
         for feature in data['features']:
+            if feature['id']=='F12':
+                feature['forecast_hours']=4
+                for story in feature['stories']:
+                    story['forecast_hours']=2
+                    for task,hours in zip(story['tasks'],(0.5,0.5,0.5,0.25,0.25),strict=True):
+                        task['forecast_hours']=hours
             if feature['id'] in {'F07','F12','F13','F14','F16'}:
                 for node in [feature]+feature['stories']+[t for s in feature['stories'] for t in s['tasks']]:
                     node.update(status='planned',blocker='',actual_start=None,actual_finish=None)

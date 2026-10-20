@@ -2,6 +2,10 @@
 
 Date: 2026-10-18. Status: accepted by the owner's explicit testing-scope instruction.
 
+Browser execution policy superseded on2026-10-19 by [ADR 009](adr-009-chromium-only-mvp-verification.md)
+for remaining MVP work. Historical test debt below is retained; Firefox/WebKit
+are no longer MVP gates.
+
 ## Context
 
 F07 Validator passes its clean build, Chromium94/94,Firefox48/48 and owner manual

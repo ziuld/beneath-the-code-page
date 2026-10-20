@@ -46,10 +46,10 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F11-UH01-R02 | [F11-UH01](features/F11.md#f11-uh01) | F11-UH01-AC02 | F11-UH01-T05 | Duplicate keys, unsupported numeric precision and output expansion tests; no JS-number round trip |
 | F11-UH02-R01 | [F11-UH02](features/F11.md#f11-uh02) | F11-UH02-AC01 | F11-UH02-T04 | Schema-specific mapping/list fixtures and quoted date-like strings |
 | F11-UH02-R02 | [F11-UH02](features/F11.md#f11-uh02) | F11-UH02-AC02 | F11-UH02-T05 | Aliases, custom tags, multiple documents, duplicate/non-string keys, non-finite and unsafe numbers |
-| F12-UH01-R01 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC01 | F12-UH01-T03 | Route traversal in EN/ES/FR and keyboard/accessible-name checks |
-| F12-UH01-R02 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC02 | F12-UH01-T04 | MockMvc status/error-body tests and captured-log sentinel checks |
-| F12-UH02-R01 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC01 | F12-UH02-T03 | Execute packaged-JAR startup, loopback/management isolation, actual health check and shutdown |
-| F12-UH02-R02 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC02 | F12-UH02-T04 | Review applicable dependency/secret/static-analysis evidence and unresolved findings; no container gate |
+| F12-UH01-R01 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC01 | F12-UH01-T03 | Accepted F06/F07 catalogue journeys and keyboard/accessible-name evidence; no repeat checks for unchanged pages |
+| F12-UH01-R02 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC02 | F12-UH01-T04 | Accepted deny-by-default security, EN/ES/FR safe-error and captured-log evidence; no runtime policy change or duplicate validation |
+| F12-UH02-R01 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC01 | F12-UH02-T03 | Accepted packaged-JAR smoke evidence and existing loopback configuration; no duplicate startup, health or shutdown run |
+| F12-UH02-R02 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC02 | F12-UH02-T04 | Supply only missing dependency/secret/static-analysis blocking-gate evidence; reuse accepted results and retain unresolved findings; no container gate |
 | F13-UH01-R01 | [F13-UH01](features/F13.md#f13-uh01) | F13-UH01-AC01 | F13-UH01-T03 | SSR/browser single-unit journey and keyboard checks; synthetic two-unit fixtures verify future previous/next boundaries |
 | F13-UH01-R02 | [F13-UH01](features/F13.md#f13-uh01) | F13-UH01-AC02 | F13-UH01-T04 | Unknown/unpublished slugs in EN/ES/FR; no persistence dependency |
 | F13-UH02-R01 | [F13-UH02](features/F13.md#f13-uh02) | F13-UH02-AC01 | F13-UH02-T03 | Verify EN/ES/FR fixture completeness and immutable resource rendering; real unit review belongs to F14 |

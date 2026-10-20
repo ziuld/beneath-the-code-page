@@ -33,8 +33,9 @@ class HomeSecurityTests {
 	void productionMapsRealToolsButNoPlaceholderDestinations() {
 		assertThat(mappings.getHandlerMethods().keySet().stream()
 				.flatMap(mapping -> mapping.getPatternValues().stream()).toList())
-				.contains("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier")
-				.doesNotContain("/tools/base64", "/learn", "/__asset-fixture", "/__editor-fixture");
+				.contains("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier",
+						"/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}")
+				.doesNotContain("/tools/base64", "/__asset-fixture", "/__editor-fixture");
 	}
 
 	@Test
@@ -53,10 +54,17 @@ class HomeSecurityTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/tools/missing", "/learn", "/__asset-fixture", "/asset-manifest.json", "/actuator", "/login", "/missing" })
+	@ValueSource(strings = { "/tools/missing", "/learn/other-course", "/__asset-fixture", "/asset-manifest.json", "/actuator", "/login", "/missing" })
 	void unpublishedAndUnlistedRoutesAreDenied(String path) throws Exception {
 		mvc.perform(get(path)).andExpect(status().isForbidden()).andExpect(header().doesNotExist("Location"));
 		mvc.perform(head(path)).andExpect(status().isForbidden());
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = { "/learn/java-fundamentals/draft", "/learn/java-fundamentals/fixture-unit", "/learn/java-fundamentals/missing" })
+	void unpublishedLearningContentRemainsMissing(String path) throws Exception {
+		mvc.perform(get(path)).andExpect(status().isNotFound());
+		mvc.perform(head(path)).andExpect(status().isNotFound());
 	}
 
 	@Test

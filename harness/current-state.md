@@ -1,5 +1,347 @@
 # Current handoff
 
+F14 OpenSpec synced and archived, 2026-10-20, at the owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-20-f14-first-complete-learning-unit/.
+Added two requirements/four scenarios to each existing learning-navigation and
+localised-learning-content main spec; existing titles/Purpose/requirements retained.
+Both delta bodies verified exactly; strict 13-spec validation PASS before move.
+All four artifacts/eight tasks complete; all six archived file hashes unchanged,
+including .openspec.yaml. Canonical status/behaviour ownership unchanged. No runtime,
+browser or security rerun, commit/push/release or F16 implementation. Separate
+archive/closure edits preserved. Evidence: harness/evidence/F14-openspec-archive.md.
+
+F14 COMPLETE,2026-10-19: implementation7ccc77338b7f88c2ae546822e1198ed6542a8d38
+contains43 scoped files; F07/F12/F13 archival/main-spec/task/evidence edits excluded
+and handoff staged selectively. Both stories/all11 tasks,OpenSpec8/8 done. One
+EN/ES/FR source-to-jvm unit, honest overview, same-page answer; baseline-JDK example
+and locale parity verified. Maven254+17 Java/185 frontend,Chromium125/125, owner
+review,18 policy tests and actual security gate PASS reused unchanged. Staged
+runtime/security/browser hashes match passing scan. Boot4.1.1 retained;8 visible
+exact CVE decisions expire2026-11-01, final V1 reassessment required. Chromium-only;
+Firefox/WebKit optional post-MVP. Home/shared Learn promotion off; nextF16 not
+started. Preview stopped; effort unreported. No push/remote CI/merge/release/spec
+sync/archive. Evidence F14-integrated-acceptance.md; earlier pending notes historical.
+
+F14 sign-off,2026-10-19: owner explicitly approved all3 requested items: EN/ES/FR
+content/page checklist, same8 bounded F14 decisions until2026-11-01, scoped local
+commits after passing gate(no push,archives excluded). No detailed manual notes
+supplied/invented. PreviewPID140430 verified and stopped(SIGTERM/exit143).
+Fingerprint f0114f9e…c1550a matched proposed scope; policy reference/fingerprint
+updated only.18 policy tests and actual gate PASS,44 source files,16 approved
+observations+4 medium,0 blockers;target/f14-approved-security.log. Reuse unchanged
+Maven254+17/185 frontend and Chromium125 results. OpenSpec7/8; closure in_review
+pending actual local implementation hash/bookkeeping. Existing archival edits
+preserved. Boot4.1.1 and expiry unchanged; Home/shared Learn promotion remains off.
+
+F14 implementation candidate,2026-10-19: owner approved brief; metadata/overview,
+EN/ES/FR real source-to-jvm lesson/diagram/exercise/answer and one-unit catalogue
+implemented. BaselineJDK25.0.4.1 verifies example/stale-class/recompile/failure
+caveat; all locale Java/shell blocks identical. Maven254+17 Java/185 frontend and
+Chromium125/125 PASS; logs target/f14-verified-candidate.log,f14-chromium.log.
+Explicit empty/draft/fixture tests retained; copied-JAR unique entries/digest pass.
+OpenSpec5/8. Preview RUNNING http://127.0.0.1:35291/learn?lang=en,PID140430,
+shell sh_152fae786001sMqLyX6OEFpN5I; stop after owner review. Real content/keyboard/
+translation/narrow/actual200%-zoom review pending. Security18 tests PASS; scan same8
+high/critical CVEs(no new findings),44 sources; gate correctly rejects old scope.
+Proposed same8 exact decisions/expiry2026-11-01 for new f0114f9e…c1550a fingerprint,
+await explicit approval; policy unchanged. Evidence F14-integrated-acceptance.md.
+Boot4.1.1/Chromium-only unchanged; no F16 promotion, commit/push or archival edits.
+
+F14 proposal ready,2026-10-19: f14-first-complete-learning-unit contains proposal,
+two learning-capability deltas,design and8 unchecked implementation tasks. Short
+source-to-JVM brief, two overview metadata fields, same-page answer/text diagram
+and real-unit/copied-fixture test transition planned;18h baseline/10h forecast,
+all11 canonical IDs preserved. Strict change validation/requirement-ID checks and
+whitespace PASS. Planning only: no code/content implementation, canonical status
+advance, security renewal, commit/push or main-spec sync. F14 remains planned;
+start apply only after a new user request. Chromium only; F16 promotion/V2 frozen
+scope unchanged. F07/F12/F13 archival edits remain separate and preserved.
+
+F13 OpenSpec synced and archived,2026-10-19, at owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-19-f13-learning-pages-and-navigation/.
+Created main learning-navigation(4 requirements/8 scenarios) and localised-learning-
+content(3/6), preserving delta Purpose/bodies exactly. Updated only F04-UH02-R01
+in secure-http-responses; existing title/Purpose/other requirement unchanged.
+All3 capabilities verified fully synced; strict13-spec validation PASS before
+move. All4 artifacts/6 tasks complete;7 files including .openspec.yaml unchanged
+by move. F13 remains accepted at0742b43/a64b7d2; canonical ownership/status unchanged.
+No new runtime/test/scan claim, commit/push or F14 implementation. F07/F12 archival
+edits preserved; this archive bookkeeping also remains local/uncommitted. Evidence
+harness/evidence/F13-openspec-archive.md.
+
+F13 COMPLETE,2026-10-19: local implementation0742b43815243f9539eef74fa934cfa2722795ee
+contains71 scoped files; separate F07/F12 archival/main-spec/task/evidence edits
+excluded, F13 handoff staged selectively. Both stories/all10 tasks and OpenSpec6/6
+done with actual commit reference. Maven243+17 Java/185 frontend,Chromium119/119,
+owner page approval,18 security tests and gate PASS reused for unchanged inputs;
+staged runtime/security/workflow hashes match reviewed scan. Boot4.1.1 unchanged;
+8 exact config-bound CVE decisions visible until2026-11-01, final reassessment
+required. Chromium-only MVP policy; Firefox/WebKit optional after MVP. Empty
+production catalogue/Learn promotion off. Next F14, not started. Owner effort
+unreported. No push/remote CI/merge/release/spec sync/archive. Evidence F13-integrated-
+acceptance.md; earlier incomplete/refusal handoffs historical and superseded.
+
+F13 local commit authorised,2026-10-19: owner "yes" to coherent local F13 commit
+excluding unrelated F07/F12 archival changes, no push. Stage implementation and
+reviewed evidence first, then record its actual hash for closure; no invented
+commit reference. Existing successful runtime/browser/security evidence reused.
+
+F13 security approval clarified,2026-10-19: owner explicitly "yes" to reassessed
+security configuration/same8 dispositions/expiry2026-11-01. Prior refusal superseded.
+Current fingerprint matches proposed36d5e839…a333; policy approval date/reference/
+fingerprint updated only.18 security tests and actual gate PASS;POM70/JAR60/npm166/
+e2e5,44 source files,16 approved observations+4 medium,0 blockers. Log
+target/f13-approved-security.log. Reuse unchanged Maven/Chromium119 results and
+owner review; preview stopped. OpenSpec5/6;F13/stories/closure tasks in_review,
+remaining item authorised coherent LOCAL F13 commit/reference required by planning
+rules. No commit authorised/made; do not reuse F07/F12 hash. Exclude unrelated
+archive edits, no push/publication. Boot4.1.1/expiry unchanged; production Learn off.
+
+F13 owner review,2026-10-19: owner "approved" directly after the preview checklist
+(Learn/course/unit EN/ES/FR,native locale/keyboard,narrow/actual200%-zoom). Record
+owner checklist approval only; no detailed observations supplied/invented. Task2.2
+and canonical UH01/UH02 T03/T04 complete;OpenSpec4/6. Preview PID92157 verified and
+sent SIGTERM; no longer needed. No suite/scanner rerun. Prior security refusal is
+NOT reversed: policy unchanged,task3.1/3.2 and feature/story closure remain blocked.
+Do not repeat unchanged security approval request. No commit/push/promotion.
+
+F13 continuation,2026-10-19: Chromium-only CI alignment implemented by removing
+only automatic Firefox/WebKit steps; exact baseline comparison PASS, optional
+projects retained. Reuse unchanged Maven/Chromium results; no suite/scanner rerun.
+Owner review preview RUNNING loopback-only at http://127.0.0.1:36773/learn?lang=en,
+PID92157,shell sh_152d16a48001aeFah2NYFyKMDg,log target/f13-owner-review-server.log.
+Copied fixture only; normal-JAR digest unchanged;3 readiness GETs PASS. Owner must
+review Learn/course/unit EN/ES/FR, keyboard/native locale, narrow/actual200%-zoom;
+no observation invented. Stop preview after review. OpenSpec3/6,task2.2 still
+unchecked. Declined security approval remains unchanged/blocking; no repeat ask,
+gate bypass, commit/push or production promotion. Evidence F13-integrated-acceptance.md.
+
+Owner project-wide browser policy,2026-10-19 (ADR009): Chromium is the only required
+browser for ALL remaining MVP work(F13/F14/F16), PR verification and final MVP
+acceptance. Firefox/WebKit are optional evaluation AFTER the MVP, not pending
+project-end gates. Preserve test definitions/results/known issues; do not run,
+repair or install dependencies for optional engines. This supersedes earlier
+final-project deferral instructions. Other Java/frontend/privacy/security/manual
+gates unchanged; declined F13 security approval still blocks acceptance. Quality/
+architecture/remaining canonical plan and F13 proposal/design/tasks updated.
+CI alignment is queued in F13 task2.2: existing automatic Firefox/WebKit workflow
+steps still need removal during apply; no implementation/CI change made in this
+planning update. No tests rerun or tasks marked complete due to the policy alone.
+
+Owner decision,2026-10-19: declined the proposed F13 security fingerprint update.
+Keep security/applicability.json unchanged; no replacement approval, waiver,
+dependency upgrade or gate bypass is authorised. F13 security/final acceptance
+remain blocked; the pending proposal below is now declined, not awaiting a retry.
+Do not request the same approval again without a changed proposal or owner prompt.
+Manual new-page review remains outstanding; Firefox/WebKit stay deferred to final
+project verification. No runtime or scanner change made for this decision.
+
+F13 security reassessment,2026-10-19: continuing under owner's Chromium-only interim
+schedule; Firefox/WebKit pending final project verification, not an interim gate
+or waiver. No browser rerun. Pinned scanners installed locally;18 policy tests PASS.
+Actual scan POM70/JAR60/npm166/e2e5;Semgrep44/44,no findings;secrets none;CommonMark
+0.30.1 explicitly inventoried with0 advisory matches. Same8 high/critical CVEs as16
+POM/JAR observations,2 medium CVEs as4. Fresh databases. Gate correctly exit1/
+incomplete invalid-applicability-scope: F12 approval does not cover changed F13.
+All8 CNA prerequisites reviewed against learning/headers/current sources; proposed
+same exact decisions until2026-11-01, new candidate fingerprint recorded in
+F13-integrated-acceptance.md#proposed-bounded-f13-approval. Approval pending; policy
+unchanged. OpenSpec3/6; next owner bounded-security approval, then gate rerun;
+new-page narrow/actual200%-zoom manual review and closure pending. No Boot upgrade/
+fingerprint renewal/commit/push. Earlier WebKit-only interim blocker superseded.
+
+Owner verification scheduling decision,2026-10-19: run Chromium only for upcoming
+interim tasks. Defer Firefox and WebKit execution to final project verification;
+keep those checks pending, not waived or marked complete. Retain existing passing
+Firefox evidence. Do not repeat local WebKit installation attempts or install
+system dependencies under this scheduling instruction. This supersedes earlier
+handoff instructions to resolve WebKit before continuing interim work; it does
+not establish final acceptance or waive manual review/security requirements.
+
+F13 container correction,2026-10-19: owner approved; narrow Tomcat engine valve
+reuses existing header policy for already-rejected/unmapped URI requests. Slash
+rejection/Boot4.1.1 unchanged. Maven verify PASS(243+17 Java,185 frontend);
+Chromium119/119 and Firefox73/73 PASS, original malformed-path tests retained.
+Logs target/f13-container-{verify,chromium,firefox}.log. WebKit install attempted:
+3 API cases pass,70 cannot launch due to known missing libicu74/libxml2/libflite1;
+target/f13-container-webkit.log. No system install or coverage waiver. OpenSpec3/6
+(1.1,1.2,2.1), UH01-T02 done; browser task2.2 blocked pending supported-runner
+WebKit and owner new-page narrow/actual200%-zoom review. Security reassessment/
+fingerprint approval and closure pending. No commit/push/remote CI or production
+Learn promotion. Evidence F13-integrated-acceptance.md; earlier failures superseded.
+
+F13 tooling continuation,2026-10-19: authorised fixes applied; explicit HTML Accept
+and narrowly excluded executable learning Markdown fixtures from document checks.
+22 planning-rule tests/integrity PASS. Existing --install restored project-local
+Chromium without sudo. Browser116/119 PASS, including all6 EN/ES/FR learning
+JS/no-JS journeys and110 retained regressions.3 malformed-path cases FAIL because
+Tomcat's encoded-slash400 bypasses application filters and lacks no-store; trace
+confirms ordinary404/double-encoded-dot400 retain headers. Keep assertion and
+encoded-slash denial. Pause before runtime container-boundary correction, which
+is beyond approved tooling/test fixes. Log target/f13-chromium-restored-browser.log;
+evidence F13-integrated-acceptance.md. OpenSpec2/6; Firefox/WebKit, owner new-page
+review and security reassessment pending. No Boot change/fingerprint renewal/
+commit/push. Prior missing-browser/HTML-header/planning-fixture pauses superseded.
+
+F13 SSR/renderer continuation,2026-10-19: URL allowlist fix approved and passes;
+three SSR pages, EN/ES/FR labels, exact preference returns/routes/log categories
+implemented. Clean verify PASS:243 Surefire+17 Failsafe,185 frontend tests;
+target/f13-clean-verify.log. OpenSpec2/6 (1.1,2.1), UH02-T02 done, UH01-T02 still
+in progress. Copied-JAR learning resources and three-engine suite added. Chromium
+runner FAIL:116/119 cases cannot launch after clean removed browser cache;3 API
+cases request default JSON but assert HTML (missing Accept header). No browser
+pass claimed. Proposed existing --install plus explicit HTML Accept test fix;
+pause before correction under apply rule. Firefox/WebKit/manual new-page review/
+security reassessment pending. Boot4.1.1 unchanged; no fingerprint renewal,
+commit/push or archival changes. Evidence F13-integrated-acceptance.md supersedes
+earlier pauses. Existing F07/F12 archives preserved. Planning integrity also flags
+nine deliberately unsafe Markdown fixture links as broken documentation links;
+needs narrow fixture/document distinction, not removal of hostile test cases.
+21 planning-rule tests, strict F13 validation and whitespace PASS; views regenerated.
+
+F13 renderer safety pause,2026-10-18: owner approves simplest catalogue→renderer→
+SSR ordering; prerequisite/checklist/design updated, IDs/effort unchanged. Added
+CommonMark0.30.1 and renderer core with HTML escaping, URL sanitisation and AST
+image rejection. Focused Maven26 cases:25 pass/1 fail, default sanitizer retains
+data:text/html link. Log target/f13-renderer-tests.log. Installed library exposes
+DefaultUrlSanitizer(Collection); propose explicit http/https/mailto schemes, no new
+dependency/custom sanitizer, retain failing assertion. Pause before correction per
+apply rule. OpenSpec1/6, F13/UH02/T02 blocked, SSR/browser/manual not run; Boot4.1.1
+unchanged, security fingerprint not refreshed. Existing archives intact; no commit/
+push. Evidence F13-integrated-acceptance.md. Earlier sequencing-only pause resolved.
+
+F13 apply started/sequencing pause,2026-10-18: OpenSpec1/6 complete. Immutable
+catalogue/query/content-source port and UTF-8 classpath loader delivered; normal
+published list empty, no Learn promotion.11 focused Java tests pass (Maven test,
+not full verify),21 planning rules/integrity/whitespace pass; views regenerated.
+UH02/T01 prerequisite refined as planned to UH01-T02, but inspection confirms
+that whole SSR task still gates the safe renderer required by final SSR. Pause
+before SSR for approval to render after the verified catalogue and before finishing
+SSR; no temporary renderer or premature task completion. UH01-T01 done,T02 in
+progress; no story/feature acceptance. Boot4.1.1 unchanged, no security-fingerprint
+refresh, commit/push or archive changes. Evidence F13-integrated-acceptance.md;
+test log target/f13-catalogue-tests.log. Existing F07/F12 archives preserved.
+
+F12 OpenSpec synced and archived,2026-10-18, at owner's request and selected
+Sync now. Archive: openspec/changes/archive/2026-10-18-f12-mvp-navigation-and-local-runtime/.
+New main supply-chain-verification spec preserves delta Purpose and3 requirements/
+5 scenarios; exact canonical comparison and strict11-spec validation pass before
+move. All4 artifacts/5 tasks complete; metadata preserved; no active changes.
+Task-record path updated; canonical behaviour ownership/status unchanged. F12
+remains accepted at71aeefc/cfd8d14, Boot4.1.1 unchanged, bounded decisions still
+expire2026-11-01 and invalidate on config changes. No new runtime/test/scan claim,
+commit/push/release; F07 archival edits intact. Archive bookkeeping local/uncommitted.
+Evidence harness/evidence/F12-openspec-archive.md. Next F13 not started here.
+
+F12 COMPLETE,2026-10-18: owner continued after the sole remaining coherent-commit
+item; local implementation71aeefc contains verified scanner/CI/policy/test/runbook
+and evidence.18 security+21 planning tests, actual gate and strict OpenSpec pass;
+committed executable/policy/lock/workflow hashes match the passing report. Both
+stories/all10 canonical tasks and OpenSpec5/5 done; final renderers, planning
+integrity,21 rule tests,strict OpenSpec/whitespace pass; apply state all_done.
+Boot4.1.1/runtime unchanged;8 CVEs remain visible under exact config-bound owner
+decisions until2026-11-01,16 annotated observations,0 remaining blockers;2 medium
+CVEs visible. Reassess on server/config changes and final V1 acceptance. Actual
+effort unreported. Next F13 not started. No push/remote CI/merge/release/sync/archive
+claimed; separate F07 archival edits preserved and excluded from F12 commits.
+Earlier pending/blocked F12 handoffs below historical. Final closure documentation
+follows the implementation commit; no new runtime or test changes.
+
+F12 bounded policy verified,2026-10-18: owner "then can you continue?" follows
+the explicit eight-finding proposal; implement that scope, expiry2026-11-01 UTC,
+with exact CVE/package/version and source+packaged-server fingerprint. Boot4.1.1
+unchanged.18 policy tests pass; actual full gate exit0/pass with all8 CVEs retained
+as16 annotated observations,0 remaining blockers and2 medium CVEs also visible.
+POM69/JAR59/npm166/e2e5;Semgrep35/35,no findings;secret scan none;DBs fresh.
+No runtime/build/browser/manual rerun. UH01 done against accepted770aa98;
+UH02/T04 done, UH02/T05+F12 in review pending a real coherent security commit;
+OpenSpec remains4/5 (3.2 pending), not falsely done using the F07 hash for new code.
+No further review task or version upgrade invented. No commit/push/release/sync/
+archive. Earlier blocked/pending-approval notes below superseded; evidence and
+redacted report record the exact policy/result. Existing F07 archival work intact.
+
+F12 version retained/triage complete,2026-10-18: owner keeps Boot4.1.1 through app
+completion unless genuinely blocked. No dependency edits. Advisory/source review
+and actual scan task3.1 complete; OpenSpec4/5, not feature acceptance. Prepared
+eight exact finding/version-specific applicability proposals in integrated
+evidence, expiry proposed2026-11-01 with configuration-change invalidation.
+Approval pending; keeping the version is not interpreted as risk acceptance.
+Gate still blocks all8, F12/UH02/T04 remain open/blocked;3.2 pending. No new
+build/browser/manual/scan run, exception, commit/push/release or F07 archive edits.
+
+F12 managed-upgrade investigation,2026-10-18: owner authorised recommended
+advisory-led stable Boot patch approach. CNA records confirm8 blocking affected
+versions; Tomcat fixes11.0.25, Jackson remaining3.1 fixes newer than3.1.6. Maven
+Central latest stable4.1 is4.1.1;4.1.2 BOM404.4.0.8 manages same11.0.24/3.1.5,
+so downgrade not a fix;4.2 milestones not selected. Source-level prerequisites
+not configured (no container FORM/DIGEST/constraints or untrusted typed-Jackson
+input/polymorphism/identity bindings); this is not an approved exception. No POM,
+dependency override, code/build/scan change. Evidence F12-integrated-acceptance.md
+contains authoritative sources/applicability table. F12 still blocked,3/5 tasks;
+await suitable stable managed release or explicit temporary-disposition decision.
+No new publication/commit/push or F07 archive changes.
+
+F12 inventory corrected/security findings pause,2026-10-18:3/5 OpenSpec tasks done
+(1.1,2.1,2.2). Authorised diagnosis confirms Trivy filesystem skips JARs; added
+local rootfs JAR scan without fs-only dev flag, retaining both Java requirements.
+13 policy tests pass. Actual candidate completes all scans: POM69 unique package
+names,JAR59,npm166/e2e5;Semgrep35/35 source files,no findings/errors;secret scan
+none;both DBs fresh. Gate correctly exits1/blocked on8 unique reported CVEs:
+Tomcat11.0.24 three critical;Jackson3.1.5 five high,each observed in POM+JAR.
+Two medium CVEs also retained. No exploitability/exception/fixed-version claim,
+dependency change or application-test rerun. Pause under apply blocker rule for
+advisory triage/remediation guidance; F12/UH02/T04 blocked,3.1/3.2 open. Earlier
+inventory-only blocker superseded. Evidence F12-integrated-acceptance.md;report
+target/security/summary.json. No commit/push/release; F07 archive work preserved.
+
+F12 security apply paused,2026-10-18:2/5 OpenSpec tasks complete (1.1,2.2).
+Owner-approved Python hashlib correction succeeds. Pinned project-local
+Trivy0.76.0/Semgrep1.181.0/uv0.13.1 installed; hashed Python lock/rules, fixed
+fail-closed command,10 passing policy tests and existing-Java-CI integration/runbook
+delivered. Actual synthetic secret+Java/TS findings/redaction and invalid-config
+failure propagation pass. Candidate gate exits1/incomplete-java-inventory on dirty
+3635912; npm checks reached, Java/JAR inventory and later application-source scans
+not established. No clean scan, remote CI or new application-test claim. UH02/T04
+blocked;2.1/3.1/3.2 unchecked. Inspect returned Java inventory before correction;
+pause under apply error rule, no weakened assertion. Evidence F12-integrated-
+acceptance.md; redacted result target/security/summary.json. Prior checksum-only
+pause below superseded; F07 archive preserved, no commit/push/sync/archive/release.
+
+F12 apply paused,2026-10-18: change f12-mvp-navigation-and-local-runtime,1/5 tasks
+complete. Task1.1 aligns canonical unknown-tool R02/AC02 with accepted safe403;
+runtime/CSP/allowlist unchanged, existing error evidence reused. Both renderers,
+planning integrity,21 rule tests and whitespace passed before task completion.
+Task2.1 read-only rule-metadata helper failed because Code Mode lacks
+crypto.subtle.digest; owner error rule requires pause. Proposed Python hashlib
+correction awaits guidance. No scanner installation/security implementation/CI
+edits or new application tests. Existing F07 archive and prior planning changes
+preserved. F12/stories open; UH01-T04 done,remaining security/closure uncompleted.
+Evidence: harness/evidence/F12-integrated-acceptance.md. No commit/push/release.
+
+F12 planning simplified,2026-10-18, at the owner's request: credit accepted F06/F07
+catalogue/locale/keyboard and existing documented loopback JAR smoke evidence;
+six task records done by inspection/evidence reuse, not new application test runs.
+Stable IDs and14h baseline retained; forecast4h→2h. No repeat build, browser/manual
+review, runtime launcher or separate management server. Only UH01-T04 (404/403
+requirement conflict) and UH02-T04 (missing security blocking-gate evidence) remain,
+plus two tracking entries served by one combined closure record. UH02 depends on
+F07 directly. F12/stories remain open; next task UH01-T04. No runtime/OpenSpec edits,
+commit/push or release; existing F07 archival changes preserved. See
+harness/evidence/F12-simplification.md for inherited evidence and validation results.
+Earlier statements that every F12 task is unstarted are historical.
+
+F07 OpenSpec synchronised and archived,2026-10-18, at the owner's explicit request
+and selected "Sync now" option. Archive:
+openspec/changes/archive/2026-10-18-f07-json-validator-and-minifier/.
+New main json-validator(4 requirements)/json-minifier(5) specs preserve delta Purpose
+and scenarios; Formatter catalogue requirement updated with prior content intact.
+All artefacts and14/14 tasks complete; exact post-sync comparisons and strict10-spec
+validation pass before moving. Canonical plan behaviour ownership unchanged (ADR004);
+no code/runtime change or new test claim. F07 remains done with3 documented WebKit
+TODOs; F12 next,unstarted. Archive changes local/uncommitted; no archive commit/push,
+merge or release inferred. See harness/evidence/F07-openspec-archive.md.
+Earlier no-sync/no-archive statements below historical and superseded.
+
 F07 COMPLETE,2026-10-18: Validator+Minifier accepted, final three-tool catalogue at
 770aa98. Ubuntu Java39117056490/browser39117056486 SUCCESS: clean Maven185 frontend,
 207 Java(three existing architecture skips),17 packaged; Chromium110,Firefox64,

@@ -28,13 +28,13 @@ ADR 007 explicitly replaces the old all-tools/full-course exits. M4 does not req
 
 | Stage | Provisional owner hours | Bounded outcome |
 |---|---:|---|
-| F07 | 10 | Reuse strict JSON processing/editor/worker for validation and minification |
-| F12 | 4 | Integrate published JSON catalogue and verify existing local JAR workflow |
+| F07 | Accepted | Validator, Minifier and three-tool catalogue accepted; no remaining work |
+| F12 | Accepted | Catalogue/JAR evidence reused; security gate accepted with bounded dispositions, Boot4.1.1 unchanged |
 | F13 | 10 | Learn landing, course overview, unit navigation and safe local content rendering |
 | F14 | 10 | Short unit brief and one complete reviewed EN/ES/FR unit |
 | F16 | 8 | Shared-page polish, retained regression and concise local handoff |
 
-Total: **42h + 8.4h contingency = 50.4h**, approximately six capacity weeks, not a calendar promise. Forecasts roll up from tasks and preserve the original baseline. Review after each slice; content/translation review and integrated defects may exceed the allowance. F13 depends on F07, not F12 or deferred tools; F16 requires F12 and F14. Work remains serial in the order above.
+Remaining total: **28h + 5.6h contingency = 33.6h**, approximately four capacity weeks, not a calendar promise. F07/F12 are accepted; F12 retained its revised 2h forecast and original14h baseline without repeating accepted work. Actual effort remains unreported. Forecasts roll up from tasks and preserve the original baseline. Review after each slice; content/translation review and integrated defects may exceed the allowance. F13 depends on F07, not F12 or deferred tools; F16 requires F12 and F14. Work remains serial in the order above.
 
 F13 verifies page infrastructure with synthetic content fixtures; F14 supplies the real reviewed unit. F16 enables production Learn navigation during integration once that unit is ready. This avoids making infrastructure closure depend on later content or exposing empty learning pages.
 
@@ -42,7 +42,7 @@ F13 verifies page infrastructure with synthetic content fixtures; F14 supplies t
 
 `plan.json` is the single source for the Epic → Feature → UH → Task hierarchy, EARS requirements, Gherkin scenarios, verification mappings, owners, estimates, dependencies, status, actual effort, dates and evidence. The generated dashboard, Gantt and detailed story reader are views. They do not write progress automatically or sync GitHub. Update them after each work session or accepted PR. Start with [the hierarchy](hierarchy.md) and [execution rules](story-workflow.md).
 
-States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Feature `release` is V1 or V2 (legacy completed features default to V1). V2 is frozen reference backlog, not a technical blocker. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may uncover work; `done` requires linked evidence and accepted children. Next eligible task: F07-UH01-T01; replanning does not start implementation.
+States: `planned`, `ready`, `in_progress`, `blocked`, `in_review`, `done`. Feature `release` is V1 or V2 (legacy completed features default to V1). V2 is frozen reference backlog, not a technical blocker. One feature and one leaf task in progress at a time. Mark ready only once prerequisites are done. Review may uncover work; `done` requires linked evidence and accepted children. F12 is done at implementation commit71aeefc, with Boot4.1.1 unchanged and eight configuration-bound applicability decisions expiring2026-11-01. Reassess them when server configuration changes and at final V1 acceptance. Next eligible task is F13-UH01-T01; F13 is not started by F12 closure.
 
 Progress indicators count V1 only: accepted features / V1 features, and accepted baseline hours / V1 baseline hours. These are scope-weighted acceptance indicators, not actual effort or evidence of increased productivity. Frozen V2 appears separately. Preserve baseline estimates; show actual effort and remaining forecast separately.
 

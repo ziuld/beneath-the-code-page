@@ -32,6 +32,8 @@ public class PublicPageSecurity {
 				.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
 				.requestMatchers(HttpMethod.GET, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
 				.requestMatchers(HttpMethod.HEAD, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
+				.requestMatchers(HttpMethod.GET, "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}").permitAll()
+				.requestMatchers(HttpMethod.HEAD, "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}").permitAll()
 				.requestMatchers(HttpMethod.POST, "/preferences/language").permitAll()
 				.anyRequest().denyAll())
 				.formLogin(AbstractHttpConfigurer::disable)

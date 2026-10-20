@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title}"></title>
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
+<body>
+<nav th:fragment="breadcrumbs" th:aria-label="#{learning.breadcrumbs}">
+    <ol class="learning-breadcrumbs">
+        <li><a th:href="@{/learn(lang=${language})}" th:text="#{learning.title}"></a></li>
+        <li><a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="${course.title}"></a></li>
+    </ol>
+</nav>
+</body>
+</html>

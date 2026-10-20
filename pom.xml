@@ -32,8 +32,14 @@
 		<frontend-maven-plugin.version>2.0.2</frontend-maven-plugin.version>
 		<node.version>v24.21.0</node.version>
 		<npm.version>11.21.0</npm.version>
+		<commonmark.version>0.30.1</commonmark.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>${commonmark.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>com.tngtech.archunit</groupId>
 			<artifactId>archunit</artifactId>
