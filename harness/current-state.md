@@ -1,5 +1,15 @@
 # Current handoff
 
+F16 OpenSpec synced and archived,2026-10-20: owner explicitly requested archive
+and selected Sync now. Archive: openspec/changes/archive/2026-10-20-f16-mvp-website-polish-and-acceptance/.
+Added1 requirement/3 scenarios to learning-navigation, preserving all existing
+content/title/Purpose; created local-release-handoff(2/2) and mvp-acceptance(2/3)
+with delta Purpose/bodies verbatim. All3 fully synced; strict15 main specs PASS
+before move; all4 artifacts/10 tasks complete. All7 file hashes incl.openspec.yaml
+unchanged by move. F16/epic acceptance, canonical ownership/status/effort unchanged.
+Archive bookkeeping remains local/uncommitted; no runtime/browser/security rerun,
+commit/push/deployment. Evidence: harness/evidence/F16-openspec-archive.md.
+
 F16 COMPLETE,2026-10-20: implementation3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608;
 runbook/handoff tested from clean checkout a6ed966ec2a03548bca8100b5054b0f0c93de127.
 Both stories/all11 canonical tasks/OpenSpec10of10 complete; all retained V1

@@ -11,7 +11,7 @@ architecture/feasibility, F16 EARS/scenarios/canonical tasks and all OpenSpec
 artifacts; existing navigation/templates/tests, quality/security and local runbooks.
 
 Acceptance criteria: docs/planning/features/F16.md and proposed capability deltas
-in openspec/changes/f16-mvp-website-polish-and-acceptance/specs/. Canonical
+in openspec/changes/archive/2026-10-20-f16-mvp-website-polish-and-acceptance/specs/. Canonical
 behaviour ownership remains unchanged until a separate authorised migration.
 
 Implementation steps: catalogue-aware shared promotion → EN/ES/FR link integration
@@ -37,3 +37,8 @@ tasks and OpenSpec10/10 complete; retained V1/epic done, V2 frozen. Servers stop
 Open issues and next action: no unresolved V1 acceptance task. Future public
 publication, extra V2 work, optional browsers and OpenSpec sync/archive require
 their own authorised workflow. Security decisions retain their fixed expiry.
+
+Archive follow-up,2026-10-20: owner requested /opsx-archive and selected Sync now.
+Three capability deltas fully synced, strict15 main specs PASS, all7 archived
+files unchanged by move. See harness/evidence/F16-openspec-archive.md. Canonical
+status/behavioural ownership unchanged; no new commit/push/deployment.
