@@ -1,6 +1,6 @@
 # Task — F15 selected Java lessons
 
-Status / owner / date: F15-UH01 accepted; F15-UH02 in progress / Ziuld with AI / 2026-10-20.
+Status / owner / date: selected F15-UH01/UH02 complete; other five stories deferred / Ziuld with AI / 2026-10-20.
 
 Authorised outcome: ADR010 selects only F15-UH01 values/types/numeric limits and
 F15-UH02 control flow/tracing. Other five stories stay deferred. First push/PR
@@ -40,3 +40,7 @@ security0 findings/0 exceptions, policy20/planning23/strict15 PASS. T05 actual
 EN/ES/FR review pending; evidence:harness/evidence/F15-control-flow-review.md.
 Preview41511/PID188609/session43863. After approval close the selected story and
 prepare the authorised first push/PR, keeping the other5 F15 stories deferred.
+
+Owner explicitly approved UH02 on2026-10-20. All selected tasks are complete;
+final handoff and first push/PR follow. Original feature stays open/planned for
+deferred stories, freeing WIP for the next selected feature. No bulk course closure.

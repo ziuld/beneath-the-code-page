@@ -1,16 +1,21 @@
 # Current handoff
 
-F15-UH02 candidate,2026-10-20: control-flow/tracing local draft complete in
-EN/ES/FR; three-unit catalogue uses existing native navigation. Maven260+17 Java/
-185 frontend, Chromium137/137, security0 findings/0 exceptions, policy20/planning23/
-strict15 PASS. All12 F15 Java blocks run across3 locales plus4 terminating boundary
-variants. CSS zoom automated only; new actual owner content/reading review pending.
-UH02 T01–T04 done,T05 in progress,T06 planned. F15 stays partial; other5 stories
-are deferred. First push/PR follows approval/closure of this second selected unit.
-Preview RUNNING http://127.0.0.1:41511/learn/java-fundamentals/control-flow-tracing?lang=en
-PID188609/session43863; loopback/local-profile. Old preview is stopped. Evidence:
-harness/evidence/F15-control-flow-review.md. No new UH02 commit/push/PR yet.
+First selected V2 delivery accepted,2026-10-20: F17 maintenance and F15-UH01/UH02
+complete with explicit owner EN/ES/FR content/reading approval. Three units use
+existing ordered navigation. F15 stays planned/open for its five deferred stories,
+not active WIP or a complete course. Final refreshed Maven260+17/185 frontend,
+actual security0 findings/0 exceptions, policy20/planning23/strict15 PASS; full
+Chromium137 applies to unchanged lesson/runtime inputs. Preview stopped.
+Branch:planning/v2-delivery-sequence, based on merged main790b578. Scoped push and
+first PR explicitly authorised; use the attached GitHub PR for live publication
+and remote-CI state. Local evidence does not claim a remote pass. No merge,
+deployment, tag, registry publication or new OpenSpec archival authorised.
+Evidence:harness/evidence/V2-first-delivery-pr.md and the linked F17/F15 evidence.
+Next:F18 Learn-first page-by-page design prompts and owner-generated concepts;
+agreement precedes visual implementation. Other tools then F19/F20 follow ADR010.
+Actual effort remains unreported.
 
+## Earlier accepted delivery checkpoints
 
 F15-UH01 COMPLETE,2026-10-20: owner explicitly approved the EN/ES/FR content and
 reading-review request (“Approved continue”). All6 tasks complete; implementation

@@ -1,6 +1,6 @@
 # F15-UH02 — Control flow and tracing review candidate
 
-Date:2026-10-20. Current status: owner-approved; local closure/commit in progress.
+Date:2026-10-20. Current status: owner-approved and closed; see acceptance/commit records below.
 Earlier pending-review statements describe the candidate checkpoint.
 Prerequisite UH01 was explicitly approved (“Approved continue”) and closed with
 implementation b2e2407 (full identity in the first lesson evidence); closure records
@@ -92,3 +92,10 @@ reading/navigation review request. This accepts F15-UH02 only; no detailed
 observations are supplied or invented. T05 is complete. T06 records the scoped
 local implementation commit and final integration review before the authorised
 push/PR. The other five F15 stories remain deferred, not completed.
+
+F15-UH02 CLOSED: all6 tasks complete; implementation commit `2f3abf373ec0261654703ec84b5f8176f53adcc6`.
+Selected F15-UH01/UH02 accepted; feature stays planned for its deferred five
+stories, not done and not active WIP. First push/PR is authorised now.
+
+Final acceptance/package refresh and PR handoff:see [first V2 delivery](V2-first-delivery-pr.md).
+Reviewed preview stopped; earlier running/pending statements are historical.

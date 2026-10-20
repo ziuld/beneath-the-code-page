@@ -5479,11 +5479,14 @@
       "depends_on": [
         "F14"
       ],
-      "status": "in_progress",
+      "status": "planned",
       "blocker": "",
       "actual_start": "2026-10-20",
       "actual_finish": null,
-      "evidence": [],
+      "evidence": [
+        "harness/evidence/F15-values-types-review.md",
+        "harness/evidence/F15-control-flow-review.md"
+      ],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -5716,7 +5719,7 @@
           "description": "As a learner, I want to trace branches and loops deliberately, so that I can explain Java behaviour using a concrete mental model.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "in_review",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F15-UH01"
@@ -5725,11 +5728,13 @@
           "forecast_hours": 12,
           "actual_hours": 0,
           "actual_start": "2026-10-20",
-          "actual_finish": null,
+          "actual_finish": "2026-10-20",
           "evidence": [
             "harness/evidence/F15-control-flow-review.md"
           ],
-          "commits": [],
+          "commits": [
+            "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+          ],
           "requirements": [
             {
               "id": "F15-UH02-R01",
@@ -5785,7 +5790,9 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
               "actual_finish": "2026-10-20"
             },
@@ -5810,7 +5817,9 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
               "actual_finish": "2026-10-20"
             },
@@ -5835,7 +5844,9 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
               "actual_finish": "2026-10-20"
             },
@@ -5859,7 +5870,9 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
               "actual_finish": "2026-10-20"
             },
@@ -5883,7 +5896,9 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
               "actual_finish": "2026-10-20"
             },
@@ -5895,7 +5910,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "in_progress",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F15-UH02-T05"
@@ -5908,9 +5923,11 @@
               "evidence": [
                 "harness/evidence/F15-control-flow-review.md"
               ],
-              "commits": [],
+              "commits": [
+                "2f3abf373ec0261654703ec84b5f8176f53adcc6"
+              ],
               "actual_start": "2026-10-20",
-              "actual_finish": null
+              "actual_finish": "2026-10-20"
             }
           ],
           "scope_note": "Selected by ADR010: control flow/tracing follows acceptance of F15-UH01. Other course stories remain deferred; no complete-syllabus prerequisite."
@@ -6875,7 +6892,8 @@
           ],
           "scope_note": "Provisional lesson identity: confirm or revise after F14 outline acceptance."
         }
-      ]
+      ],
+      "scope_note": "Selected UH01/UH02 accepted on2026-10-20. Other five stories remain deferred under ADR010; no active F15 work. Feature remains open for that deferred scope, without consuming active WIP."
     },
     {
       "id": "F16",
