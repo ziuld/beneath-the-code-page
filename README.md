@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and the browser-local Base64 tool. Remaining tools, final browser review and Docker portability follow ADR010.**
+**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification, final browser review and Docker portability follow ADR010.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -21,9 +21,9 @@ The canonical tracker is [plan.json](docs/planning/plan.json). It holds the hier
 
 ## Scope
 
-One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript; English, Spanish and French; no accounts or database. V1 includes F06 JSON Formatter, F07 Validator and Minifier, the complete retained website structure and one complete Java Fundamentals unit. The selected V2 sequence is security/docs → two additional lessons → first push/PR → page-by-page agreed design → remaining tools → final browser review → Docker Desktop/second-PC handoff. The other five proposed course units remain deferred. See [ADR010](docs/architecture/adr-010-v2-delivery-and-portable-handoff.md) and the [current plan](docs/planning/project-plan.md).
+One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript; English, Spanish and French; no accounts or database. V1 includes F06 JSON Formatter, F07 Validator and Minifier, the complete retained website structure and one complete Java Fundamentals unit. The selected V2 sequence is security/docs → two additional lessons → first push/PR → page-by-page agreed design → remaining tools → bounded simplification → final browser review → Docker Desktop/second-PC handoff. The other five proposed course units remain deferred. See [ADR010](docs/architecture/adr-010-v2-delivery-and-portable-handoff.md) and the [current plan](docs/planning/project-plan.md).
 
-Current tools: JSON Formatter, JSON Validator, JSON Minifier and [UTF-8 Base64 Encoder/Decoder](docs/delivery/base64.md), all using the shared design system.
+Current tools: JSON Formatter, JSON Validator, JSON Minifier, [UTF-8 Base64 Encoder/Decoder](docs/delivery/base64.md), [UUID Generator](docs/delivery/uuid.md) and [JWT Decoder](docs/delivery/jwt.md), all using the shared design system. JWT inspection never verifies signatures or claims.
 
 The approved B logo has a standalone variant and a composition with its supplied background. See [brand rules](docs/brand/brand-application.md).
 

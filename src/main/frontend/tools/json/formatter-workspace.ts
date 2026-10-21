@@ -1,6 +1,5 @@
 import { enhanceEditorWorkspace } from "../../design-system/components/editor-workspace";
 import { createFormatterSession } from "./formatter-session";
-import "./formatter.css";
 import { sourcePosition } from "./algorithms/position";
 
 export function enhanceFormatter(workspace: HTMLElement) {
