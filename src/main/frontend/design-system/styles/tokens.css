@@ -1,20 +1,28 @@
-@layer btc-base {
+@layer btc-tokens {
   :root {
     color-scheme: dark;
-    --canvas: #050505;
-    --surface: #0b0b0b;
+    --canvas: #080907;
+    --surface: #10110e;
     --text: #edeae4;
-    --secondary: #92908b;
-    --border: #292927;
+    --secondary: #aaa89f;
+    --border: #393a34;
     --focus: #f7f7f5;
+    --action: var(--text);
+    --on-action: var(--canvas);
+    --action-active: #d5d2cc;
+    --surface-active: #1b1b19;
+    --editor-highlight: #494844;
     --font-body: Arial, Helvetica, sans-serif;
     --font-display: Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
     --type-small: 0.875rem;
     --type-intro: 1.125rem;
     --type-heading: 2rem;
-    --type-hero: clamp(2.5rem, 5vw, 4.5rem);
+    --type-title: clamp(2rem, 4vw, 3.5rem);
+    --type-hero: clamp(2.5rem, 4.3vw, 4rem);
     --leading-body: 1.6;
     --leading-heading: 1.15;
+    --leading-control: 1.3;
     --space-xs: 0.5rem;
     --space-sm: 0.75rem;
     --space-md: 1rem;
@@ -23,6 +31,10 @@
     --space-xl: 3rem;
     --space-section: 4rem;
     --page-width: 72rem;
+    --reading-width: 72ch;
+    --control-height: 2.75rem;
+    --radius-control: 0.25rem;
+    --radius-panel: 0.25rem;
     --border-width: 1px;
     --focus-width: 2px;
     --focus-offset: 4px;

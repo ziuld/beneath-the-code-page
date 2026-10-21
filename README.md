@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: V1 locally accepted — three JSON tools, one reviewed EN/ES/FR unit and a reproduced packaged-JAR handoff. Selected V2 maintenance and delivery are now planned under ADR010.**
+**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification and F19 browser review are complete; real Safari remains unverified. F20 Docker development and local execution are owner-accepted; Windows and other machines remain unverified.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -21,7 +21,9 @@ The canonical tracker is [plan.json](docs/planning/plan.json). It holds the hier
 
 ## Scope
 
-One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript; English, Spanish and French; no accounts or database. V1 includes F06 JSON Formatter, F07 Validator and Minifier, the complete retained website structure and one complete Java Fundamentals unit. The selected V2 sequence is security/docs → two additional lessons → first push/PR → page-by-page agreed design → remaining tools → final browser review → Docker Desktop/second-PC handoff. The other five proposed course units remain deferred. See [ADR010](docs/architecture/adr-010-v2-delivery-and-portable-handoff.md) and the [current plan](docs/planning/project-plan.md).
+One Spring Boot / MVC / Thymeleaf application; browser-local TypeScript; English, Spanish and French; no accounts or database. V1 includes F06 JSON Formatter, F07 Validator and Minifier, the complete retained website structure and one complete Java Fundamentals unit. The selected V2 sequence is security/docs → two additional lessons → first push/PR → page-by-page agreed design → remaining tools → bounded simplification → final browser review → Docker Desktop/second-PC handoff. The other five proposed course units remain deferred. See [ADR010](docs/architecture/adr-010-v2-delivery-and-portable-handoff.md) and the [current plan](docs/planning/project-plan.md).
+
+Current tools: JSON Formatter, JSON Validator, JSON Minifier, [UTF-8 Base64 Encoder/Decoder](docs/delivery/base64.md), [UUID Generator](docs/delivery/uuid.md) and [JWT Decoder](docs/delivery/jwt.md), all using the shared design system. JWT inspection never verifies signatures or claims.
 
 The approved B logo has a standalone variant and a composition with its supplied background. See [brand rules](docs/brand/brand-application.md).
 
@@ -60,3 +62,5 @@ The executable is `target/beneath-the-code-0.1.0-SNAPSHOT.jar`. The smoke script
 Architecture tests import only production output. Absent capability packages produce explicit skipped checks, while compiled test-only fixtures verify the same strict rules against forbidden and permitted dependencies and cycles. New production packages activate their corresponding rules automatically. No production placeholders are required.
 
 See [final F01 acceptance](harness/evidence/F01-closure.md) and [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for historical checks and limitations; see the [current handoff](harness/current-state.md) for current acceptance and the next step. [Unfinished follow-ups](docs/planning/risks-and-decisions.md) remain explicit. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).
+
+Docker development and local execution: [Windows/Linux handoff](docs/delivery/docker-handoff.md).

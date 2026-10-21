@@ -1,5 +1,12 @@
 # Risks and open decisions
 
+Current delivery,2026-10-21: selected V2 work is complete: F17 maintenance,
+F15-UH01/UH02 lessons, F18 design, F08–F10 tools, F19 review and F20 Docker.
+F11 is removed; five further lessons remain deferred. F20 is owner-accepted on
+local Linux evidence; Windows/other machines/ARM64 and real Safari are unverified.
+Future VPS deployment is outside this delivery. Earlier scope/forecast statements
+below are historical where superseded. See plan.json and the current handoff.
+
 Review weekly. Likelihood/impact are qualitative planning judgements, not measured probabilities.
 
 Scope revised by [ADR 007](../architecture/adr-007-focused-mvp.md), 2026-10-18:

@@ -1,3 +1,4 @@
+import { expectProductionCsrf } from "./test-cookies.mjs";
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { addTestStyle } from "./test-styles.mjs";
@@ -24,12 +25,12 @@ for (const language of languages) {
       await expect(page.locator(".section-card p:not(.status)")).toHaveCount(2);
       await expect(page.locator(".section-card .status")).toHaveCount(0);
       await expect(page.locator(".wordmark")).toHaveText("Beneath the Code");
-      await expect(page.locator("main img")).toBeVisible();
+      await expect(page.locator("main .layer-art")).toBeVisible();
       const logo = await context.request.get(`${baseURL}/brand/b-composition.png`);
       expect(logo.status()).toBe(200);
       expect(await logo.body()).toEqual(readFileSync(new URL("../../docs/reference/logo-composition-original.png", import.meta.url)));
-      await expect(page.locator(`a[href="/tools?lang=${language.locale}"]`)).toHaveCount(2);
-      await expect(page.locator(`a[href="/learn?lang=${language.locale}"]`)).toHaveCount(2);
+      await expect(page.locator(`a[href="/tools?lang=${language.locale}"]`)).toHaveCount(3);
+      await expect(page.locator(`a[href="/learn?lang=${language.locale}"]`)).toHaveCount(3);
       await expect(page.locator("[onclick]")).toHaveCount(0);
       await expect(page.locator('form[action="/preferences/language"]')).toHaveCount(1);
       for (const href of await page.locator("nav a").evaluateAll(links => links.map(link => link.getAttribute("href")))) {
@@ -44,9 +45,7 @@ for (const language of languages) {
         expect(request.method).toBe("GET");
         expect(request.body).toBeNull();
       }
-      const cookies = await context.cookies();
-      expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
-      expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
+      await expectProductionCsrf(response, context);
     } finally {
       await context.close();
     }

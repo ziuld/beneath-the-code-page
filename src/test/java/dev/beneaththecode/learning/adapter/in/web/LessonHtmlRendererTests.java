@@ -50,6 +50,18 @@ class LessonHtmlRendererTests {
 	}
 
 	@Test
+	void sectionNavigationHasUniqueSafeTargetsAndEscapedContent() {
+		var page = renderer.renderPage("## Same `int`\n\nText.\n\n## Same `int`\n\n<script>unsafe</script>");
+		assertThat(page.sections()).containsExactly(
+				new LessonHtmlRenderer.Section("lesson-section-1", "Same int"),
+				new LessonHtmlRenderer.Section("lesson-section-2", "Same int"));
+		assertThat(page.html()).contains("id=\"lesson-section-1\"", "id=\"lesson-section-2\"", "&lt;script&gt;")
+				.doesNotContain("<script>");
+		assertThat(renderer.renderPage("[bad](javascript:alert%281%29)").html()).contains("href=\"\"");
+		assertThatThrownBy(() -> renderer.renderPage("![x](/private.png)")).hasMessage("BTC_LEARNING_MARKDOWN_INVALID");
+	}
+
+	@Test
 	void blankContentIsNotPublishedAsSuccessfulHtml() {
 		assertThatThrownBy(() -> renderer.render(" \n")).hasMessage("BTC_LEARNING_MARKDOWN_INVALID");
 	}

@@ -1,12 +1,12 @@
 # Locale preferences — local verification
 
-F04-UH01 implements a native EN/ES/FR selector in the shared header. Apply is still in progress; this document is not an acceptance claim. The language preference is the only persistent visitor preference; tool payloads are never stored or submitted.
+F04-UH01 implements a native EN/ES/FR selector in the shared header. F04 is accepted; selected V2 tools extend the exact return allowlist with their own verification evidence. The language preference is the only persistent visitor preference; tool payloads are never stored or submitted.
 
 ## Resolution and submission
 
 Supported explicit `lang` query → `BTC_LANGUAGE` cookie → weighted Accept-Language → optional server `btc.locale.country` (ES/FR only) → English. Unsupported/ambiguous candidates fall through; GET never saves a language preference. A GET can issue the HttpOnly cookie-backed CSRF token needed by the native form.
 
-The form submits only `language`, `returnTo` and masked `_csrf` to `/preferences/language`. Valid POST stores the language code for one year (HttpOnly, SameSite=Lax, Path=/, no Domain) and redirects 303 to the current exact published allowlist: Home, Tools, the three JSON tool pages, Learn, the course and each published unit. No query is retained, so an explicit GET locale does not override the saved preference. Unsupported or repeated languages are 400; missing/mismatched/raw CSRF tokens are 403. No session or login redirect is used.
+The form submits only `language`, `returnTo` and masked `_csrf` to `/preferences/language`. Valid POST stores the language code for one year (HttpOnly, SameSite=Lax, Path=/, no Domain) and redirects 303 to the current exact published allowlist: Home, Tools, the three JSON tool pages, Base64, Learn, the course and each published unit. No query is retained, so an explicit GET locale does not override the saved preference. Unsupported or repeated languages are 400; missing/mismatched/raw CSRF tokens are 403. No session or login redirect is used.
 
 Both cookie types require Secure outside the single loopback `local` profile. Plain HTTP is local-only; secure defaults are not relaxed for production. The local profile serves watched generated assets and must not be presented as classpath-packaging evidence.
 

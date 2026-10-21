@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
-<head>
-    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-    <title th:text="#{tools.title}"></title>
-    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
-    <script type="module" th:src="${assets.script}"></script>
-</head>
+<head th:replace="~{fragments/learning :: head(#{tools.title})}"></head>
 <body>
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
 <header th:replace="~{fragments/shell :: header('/tools')}"></header>
-<main id="main" class="page" tabindex="-1">
-    <h1 th:text="#{tools.title}"></h1>
-    <p th:text="#{tools.description}"></p>
-    <ul>
-        <li><a th:href="@{/tools/json-formatter(lang=${language})}" th:text="#{formatter.title}"></a></li>
-        <li><a th:href="@{/tools/json-validator(lang=${language})}" th:text="#{validator.title}"></a></li>
-        <li><a th:href="@{/tools/json-minifier(lang=${language})}" th:text="#{minifier.title}"></a></li>
-    </ul>
+<main id="main" class="page tools-page" tabindex="-1">
+    <header class="page-hero"><p class="eyebrow" th:text="#{home.tools.title}"></p><h1 th:text="#{tools.title}"></h1><p class="intro" th:text="#{tools.description}"></p></header>
+    <div class="tools-grid">
+        <article th:replace="~{fragments/tool-cards :: card('formatter', '/tools/json-formatter', '{ }')}"></article>
+        <article th:replace="~{fragments/tool-cards :: card('validator', '/tools/json-validator', '{ ✓ }')}"></article>
+        <article th:replace="~{fragments/tool-cards :: card('minifier', '/tools/json-minifier', '≡')}"></article>
+        <article th:replace="~{fragments/tool-cards :: card('base64', '/tools/base64', '64')}"></article>
+        <article th:replace="~{fragments/tool-cards :: card('uuid', '/tools/uuid', '#')}"></article>
+        <article th:replace="~{fragments/tool-cards :: card('jwt', '/tools/jwt', 'JWT')}"></article>
+    </div>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>
 </body></html>

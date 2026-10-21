@@ -4,11 +4,14 @@ Use this runbook for local packaged-JAR builds and startup; no hosting, account
 setup, upload or publication is required. The historical accepted F16 implementation
 is `3bfc8c59c0bf5e9f9ca01901b9847b7f8d60c608`; its exact reproduction revision and
 artifact identity remain in [F16 evidence](../../harness/evidence/F16-integrated-acceptance.md).
-For the current F17 candidate, use its own
-[maintenance evidence](../../harness/evidence/F17-security-maintenance.md) and
-record `git rev-parse HEAD` plus dirty state. F16's JAR hash/results do not certify
-new dependency patches. Do not combine current documentation with an old checkout
-and assume identical results.
+For the current candidate and its verification evidence, use the
+[current handoff](../../harness/current-state.md) and record `git rev-parse HEAD`
+plus dirty state. F16's JAR hash/results do not certify later changes. Do not
+combine current documentation with an old checkout and assume identical results.
+
+For development without host Java/Node/Python installations, use the
+[Docker development and runtime workflow](docker-handoff.md). The native steps
+below remain supported.
 
 ## Prerequisites and clean source
 
@@ -73,9 +76,9 @@ curl --fail 'http://127.0.0.1:8080/learn/java-fundamentals/source-to-jvm?lang=fr
 ```
 
 Health must be UP. Check Home, /tools, /tools/json-formatter,
-/tools/json-validator, /tools/json-minifier, /learn, /learn/java-fundamentals and
-/learn/java-fundamentals/source-to-jvm in EN/ES/FR. HTML must be localised and
-no-store; linked hashed CSS/JS and the original B image must load from the JAR.
+/tools/json-validator, /tools/json-minifier, /tools/base64, /tools/uuid, /tools/jwt,
+/learn, /learn/java-fundamentals and its three published units in EN/ES/FR. HTML
+must be localised and no-store; linked hashed CSS/JS and the original B image must load from the JAR.
 The reviewed unit includes its exercise and visible explanatory answer. Missing
 learning units return safe localised404; unknown tools remain denied403. HTML
 errors have a language-preserving Home link. Actuator details/unlisted routes
@@ -98,7 +101,7 @@ profile. Stop this process after review. No tool data is sent to the server or
 persisted by the application. Without JavaScript, reading/navigation still work
 and tool processing shows its translated unavailable explanation.
 
-The accepted candidate's Chromium/owner/security results are linked in F16 evidence.
+Current verification results are linked in the handoff; F16 evidence is historical.
 To verify changed inputs using the existing harnesses after building:
 
 ```sh
@@ -122,20 +125,23 @@ require matching source and packaged inventories and fresh databases.
   explicit EN/ES/FR reading language across Home, tools, breadcrumbs and errors.
 - JSON Formatter/Validator/Minifier process input in browser memory under the
   existing syntax, precision, size/depth/output and worker lifecycle controls.
-- Exactly one source-to-JVM learning unit is available; Java Fundamentals is not
-  a complete course. Two more lessons, agreed design, remaining tools and Docker Desktop portability
-  are selected V2 follow-ups, not delivered capabilities.
-- Chromium is the sole required browser. Firefox/WebKit compatibility is not
-  guaranteed; F19 schedules final Firefox/WebKit and separate actual Safari review.
-  Historical issues remain explicit in the pending browser register.
-- Keyboard/visual criteria, narrow reflow and actual200% zoom were owner-approved;
+- Three reviewed Java units are published: source-to-JVM, values/types/numeric
+  limits and control-flow tracing. Five further units remain deferred; Java
+  Fundamentals is not a complete course. Shared design and all six tools are
+  delivered; F19 review and F20 local Docker acceptance are complete.
+- Chromium covers intermediate feature delivery. F19 Chromium,
+  Firefox/WebKit review is complete:169 checks per engine, plus affected Firefox
+  rechecks and39 native200% zoom journeys. Real Safari remains **unverified**.
+  See [F19 evidence](../../harness/evidence/F19-browsers.md) and the reproducible
+  [browser workflow](../quality/final-browser-review.md). Historical WebKit reload
+  debt is resolved; this does not establish universal browser compatibility.
+- Historical F16 keyboard/visual criteria, narrow reflow and actual200% zoom were owner-approved;
   no full-WCAG or screen-reader compatibility claim is made. No measured code
   coverage percentage is asserted.
-- Security uses no active exceptions; the actual F17 scan records current findings. Local acceptance
+- Security uses no active exceptions; the current scan/evidence records findings. Local acceptance
   is not a public-deployment security guarantee. Fresh databases are required.
 - No licence has been selected; public repository visibility does not grant rights
   to redistribute code, course content, logo or fonts.
 - There are no accounts, persisted progress, database, analytics or cloud runtime.
-  Scoped pushes and a PR are authorised after maintenance and two lessons. Tags,
-  public releases, deployment, image publication and OpenSpec archival remain
-  separate actions.
+  Pushes, PRs, tags, public releases, deployment, image publication and OpenSpec
+  archival require the current owner authorisation; this runbook grants none.

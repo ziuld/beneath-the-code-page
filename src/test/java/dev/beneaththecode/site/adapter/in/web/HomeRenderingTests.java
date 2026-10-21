@@ -40,7 +40,7 @@ class HomeRenderingTests {
 		String html = home("en");
 		assertThat(html).contains("<main", "<header", "<footer", "<nav", "Beneath the Code",
 				"id=\"home-heading\"", "Tools", "Learn", "Java fundamentals", "locally in your browser",
-				"src=\"/brand/b-composition.png\"", "type=\"module\"", manifest.site().script(), "href=\"/tools?lang=en\"")
+				"class=\"layer-art\"", "type=\"module\"", manifest.site().script(), "href=\"/tools?lang=en\"")
 				.doesNotContain("th:", "onclick", "asset-manifest.json");
 		assertThat(Pattern.compile("<h1\\b").matcher(html).results().count()).isEqualTo(1);
 		for (String path : manifest.site().stylesheets()) {
@@ -102,7 +102,7 @@ class HomeRenderingTests {
 		assertThat(html).contains("lang=\"" + locale.getLanguage() + "\"",
 				"aria-label=\"" + escapedMessage("navigation.label", locale) + "\"",
 				"aria-label=\"" + escapedMessage("home.sections", locale) + "\"",
-				"alt=\"" + escapedMessage("brand.logo.alt", locale) + "\"",
+				"class=\"layer-art\"", "aria-hidden=\"true\"",
 				"<title>" + escapedMessage("home.title", locale) + "</title>",
 				"content=\"" + escapedMessage("home.description", locale) + "\"")
 				.doesNotContain("??", "th:", "action.continue", "navigation.label", "brand.logo.alt");

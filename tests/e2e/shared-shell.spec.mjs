@@ -1,3 +1,4 @@
+import { expectProductionCsrf } from "./test-cookies.mjs";
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 
@@ -32,16 +33,16 @@ for (const locale of ["en", "es", "fr"]) {
           if (fixture) {
             await expect(page.getByRole("button", { name: copy["action.continue"], exact: true })).toHaveCount(2);
           } else {
-            await expect(page.getByRole("img", { name: copy["brand.logo.alt"], exact: true })).toHaveCount(1);
+            await expect(page.locator(".wordmark img")).toHaveAttribute("src", "/brand/b-composition.png");
+            await expect(page.locator(".wordmark img")).toHaveAttribute("alt", "");
+            await expect(page.locator(".hero .layer-art")).toHaveAttribute("aria-hidden", "true");
             await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", copy["home.description"]);
             await expect(page.getByRole("region", { name: copy["home.sections"], exact: true })).toHaveCount(1);
           }
           expect(await page.content()).not.toMatch(/\?\?[^?]+\?\?|\bth:/);
           expect(requests.every(request => request.method() === "GET" && request.postData() === null
             && new URL(request.url()).origin === new URL(url).origin)).toBe(true);
-          const cookies = await context.cookies();
-          expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
-          expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
+          await expectProductionCsrf(response, context);
           expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length })))
             .toEqual({ local: 0, session: 0 });
         } finally {

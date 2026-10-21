@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(kind)">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="#{${kind + '.title'}}"></title>
+    <meta name="description" th:content="#{${kind + '.description'}}">
+    <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
+    <script type="module" th:src="${assets.script}"></script>
+</head>
 <body>
 <div th:fragment="messages(validation, minification)" hidden>
     <span data-format-message="ready" th:text="${validation} ? #{validator.ready} : (${minification} ? #{minifier.ready} : #{formatter.ready})"></span>
@@ -21,5 +28,36 @@
     <span data-format-message="output" th:text="#{formatter.output}"></span>
     <span data-format-message="unavailable" th:text="#{formatter.unavailable}"></span>
 </div>
+<nav th:fragment="toolLinks(kind)" class="tool-navigation" th:aria-label="#{tools.title}">
+    <a th:href="@{/tools/json-formatter(lang=${language})}" th:aria-current="${kind == 'formatter' ? 'page' : null}" th:text="#{formatter.title}"></a>
+    <a th:href="@{/tools/json-validator(lang=${language})}" th:aria-current="${kind == 'validator' ? 'page' : null}" th:text="#{validator.title}"></a>
+    <a th:href="@{/tools/json-minifier(lang=${language})}" th:aria-current="${kind == 'minifier' ? 'page' : null}" th:text="#{minifier.title}"></a>
+    <a th:href="@{/tools/base64(lang=${language})}" th:aria-current="${kind == 'base64' ? 'page' : null}" th:text="#{base64.title}"></a>
+    <a th:href="@{/tools/uuid(lang=${language})}" th:aria-current="${kind == 'uuid' ? 'page' : null}" th:text="#{uuid.title}"></a>
+    <a th:href="@{/tools/jwt(lang=${language})}" th:aria-current="${kind == 'jwt' ? 'page' : null}" th:text="#{jwt.title}"></a>
+</nav>
+<section th:fragment="workspace(kind)" class="tool-workspace" data-editor-workspace th:attr="data-json-formatter=${kind == 'formatter' ? 'true' : null},data-json-validator=${kind == 'validator' ? 'true' : null},data-json-minifier=${kind == 'minifier' ? 'true' : null},aria-labelledby=${kind + '-input-label'}">
+    <div class="workspace-input">
+        <h2 class="panel-label" th:id="${kind + '-input-label'}" th:text="#{formatter.input}"></h2>
+        <th:block th:replace="~{fragments/editor :: input}"></th:block>
+        <p th:if="${kind != 'formatter'}" role="status" data-editor-feedback aria-live="polite" aria-atomic="true"></p>
+    </div>
+    <div class="formatter-controls">
+        <th:block th:if="${kind == 'formatter'}">
+            <label for="formatter-indent" th:text="#{formatter.indentation}"></label>
+            <select id="formatter-indent" data-format-indent disabled><option value="2" th:text="#{formatter.twoSpaces}"></option><option value="4" th:text="#{formatter.fourSpaces}"></option></select>
+        </th:block>
+        <button class="button button--primary" type="button" data-format-run disabled th:text="#{${kind == 'formatter' ? 'formatter.format' : (kind == 'validator' ? 'validator.validate' : 'minifier.minify')}}"></button>
+        <button class="button" type="button" data-format-cancel disabled th:text="#{worker.cancel}"></button>
+        <button th:if="${kind != 'validator'}" class="button" type="button" data-format-copy disabled th:text="#{formatter.copy}"></button>
+        <button class="button" type="button" data-format-clear disabled th:text="#{formatter.clear}"></button>
+    </div>
+    <p class="workspace-status" role="status" data-format-status aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
+    <div class="workspace-output" th:if="${kind != 'validator'}">
+        <h2 class="panel-label" th:id="${kind + '-output-label'}" data-format-output-label th:text="#{formatter.output}"></h2>
+        <pre th:id="${kind + '-output'}" data-format-output role="region" th:aria-labelledby="${kind + '-output-label'}" tabindex="0"></pre>
+    </div>
+    <div th:replace="~{fragments/json-workspace :: messages(${kind == 'validator'}, ${kind == 'minifier'})}"></div>
+</section>
 </body>
 </html>

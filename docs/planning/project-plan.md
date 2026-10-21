@@ -1,10 +1,10 @@
 # Feature delivery and PM plan
 
-Current scope:2026-10-20, [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md).
+Current scope:2026-10-21, [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md).
 V1 is accepted; F16 was merged via PR9. The original M0–M4 exits and accepted
 feature evidence remain unchanged. Remaining V1 baseline work is zero.
 
-## Selected V2 order
+## Selected V2 order (completed)
 
 The canonical `plan.json` field `v2_delivery_phases` selects stories rather than
 implicitly scheduling entire features. See the generated
@@ -15,12 +15,13 @@ implicitly scheduling entire features. See the generated
    verified examples, EN/ES/FR content and actual owner review. Then scoped push/PR.
 3. F18: page-by-page prompts for owner-generated Nano Banana concepts, explicit
    design agreement, then implementation. Start with Learn and retain core behaviour.
-4. F08–F11: remaining tools, after final design agreement.
-5. F19: final Chromium/Firefox/WebKit review and separate actual Safari evidence.
-6. F20: single-app Docker Desktop image/runbook, second-PC smoke and final handoff.
+4. F08–F10: remaining tools, after final design agreement. F11 JSON/YAML is removed.
+5. F19: bounded code/test/documentation simplification before browser acceptance; final Chromium/Firefox/WebKit review and separate actual Safari evidence.
+6. F20: single-app Docker development/runtime and handoff, accepted on local evidence.
 
 F15-UH03–UH07 remain deferred. A complete course is not a release gate. Unavailable
-Safari hardware or a second PC must remain a pending check, not invented acceptance.
+Safari hardware and other PC platforms remain unverified, not invented passing
+checks. Owner removed the second-PC closure gate on2026-10-21; selected V2 is complete.
 Docker portability is an additional V2-tracked first-version handoff deliverable;
 it does not rewrite the historical JAR-only V1 acceptance.
 

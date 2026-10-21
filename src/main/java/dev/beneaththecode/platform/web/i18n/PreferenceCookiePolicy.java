@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
-/** Only the single loopback-local profile permits cookies without Secure on HTTP. */
+/** Explicit local HTTP profiles only; container publication must remain host-loopback. */
 @Component
 public final class PreferenceCookiePolicy {
 
@@ -14,7 +14,11 @@ public final class PreferenceCookiePolicy {
 
 	public PreferenceCookiePolicy(Environment environment) {
 		String[] profiles = environment.getActiveProfiles();
-		local = profiles.length == 1 && Arrays.asList(profiles).contains("local")
+		boolean container = Arrays.asList(profiles).contains("container");
+		if (container && (profiles.length != 1 || !"0.0.0.0".equals(environment.getProperty("server.address")))) {
+			throw new IllegalStateException("BTC_CONTAINER_PROFILE_INVALID");
+		}
+		local = container || profiles.length == 1 && Arrays.asList(profiles).contains("local")
 				&& "127.0.0.1".equals(environment.getProperty("server.address"));
 	}
 

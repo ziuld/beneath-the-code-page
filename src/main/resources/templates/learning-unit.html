@@ -4,15 +4,24 @@
 <body>
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
 <header th:replace="~{fragments/shell :: header(${currentPath})}"></header>
-<main id="main" class="page learning-prose" tabindex="-1">
+<main id="main" class="page lesson-page" tabindex="-1">
     <nav th:replace="~{fragments/learning :: breadcrumbs}"></nav>
-    <article><h1 th:text="${unitTitle}"></h1><div th:utext="${bodyHtml}"></div></article>
-    <nav th:aria-label="#{learning.units}">
-        <a th:if="${previous != null}" rel="prev" th:href="${previous.href}" th:text="#{learning.previous}"></a>
-        <a th:if="${next != null}" rel="next" th:href="${next.href}" th:text="#{learning.next}"></a>
+    <header class="page-hero">
+        <p class="eyebrow" th:text="#{learning.unitPosition(${unitNumber}, ${#lists.size(units)})}"></p>
+        <h1 th:text="${unitTitle}"></h1>
+    </header>
+    <div class="reader-layout">
+        <nav class="lesson-contents" th:aria-label="#{learning.contents}" th:if="${!#lists.isEmpty(lessonSections)}">
+            <p class="panel-label" th:text="#{learning.contents}"></p>
+            <ol><li th:each="section : ${lessonSections}"><a th:href="${'#' + section.id}" th:text="${section.title}"></a></li></ol>
+        </nav>
+        <article class="learning-prose" th:aria-label="${unitTitle}" th:utext="${bodyHtml}"></article>
+    </div>
+    <nav class="lesson-navigation" th:aria-label="#{learning.units}">
+        <a class="button" th:if="${previous != null}" rel="prev" th:href="${previous.href}" th:text="#{learning.previous}"></a>
+        <a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="#{learning.courseBack}"></a>
+        <a class="button button--primary" th:if="${next != null}" rel="next" th:href="${next.href}" th:text="#{learning.next}"></a>
     </nav>
-    <a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="#{learning.courseBack}"></a>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>
-</body>
-</html>
+</body></html>

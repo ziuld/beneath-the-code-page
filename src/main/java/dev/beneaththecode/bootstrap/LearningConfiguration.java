@@ -26,7 +26,7 @@ public class LearningConfiguration {
 	}
 
 	@Bean PreferenceReturnPaths preferenceReturnPaths(LearningPages pages) {
-		var paths = new HashSet<>(Set.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier"));
+		var paths = new HashSet<>(Set.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid", "/tools/jwt"));
 		if (!pages.catalogue().units().isEmpty()) {
 			paths.add("/learn"); paths.add("/learn/java-fundamentals");
 			pages.catalogue().units().forEach(unit -> paths.add("/learn/java-fundamentals/" + unit.slug()));

@@ -34,14 +34,14 @@ class LearningRenderingTests {
 			var result = mvc.perform(get(path).queryParam("lang", language)).andExpect(status().isOk()).andReturn();
 			var response = result.getResponse();
 			String html = response.getContentAsString(StandardCharsets.UTF_8);
-			assertThat(html).contains("lang=\"" + language + "\"", "Course " + language,
+			assertThat(html.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("lang=\"" + language + "\"", "Course " + language,
 					"?lang=" + language, "name=\"returnTo\" value=\"" + path + "\"")
 					.doesNotContain("??", "th:", "data-json-", "rel=\"prev\"", "rel=\"next\"");
 			assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
 			assertThat(response.getHeader("Content-Security-Policy")).contains("connect-src 'none'").doesNotContain("unsafe-inline");
 			assertThat(result.getRequest().getSession(false)).isNull();
 			if (path.equals("/learn/java-fundamentals")) {
-				assertThat(html).contains("Prerequisites " + language + " &lt;script&gt;", "Outcomes " + language)
+				assertThat(html.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("Prerequisites " + language + " &lt;script&gt;", "Outcomes " + language)
 						.doesNotContain("<script>");
 			}
 			assertThat(response.getCookies()).noneMatch(cookie -> cookie.getName().equals("JSESSIONID") || cookie.getName().equals("BTC_LANGUAGE"));
@@ -49,7 +49,7 @@ class LearningRenderingTests {
 		}
 		String unit = mvc.perform(get("/learn/java-fundamentals/fixture-unit").queryParam("lang", language))
 				.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		assertThat(unit).contains("Unit " + language, "<h2>" + language + "</h2>", "Exercise " + language,
+		assertThat(unit.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("Unit " + language, "<h2>" + language + "</h2>", "Exercise " + language,
 				"&lt;script&gt;", "${7 * 7}").doesNotContain("<script>window.fixtureExecuted");
 	}
 

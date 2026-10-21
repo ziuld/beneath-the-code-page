@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head th:replace="~{fragments/json-workspace :: head('jwt')}"></head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools/jwt')}"></header>
+<main id="main" class="page workspace-page" tabindex="-1">
+    <a class="back-link" th:href="@{/tools(lang=${language})}" th:text="#{action.backTools}"></a>
+    <header class="page-hero"><h1 th:text="#{jwt.title}"></h1><p class="intro" th:text="#{jwt.description}"></p></header>
+    <nav th:replace="~{fragments/json-workspace :: toolLinks('jwt')}"></nav>
+    <p class="workspace-status" data-jwt-disclaimer th:text="#{jwt.disclaimer}"></p>
+    <section class="tool-workspace" data-jwt aria-labelledby="jwt-input-label">
+        <div class="workspace-input">
+            <h2 class="panel-label" id="jwt-input-label"><label for="jwt-input" th:text="#{jwt.input}"></label></h2>
+            <textarea id="jwt-input" data-jwt-input rows="10" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off" aria-describedby="jwt-limits" disabled></textarea>
+            <p id="jwt-limits" th:text="#{jwt.limits}"></p>
+        </div>
+        <div class="formatter-controls">
+            <button class="button button--primary" type="button" data-jwt-run disabled th:text="#{jwt.decode}"></button>
+            <button class="button" type="button" data-jwt-clear disabled th:text="#{formatter.clear}"></button>
+        </div>
+        <p class="workspace-status" data-jwt-status role="status" aria-live="polite" aria-atomic="true" th:text="#{jwt.loading}"></p>
+        <div class="workspace-output">
+            <h2 class="panel-label" id="jwt-header-label" th:text="#{jwt.header}"></h2>
+            <pre class="compact-output" data-jwt-header role="region" aria-labelledby="jwt-header-label" tabindex="0"></pre>
+            <h2 class="panel-label" id="jwt-payload-label" th:text="#{jwt.payload}"></h2>
+            <pre class="compact-output" data-jwt-payload role="region" aria-labelledby="jwt-payload-label" tabindex="0"></pre>
+        </div>
+        <div hidden>
+            <span th:each="key : ${ {'ready','decoded','input-limit','depth-limit','format','jwe','encoding','utf8','json','unsupported'} }" th:attr="data-jwt-message=${key}" th:text="#{${'jwt.' + key}}"></span>
+            <span data-jwt-message="cleared" th:text="#{formatter.cleared}"></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

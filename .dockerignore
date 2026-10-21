@@ -1,0 +1,16 @@
+# Allow only source/build inputs; never send caches, credentials, Git or target.
+**
+!Dockerfile
+!mvnw
+!pom.xml
+!.mvn/
+!.mvn/wrapper/
+!.mvn/wrapper/maven-wrapper.properties
+!src/
+!src/**
+src/**/node_modules
+!docker/
+!docker/HealthCheck.java
+!docs/
+!docs/reference/
+!docs/reference/logo-composition-original.png

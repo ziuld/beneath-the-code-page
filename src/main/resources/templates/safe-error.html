@@ -7,11 +7,13 @@
     <link th:each="stylesheet : ${assets.stylesheets}" rel="stylesheet" th:href="${stylesheet}">
 </head>
 <body>
-<main id="main" class="page" tabindex="-1">
+<header class="site-header page"><span class="wordmark"><img class="brand-mark" src="/brand/b-composition.png" alt="" width="40" height="40"><span th:text="#{brand.name}"></span></span></header>
+<main id="main" class="page error-page" tabindex="-1">
     <h1 th:text="#{error.title}"></h1>
     <p th:text="#{error.description}"></p>
-    <p th:text="${status}"></p>
-    <a th:href="${'/?lang=' + language}" th:text="#{error.home}"></a>
+    <p class="eyebrow" th:text="${status}"></p>
+    <a class="button button--primary" th:href="${'/?lang=' + language}" th:text="#{error.home}"></a>
 </main>
+<footer class="site-footer page"><p th:text="#{brand.name}"></p><p class="footer-statement" th:text="#{footer.statement}"></p></footer>
 </body>
 </html>

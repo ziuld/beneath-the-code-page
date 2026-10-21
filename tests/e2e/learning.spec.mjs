@@ -40,7 +40,7 @@ for (const language of ["en", "es", "fr"]) {
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${base}/learn/java-fundamentals?lang=${language}`);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(copy[language].course);
-        await page.locator("main > ol a").focus();
+        await page.locator(".learning-grid .unit-list a").focus();
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${base}${unitPath}?lang=${language}`);
         await expect(page.locator("html")).toHaveAttribute("lang", language);
@@ -58,7 +58,7 @@ for (const language of ["en", "es", "fr"]) {
         for (const request of requests) {
           const url = new URL(request.url());
           expect(url.origin).toBe(new URL(base).origin);
-          expect(url.pathname).toMatch(/^\/learn(?:\/java-fundamentals(?:\/fixture-unit)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
+          expect(url.pathname).toMatch(/^\/learn(?:\/java-fundamentals(?:\/fixture-unit)?)?$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
           expect(request.resourceType()).not.toBe("worker");
           expect(request.method()).toBe("GET");
           expect(request.postData()).toBeNull();
@@ -71,7 +71,7 @@ for (const language of ["en", "es", "fr"]) {
           await addTestStyle(page, response, ":root { zoom: 2; }");
           expect(await page.locator("html").evaluate(element => getComputedStyle(element).zoom)).toBe("2");
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-          await page.screenshot({ path: `../../target/learning-${language}-zoom.png`, fullPage: true });
+          await page.screenshot({ path: `../../target/learning-${language}-zoom.png`, fullPage: true, caret: "initial" });
         }
         const nextLanguage = language === "fr" ? "es" : "fr";
         await page.locator("select[name=language]").selectOption(nextLanguage);
@@ -102,8 +102,8 @@ for (const language of ["en", "es", "fr"]) {
         page.on("pageerror", error => errors.push(error.message));
         await context.addCookies([{ name: "BTC_LANGUAGE", value: "en", url: baseURL, httpOnly: true, sameSite: "Lax" }]);
         await page.goto(`${baseURL}/?lang=${language}`);
-        await expect(page.locator(`main a[href="/learn?lang=${language}"]`)).toHaveCount(1);
-        await page.locator(`main a[href="/learn?lang=${language}"]`).click();
+        await expect(page.locator(`.section-grid a[href="/learn?lang=${language}"]`)).toHaveCount(1);
+        await page.locator(`.section-grid a[href="/learn?lang=${language}"]`).click();
         await expect(page).toHaveURL(`${baseURL}/learn?lang=${language}`);
         await page.keyboard.press("Tab");
         await expect(page.locator(".skip-link")).toBeFocused();
@@ -114,9 +114,9 @@ for (const language of ["en", "es", "fr"]) {
         await expect(page).toHaveURL(`${baseURL}/learn/java-fundamentals?lang=${language}`);
         await expect(page.getByRole("heading", { name: realCopy[language].prerequisites, exact: true })).toBeVisible();
         await expect(page.getByRole("heading", { name: realCopy[language].outcomes, exact: true })).toBeVisible();
-        await expect(page.locator("main .status")).toBeVisible();
-        await expect(page.locator("main > ol a")).toHaveCount(3);
-        await page.locator("main > ol a").first().focus();
+        await expect(page.locator("main .status").last()).toBeVisible();
+        await expect(page.locator(".learning-grid .unit-list a")).toHaveCount(3);
+        await page.locator(".learning-grid .unit-list a").first().focus();
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${baseURL}${realPath}?lang=${language}`);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(realCopy[language].title);
@@ -128,13 +128,15 @@ for (const language of ["en", "es", "fr"]) {
         await expect(page.locator("[rel=next]")).toHaveAttribute("href", `/learn/java-fundamentals/values-types-numeric-limits?lang=${language}`);
         expect(await page.locator("article").textContent()).not.toMatch(/F13_PRIVATE_|fixtureExecuted|synthetic fixture/);
         expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-        await page.screenshot({ path: `../../target/f14-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: true });
         if (javaScriptEnabled) expect(await page.evaluate(() => window.readingViolations)).toEqual([]);
+        // WebKit screenshot preparation injects an animation-sync style. Capture
+        // only after asserting CSP for the actual journey, before diagnostic work.
+        await page.screenshot({ path: `../../target/f14-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: true, caret: "initial" });
         expect(errors).toEqual([]);
         for (const request of requests) {
           const url = new URL(request.url());
           expect(url.origin).toBe(new URL(baseURL).origin);
-          expect(url.pathname).toMatch(/^\/$|^\/brand\/b-composition\.png$|^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
+          expect(url.pathname).toMatch(/^\/$|^\/brand\/b-composition\.png$|^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
           expect(request.resourceType()).not.toBe("worker");
           expect(request.method()).toBe("GET");
           expect(request.postData()).toBeNull();
@@ -146,8 +148,10 @@ for (const language of ["en", "es", "fr"]) {
           await addTestStyle(page, response, ":root { zoom: 2; }");
           expect(await page.locator("html").evaluate(element => getComputedStyle(element).zoom)).toBe("2");
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-          await page.screenshot({ path: `../../target/f14-${language}-zoom.png`, fullPage: true });
+          await page.screenshot({ path: `../../target/f14-${language}-zoom.png`, fullPage: true, caret: "initial" });
         }
+        const preferencesBase = process.env.BTC_LOCAL_URL;
+        await page.goto(`${preferencesBase}${realPath}?lang=${language}`);
         const nextLanguage = language === "fr" ? "es" : "fr";
         await page.locator("select[name=language]").selectOption(nextLanguage);
         const submitted = page.waitForResponse(result => result.request().method() === "POST");
@@ -159,7 +163,7 @@ for (const language of ["en", "es", "fr"]) {
         const fields = new URLSearchParams(post.request().postData());
         expect([...fields.keys()].sort()).toEqual(["_csrf", "language", "returnTo"]);
         expect(fields.get("returnTo")).toBe(realPath);
-        await expect(page).toHaveURL(`${baseURL}${realPath}`);
+        await expect(page).toHaveURL(`${preferencesBase}${realPath}`);
         await expect(page.locator("html")).toHaveAttribute("lang", nextLanguage);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(realCopy[nextLanguage].title);
         expect((await context.cookies()).some(cookie => cookie.name === "JSESSIONID")).toBe(false);
@@ -201,13 +205,13 @@ for (const language of ["en", "es", "fr"]) {
           if (lesson.next) await expect(page.locator("[rel=next]")).toHaveAttribute("href", `/learn/java-fundamentals/${lesson.next}?lang=${language}`);
           else await expect(page.locator("[rel=next]")).toHaveCount(0);
           expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-          await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: false });
+          await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-narrow-js-${javaScriptEnabled}.png`, fullPage: false, caret: "initial" });
           if (javaScriptEnabled) {
             const response = await page.reload();
             await page.setViewportSize({ width: 1280, height: 900 });
             await addTestStyle(page, response, ":root { zoom: 2; }");
             expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-            await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-css-zoom.png`, fullPage: false });
+            await page.screenshot({ path: `../../target/f15-${lesson.artifact}-${language}-css-zoom.png`, fullPage: false, caret: "initial" });
           }
           await page.locator("[rel=prev]").click();
           await expect(page).toHaveURL(`${base}${previousPath}?lang=${language}`);
@@ -216,11 +220,13 @@ for (const language of ["en", "es", "fr"]) {
           for (const request of requests) {
             const url = new URL(request.url());
             expect(url.origin).toBe(new URL(base).origin);
-            expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits|control-flow-tracing)$|^\/assets\/[\w-]+\.(?:css|js)$/);
+            expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits|control-flow-tracing)$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
             expect(request.resourceType()).not.toBe("worker");
             expect(request.method()).toBe("GET");
             expect(request.postData()).toBeNull();
           }
+          const preferencesBase = process.env.BTC_LOCAL_URL;
+          await page.goto(`${preferencesBase}${path}?lang=${language}`);
           const nextLanguage = language === "fr" ? "es" : "fr";
           await page.locator("select[name=language]").selectOption(nextLanguage);
           const submitted = page.waitForResponse(result => result.request().method() === "POST");
@@ -228,7 +234,7 @@ for (const language of ["en", "es", "fr"]) {
           const post = await submitted;
           expect(post.status()).toBe(303);
           expect(post.headers().location).toBe(path);
-          await expect(page).toHaveURL(`${base}${path}`);
+          await expect(page).toHaveURL(`${preferencesBase}${path}`);
           await expect(page.getByRole("heading", { level: 1 })).toHaveText(titles[nextLanguage]);
           expect((await context.cookies()).some(cookie => cookie.name === "JSESSIONID")).toBe(false);
           expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length }))).toEqual({ local: 0, session: 0 });

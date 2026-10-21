@@ -1,0 +1,8 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><body>
+<article th:fragment="card(kind, path, symbol)" class="section-card tool-card">
+    <span class="tool-symbol" aria-hidden="true" th:text="${symbol}"></span>
+    <h2 th:text="#{${kind + '.title'}}"></h2>
+    <p th:text="#{${kind + '.description'}}"></p>
+    <a class="button button--primary" th:href="@{${path}(lang=${language})}" th:text="#{${'action.open.' + kind}}"></a>
+</article>
+</body></html>

@@ -1,131 +1,35 @@
 import {
-  createWorkerManager,
-  type JobWorker,
-  type WorkerDiagnostic,
-  type WorkerStatus,
-} from "../../platform/worker-manager";
+  createToolSession,
+  type ToolStatus,
+} from "../../platform/tool-session";
 
-export type FormatterStatus =
-  | WorkerStatus
-  | "ready"
-  | "stale"
-  | "copied"
-  | "copy-failed"
-  | "copy-unavailable"
-  | "cleared";
+export type FormatterStatus = ToolStatus;
 
-/** Page-local result ownership; worker lifecycle stays in the shared manager. */
+/** JSON operation names remain local; lifecycle and revision ownership are shared. */
 export function createFormatterSession(
-  factory: () => JobWorker,
-  view: {
-    status: (state: FormatterStatus) => void;
-    output: (text: string) => void;
-    current: (current: boolean) => void;
-    diagnostic: (diagnostic: WorkerDiagnostic, input: string) => void;
-  },
+  factory: Parameters<typeof createToolSession>[0],
+  view: Parameters<typeof createToolSession>[1],
 ) {
-  let revision = 0;
-  let jobRevision = -1;
-  let jobInput = "";
-  let lastOutput = "";
-  let current = false;
-  let disposed = false;
-  let copyAttempt = 0;
-  const manager = createWorkerManager(factory, {
-    status: (state) => {
-      if (disposed || jobRevision !== revision) return;
-      if (state !== "success") {
-        current = false;
-        view.current(false);
-      }
-      view.status(state);
-    },
-    output: (text) => {
-      if (disposed || jobRevision !== revision) return;
-      lastOutput = text;
-      current = true;
-      view.output(text);
-      view.current(true);
-    },
-    diagnostic: (diagnostic) => {
-      if (!disposed && jobRevision === revision)
-        view.diagnostic(diagnostic, jobInput);
-    },
+  let validation = false;
+  const session = createToolSession(factory, {
+    ...view,
+    status: (state) =>
+      view.status(validation && state === "stale" ? "ready" : state),
   });
-  function invalidate() {
-    revision++;
-    jobRevision = -1;
-    jobInput = "";
-    current = false;
-    manager.cancel();
-    view.current(false);
-  }
   return {
+    ...session,
+    copy(write?: (text: string) => Promise<void>) {
+      // Validation acknowledges success without producing a copyable document.
+      return validation ? Promise.resolve() : session.copy(write);
+    },
     start(input: string, operation: 2 | 4 | "validate" | "minify") {
-      if (disposed) return false;
-      invalidate();
-      jobRevision = revision;
-      jobInput = input;
-      return manager.start(
+      validation = operation === "validate";
+      return session.start(
+        input,
         operation === "validate" || operation === "minify"
           ? `json-${operation}`
           : `json-format-${operation}`,
-        input,
       );
-    },
-    invalidate() {
-      if (disposed) return;
-      invalidate();
-      view.status(lastOutput ? "stale" : "ready");
-    },
-    cancel() {
-      if (disposed) return;
-      invalidate();
-      view.status("cancelled");
-    },
-    currentResult() {
-      return !disposed && current
-        ? { revision, output: lastOutput }
-        : undefined;
-    },
-    async copy(write?: (text: string) => Promise<void>) {
-      if (disposed || !current || !lastOutput) return;
-      const copyRevision = revision;
-      const attempt = ++copyAttempt;
-      const eligible = () =>
-        !disposed &&
-        current &&
-        revision === copyRevision &&
-        copyAttempt === attempt;
-      if (!write) {
-        view.status("copy-unavailable");
-        return;
-      }
-      try {
-        // Invoked synchronously within the caller's user activation, before awaiting.
-        await write(lastOutput);
-        if (eligible()) view.status("copied");
-      } catch {
-        if (eligible()) view.status("copy-failed");
-      }
-    },
-    clear() {
-      if (disposed) return;
-      invalidate();
-      lastOutput = "";
-      view.output("");
-      view.status("cleared");
-    },
-    dispose() {
-      if (disposed) return;
-      disposed = true;
-      revision++;
-      jobRevision = -1;
-      jobInput = lastOutput = "";
-      current = false;
-      manager.dispose();
-      view.output("");
-      view.current(false);
     },
   };
 }

@@ -1,9 +1,12 @@
 # Quality, security and verification plan
 
-Current follow-up,2026-10-20: [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
-schedules final Firefox/WebKit review under F19 after design/tools, plus separate
-real Safari evidence or an explicit pending limitation. Existing ADR009 policy
-continues for intermediate features; historical results below are not new passes.
+Current F19 result,2026-10-21: Chromium/Firefox/Linux WebKit each passed169 retained
+checks, with43 affected Firefox rechecks and39 native Chromium200% zoom journeys.
+The three deferred WebKit recovery checks are now active and passing. Real Safari
+remains **unverified**, the explicit F19 R02 alternative. Versions, fixture changes,
+limitations and integration review: [F19 evidence](../../harness/evidence/F19-browsers.md).
+[Execution workflow](final-browser-review.md). ADR009 still governs intermediate
+feature gates; the historical policies below do not supersede these F19 results.
 
 Targets: the explicit keyboard/visual criteria below and applicable OWASP ASVS controls, not full WCAG 2.2 AA conformance or certification. F04 selects an exact ASVS release and maps applicable control IDs to tests; explain inapplicable auth/storage controls. Use primary sources in `../architecture/sources.md`.
 
@@ -47,7 +50,7 @@ Browser input → editor → worker → output is untrusted data. All source/dia
 
 - Java: JUnit/AssertJ domain and application tests; MVC/Security tests; packaged integration; ArchUnit real-package assertions.
 - TypeScript: Vitest pure processing and state transitions; ESLint restricted imports; typecheck and translation-key parity.
-- Browser: Playwright Chromium full suite for remaining MVP PRs/features and final acceptance. Firefox/WebKit are optional post-MVP evaluation, not required runs or release gates (ADR 009).
+- Browser: Chromium remains the intermediate feature gate (ADR009). F19 runs the full retained suite in Chromium, Firefox and Linux WebKit; real Safari requires separate evidence or an explicit unverified limitation.
 - Keyboard/visual accessibility: existing axe checks plus keyboard-only navigation, visible/unobscured focus and return, editor Escape/Tab, labelled controls, dialog focus management, no colour-only status, reduced motion, actual 200% browser zoom, narrow reflow and EN/ES/FR review. Retain WCAG 2.2 AA text/non-text contrast thresholds for the applicable roles; these specific criteria and automated results do not establish full conformance.
 - Security: applicable static/dependency/secret scans; container scans are V2 with the deferred runtime. No real token or user payload fixtures. Scanner errors fail visibly.
 
