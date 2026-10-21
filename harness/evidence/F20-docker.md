@@ -1,6 +1,6 @@
 # F20 — local Docker handoff evidence
 
-Date:2026-10-21. Work in progress; second-PC acceptance is pending.
+Date:2026-10-21. Complete under the owner-approved local acceptance scope.
 Prerequisite F19 complete. Requirements: F20-UH01 R01/R02, AC01/AC02, plan-owned.
 Actual owner effort unreported; baseline/forecast8h retained. No subagents,
 push/publication/deployment or new host configuration changes.
@@ -29,7 +29,7 @@ further host edits. Existing postgres18 container/images/volume are untouched.
   checks pass plus type/lint/format/architecture. Log target/f20-build.log.
 - Initial health probe rejected automatic container health groups alongside UP.
   Corrected to check UP while allowing groups; final image/check results follow.
-- First image scan:24 MEDIUM/4 LOW, no HIGH/CRITICAL. Final scan remains pending.
+- First image scan:24 MEDIUM/4 LOW, no HIGH/CRITICAL. Superseded by the final scan below.
 
 ## Final local results
 
@@ -80,9 +80,12 @@ added. Developer target provides Python/Git/Java while Maven pins Node/npm tooli
 F20 R03/AC03 records the owner's clarified development scope. No VPS deployment,
 HTTPS/public-hosting configuration or registry publication is included.
 
-T01/T02 locally implemented. T03 remains in progress: actual Windows/Docker Desktop
-and second-PC build/run/development smoke have NOT run. T04/owner acceptance and
-portable feature closure remain pending under R02/AC02. Linux Engine checks do
-not establish Windows, ARM64, Safari or universal portability. Actual owner effort
-unreported;8h baseline/forecast unchanged. Final planning/commit identities and
-preview are recorded in current-state.md and plan.json.
+T01–T04 complete under the owner revision recorded on2026-10-21. After reviewing
+the preview, the owner said they liked it, then explicitly accepted local execution
+as sufficient, removed second-PC testing as necessary and classified future
+cross-PC problems as bugs. R02/AC02 were revised in the canonical tracker to match
+that decision; prior missing-device evidence was not converted to a passing test.
+Windows/Docker Desktop, other machines, ARM64 and real Safari remain unverified.
+No VPS/public deployment or image publication is authorised. Actual owner effort
+unreported;8h baseline/forecast unchanged. No runtime inputs changed in closure;
+retained passing checks apply, with only documentation/planning checks repeated.

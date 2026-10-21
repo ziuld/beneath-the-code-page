@@ -24,9 +24,9 @@ This explicit local-only exception is unsuitable for LAN/public deployment.
 Keep CSRF, HttpOnly/SameSite cookies, CSP and statelessness. Run read-only with a
 bounded /tmp tmpfs, all capabilities dropped and no-new-privileges. Java is PID1
 for SIGTERM shutdown. A compiled Java HTTP probe avoids installing curl/shell
-utilities just for health checks. Retain the native JAR workflow. Image scans and
-actual second-PC tests are required before portable acceptance; unavailable
-checks remain pending. Pin base digests, rebuild/review scans when updating them.
+utilities just for health checks. Retain the native JAR workflow. Image scans and local runtime/development checks are required. Owner decision
+2026-10-21 accepts this tested host as sufficient for F20; second-PC checks are
+optional and untested platforms remain explicitly unverified. Pin base digests, rebuild/review scans when updating them.
 
 References: [Docker multi-stage builds](https://docs.docker.com/build/building/multi-stage/),
 [Dockerfile reference](https://docs.docker.com/reference/dockerfile/).

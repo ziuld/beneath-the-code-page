@@ -3,7 +3,8 @@
 F20 runs the single application with packaged assets. No database, cloud account,
 registry or host Java/Node/Maven is needed. The native [JAR runbook](local-release.md)
 remains available. Actual results: [F20 evidence](../../harness/evidence/F20-docker.md).
-Second-PC acceptance is pending until an actual separate machine runs these steps.
+Owner accepted local execution on2026-10-21 as sufficient for F20. Windows and
+other machines remain unverified; optional future checks can use this runbook.
 
 ## Prerequisites and build
 
@@ -136,5 +137,6 @@ docker image inspect --format '{{.Id}} {{.Os}}/{{.Architecture}}' beneath-the-co
 Image ID must match. Follow Run/inspect and Stop/restart above. Alternatively copy
 a clean source checkout and build there. Record OS/CPU, Docker Client/Server
 versions, image ID, health, assets/locales/tool results and shutdown outcome.
-Send those results for review; missing evidence keeps F20 portable acceptance open.
+These optional future checks extend platform evidence. The owner accepted F20
+locally; future cross-PC failures are handled as bugs.
 No image upload, registry publication or deployment is implied.

@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification and F19 browser review are complete; real Safari remains unverified. Docker development and portability are in progress under F20; Windows/second-PC acceptance remains pending.**
+**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification and F19 browser review are complete; real Safari remains unverified. F20 Docker development and local execution are owner-accepted; Windows and other machines remain unverified.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
