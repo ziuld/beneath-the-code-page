@@ -67,4 +67,21 @@ container runtime is established for this user. No OS installation, sudo or conf
 changes performed. No native Safari on this Linux host; real Apple device/version
 review remains separate or an explicit pending limitation under F19 R02.
 
-T01 closure/commit/planning verification follows; T02–T04 remain open.
+## T01 closure and handoff
+
+Commit: a46d6f1a4965af7437cbe2820798ae067893e469. T01 complete; F19 feature/story
+remain in progress and T02–T04 planned. No final Firefox/WebKit/Safari acceptance.
+Both planning renderers, planning integrity,23 planning-rule tests and whitespace
+checks PASS; log target/f19-simplification-planning.log. All193 runtime/test/JAR
+security input hashes remain unchanged after documentation-only closure.
+
+Only the cleanup and its dependency-guidance hunk were committed; pre-existing
+owner scope/planning changes and F09/F10/F19 tracking/handoff edits remain
+uncommitted. Actual owner effort unreported. No push/PR/deploy or system changes.
+
+Preview restarted at the same URL: http://127.0.0.1:39793/tools/jwt?lang=en,
+loopback-only local profile, PID96605/session25738. Log:
+target/f19-simplification-preview.log; HTTP200/disclaimer verified. Verify process
+identity and stop before rebuilding. Next: T02 engine harness and compatibility
+work, accounting for the recorded WebKit/Docker environment limits; then T03/T04
+journeys/Safari limitation/report, followed by F20 Docker portability.

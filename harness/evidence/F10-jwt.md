@@ -63,6 +63,23 @@ before rebuilding. No push/PR/deploy/subagents; F11 remains removed.
 
 Agent integration review: inspected complete decoder/workspace/publication diff,
 limits, fixed errors, absence of trust decisions, translated notice and actual
-browser evidence. AC01/AC02 accepted. Local commit/tracking closure follows.
+browser evidence. AC01/AC02 accepted.
 F19 Firefox/WebKit, real Safari and actual browser zoom remain later work;
 no owner manual observations or cross-browser compatibility are claimed here.
+
+
+## Local closure and handoff
+
+Implementation: a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed.
+T01–T05, story and feature complete against recorded acceptance/integration review.
+Both planning renderers, planning integrity,23 planning-rule tests and whitespace
+checks PASS (target/f10-planning.log). All194 runtime/test/JAR security input
+digests remain unchanged after closure; only planning/handoff inputs changed.
+Existing owner scope/planning changes and F09/F10 tracking/handoff updates remain
+uncommitted. Only the scoped F10 implementation/tests/new docs were committed.
+No push/PR/deployment, no F11 restoration. Actual owner effort unreported.
+
+Preview: http://127.0.0.1:39793/tools/jwt?lang=en, loopback-only local profile,
+PID88549 / exec session56940; target/f10-preview.log. HTTP200/disclaimer verified.
+Verify identity and stop before rebuilding. Next: bounded simplification review
+(F19 T01) → F19 final browser acceptance → F20 Docker/second-PC handoff.

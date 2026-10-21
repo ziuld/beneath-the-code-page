@@ -1,6 +1,7 @@
 # Repository, CI and local delivery
 
-Public remote: https://github.com/ziuld/beneath-the-code-page. No push or settings changes are part of the planning delivery.
+Public remote: https://github.com/ziuld/beneath-the-code-page. Owner authorised this branch push and PR on2026-10-21. Merge, settings changes,
+image publication and deployment are not authorised.
 
 V1 is accepted and F16 merged. [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
 selects maintenance, two lessons, design, tools, final browser review and portable
@@ -15,7 +16,7 @@ Add contributor guidance, security-reporting method with real contact, PR templa
 
 F01 closure disposition (2026-10-09): contributor guidance, CODEOWNERS and PR template are delivered. The owner accepted Java-baseline closure while retaining security-reporting guidance/contact, issue templates, dependency-update configuration and main protection/required-check enforcement as unfinished follow-ups. Their owner/next decisions are recorded in [risks and decisions](../planning/risks-and-decisions.md); closure does not claim these settings/deliverables exist.
 
-## CI coverage and planned follow-ups
+## Current CI coverage
 
 | Job | Checks | Introduced |
 |---|---|---|
@@ -23,7 +24,7 @@ F01 closure disposition (2026-10-09): contributor guidance, CODEOWNERS and PR te
 | Frontend | npm lockfile, types, lint, unit, translations, build | F02–F03 |
 | Browser | Packaged JAR, CSP/privacy/a11y; Chromium only for remaining MVP (ADR 009) | F05–F06 |
 | Supply chain | Dependencies, secrets, SAST; report failures | F01 onward |
-| Container | Build, non-root/runtime probe, image scan, image SBOM | V2 — deferred, not an MVP gate |
+| Container | Docker source build/Maven checks, non-root runtime/HTTP/health/shutdown, image vulnerability inventory and CycloneDX SBOM | F20 follow-up; configured for PR/main |
 
 Pin action SHAs; default token read-only; no secrets/elevated token for untrusted PR execution; avoid privileged pull_request_target checkout. Use Gitleaks, Trivy and CodeQL (public repository eligibility/configuration verified during setup) or a documented SAST substitute. Choose exact tool/ruleset versions at installation. Critical/high exploitable findings block release; triage disputed/non-applicable findings with owner and expiry rather than silent suppression.
 
@@ -31,12 +32,20 @@ The initial Java workflow is integrated in `.github/workflows/java.yml`: real Ma
 
 ## Browser verification
 
-[ADR009](../architecture/adr-009-chromium-only-mvp-verification.md) governed the
-accepted Chromium-only V1 gate. The existing home-browser workflow retains
-Chromium. ADR010 schedules final Firefox/WebKit and separate actual Safari review
-under F19, after design/tools; it does not claim those checks have run or silently
-add them to every intermediate feature. Push and the first PR are authorised after
-maintenance and the two lessons; no remote CI pass is inferred from local edits.
+[ADR009](../architecture/adr-009-chromium-only-mvp-verification.md) retains the
+Chromium intermediate gate. The `Packaged browser verification` workflow runs the
+full retained Chromium website/tool suite. F19 separately recorded full169 checks
+per engine in Chromium/Firefox/Linux WebKit; those are not rerun in every PR.
+Actual Safari remains unverified. See [F19 evidence](../../harness/evidence/F19-browsers.md).
+
+All three workflows trigger on pull requests and pushes to main, not ordinary
+feature-branch pushes. Job names: Java verification; Chromium packaged website;
+Docker build, runtime and security. Workflows use SHA-pinned actions, read-only
+contents permission and no persisted checkout credentials. No deployment job.
+Main protection is currently disabled (read-only GitHub check2026-10-21); no
+required-check enforcement or protection setting is claimed or changed.
+Remote CI status for the current PR belongs in its checks, not inferred from
+local passes. New Docker CI was locally exercised before publication.
 
 ## F12 application security gate
 
@@ -84,16 +93,23 @@ Never use `continue-on-error`, stale reports or
 empty scanner output as a substitute for a passing gate. Reuse applicable results
 for unchanged inputs; rerun only affected verification when inputs/data change.
 
-## Planned Docker Desktop handoff — F20
+## Docker development and runtime — F20
 
-Keep a single-app image and no Node runtime in the final image. Verify a non-root
-runtime, packaged assets, health, management isolation, safe local HTTP locale flow
-and graceful shutdown. Bind the published application port to loopback by default.
-Document build/run/stop and optional image save/load for another PC, supported CPU
-architectures and actual second-PC results. Compose is optional if useful; no
-DB/Redis, Kubernetes, cloud, Docker socket/credential mounts or automatic registry
-publication. Choose further container restrictions from actual runtime needs;
-this plan is not a claim that a container or image scan already passed.
+F20 is complete under owner-approved local acceptance. [Runbook](docker-handoff.md)
+and [evidence](../../harness/evidence/F20-docker.md) document pinned images, non-root
+runtime, classpath assets, HTTP locale/CSRF, health, graceful shutdown and optional
+Java/Python/Git development tooling. Windows/other machines remain unverified;
+second-PC verification is optional by owner decision. No public hosting is implied.
+
+The Docker CI job builds from source, runs `scripts/verify-container.py` without
+host frontend output, installs the existing pinned security tools and runs
+`scripts/test-container-security.py` plus `scripts/verify-container-security.py`.
+The gate requires OS and expected packaged Java inventory, scanner success/fresh
+DBs, records all findings, blocks HIGH/CRITICAL and creates a nonempty CycloneDX
+SBOM. No ignore/waiver or continue-on-error. Local image results:24 MEDIUM/4 LOW,
+no HIGH/CRITICAL, no fixed versions reported. Actual current results are in
+`target/container-security/summary.json`, report.json and sbom.cdx.json; raw scanner
+source/secret reports are never uploaded by CI.
 
 ## Operations baseline
 

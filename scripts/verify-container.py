@@ -56,7 +56,12 @@ def main():
         docker('cp', name + ':/app/application.jar', str(TARGET / 'f20-image.jar'))
         with zipfile.ZipFile(TARGET / 'f20-image.jar') as jar:
             manifest = jar.read('BOOT-INF/classes/asset-manifest.json')
-            assert manifest == (TARGET / 'frontend/asset-manifest.json').read_bytes(), 'frontend differs: refresh verification assets from candidate'
+            entries = json.loads(manifest)
+            for entry in entries.values():
+                for asset in [entry['file'], *entry.get('css', [])]:
+                    jar.getinfo('BOOT-INF/classes/' + asset)
+            if args.browser:
+                assert manifest == (TARGET / 'frontend/asset-manifest.json').read_bytes(), 'frontend differs: refresh verification assets from candidate'
         report['jar_sha256'] = hashlib.sha256((TARGET / 'f20-image.jar').read_bytes()).hexdigest()
         cookies = http.cookiejar.CookieJar()
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), urllib.request.HTTPCookieProcessor(cookies))

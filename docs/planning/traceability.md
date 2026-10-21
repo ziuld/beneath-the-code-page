@@ -42,10 +42,6 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F09-UH01-R02 | [F09-UH01](features/F09.md#f09-uh01) | F09-UH01-AC02 | F09-UH01-T04 | Boundary values 0/1/100/101 and unavailable cryptographic API; no Math.random fallback |
 | F10-UH01-R01 | [F10-UH01](features/F10.md#f10-uh01) | F10-UH01-AC01 | F10-UH01-T03 | Synthetic tokens only; escaped HTML-like claims; no key fetching or server requests |
 | F10-UH01-R02 | [F10-UH01](features/F10.md#f10-uh01) | F10-UH01-AC02 | F10-UH01-T04 | Malformed segments, invalid UTF-8/JSON, limits and untrusted exp claim cases |
-| F11-UH01-R01 | [F11-UH01](features/F11.md#f11-uh01) | F11-UH01-AC01 | F11-UH01-T04 | Golden scalar/array/object cases; quote ambiguous strings; precision-aware comparisons |
-| F11-UH01-R02 | [F11-UH01](features/F11.md#f11-uh01) | F11-UH01-AC02 | F11-UH01-T05 | Duplicate keys, unsupported numeric precision and output expansion tests; no JS-number round trip |
-| F11-UH02-R01 | [F11-UH02](features/F11.md#f11-uh02) | F11-UH02-AC01 | F11-UH02-T04 | Schema-specific mapping/list fixtures and quoted date-like strings |
-| F11-UH02-R02 | [F11-UH02](features/F11.md#f11-uh02) | F11-UH02-AC02 | F11-UH02-T05 | Aliases, custom tags, multiple documents, duplicate/non-string keys, non-finite and unsafe numbers |
 | F12-UH01-R01 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC01 | F12-UH01-T03 | Accepted F06/F07 catalogue journeys and keyboard/accessible-name evidence; no repeat checks for unchanged pages |
 | F12-UH01-R02 | [F12-UH01](features/F12.md#f12-uh01) | F12-UH01-AC02 | F12-UH01-T04 | Accepted deny-by-default security, EN/ES/FR safe-error and captured-log evidence; no runtime policy change or duplicate validation |
 | F12-UH02-R01 | [F12-UH02](features/F12.md#f12-uh02) | F12-UH02-AC01 | F12-UH02-T03 | Accepted packaged-JAR smoke evidence and existing loopback configuration; no duplicate startup, health or shutdown run |
@@ -84,4 +80,5 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F19-UH01-R01 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC01 | F19-UH01-T03 | Run the existing harness per engine and manual journey checks; preserve meaningful assertions and report unavailable environments |
 | F19-UH01-R02 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC02 | F19-UH01-T03 | Owner Safari review on available Apple hardware; do not invent device coverage or install system dependencies without approval |
 | F20-UH01-R01 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC01 | F20-UH01-T03 | Build and start the image; inspect non-root runtime, health, management isolation, local HTTP locale flow, shutdown and image/dependency findings |
-| F20-UH01-R02 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC02 | F20-UH01-T03 | Record second-PC Docker Desktop startup and smoke evidence or leave acceptance pending; document build/run/stop and optional save/load commands |
+| F20-UH01-R02 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC02 | F20-UH01-T03 | Record actual local evidence and the owner decision; retain optional transfer instructions without requiring another PC |
+| F20-UH01-R03 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC03 | F20-UH01-T03 | Run the mounted-checkout development verifier on the available host; record Windows or second-machine checks as pending until executed |

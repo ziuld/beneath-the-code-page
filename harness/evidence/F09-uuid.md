@@ -54,5 +54,17 @@ error/copy ownership, SSR/security/locale publication and actual browser evidenc
 AC01/AC02 accepted. F19 Firefox/WebKit, real Safari and actual browser zoom remain
 later work; no compatibility or owner manual-review claim here.
 
-Final planning validation and coherent local commit reference follow in the handoff.
-Existing owner planning edits remain uncommitted; no publication.
+## Local closure and handoff
+
+Implementation commit: d8072539306ccca1e18b6a77e188d16c06b59f91.
+T01–T05, story and feature complete against recorded acceptance/integration review.
+Planning validation and 23 planning-rule tests PASS; both generated views refreshed.
+Whitespace check PASS. After closure, all 189 runtime/test/JAR security input
+digests remain unchanged; only planning/handoff inputs changed. Existing owner
+planning edits remain uncommitted together
+with F09 tracking/handoff updates; only the scoped implementation was committed.
+No push/PR/deployment. Actual owner effort unreported.
+
+Preview: http://127.0.0.1:41067/tools/uuid?lang=en, local profile, loopback-only,
+PID80780 / exec session78897; target/f09-preview.log. Verify identity and stop before
+rebuilding. Next: F10 JWT → bounded simplification → F19 browsers → F20 Docker.

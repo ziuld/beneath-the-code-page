@@ -1,6 +1,6 @@
 # Task — F19-UH01-T01 bounded simplification
 
-Status: review and cleanup verified; recording T01 closure. Owner: Ziuld with AI assistance. Date: 2026-10-21.
+Status: T01 done; F19 T02–T04 remain open. Owner: Ziuld with AI assistance. Date: 2026-10-21.
 Scope: review unused dependencies, unnecessary abstractions, duplicate tests and
 conflicting current docs; implement justified small improvements before browsers.
 Read: AGENTS/current-state, F19 dossier/EARS/Gherkin/tasks, technical architecture,

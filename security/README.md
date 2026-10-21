@@ -62,3 +62,13 @@ selected by the POM. Actual scan results belong in the
 Scanner source/download metadata: GitHub release APIs for Trivy/uv, PyPI for the
 Semgrep wheel, and immutable semgrep-rules source. Downloaded scanner resources
 remain local; do not upload repository source or use browser tool payloads.
+
+## Container image gate
+
+Docker PR/main CI reuses the pinned Trivy installation. Run
+`python3 scripts/test-container-security.py` and
+`python3 scripts/verify-container-security.py` against the built local image.
+The gate requires OS and expected Java inventory, fresh databases and scanner
+success; HIGH/CRITICAL findings block. All lower findings remain visible. It
+generates a CycloneDX SBOM and fails on empty components. It neither publishes
+the image nor grants deployment approval. Output: target/container-security/.

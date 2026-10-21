@@ -1,6 +1,6 @@
 # Task — F10 JWT Decoder
 
-Status: implementation and acceptance verified; recording closure. Owner: Ziuld with AI assistance. Date: 2026-10-21.
+Status: done; all five tasks and AC01/AC02 accepted. Owner: Ziuld with AI assistance. Date: 2026-10-21.
 Scope: bounded local compact-JWS inspection; permanent signature-not-verified
 notice, escaped header/claims, no key fetching, verification, editor or worker.
 Read: AGENTS/current-state, F10 dossier/EARS/Gherkin/tasks, architecture/feasibility,

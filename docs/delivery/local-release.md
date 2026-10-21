@@ -128,7 +128,7 @@ require matching source and packaged inventories and fresh databases.
 - Three reviewed Java units are published: source-to-JVM, values/types/numeric
   limits and control-flow tracing. Five further units remain deferred; Java
   Fundamentals is not a complete course. Shared design and all six tools are
-  delivered; F19 browser review is complete and Docker portability remains next.
+  delivered; F19 review and F20 local Docker acceptance are complete.
 - Chromium covers intermediate feature delivery. F19 Chromium,
   Firefox/WebKit review is complete:169 checks per engine, plus affected Firefox
   rechecks and39 native200% zoom journeys. Real Safari remains **unverified**.

@@ -6,14 +6,15 @@ Read `harness/current-state.md`, `docs/architecture/technical-architecture-v1.md
 
 ## Current boundary
 
-All retained V1 features are accepted; bootstrap and F16 are complete. ADR010 and
-`plan.json` select the V2 sequence: F17 maintenance → F15-UH01/UH02 lessons →
-push/PR checkpoint → F18 page-by-page agreed design → F08–F11 tools → F19 final
-Firefox/WebKit and separate Safari review → F20 Docker Desktop/second-PC handoff.
-F15-UH03 through UH07 remain deferred. Preserve accepted V1 history. Design
-prompts and owner concepts/agreement precede visual implementation. No speculative
-extension frameworks, cloud deployment or image publication. Complete authorised
-scope without inventing additional permission gates.
+All retained V1 and selected V2 work are accepted: F17 maintenance, selected two
+F15 lessons, F18 design, F08–F10 tools, F19 simplification/browser review and F20
+Docker development/local runtime. F11 JSON/YAML is removed, not deferred.
+F15-UH03 through UH07 remain deferred. Owner accepted local Docker evidence and
+removed second-PC testing as a closure gate on2026-10-21. Other platforms and real
+Safari remain unverified. Future cross-PC failures are bugs. Next work requires
+a concrete improvement/bug scope; no automatic VPS deployment, image publication
+or speculative framework. Preserve accepted history and meaningful quality gates.
+Design prompts/concepts/agreement still precede future visual implementation.
 
 ## Architecture
 
@@ -22,6 +23,10 @@ scope without inventing additional permission gates.
 - TypeScript owns browser-local tool processing, never global routing. No tool payload in HTTP requests, URLs, logs, analytics, cookies or persistent browser storage.
 - One shared BTC Design System. All user-facing text uses EN/ES/FR resources. Preserve the B logo and approved visual direction.
 - Explain material architecture changes and their trade-offs before implementing them; record accepted changes in an ADR.
+
+## Proportionate delivery
+
+Keep `harness/current-state.md` concise and current; historical checkpoints live in linked history/evidence. Read relevant sections and files, not entire historical logs. Use native browser APIs and existing shared styles; add workers, editors, interfaces or dependencies only for demonstrated needs. Run focused checks during implementation, then required full gates once the candidate is coherent; repeat only affected checks after changes. Use fail-fast verification commands and one concise evidence record per slice. Do not weaken privacy, accessibility, translations or correctness gates to save tokens. F09 needs UUID v4 batches 1–100 and explicit Copy, not a new tool framework. F10 remains local JWT inspection without signature verification or key fetching.
 
 ## Work loop
 

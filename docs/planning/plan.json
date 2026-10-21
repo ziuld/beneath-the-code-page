@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "baseline_date": "2026-10-09",
-  "scope_revision_date": "2026-10-20",
+  "scope_revision_date": "2026-10-21",
   "scope_decision": "docs/architecture/adr-010-v2-delivery-and-portable-handoff.md",
   "start_date": null,
   "capacity_hours_per_week": 10,
@@ -3479,11 +3479,13 @@
       "depends_on": [
         "F06"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-21",
+      "actual_finish": "2026-10-21",
+      "evidence": [
+        "harness/evidence/F09-uuid.md"
+      ],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -3494,7 +3496,7 @@
           "description": "As a developer, I want to generate UUID v4 values locally, so that I can create identifiers without sharing them.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F06",
@@ -3503,10 +3505,14 @@
           "baseline_hours": 4,
           "forecast_hours": 4,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-21",
+          "actual_finish": "2026-10-21",
+          "evidence": [
+            "harness/evidence/F09-uuid.md"
+          ],
+          "commits": [
+            "d8072539306ccca1e18b6a77e188d16c06b59f91"
+          ],
           "requirements": [
             {
               "id": "F09-UH01-R01",
@@ -3552,7 +3558,7 @@
               "baseline_hours": 0.25,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F06",
@@ -3560,10 +3566,14 @@
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F09-uuid.md"
+              ],
+              "commits": [
+                "d8072539306ccca1e18b6a77e188d16c06b59f91"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F09-UH01-T02",
@@ -3573,7 +3583,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F09-UH01-T01"
@@ -3583,10 +3593,14 @@
                 "F09-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F09-uuid.md"
+              ],
+              "commits": [
+                "d8072539306ccca1e18b6a77e188d16c06b59f91"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F09-UH01-T03",
@@ -3596,7 +3610,7 @@
               "baseline_hours": 1.25,
               "forecast_hours": 1.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F09-UH01-T02"
@@ -3605,10 +3619,14 @@
                 "F09-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F09-uuid.md"
+              ],
+              "commits": [
+                "d8072539306ccca1e18b6a77e188d16c06b59f91"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F09-UH01-T04",
@@ -3618,7 +3636,7 @@
               "baseline_hours": 1.0,
               "forecast_hours": 1.0,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F09-UH01-T03"
@@ -3627,10 +3645,14 @@
                 "F09-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F09-uuid.md"
+              ],
+              "commits": [
+                "d8072539306ccca1e18b6a77e188d16c06b59f91"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F09-UH01-T05",
@@ -3640,7 +3662,7 @@
               "baseline_hours": 0.25,
               "forecast_hours": 0.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F09-UH01-T04"
@@ -3650,10 +3672,14 @@
                 "F09-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F09-uuid.md"
+              ],
+              "commits": [
+                "d8072539306ccca1e18b6a77e188d16c06b59f91"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
@@ -3674,11 +3700,13 @@
       "depends_on": [
         "F06"
       ],
-      "status": "planned",
+      "status": "done",
       "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-21",
+      "actual_finish": "2026-10-21",
+      "evidence": [
+        "harness/evidence/F10-jwt.md"
+      ],
       "parent_id": "EPIC-MVP",
       "kind": "product",
       "stories": [
@@ -3689,7 +3717,7 @@
           "description": "As a developer, I want to decode JWT header and claims locally, so that I can inspect a token without mistaking decoding for validation.",
           "priority": "Must",
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "depends_on": [
             "F06",
@@ -3698,10 +3726,14 @@
           "baseline_hours": 8,
           "forecast_hours": 8,
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
+          "actual_start": "2026-10-21",
+          "actual_finish": "2026-10-21",
+          "evidence": [
+            "harness/evidence/F10-jwt.md"
+          ],
+          "commits": [
+            "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
+          ],
           "requirements": [
             {
               "id": "F10-UH01-R01",
@@ -3747,7 +3779,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F06",
@@ -3755,10 +3787,14 @@
               ],
               "scenario_ids": [],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F10-jwt.md"
+              ],
+              "commits": [
+                "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F10-UH01-T02",
@@ -3768,7 +3804,7 @@
               "baseline_hours": 2.5,
               "forecast_hours": 2.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F10-UH01-T01"
@@ -3778,10 +3814,14 @@
                 "F10-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F10-jwt.md"
+              ],
+              "commits": [
+                "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F10-UH01-T03",
@@ -3791,7 +3831,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F10-UH01-T02"
@@ -3800,10 +3840,14 @@
                 "F10-UH01-AC01"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F10-jwt.md"
+              ],
+              "commits": [
+                "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F10-UH01-T04",
@@ -3813,7 +3857,7 @@
               "baseline_hours": 2.25,
               "forecast_hours": 2.25,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F10-UH01-T03"
@@ -3822,10 +3866,14 @@
                 "F10-UH01-AC02"
               ],
               "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "evidence": [
+                "harness/evidence/F10-jwt.md"
+              ],
+              "commits": [
+                "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
+              ],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             },
             {
               "id": "F10-UH01-T05",
@@ -3835,7 +3883,7 @@
               "baseline_hours": 0.5,
               "forecast_hours": 0.5,
               "actual_hours": 0,
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "depends_on": [
                 "F10-UH01-T04"
@@ -3845,422 +3893,14 @@
                 "F10-UH01-AC02"
               ],
               "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            }
-          ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
-        }
-      ]
-    },
-    {
-      "id": "F11",
-      "release": "V2",
-      "name": "JSON and YAML converters",
-      "owner": "Ziuld with AI assistance",
-      "milestone": "M2",
-      "optimistic_hours": 16,
-      "baseline_hours": 24,
-      "pessimistic_hours": 44,
-      "forecast_hours": 24,
-      "actual_hours": 0,
-      "depends_on": [
-        "F07"
-      ],
-      "status": "planned",
-      "blocker": "",
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
-      "parent_id": "EPIC-MVP",
-      "kind": "product",
-      "stories": [
-        {
-          "id": "F11-UH01",
-          "parent_id": "F11",
-          "title": "Convert supported JSON to YAML faithfully",
-          "description": "As a developer, I want to convert JSON to YAML without silent data loss, so that I can change notation while retaining meaning.",
-          "priority": "Must",
-          "owner": "Ziuld with AI assistance",
-          "status": "planned",
-          "blocker": "",
-          "depends_on": [
-            "F07",
-            "F18"
-          ],
-          "baseline_hours": 12,
-          "forecast_hours": 12,
-          "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
-          "requirements": [
-            {
-              "id": "F11-UH01-R01",
-              "pattern": "event",
-              "text": "When supported JSON is converted to YAML, the converter shall preserve its JSON values and structure."
-            },
-            {
-              "id": "F11-UH01-R02",
-              "pattern": "unwanted",
-              "text": "If JSON contains duplicate object keys, then the converter shall reject the conversion as ambiguous."
-            }
-          ],
-          "scenarios": [
-            {
-              "id": "F11-UH01-AC01",
-              "name": "Convert an ordinary JSON document",
-              "requirement_ids": [
-                "F11-UH01-R01"
+              "evidence": [
+                "harness/evidence/F10-jwt.md"
               ],
-              "given": "the JSON contains strings, finite supported numbers, booleans, null and arrays",
-              "when": "the developer converts it to YAML",
-              "then": "parsing the result under the documented schema yields equivalent values and structure",
-              "verification": "Golden scalar/array/object cases; quote ambiguous strings; precision-aware comparisons"
-            },
-            {
-              "id": "F11-UH01-AC02",
-              "name": "Reject duplicate-key conversion",
-              "requirement_ids": [
-                "F11-UH01-R02"
+              "commits": [
+                "a9eb6e47b2e8b1b2c0cc0ed24d6841c9a7b315ed"
               ],
-              "given": "the JSON is {\"a\":1,\"a\":2}",
-              "when": "the developer requests YAML conversion",
-              "then": "an ambiguity diagnostic appears without a lossy output",
-              "verification": "Duplicate keys, unsupported numeric precision and output expansion tests; no JS-number round trip"
-            }
-          ],
-          "tasks": [
-            {
-              "id": "F11-UH01-T01",
-              "parent_id": "F11-UH01",
-              "kind": "analysis",
-              "title": "Read the feature, this story, EARS requirements and Gherkin scenarios; confirm prerequisites and the expected evidence",
-              "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F07",
-                "F18"
-              ],
-              "scenario_ids": [],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH01-T02",
-              "parent_id": "F11-UH01",
-              "kind": "implementation",
-              "title": "Define the lossless supported JSON subset and build token-aware JSON-to-YAML conversion",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01-T01"
-              ],
-              "scenario_ids": [
-                "F11-UH01-AC01",
-                "F11-UH01-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH01-T03",
-              "parent_id": "F11-UH01",
-              "kind": "implementation",
-              "title": "Integrate the direction-specific page with bounded workers and translated conversion diagnostics",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01-T02"
-              ],
-              "scenario_ids": [
-                "F11-UH01-AC01",
-                "F11-UH01-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH01-T04",
-              "parent_id": "F11-UH01",
-              "kind": "verification",
-              "title": "Golden scalar/array/object cases; quote ambiguous strings; precision-aware comparisons",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01-T03"
-              ],
-              "scenario_ids": [
-                "F11-UH01-AC01"
-              ],
-              "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH01-T05",
-              "parent_id": "F11-UH01",
-              "kind": "verification",
-              "title": "Duplicate keys, unsupported numeric precision and output expansion tests; no JS-number round trip",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01-T04"
-              ],
-              "scenario_ids": [
-                "F11-UH01-AC02"
-              ],
-              "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH01-T06",
-              "parent_id": "F11-UH01",
-              "kind": "closure",
-              "title": "Review the diff and evidence, create or record the coherent commit when authorised, and update the story only after acceptance",
-              "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01-T05"
-              ],
-              "scenario_ids": [
-                "F11-UH01-AC01",
-                "F11-UH01-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            }
-          ],
-          "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
-        },
-        {
-          "id": "F11-UH02",
-          "parent_id": "F11",
-          "title": "Convert supported YAML to strict JSON",
-          "description": "As a developer, I want to convert a safe YAML subset to JSON, so that I can use configuration values in JSON tools.",
-          "priority": "Must",
-          "owner": "Ziuld with AI assistance",
-          "status": "planned",
-          "blocker": "",
-          "depends_on": [
-            "F11-UH01",
-            "F18"
-          ],
-          "baseline_hours": 12,
-          "forecast_hours": 12,
-          "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
-          "commits": [],
-          "requirements": [
-            {
-              "id": "F11-UH02-R01",
-              "pattern": "event",
-              "text": "When a supported single YAML document is converted, the converter shall produce strict JSON with equivalent supported values."
-            },
-            {
-              "id": "F11-UH02-R02",
-              "pattern": "unwanted",
-              "text": "If YAML requests custom tags or exceeds the alias-expansion budget, then the converter shall reject it."
-            }
-          ],
-          "scenarios": [
-            {
-              "id": "F11-UH02-AC01",
-              "name": "Convert a safe mapping",
-              "requirement_ids": [
-                "F11-UH02-R01"
-              ],
-              "given": "the YAML is a single document with unique string keys and supported scalar values",
-              "when": "the developer converts it to JSON",
-              "then": "the output is strict JSON representing those values",
-              "verification": "Schema-specific mapping/list fixtures and quoted date-like strings"
-            },
-            {
-              "id": "F11-UH02-AC02",
-              "name": "Reject resource-expanding YAML",
-              "requirement_ids": [
-                "F11-UH02-R02"
-              ],
-              "given": "the input contains aliases exceeding the configured expansion budget",
-              "when": "the developer requests conversion",
-              "then": "the worker rejects the input without freezing the workspace",
-              "verification": "Aliases, custom tags, multiple documents, duplicate/non-string keys, non-finite and unsafe numbers"
-            }
-          ],
-          "tasks": [
-            {
-              "id": "F11-UH02-T01",
-              "parent_id": "F11-UH02",
-              "kind": "analysis",
-              "title": "Read the feature, this story, EARS requirements and Gherkin scenarios; confirm prerequisites and the expected evidence",
-              "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH01",
-                "F18"
-              ],
-              "scenario_ids": [],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH02-T02",
-              "parent_id": "F11-UH02",
-              "kind": "implementation",
-              "title": "Configure single-document YAML parsing with constrained tags, keys and alias handling",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH02-T01"
-              ],
-              "scenario_ids": [
-                "F11-UH02-AC01",
-                "F11-UH02-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH02-T03",
-              "parent_id": "F11-UH02",
-              "kind": "implementation",
-              "title": "Implement strict JSON conversion with explicit errors for unsupported types and unsafe values",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH02-T02"
-              ],
-              "scenario_ids": [
-                "F11-UH02-AC01",
-                "F11-UH02-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH02-T04",
-              "parent_id": "F11-UH02",
-              "kind": "verification",
-              "title": "Schema-specific mapping/list fixtures and quoted date-like strings",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH02-T03"
-              ],
-              "scenario_ids": [
-                "F11-UH02-AC01"
-              ],
-              "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH02-T05",
-              "parent_id": "F11-UH02",
-              "kind": "verification",
-              "title": "Aliases, custom tags, multiple documents, duplicate/non-string keys, non-finite and unsafe numbers",
-              "baseline_hours": 2.75,
-              "forecast_hours": 2.75,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH02-T04"
-              ],
-              "scenario_ids": [
-                "F11-UH02-AC02"
-              ],
-              "definition_of_done": "Applicable scenario evidence is recorded; limitations are explicit.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
-            },
-            {
-              "id": "F11-UH02-T06",
-              "parent_id": "F11-UH02",
-              "kind": "closure",
-              "title": "Review the diff and evidence, create or record the coherent commit when authorised, and update the story only after acceptance",
-              "baseline_hours": 0.5,
-              "forecast_hours": 0.5,
-              "actual_hours": 0,
-              "status": "planned",
-              "blocker": "",
-              "depends_on": [
-                "F11-UH02-T05"
-              ],
-              "scenario_ids": [
-                "F11-UH02-AC01",
-                "F11-UH02-AC02"
-              ],
-              "definition_of_done": "The described deliverable has been inspected and its result recorded.",
-              "evidence": [],
-              "commits": [],
-              "actual_start": null,
-              "actual_finish": null
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21"
             }
           ],
           "scope_note": "Implements the accepted feature scope; no additional product capabilities implied."
@@ -7815,12 +7455,15 @@
     },
     {
       "owner": "Ziuld with AI assistance",
-      "status": "planned",
+      "status": "done",
       "blocker": "",
       "actual_hours": 0,
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-21",
+      "actual_finish": "2026-10-21",
+      "evidence": [
+        "harness/evidence/F19-simplification.md",
+        "harness/evidence/F19-browsers.md"
+      ],
       "id": "F19",
       "release": "V2",
       "name": "Final Firefox, WebKit and Safari compatibility review",
@@ -7833,20 +7476,22 @@
         "F18",
         "F08",
         "F09",
-        "F10",
-        "F11"
+        "F10"
       ],
       "parent_id": "EPIC-MVP",
       "kind": "enabler",
       "stories": [
         {
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
+          "actual_start": "2026-10-21",
+          "actual_finish": "2026-10-21",
+          "evidence": [
+            "harness/evidence/F19-simplification.md",
+            "harness/evidence/F19-browsers.md"
+          ],
           "id": "F19-UH01",
           "parent_id": "F19",
           "title": "Final Firefox, WebKit and Safari compatibility review",
@@ -7856,12 +7501,14 @@
             "F18",
             "F08",
             "F09",
-            "F10",
-            "F11"
+            "F10"
           ],
           "baseline_hours": 8,
           "forecast_hours": 8,
-          "commits": [],
+          "commits": [
+            "a46d6f1a4965af7437cbe2820798ae067893e469",
+            "f74420582bd8937de12965375f0f1395f64031ca"
+          ],
           "requirements": [
             {
               "id": "F19-UH01-R01",
@@ -7901,37 +7548,42 @@
           "tasks": [
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F19-simplification.md"
+              ],
               "id": "F19-UH01-T01",
               "parent_id": "F19-UH01",
               "kind": "analysis",
-              "title": "Inspect retained Firefox/WebKit tests, known issues and available Safari environment after design and tools",
+              "title": "Review code/tests/documentation for concrete simplifications before browser acceptance; inspect retained engine tests and available Safari environment",
               "baseline_hours": 1,
               "forecast_hours": 1,
               "depends_on": [
                 "F18",
                 "F08",
                 "F09",
-                "F10",
-                "F11"
+                "F10"
               ],
               "scenario_ids": [],
-              "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "definition_of_done": "Record findings and bounded changes or reasons to retain existing code; preserve meaningful assertions. Complete simplifications before final browser runs. Record environment limitations honestly.",
+              "commits": [
+                "a46d6f1a4965af7437cbe2820798ae067893e469"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F19-browsers.md"
+              ],
               "id": "F19-UH01-T02",
               "parent_id": "F19-UH01",
               "kind": "implementation",
@@ -7946,16 +7598,20 @@
                 "F19-UH01-AC02"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "f74420582bd8937de12965375f0f1395f64031ca"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F19-browsers.md"
+              ],
               "id": "F19-UH01-T03",
               "parent_id": "F19-UH01",
               "kind": "verification",
@@ -7970,16 +7626,20 @@
                 "F19-UH01-AC02"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "f74420582bd8937de12965375f0f1395f64031ca"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F19-browsers.md"
+              ],
               "id": "F19-UH01-T04",
               "parent_id": "F19-UH01",
               "kind": "closure",
@@ -7994,21 +7654,25 @@
                 "F19-UH01-AC02"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "f74420582bd8937de12965375f0f1395f64031ca"
+              ]
             }
           ],
-          "scope_note": "Bounded V2 follow-up under ADR010. Planned checks are not passing evidence. Preserve the accepted V1 baseline and existing functionality."
+          "scope_note": "Bounded V2 follow-up under ADR010. Planned checks are not passing evidence. Preserve the accepted V1 baseline and existing functionality. Before browser acceptance, review unused dependencies, unnecessary abstractions, duplicate behaviour/tests and conflicting documentation. Make only justified bounded simplifications; preserve accessibility, EN/ES/FR, privacy and correctness. No broad rewrite."
         }
       ]
     },
     {
       "owner": "Ziuld with AI assistance",
-      "status": "planned",
+      "status": "done",
       "blocker": "",
       "actual_hours": 0,
-      "actual_start": null,
-      "actual_finish": null,
-      "evidence": [],
+      "actual_start": "2026-10-21",
+      "actual_finish": "2026-10-21",
+      "evidence": [
+        "harness/evidence/F20-docker.md"
+      ],
       "id": "F20",
       "release": "V2",
       "name": "Portable Docker Desktop handoff and final closure",
@@ -8025,23 +7689,28 @@
       "stories": [
         {
           "owner": "Ziuld with AI assistance",
-          "status": "planned",
+          "status": "done",
           "blocker": "",
           "actual_hours": 0,
-          "actual_start": null,
-          "actual_finish": null,
-          "evidence": [],
+          "actual_start": "2026-10-21",
+          "actual_finish": "2026-10-21",
+          "evidence": [
+            "harness/evidence/F20-docker.md"
+          ],
           "id": "F20-UH01",
           "parent_id": "F20",
           "title": "Portable Docker Desktop handoff and final closure",
-          "description": "As a project owner, I want to run the application with Docker Desktop on another PC, so that I can reproduce the finished website without installing its build toolchain on that PC.",
+          "description": "As a project owner, I want to develop and run the application in Docker, so that host toolchain versions do not determine the workflow.",
           "priority": "Must",
           "depends_on": [
             "F19"
           ],
           "baseline_hours": 8,
           "forecast_hours": 8,
-          "commits": [],
+          "commits": [
+            "ad4934b0a92d31865125c48b419ab3e35e170177",
+            "c979d7e394dbf7db505681bb5165c010a7782f22"
+          ],
           "requirements": [
             {
               "id": "F20-UH01-R01",
@@ -8051,7 +7720,12 @@
             {
               "id": "F20-UH01-R02",
               "pattern": "unwanted",
-              "text": "If a container or second-PC check has not run, then the handoff shall mark that check pending and shall not claim portable acceptance."
+              "text": "If a platform or second-PC check has not run, then the handoff shall explicitly mark that environment unverified; owner acceptance of tested local execution may close F20 without claiming cross-platform verification."
+            },
+            {
+              "id": "F20-UH01-R03",
+              "pattern": "event",
+              "text": "When a maintainer develops from a Windows or Linux checkout, the project shall document a containerized build/test workflow that avoids host Java, Node and Python version requirements and records unverified platforms explicitly."
             }
           ],
           "scenarios": [
@@ -8068,29 +7742,42 @@
             },
             {
               "id": "F20-UH01-AC02",
-              "name": "Hand off to another PC",
+              "name": "Accept local handoff with honest platform limits",
               "requirement_ids": [
                 "F20-UH01-R02"
               ],
-              "given": "the reviewed image or source and runbook are available on a second PC",
-              "when": "the owner follows the documented build or image-load workflow",
-              "then": "the application works and supported architecture, platform and browser limitations are recorded honestly",
-              "verification": "Record second-PC Docker Desktop startup and smoke evidence or leave acceptance pending; document build/run/stop and optional save/load commands"
+              "given": "the available-host container and development checks passed and other environments are unverified",
+              "when": "the owner accepts local execution as sufficient for this version",
+              "then": "F20 closes with untested platforms recorded and future cross-PC failures handled as bugs",
+              "verification": "Record actual local evidence and the owner decision; retain optional transfer instructions without requiring another PC"
+            },
+            {
+              "id": "F20-UH01-AC03",
+              "name": "Develop with containerized tooling",
+              "requirement_ids": [
+                "F20-UH01-R03"
+              ],
+              "given": "a source checkout and Docker Linux-container support are available",
+              "when": "the maintainer follows the documented development build/test workflow",
+              "then": "project tooling runs inside the documented image and edited source can be rebuilt without host Java, Node or Python, with actual host results and pending platforms recorded",
+              "verification": "Run the mounted-checkout development verifier on the available host; record Windows or second-machine checks as pending until executed"
             }
           ],
           "tasks": [
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F20-docker.md"
+              ],
               "id": "F20-UH01-T01",
               "parent_id": "F20-UH01",
               "kind": "analysis",
-              "title": "Choose the smallest single-app image approach, supported CPU architecture and local HTTP configuration; retain the JAR workflow",
+              "title": "Choose the smallest single-app image approach, supported CPU architecture and local HTTP configuration; retain the JAR workflow; define containerized Windows/Linux development workflow",
               "baseline_hours": 1,
               "forecast_hours": 1,
               "depends_on": [
@@ -8098,20 +7785,24 @@
               ],
               "scenario_ids": [],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "ad4934b0a92d31865125c48b419ab3e35e170177"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F20-docker.md"
+              ],
               "id": "F20-UH01-T02",
               "parent_id": "F20-UH01",
               "kind": "implementation",
-              "title": "Add Dockerfile, dockerignore and concise Docker Desktop build/run/stop and optional image transfer instructions; Compose only if useful",
+              "title": "Add Dockerfile, dockerignore and concise Docker Desktop build/run/stop and optional image transfer instructions; Compose only if useful and an optional development tooling target",
               "baseline_hours": 3,
               "forecast_hours": 3,
               "depends_on": [
@@ -8119,23 +7810,28 @@
               ],
               "scenario_ids": [
                 "F20-UH01-AC01",
-                "F20-UH01-AC02"
+                "F20-UH01-AC02",
+                "F20-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "ad4934b0a92d31865125c48b419ab3e35e170177"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F20-docker.md"
+              ],
               "id": "F20-UH01-T03",
               "parent_id": "F20-UH01",
               "kind": "verification",
-              "title": "Verify clean image build, non-root runtime, assets/locales/health/privacy/shutdown and actual second-PC smoke; record unavailable checks",
+              "title": "Verify clean image build, non-root runtime, assets/locales/health/privacy/shutdown and local development; record untested platforms",
               "baseline_hours": 3,
               "forecast_hours": 3,
               "depends_on": [
@@ -8143,19 +7839,25 @@
               ],
               "scenario_ids": [
                 "F20-UH01-AC01",
-                "F20-UH01-AC02"
+                "F20-UH01-AC02",
+                "F20-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "ad4934b0a92d31865125c48b419ab3e35e170177",
+                "c979d7e394dbf7db505681bb5165c010a7782f22"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "planned",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
-              "actual_start": null,
-              "actual_finish": null,
-              "evidence": [],
+              "actual_start": "2026-10-21",
+              "actual_finish": "2026-10-21",
+              "evidence": [
+                "harness/evidence/F20-docker.md"
+              ],
               "id": "F20-UH01-T04",
               "parent_id": "F20-UH01",
               "kind": "closure",
@@ -8167,13 +7869,16 @@
               ],
               "scenario_ids": [
                 "F20-UH01-AC01",
-                "F20-UH01-AC02"
+                "F20-UH01-AC02",
+                "F20-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "c979d7e394dbf7db505681bb5165c010a7782f22"
+              ]
             }
           ],
-          "scope_note": "Bounded V2 follow-up under ADR010. Planned checks are not passing evidence. Preserve the accepted V1 baseline and existing functionality."
+          "scope_note": "Bounded V2 follow-up under ADR010. Planned checks are not passing evidence. Preserve the accepted V1 baseline and existing functionality. Owner clarification 2026-10-21: support ongoing development from Windows/Linux Docker checkouts with containerized Java/Node/Python tooling; retain a separate runtime image for later VPS work. No VPS deployment is authorised here. Host/platform claims require actual evidence. Owner decision 2026-10-21: tested local execution is sufficient for current acceptance; second-PC testing is no longer a closure gate. Future cross-PC problems are bugs; untested platforms remain unverified."
         }
       ]
     }
@@ -8313,19 +8018,17 @@
       "story_ids": [
         "F08-UH01",
         "F09-UH01",
-        "F10-UH01",
-        "F11-UH01",
-        "F11-UH02"
+        "F10-UH01"
       ],
-      "exit": "Base64, UUID, JWT and bounded JSON/YAML conversion accepted individually after final design agreement."
+      "exit": "Base64, UUID and JWT accepted individually under the shared design. JSON/YAML conversion is removed from project scope."
     },
     {
       "id": "V2-P5",
-      "name": "Final frontend compatibility review",
+      "name": "Simplification review, then final frontend compatibility",
       "story_ids": [
         "F19-UH01"
       ],
-      "exit": "Chromium/Firefox/WebKit results and separate real Safari evidence or pending limitation; demonstrated defects triaged without false coverage claims."
+      "exit": "First review code, tests and documentation for concrete simplifications; implement bounded improvements and retain meaningful quality gates. Then run Chromium/Firefox/WebKit checks and record separate real Safari evidence or a pending limitation."
     },
     {
       "id": "V2-P6",
@@ -8333,8 +8036,8 @@
       "story_ids": [
         "F20-UH01"
       ],
-      "exit": "Single-app container and second-PC runbook verified; actual second-PC evidence and owner closure, or an explicit pending item. No automatic image publication or deployment."
+      "exit": "Single-app container and development workflow verified locally and owner accepted. Other platforms remain unverified; second-PC testing is optional by owner decision 2026-10-21. No automatic image publication or deployment."
     }
   ],
-  "v2_scope_note": "Only listed stories are selected for this sequence. F15-UH03 through UH07 remain deferred; completing the full course is not a release gate. Estimates are provisional owner hours, not deadlines. V1 acceptance remains historical; portable V1 handoff is an additional deliverable tracked in V2."
+  "v2_scope_note": "Only listed stories are selected for this sequence. F15-UH03 through UH07 remain deferred; completing the full course is not a release gate. Estimates are provisional owner hours, not deadlines. V1 acceptance remains historical; portable V1 handoff is an additional deliverable tracked in V2. Owner revision 2026-10-21: F11 JSON/YAML removed, not deferred; historical scope retained in docs/planning/history/F11-removed-2026-10-21.json. Complete F09 and F10, then simplify code/tests/documentation before final browser acceptance and Docker handoff."
 }

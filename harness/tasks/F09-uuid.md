@@ -1,6 +1,6 @@
 # Task — F09 UUID Generator
 
-Status: implementation and acceptance verified; recording closure. Owner: Ziuld with AI assistance. Date: 2026-10-21.
+Status: done; all five tasks and AC01/AC02 accepted. Owner: Ziuld with AI assistance. Date: 2026-10-21.
 Scope: native cryptographic UUID v4, integer batches 1–100, explicit Generate/Copy,
 EN/ES/FR, shared styles. No editor, worker, dependency or framework.
 Read: AGENTS, current handoff, F09 dossier/EARS/Gherkin/tasks, architecture,

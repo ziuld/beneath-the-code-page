@@ -16,9 +16,10 @@ The canonical selected sequence lives in `plan.json` as `v2_delivery_phases`:
    then course/unit, Tools/tool workspace and Home/shared shell. Provide prompts
    for the owner's Nano Banana concepts; obtain design agreement before coding
    each page. Preserve core behaviour and existing quality/privacy boundaries.
-4. F08–F11: finish the remaining tools after design agreement, one bounded slice
+4. F08–F10: finish the remaining tools after design agreement, one bounded slice
    at a time. Do not bulk-generate the rest of the Java course.
-5. F19: review the retained Firefox/WebKit coverage at the end, alongside Chromium.
+5. F19: first review code, tests and documentation for bounded simplifications;
+   complete justified changes before final browser acceptance. Then review the retained Firefox/WebKit coverage at the end, alongside Chromium.
    Record real Safari review separately; WebKit automation alone does not prove
    Safari acceptance. Missing devices/checks remain explicit pending limitations.
 6. F20: Docker Desktop portability and final handoff of the first-version website,
@@ -46,3 +47,21 @@ no deadline, execution result or completion is established by this planning chan
 Human content/design review and second-PC/Safari evidence cannot be invented.
 New OpenSpec changes are not automatically archived; pushes/PRs are authorised,
 but merging, deployment and image publication are not.
+
+## Owner scope revision — 2026-10-21
+
+F11 JSON/YAML conversion is removed from the project, not deferred or accepted.
+Its original scope and 24h historical estimate remain in
+`../planning/history/F11-removed-2026-10-21.json`; it no longer blocks F19.
+Selected remaining work is F09 → F10 → simplification review → F19 browser
+acceptance → F20 single-app Docker handoff. The simplification review uses F19
+T01, without a new feature or framework. Preserve existing baseline estimates;
+review scope before revising forecasts. Avoid speculative abstractions and broad
+rewrites. Reuse shared styles, native APIs and existing meaningful checks.
+
+## Owner acceptance revision — 2026-10-21
+
+The owner accepted tested local Docker execution as sufficient for F20 and removed
+second-PC testing as a closure prerequisite. Future cross-PC problems are treated
+as bugs. This supersedes the earlier second-PC gate, not the recorded evidence:
+Windows, other machines and ARM64 remain unverified. No VPS deployment authorised.

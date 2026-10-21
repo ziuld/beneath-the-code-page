@@ -1,5 +1,12 @@
 # Beneath the Code Technical Architecture & Repository Bootstrap Specification v1
 
+Current delivery,2026-10-21: selected V2 work is complete: F17 maintenance,
+F15-UH01/UH02 lessons, F18 design, F08–F10 tools, F19 review and F20 Docker.
+F11 is removed; five further lessons remain deferred. F20 is owner-accepted on
+local Linux evidence; Windows/other machines/ARM64 and real Safari are unverified.
+Future VPS deployment is outside this delivery. Earlier scope/forecast statements
+below are historical where superseded. See plan.json and the current handoff.
+
 Current scope, 2026-10-20: V1 is accepted and F16 merged. [ADR010](adr-010-v2-delivery-and-portable-handoff.md)
 and the [selected V2 sequence](../planning/roadmap.md#v2-delivery-sequence) supersede the blanket freeze and remaining-V1
 forecasts below. Only two additional lessons are selected; design agreement precedes
