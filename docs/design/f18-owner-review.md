@@ -26,3 +26,7 @@ has been recorded yet.
 Owner outcome,2026-10-21: “Reviewed and approved” in response to this integrated
 checklist, including actual200% browser zoom and EN/ES/FR. No detailed observations
 supplied. The reviewed candidate remains unchanged; see implementation evidence.
+
+Closure,2026-10-21: owner runtime checklist explicitly approved. F18 and all tasks
+complete; reviewed local implementation `527fe5269ed1195a05ee2455a067917897d7364b`. Review preview stopped; evidence
+is in harness/evidence/F18-global-redesign.md. No push/PR/deployment/archival.

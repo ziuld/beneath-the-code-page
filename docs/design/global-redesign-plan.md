@@ -1,11 +1,11 @@
 # F18 — Global redesign and shared design system implementation plan
 
 Date:2026-10-20; implementation started2026-10-21 on owner continuation.
-Status: I01–I07 implemented and verified; T04 complete. T05 owner runtime review
-and T06 reviewed revision/closure remain pending. See harness evidence for actual results.
+Status: F18 complete2026-10-21. I01–I07 implemented and verified; owner runtime
+review approved; reviewed local revision527fe52 and closure recorded in evidence.
 Owner approved the Tools catalogue/workspace directions and requested this plan.
-Learn/course/reader directions are accepted; Home remains provisionally accepted
-with recorded refinements, to be checked in the integrated visual review.
+Learn/course/reader directions were accepted; Home was provisional until the
+owner approved the integrated runtime review on2026-10-21.
 
 ## Outcome and boundaries
 
@@ -181,5 +181,5 @@ it is an owner-capacity budget with AI assistance, not measured effort or a dead
 Shared20% contingency is computed by the existing roadmap, not counted twice.
 Actual owner effort is unreported; preserve that distinction in the tracker.
 
-Next: owner review of the integrated preview under T05, then record the reviewed
-revision and close T06 after approval. No push, PR, deployment or archival performed.
+Completed: owner approved T05 and the reviewed revision is recorded under T06.
+Next selected work is F08–F11. No push, PR, deployment or archival performed.

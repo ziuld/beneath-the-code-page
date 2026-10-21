@@ -40,3 +40,7 @@ Final candidate PASS: Maven261+17/185 frontend, Chromium142, security0 findings,
 policy20/spec15/planning23. T04 complete, T05 in_review. Owner runtime review and
 T06 reviewed revision/closure remain; preview44509 is running. See evidence and
 docs/design/f18-owner-review.md.
+
+Closure,2026-10-21: owner runtime checklist explicitly approved. F18 and all tasks
+complete; reviewed local implementation `527fe5269ed1195a05ee2455a067917897d7364b`. Review preview stopped; evidence
+is in harness/evidence/F18-global-redesign.md. No push/PR/deployment/archival.

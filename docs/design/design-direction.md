@@ -112,3 +112,7 @@ I01–I07 now implemented and verified across all pages. T04 complete; T05 owner
 runtime review pending, including Home's provisional direction in the integrated
 site. Guide:f18-owner-review.md; actual evidence:harness/evidence/F18-global-redesign.md.
 No new owner runtime approval inferred from the concept decisions above.
+
+Closure,2026-10-21: owner runtime checklist explicitly approved. F18 and all tasks
+complete; reviewed local implementation `527fe5269ed1195a05ee2455a067917897d7364b`. Review preview stopped; evidence
+is in harness/evidence/F18-global-redesign.md. No push/PR/deployment/archival.

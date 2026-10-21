@@ -47,7 +47,7 @@ Only listed stories are selected for this sequence. F15-UH03 through UH07 remain
 | V2-P5 — Final frontend compatibility review | F19-UH01 | 8 | Chromium/Firefox/WebKit results and separate real Safari evidence or pending limitation; demonstrated defects triaged without false coverage claims. |
 | V2-P6 — Docker Desktop portability and final handoff | F20-UH01 | 8 | Single-app container and second-PC runbook verified; actual second-PC evidence and owner closure, or an explicit pending item. No automatic image publication or deployment. |
 
-Selected remaining V2 forecast: 60h + 12h contingency = 72 owner hours at 10h/week. Provisional capacity budget, not a delivery commitment. Zero actual hours means unreported effort.
+Selected remaining V2 forecast: 58h + 11.6h contingency = 69.6 owner hours at 10h/week. Provisional capacity budget, not a delivery commitment. Zero actual hours means unreported effort.
 
 
 ## Ownership and progress

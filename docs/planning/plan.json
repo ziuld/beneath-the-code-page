@@ -7519,11 +7519,11 @@
     },
     {
       "owner": "Ziuld with AI assistance",
-      "status": "in_progress",
+      "status": "done",
       "blocker": "",
       "actual_hours": 0,
       "actual_start": "2026-10-20",
-      "actual_finish": null,
+      "actual_finish": "2026-10-21",
       "evidence": [
         "harness/evidence/F18-learn-design-exploration.md"
       ],
@@ -7543,13 +7543,14 @@
       "stories": [
         {
           "owner": "Ziuld with AI assistance",
-          "status": "in_progress",
+          "status": "done",
           "blocker": "",
           "actual_hours": 0,
           "actual_start": "2026-10-20",
-          "actual_finish": null,
+          "actual_finish": "2026-10-21",
           "evidence": [
-            "harness/evidence/F18-learn-design-exploration.md"
+            "harness/evidence/F18-learn-design-exploration.md",
+            "harness/evidence/F18-global-redesign.md"
           ],
           "id": "F18-UH01",
           "parent_id": "F18",
@@ -7562,7 +7563,9 @@
           ],
           "baseline_hours": 12,
           "forecast_hours": 28,
-          "commits": [],
+          "commits": [
+            "527fe5269ed1195a05ee2455a067917897d7364b"
+          ],
           "requirements": [
             {
               "id": "F18-UH01-R01",
@@ -7717,7 +7720,9 @@
                 "F18-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "527fe5269ed1195a05ee2455a067917897d7364b"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
@@ -7744,15 +7749,17 @@
                 "F18-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "527fe5269ed1195a05ee2455a067917897d7364b"
+              ]
             },
             {
               "owner": "Ziuld with AI assistance",
-              "status": "in_progress",
+              "status": "done",
               "blocker": "",
               "actual_hours": 0,
               "actual_start": "2026-10-21",
-              "actual_finish": null,
+              "actual_finish": "2026-10-21",
               "evidence": [
                 "harness/evidence/F18-global-redesign.md"
               ],
@@ -7771,10 +7778,12 @@
                 "F18-UH01-AC03"
               ],
               "definition_of_done": "Record actual results and limitations; owner decisions require explicit review evidence.",
-              "commits": []
+              "commits": [
+                "527fe5269ed1195a05ee2455a067917897d7364b"
+              ]
             }
           ],
-          "scope_note": "Owner explicitly approved the integrated F18 review checklist on2026-10-21. Reviewed runtime/test/JAR hashes unchanged; automated gates PASS. T05 complete; T06 recording scoped local reviewed revision and closure. Original12h baseline/28h forecast preserved; actual effort unreported."
+          "scope_note": "Completed2026-10-21: all page families consolidated under the shared design system; owner explicitly approved the runtime checklist including EN/ES/FR, keyboard and actual200% browser zoom. Reviewed implementation527fe52; all gates PASS. Baseline12h/forecast28h preserved; actual effort unreported. No push/PR/deployment/archival."
         }
       ]
     },

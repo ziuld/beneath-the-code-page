@@ -1,5 +1,21 @@
 # Current handoff
 
+F18 COMPLETE,2026-10-21: owner explicitly answered “Reviewed and approved” to the
+full integrated checklist, including EN/ES/FR, keyboard/focus and actual200%
+browser zoom. All6 tasks/story/feature done. Reviewed implementation:527fe5269ed1195a05ee2455a067917897d7364b.
+One shared CSS/Thymeleaf design system across Home/Learn/course/3 lessons/Tools/
+3 workspaces/safe errors; original B asset, new original Home SVG, native lesson
+section links and complete existing content/core tool/privacy/CSP behaviour.
+Maven261+17 Java/185 frontend, Chromium142/142, additional768px10-route reflow,
+fresh security0 findings/0 exceptions, policy20/strict15 specs and closure planning23/
+integrity/whitespace PASS.175 runtime/test/JAR inputs rechecked unchanged at approval.
+Evidence:harness/evidence/F18-global-redesign.md. Review preview PID46463 stopped.
+Only scoped local implementation/handoff commits; no push/PR/deployment/archival.
+Baseline12h/forecast28h retained; actual owner effort unreported.
+Next:F08–F11 tools under the accepted design, then F19 browsers and F20 Docker.
+Earlier checkpoints below are historical, including superseded running-preview
+and incomplete/review-pending statements.
+
 F18 owner accepted,2026-10-21: explicit “Reviewed and approved” to the full runtime
 checklist, including EN/ES/FR, keyboard/focus and actual200% browser zoom. T05 done;
 T06 recording the reviewed local revision.175 runtime/test/JAR inputs match the

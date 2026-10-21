@@ -152,3 +152,19 @@ T05 complete. Rechecked175 runtime/test/JAR inputs against the passing security
 snapshot: all unchanged. Packaged SHA256 still matches the reviewed artifact above.
 Reused existing passing runtime checks; no redundant build/browser/security rerun
 for approval bookkeeping. T06 records the actual scoped local revision next.
+
+### Local revision and closure — 2026-10-21
+
+Reviewed implementation commit:`527fe5269ed1195a05ee2455a067917897d7364b`
+(`feat(ui): unify website design for F18`). It contains the agreed design artefacts,
+implementation, meaningful updated checks and explicit owner approval. Runtime/test
+inputs and the reviewed JAR are unchanged from the passing gate. This final handoff
+changes documentation/tracking only; no extra runtime pass is invented.
+
+T06, all6 tasks, F18-UH01 and F18 complete. Main-spec ownership and V1 acceptance
+remain intact. Baseline12h/forecast28h preserved; actual effort remains unreported.
+Review preview PID46463 was verified against its command line and stopped with
+SIGTERM; loopback port44509 is no longer the active review endpoint. Final closure
+planning/23 rule tests/generated views and whitespace checks pass. Scoped local
+implementation/handoff commits only; no push, PR, deployment or OpenSpec archival.
+Next selected work:F08–F11 tools, followed by F19 browser review and F20 Docker.
