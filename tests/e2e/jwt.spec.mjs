@@ -34,7 +34,8 @@ for(const [locale,message] of Object.entries(messages)){
     expect(await context.cookies()).toEqual(cookies);expect(await page.evaluate(async()=>({local:localStorage.length,session:sessionStorage.length,db:(await indexedDB.databases()).length,caches:(await caches.keys()).length}))).toEqual({local:0,session:0,db:0,caches:0});
     const logs=readFileSync(new URL("../../target/home-browser-server.log",import.meta.url),"utf8");expect(logs).not.toContain("SYNTHETIC_F10_");expect(logs).not.toContain(jwt);
     for(const width of [320,1440]){await page.setViewportSize({width,height:900});await input.fill(jwt);await run.click();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`../../target/f10-${locale}-${width}.png`,fullPage:true});}
-    const next=locale==="fr"?"es":"fr";await page.locator("select[name=language]").selectOption(next);await page.locator(".language-preference button").click();await expect(page).toHaveURL(`${baseURL}/tools/jwt`);await expect(page.locator("html")).toHaveAttribute("lang",next);await expect(input).toHaveValue("");
+    const preferencesBase=process.env.BTC_LOCAL_URL;await page.goto(`${preferencesBase}/tools/jwt?lang=${locale}`);
+    const next=locale==="fr"?"es":"fr";await page.locator("select[name=language]").selectOption(next);await page.locator(".language-preference button").click();await expect(page).toHaveURL(`${preferencesBase}/tools/jwt`);await expect(page.locator("html")).toHaveAttribute("lang",next);await expect(input).toHaveValue("");
   });
 
   test(`F10 ${locale}: no-JS and failed lazy loading keep disclaimer and inert controls`,async({browser,page,baseURL})=>{

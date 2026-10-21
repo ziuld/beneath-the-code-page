@@ -60,9 +60,11 @@ for (const [locale, message] of Object.entries(messages)) {
     for(const value of generated){expect(JSON.stringify(requests)).not.toContain(value);expect(logs).not.toContain(value);}
     expect((await new AxeBuilder({page}).analyze()).violations).toEqual([]);
     for(const width of [320,1440]){await page.setViewportSize({width,height:900});await count.fill("3");await run.click();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`../../target/f09-${locale}-${width}.png`,fullPage:true});}
+    const preferencesBase=process.env.BTC_LOCAL_URL;
+    await page.goto(`${preferencesBase}/tools/uuid?lang=${locale}`);
     const next=locale==="fr"?"es":"fr";
     await page.locator("select[name=language]").selectOption(next);await page.locator(".language-preference button").click();
-    await expect(page).toHaveURL(`${baseURL}/tools/uuid`);await expect(page.locator("html")).toHaveAttribute("lang",next);
+    await expect(page).toHaveURL(`${preferencesBase}/tools/uuid`);await expect(page.locator("html")).toHaveAttribute("lang",next);
   });
 
   test(`F09 ${locale}: unavailable/throwing crypto and safe clipboard failures`, async ({ page }) => {

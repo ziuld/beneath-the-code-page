@@ -211,9 +211,8 @@ for (const [locale, copy] of Object.entries(messages)) {
     } finally { await context.close(); }
   });
 
-  test(`JSON validator ${locale}: lazy load recovery after reload`, async ({ browser, browserName, baseURL }) => {
-    // TODO(BTC-F07-WK-01): re-enable WebKit reload recovery; see pending-browser-tests.md.
-    test.fixme(browserName === "webkit", "TODO BTC-F07-WK-01: injected module failure persists after reload; owner-authorised test debt, ADR 008.");
+  test(`JSON validator ${locale}: lazy load recovery after reload`, async ({ browser, baseURL }) => {
+    // F19: retry the previously deferred WebKit module-failure recovery checks.
     const context = await browser.newContext();
     try {
       const page = await context.newPage();

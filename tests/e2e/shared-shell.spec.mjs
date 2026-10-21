@@ -1,3 +1,4 @@
+import { expectProductionCsrf } from "./test-cookies.mjs";
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 
@@ -41,9 +42,7 @@ for (const locale of ["en", "es", "fr"]) {
           expect(await page.content()).not.toMatch(/\?\?[^?]+\?\?|\bth:/);
           expect(requests.every(request => request.method() === "GET" && request.postData() === null
             && new URL(request.url()).origin === new URL(url).origin)).toBe(true);
-          const cookies = await context.cookies();
-          expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
-          expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
+          await expectProductionCsrf(response, context);
           expect(await page.evaluate(() => ({ local: localStorage.length, session: sessionStorage.length })))
             .toEqual({ local: 0, session: 0 });
         } finally {

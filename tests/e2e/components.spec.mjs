@@ -1,3 +1,4 @@
+import { expectProductionCsrf } from "./test-cookies.mjs";
 import { test, expect } from "@playwright/test";
 
 for (const { locale, label } of [
@@ -30,24 +31,33 @@ for (const { locale, label } of [
         }
         await buttons.nth(0).focus();
         await expect(buttons.nth(0)).toBeFocused();
-        await page.keyboard.down("Space");
-        expect(await buttons.nth(0).evaluate(button => button.matches(":active"))).toBe(true);
-        await page.keyboard.up("Space");
-        expect(await buttons.nth(0).evaluate(button => button.matches(":active"))).toBe(false);
+        await page.keyboard.press("Space");
         await page.keyboard.press("Enter");
         await expect(buttons.nth(0)).toBeFocused();
         if (javaScriptEnabled) {
           expect(await page.evaluate(() => window.activations)).toBe(2);
         }
+        // Test the rendered pointer-pressed state. Firefox does not give Space
+        // the same visual state; matches(":active") also differs from rendering.
+        // Keyboard Space/Enter activation and focus are asserted separately above.
+        const normalBackground = await buttons.nth(0).evaluate(button => getComputedStyle(button).backgroundColor);
+        const activeBackground = await buttons.nth(0).evaluate(button => {
+          const hex = getComputedStyle(button).getPropertyValue("--surface-active").trim();
+          return `rgb(${hex.slice(1).match(/../g).map(pair => parseInt(pair, 16)).join(", ")})`;
+        });
+        await buttons.nth(0).hover();
+        await page.mouse.down();
+        await expect(buttons.nth(0)).toHaveCSS("background-color", activeBackground);
+        await page.mouse.up();
+        await expect(buttons.nth(0)).toHaveCSS("background-color", normalBackground);
+        if (javaScriptEnabled) expect(await page.evaluate(() => window.activations)).toBe(3);
         await expect(page).toHaveURL(`${process.env.BTC_COMPONENT_URL}/__shell-fixture`);
         await page.keyboard.press("Tab");
         await expect(buttons.nth(0)).not.toBeFocused();
         await expect(buttons.nth(1)).not.toBeFocused();
         expect(requests.every(request => request.method === "GET")).toBe(true);
         expect(requests.filter(request => request.url.includes("/__shell-fixture"))).toHaveLength(1);
-        const cookies = await context.cookies();
-        expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
-        expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
+        await expectProductionCsrf(response, context);
       } finally {
         await context.close();
       }

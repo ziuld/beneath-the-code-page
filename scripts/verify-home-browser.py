@@ -120,7 +120,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--install", action="store_true", help="install locked tooling and the selected engine project-locally")
     parser.add_argument("--engine", choices=("chromium", "firefox", "webkit"), default="chromium",
-                        help="Chromium full suite (default); Firefox/WebKit editor/learning critical smoke")
+                        help="run the full retained suite in the selected engine (default: chromium)")
+    parser.add_argument("--grep", help="run matching browser tests for focused investigation")
     parser.add_argument("--snapshot", type=Path, help="capture EN/ES/FR narrow/wide Home screenshots instead of running tests")
     parser.add_argument("--snapshot-reference-css", type=Path, help="snapshot only: substitute a reference stylesheet in the browser")
     parser.add_argument("--with-deps", action="store_true", help="CI only: install selected engine OS dependencies; may invoke sudo")
@@ -152,12 +153,16 @@ def main():
                 environment["BTC_COMPONENT_URL"] = stack.enter_context(running_jar(fixture, ROOT / "target/shell-browser-server.log", environment))
                 environment["BTC_PREFERENCES_URL"] = stack.enter_context(running_jar(
                     fixture, ROOT / "target/preferences-browser-server.log", environment, "--spring.profiles.active=local"))
+                environment["BTC_LOCAL_URL"] = stack.enter_context(running_jar(
+                    jar, ROOT / "target/local-browser-server.log", environment, "--spring.profiles.active=local"))
             subprocess.run([str(NODE), str(CLI), "--version"], cwd=TESTS, env=environment, check=True, timeout=10)
             command = ([str(NODE), str(TESTS / "capture-home.mjs"), str(args.snapshot.resolve())]
                        if args.snapshot else [str(NODE), str(CLI), "test", "--project", args.engine])
+            if args.grep and not args.snapshot:
+                command.extend(["--grep", args.grep])
             if args.snapshot_reference_css:
                 command.append(str(args.snapshot_reference_css.resolve()))
-            subprocess.run(command, cwd=TESTS, env=environment, check=True, timeout=180)
+            subprocess.run(command, cwd=TESTS, env=environment, check=True, timeout=300)
     finally:
         if fixture:
             fixture.unlink(missing_ok=True)

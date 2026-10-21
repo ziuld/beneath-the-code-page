@@ -1,3 +1,4 @@
+import { expectProductionCsrf } from "./test-cookies.mjs";
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { addTestStyle } from "./test-styles.mjs";
@@ -44,9 +45,7 @@ for (const language of languages) {
         expect(request.method).toBe("GET");
         expect(request.body).toBeNull();
       }
-      const cookies = await context.cookies();
-      expect(cookies.map(cookie => cookie.name)).toEqual(["XSRF-TOKEN"]);
-      expect(cookies[0]).toMatchObject({ httpOnly: true, secure: true, sameSite: "Lax", path: "/" });
+      await expectProductionCsrf(response, context);
     } finally {
       await context.close();
     }

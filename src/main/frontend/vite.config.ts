@@ -10,6 +10,9 @@ export default defineConfig({
     renderBuiltUrl: (filename) => `/${filename.replace(/^static\//, "")}`,
   },
   build: {
+    // WebKit can retain failed JS modulepreloads across reload. Native imports
+    // recover correctly; Vite still loads extracted CSS before enhancement.
+    modulePreload: false,
     outDir: fileURLToPath(new URL("../../../target/frontend", import.meta.url)),
     emptyOutDir: true,
     assetsDir: "static/assets",

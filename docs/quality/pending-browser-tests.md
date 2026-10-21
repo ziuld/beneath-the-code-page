@@ -1,5 +1,19 @@
 # Pending browser verification
 
+Current F19 update,2026-10-21: **BTC-F07-WK-01 is resolved**. All three previously
+skipped Validator reload-recovery tests are active and pass in the full WebKit
+169/169 run. Optional JS modulepreloads caused the recovery defect; native imports
+and CSS loading now recover without changing CSP or cache policy. See
+[F19 browser evidence](../../harness/evidence/F19-browsers.md).
+
+**Real Safari remains unverified**: no Apple device/OS/Safari-version review was
+executed. Linux WebKit results do not establish Safari acceptance. This explicit
+pending limitation is the permitted F19-UH01-R02 alternative.
+
+The policy/results below are historical; they do not reopen the resolved deferral.
+
+## Historical follow-up plan
+
 Current follow-up,2026-10-20: [ADR010](../architecture/adr-010-v2-delivery-and-portable-handoff.md)
 schedules final Firefox/WebKit review under F19 after design/tools, plus separate
 real Safari evidence or an explicit pending limitation. Existing ADR009 policy
@@ -22,7 +36,7 @@ do not pursue 100% coverage or repeatedly block delivery on troublesome WebKit
 fault-injection tests. Deferred checks must be explicit TODOs with follow-up, not
 reported as passing. See [ADR 008](../architecture/adr-008-bounded-browser-test-follow-up.md).
 
-## F07-UH01 — injected asset failure recovery
+## Historical F07-UH01 — injected asset failure recovery (resolved in F19)
 
 Status: three WebKit-only reload checks deferred as `BTC-F07-WK-01`.
 Final F07 publication `770aa98`, run39117056486: Chromium110/Firefox64 pass;
