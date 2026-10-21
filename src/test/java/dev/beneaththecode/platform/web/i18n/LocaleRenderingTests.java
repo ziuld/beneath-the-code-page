@@ -34,7 +34,7 @@ class LocaleRenderingTests {
 	@ParameterizedTest
 	@ValueSource(strings = { "en", "es", "fr" })
 	void integratedLinksKeepTheReadingLanguageWithoutChangingPreference(String language) throws Exception {
-		for (String path : List.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier",
+		for (String path : List.of("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64",
 				"/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/source-to-jvm")) {
 			var response = mvc.perform(get(path).queryParam("lang", language)
 					.cookie(new Cookie(PreferenceLocaleResolver.COOKIE_NAME, language.equals("fr") ? "es" : "fr")))

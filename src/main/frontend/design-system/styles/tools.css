@@ -60,7 +60,7 @@
     color: var(--text);
     text-decoration-thickness: var(--focus-width);
   }
-  .json-workspace {
+  .tool-workspace {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space);
@@ -96,7 +96,8 @@
   .workspace-status:empty {
     display: none;
   }
-  [data-format-output] {
+  [data-format-output],
+  [data-base64-output] {
     min-block-size: 20rem;
     max-block-size: 40rem;
     max-inline-size: 100%;
@@ -106,11 +107,12 @@
     font-family: var(--font-mono);
     font-size: var(--type-small);
   }
-  [data-format-current="false"] .workspace-output {
+  [data-format-current="false"] .workspace-output,
+  [data-base64-current="false"] .workspace-output {
     border-style: dashed;
   }
   @media (min-width: 56rem) {
-    .json-workspace:not([data-json-validator]) {
+    .tool-workspace:not([data-json-validator]) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .workspace-input {
@@ -128,7 +130,7 @@
   }
   @media (min-width: 56rem) {
     .tools-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 }

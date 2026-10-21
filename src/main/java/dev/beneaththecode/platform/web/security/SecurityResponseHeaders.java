@@ -46,6 +46,7 @@ public final class SecurityResponseHeaders extends GenericFilterBean {
 				case "/tools/json-formatter" -> "json-formatter";
 				case "/tools/json-validator" -> "json-validator";
 				case "/tools/json-minifier" -> "json-minifier";
+				case "/tools/base64" -> "base64";
 				case "/learn" -> "learning-index";
 				case "/learn/java-fundamentals" -> "learning-course";
 				case "/preferences/language" -> "language-preference";

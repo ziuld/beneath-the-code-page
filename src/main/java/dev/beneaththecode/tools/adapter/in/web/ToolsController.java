@@ -28,6 +28,12 @@ public final class ToolsController {
 		return "json-formatter";
 	}
 
+	@GetMapping("/tools/base64")
+	public String base64(Model model, Locale locale) {
+		shared(model, locale);
+		return "base64";
+	}
+
 	private void shared(Model model, Locale locale) {
 		model.addAttribute("assets", manifest.site());
 		model.addAttribute("language", locale.getLanguage());

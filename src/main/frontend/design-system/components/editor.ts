@@ -26,11 +26,15 @@ export function createEditor(
   messages: EditorMessages,
   announce: (message: string) => void,
   onChange?: () => void,
+  preserveLineEndings = false,
 ) {
   let disposed = false;
   const freshState = () =>
     EditorState.create({
       extensions: [
+        // Text codecs retain CR characters in pasted CRLF instead of normalising
+        // the original text. Existing JSON editors keep their accepted defaults.
+        ...(preserveLineEndings ? [EditorState.lineSeparator.of("\n")] : []),
         EditorView.cspNonce.of(nonce),
         EditorView.contentAttributes.of({
           "aria-label": messages.label,

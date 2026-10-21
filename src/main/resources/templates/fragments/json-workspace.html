@@ -32,8 +32,9 @@
     <a th:href="@{/tools/json-formatter(lang=${language})}" th:aria-current="${kind == 'formatter' ? 'page' : null}" th:text="#{formatter.title}"></a>
     <a th:href="@{/tools/json-validator(lang=${language})}" th:aria-current="${kind == 'validator' ? 'page' : null}" th:text="#{validator.title}"></a>
     <a th:href="@{/tools/json-minifier(lang=${language})}" th:aria-current="${kind == 'minifier' ? 'page' : null}" th:text="#{minifier.title}"></a>
+    <a th:href="@{/tools/base64(lang=${language})}" th:aria-current="${kind == 'base64' ? 'page' : null}" th:text="#{base64.title}"></a>
 </nav>
-<section th:fragment="workspace(kind)" class="json-workspace" data-editor-workspace th:attr="data-json-formatter=${kind == 'formatter' ? 'true' : null},data-json-validator=${kind == 'validator' ? 'true' : null},data-json-minifier=${kind == 'minifier' ? 'true' : null},aria-labelledby=${kind + '-input-label'}">
+<section th:fragment="workspace(kind)" class="tool-workspace" data-editor-workspace th:attr="data-json-formatter=${kind == 'formatter' ? 'true' : null},data-json-validator=${kind == 'validator' ? 'true' : null},data-json-minifier=${kind == 'minifier' ? 'true' : null},aria-labelledby=${kind + '-input-label'}">
     <div class="workspace-input">
         <h2 class="panel-label" th:id="${kind + '-input-label'}" th:text="#{formatter.input}"></h2>
         <th:block th:replace="~{fragments/editor :: input}"></th:block>

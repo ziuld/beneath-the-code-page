@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head th:replace="~{fragments/json-workspace :: head('base64')}"></head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools/base64')}"></header>
+<main id="main" class="page workspace-page" tabindex="-1">
+    <a class="back-link" th:href="@{/tools(lang=${language})}" th:text="#{action.backTools}"></a>
+    <header class="page-hero"><h1 th:text="#{base64.title}"></h1><p class="intro" th:text="#{base64.description}"></p></header>
+    <nav th:replace="~{fragments/json-workspace :: toolLinks('base64')}"></nav>
+    <section class="tool-workspace" data-base64 data-editor-workspace aria-labelledby="base64-input-label">
+        <div class="workspace-input">
+            <h2 class="panel-label" id="base64-input-label" th:text="#{base64.input}"></h2>
+            <th:block th:replace="~{fragments/editor :: input}"></th:block>
+            <p role="status" data-editor-feedback aria-live="polite" aria-atomic="true"></p>
+        </div>
+        <div class="formatter-controls">
+            <label for="base64-mode" th:text="#{base64.mode}"></label>
+            <select id="base64-mode" data-base64-mode disabled><option value="encode" th:text="#{base64.encode}"></option><option value="decode" th:text="#{base64.decode}"></option></select>
+            <button class="button button--primary" type="button" data-base64-run disabled th:text="#{base64.encode}"></button>
+            <button class="button" type="button" data-base64-cancel disabled th:text="#{worker.cancel}"></button>
+            <button class="button" type="button" data-base64-copy disabled th:text="#{formatter.copy}"></button>
+            <button class="button" type="button" data-base64-clear disabled th:text="#{formatter.clear}"></button>
+        </div>
+        <p class="workspace-status" data-base64-status role="status" aria-live="polite" aria-atomic="true" th:text="#{formatter.unavailable}"></p>
+        <div class="workspace-output">
+            <h2 class="panel-label" id="base64-output-label" data-base64-output-label th:text="#{base64.output}"></h2>
+            <pre data-base64-output role="region" aria-labelledby="base64-output-label" tabindex="0"></pre>
+        </div>
+        <div hidden>
+            <span data-base64-message="encode" th:text="#{base64.encode}"></span><span data-base64-message="decode" th:text="#{base64.decode}"></span>
+            <span data-base64-message="ready" th:text="#{base64.ready}"></span><span data-base64-message="stale" th:text="#{base64.stale}"></span>
+            <span data-base64-message="current" th:text="#{base64.current}"></span><span data-base64-message="output" th:text="#{base64.output}"></span>
+            <span data-base64-message="invalid-text" th:text="#{base64.invalidText}"></span><span data-base64-message="invalid-base64" th:text="#{base64.invalidBase64}"></span>
+            <span data-base64-message="unavailable" th:text="#{formatter.unavailable}"></span>
+            <span data-base64-message="running" th:text="#{worker.running}"></span><span data-base64-message="success" th:text="#{worker.success}"></span>
+            <span data-base64-message="error" th:text="#{worker.error}"></span><span data-base64-message="cancelled" th:text="#{worker.cancelled}"></span><span data-base64-message="timeout" th:text="#{worker.timeout}"></span>
+            <span data-base64-message="input-limit" th:text="#{editor.limit}"></span><span data-base64-message="output-limit" th:text="#{worker.limit}"></span>
+            <span data-base64-message="copied" th:text="#{formatter.copied}"></span><span data-base64-message="copy-failed" th:text="#{formatter.copyFailed}"></span><span data-base64-message="copy-unavailable" th:text="#{formatter.copyUnavailable}"></span><span data-base64-message="cleared" th:text="#{formatter.cleared}"></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

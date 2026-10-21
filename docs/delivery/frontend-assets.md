@@ -95,8 +95,8 @@ directly from `target/frontend/static/assets/` with `no-store` and no resource-c
 cache. It does not fall back to packaged assets for missing local URLs or invalid
 local manifests. The manifest stays outside the public handler's root. Changes to
 Java/templates still require the usual application rebuild/restart; this watcher
-only rebuilds browser assets. The current executable includes Home, three JSON tools and the reviewed learning
-unit. Use the [local release runbook](local-release.md) for normal classpath-
+only rebuilds browser assets. The current executable includes Home, three JSON tools, UTF-8 Base64 and the three
+reviewed learning units using the shared design system. Use the [local release runbook](local-release.md) for normal classpath-
 packaged verification; the watcher/local profile is a filesystem-asset preview.
 
 The frontend plugin has an `m2e ignore` lifecycle instruction: Eclipse/VS Code

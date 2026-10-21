@@ -30,8 +30,8 @@ public class PublicPageSecurity {
 	SecurityFilterChain publicPages(HttpSecurity http, CookieCsrfTokenRepository csrfRepository, SafeHttpErrors errors) throws Exception {
 		return http.authorizeHttpRequests(authorize -> authorize
 				.dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-				.requestMatchers(HttpMethod.GET, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
-				.requestMatchers(HttpMethod.HEAD, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
+				.requestMatchers(HttpMethod.GET, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
+				.requestMatchers(HttpMethod.HEAD, "/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/assets/**", "/brand/b-composition.png", "/actuator/health").permitAll()
 				.requestMatchers(HttpMethod.GET, "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}").permitAll()
 				.requestMatchers(HttpMethod.HEAD, "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}").permitAll()
 				.requestMatchers(HttpMethod.POST, "/preferences/language").permitAll()

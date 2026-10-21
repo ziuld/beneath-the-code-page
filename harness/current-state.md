@@ -1,5 +1,14 @@
 # Current handoff
 
+F08 Base64 verified,2026-10-21: T01–T04 done, T05 recording local revision. Explicit
+strict UTF-8 Encode/Decode with Unicode/BOM/CRLF/empty fidelity, canonical padding,
+limits and shared F18 styles/session/worker. Maven265+17 Java/224 frontend,
+Chromium153, fresh security0 findings/0 exceptions, policy20/spec15 PASS;184 input
+hashes rechecked unchanged. Evidence:harness/evidence/F08-base64.md. Branch:
+feature/F08-base64 from accepted F18 handoff50d39cd. Preview45915 local loopback
+RUNNING, PID66355/session26521; stop before rebuilding. No push/PR/deployment/
+archival. Actual effort unreported. Next:F09 after F08 closure.
+
 F18 COMPLETE,2026-10-21: owner explicitly answered “Reviewed and approved” to the
 full integrated checklist, including EN/ES/FR, keyboard/focus and actual200%
 browser zoom. All6 tasks/story/feature done. Reviewed implementation:527fe5269ed1195a05ee2455a067917897d7364b.

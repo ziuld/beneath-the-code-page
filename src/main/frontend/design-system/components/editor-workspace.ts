@@ -3,6 +3,7 @@ import { createEditor } from "./editor";
 export function enhanceEditorWorkspace(
   workspace: HTMLElement,
   onChange?: () => void,
+  preserveLineEndings = false,
 ) {
   const host = workspace.querySelector<HTMLElement>("[data-editor-host]")!;
   const status = workspace.querySelector<HTMLElement>("[role=status]")!;
@@ -32,6 +33,7 @@ export function enhanceEditorWorkspace(
       status.textContent = message;
     },
     onChange,
+    preserveLineEndings,
   );
   // Page lifecycle owns resources; no payload globals, URLs or persistence.
   window.addEventListener("pagehide", () => editor.dispose(), { once: true });
