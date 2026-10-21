@@ -9,6 +9,10 @@ For the current candidate and its verification evidence, use the
 plus dirty state. F16's JAR hash/results do not certify later changes. Do not
 combine current documentation with an old checkout and assume identical results.
 
+For development without host Java/Node/Python installations, use the
+[Docker development and runtime workflow](docker-handoff.md). The native steps
+below remain supported.
+
 ## Prerequisites and clean source
 
 Use JDK/java/javac 25.0.4.1 (Java25 without preview), Git, Python3 and a shell.

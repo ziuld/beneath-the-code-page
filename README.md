@@ -2,7 +2,7 @@
 
 Developer tools and software education: understanding over memorisation.
 
-**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification and F19 browser review are complete; real Safari remains unverified. Docker portability is next under ADR010.**
+**Stage: V1 accepted. Selected V2 delivery includes security maintenance, three reviewed Java units, the shared redesign and all six browser-local tools. Bounded simplification and F19 browser review are complete; real Safari remains unverified. Docker development and portability are in progress under F20; Windows/second-PC acceptance remains pending.**
 
 Repository: https://github.com/ziuld/beneath-the-code-page (public). The local directory name is `beneath-the-code`; the GitHub repository name intentionally differs.
 
@@ -62,3 +62,5 @@ The executable is `target/beneath-the-code-0.1.0-SNAPSHOT.jar`. The smoke script
 Architecture tests import only production output. Absent capability packages produce explicit skipped checks, while compiled test-only fixtures verify the same strict rules against forbidden and permitted dependencies and cycles. New production packages activate their corresponding rules automatically. No production placeholders are required.
 
 See [final F01 acceptance](harness/evidence/F01-closure.md) and [baseline evidence](harness/evidence/F00-F01-java-baseline.md) for historical checks and limitations; see the [current handoff](harness/current-state.md) for current acceptance and the next step. [Unfinished follow-ups](docs/planning/risks-and-decisions.md) remain explicit. No licence has been selected; public visibility is not an open-source licence grant. Review source, course, logo and font rights before redistribution. See [repository conventions](docs/delivery/repository-and-ci.md).
+
+Docker development and local execution: [Windows/Linux handoff](docs/delivery/docker-handoff.md).
