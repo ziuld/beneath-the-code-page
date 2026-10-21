@@ -6,6 +6,13 @@ const workspace = document.querySelector<HTMLElement>(
 const formatter = document.querySelector<HTMLElement>(
   "[data-json-formatter], [data-json-validator], [data-json-minifier]",
 );
+const uuid = document.querySelector<HTMLElement>("[data-uuid]");
+if (uuid)
+  void import("../tools/uuid/workspace")
+    .then((module) => module.enhanceUuid(uuid))
+    .catch(() => {
+      uuid.dataset.uuidReady = "false";
+    });
 const base64 = document.querySelector<HTMLElement>("[data-base64]");
 if (base64)
   void import("../tools/base64/workspace")

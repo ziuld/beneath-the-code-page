@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:lang="${language}">
+<head th:replace="~{fragments/json-workspace :: head('uuid')}"></head>
+<body>
+<a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
+<header th:replace="~{fragments/shell :: header('/tools/uuid')}"></header>
+<main id="main" class="page workspace-page" tabindex="-1">
+    <a class="back-link" th:href="@{/tools(lang=${language})}" th:text="#{action.backTools}"></a>
+    <header class="page-hero"><h1 th:text="#{uuid.title}"></h1><p class="intro" th:text="#{uuid.description}"></p></header>
+    <nav th:replace="~{fragments/json-workspace :: toolLinks('uuid')}"></nav>
+    <section class="tool-workspace" data-uuid aria-labelledby="uuid-count-label">
+        <div class="workspace-input">
+            <h2 class="panel-label" id="uuid-count-label"><label for="uuid-count" th:text="#{uuid.count}"></label></h2>
+            <input id="uuid-count" type="number" min="1" max="100" step="1" value="1" required data-uuid-count aria-describedby="uuid-limits" disabled>
+            <p id="uuid-limits" th:text="#{uuid.limit}"></p>
+        </div>
+        <div class="formatter-controls">
+            <button class="button button--primary" type="button" data-uuid-run disabled th:text="#{uuid.generate}"></button>
+            <button class="button" type="button" data-uuid-copy disabled th:text="#{formatter.copy}"></button>
+        </div>
+        <p class="workspace-status" data-uuid-status role="status" aria-live="polite" aria-atomic="true" th:text="#{uuid.loading}"></p>
+        <div class="workspace-output">
+            <h2 class="panel-label" id="uuid-output-label" th:text="#{uuid.output}"></h2>
+            <pre data-uuid-output role="region" aria-labelledby="uuid-output-label" tabindex="0"></pre>
+        </div>
+        <div hidden>
+            <span th:each="key : ${ {'ready','limit','success','unavailable'} }" th:attr="data-uuid-message=${key}" th:text="#{${'uuid.' + key}}"></span>
+            <span data-uuid-message="copied" th:text="#{formatter.copied}"></span><span data-uuid-message="copy-failed" th:text="#{formatter.copyFailed}"></span><span data-uuid-message="copy-unavailable" th:text="#{formatter.copyUnavailable}"></span>
+        </div>
+    </section>
+</main>
+<footer th:replace="~{fragments/shell :: footer}"></footer>
+</body></html>

@@ -42,7 +42,7 @@ class ToolsRenderingTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64" })
+	@ValueSource(strings = { "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid" })
 	void exactPagesSupportHeadAndSafePreferenceReturn(String path) throws Exception {
 		mvc.perform(head(path)).andExpect(status().isOk());
 		var form = mvc.perform(get(path)).andExpect(status().isOk()).andReturn().getResponse();
@@ -76,6 +76,18 @@ class ToolsRenderingTests {
 		assertBodyMethodsDenied("/tools/base64");
 	}
 
+	@ParameterizedTest
+	@CsvSource({ "en,UUID Generator,Generate", "es,Generador de UUID,Generar", "fr,Générateur d’UUID,Générer" })
+	void uuidIsLocalisedInertAndHasNoSubmittingToolForm(String language, String title, String action) throws Exception {
+		var result = mvc.perform(get("/tools/uuid").queryParam("lang", language)).andExpect(status().isOk()).andReturn();
+		String html = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		assertThat(html).contains(title, action, "data-uuid-run disabled", "data-uuid-copy disabled", "min=\"1\" max=\"100\" step=\"1\"", "returnTo\" value=\"/tools/uuid\"")
+				.doesNotContain("??", "th:", "onclick");
+		String workspace = html.substring(html.indexOf("<section class=\"tool-workspace\" data-uuid"), html.indexOf("</section>"));
+		assertThat(workspace).doesNotContain("<form", "name=", "data-editor-workspace");
+		assertBodyMethodsDenied("/tools/uuid");
+	}
+
 	private static int workspaceStart(String html, String kind) {
 		var matcher = Pattern.compile("<section\\b[^>]*\\bdata-json-" + kind + "(?:=|\\s|>)[^>]*>").matcher(html);
 		assertThat(matcher.find()).as("native tool workspace exists").isTrue();
@@ -86,7 +98,7 @@ class ToolsRenderingTests {
 	void indexListsAcceptedJsonToolsAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(index).contains("href=\"/tools/json-formatter?lang=en\"", "href=\"/tools/json-validator?lang=en\"", "href=\"/tools/json-minifier?lang=en\"")
-				.contains("href=\"/learn?lang=en\"").contains("href=\"/tools/base64?lang=en\"").doesNotContain("/tools/uuid");
+				.contains("href=\"/learn?lang=en\"").contains("href=\"/tools/base64?lang=en\"").contains("href=\"/tools/uuid?lang=en\"");
 		String home = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(home).contains("href=\"/tools?lang=en\"").contains("href=\"/learn?lang=en\"");
 	}

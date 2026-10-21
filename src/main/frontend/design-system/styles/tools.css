@@ -97,7 +97,8 @@
     display: none;
   }
   [data-format-output],
-  [data-base64-output] {
+  [data-base64-output],
+  [data-uuid-output] {
     min-block-size: 20rem;
     max-block-size: 40rem;
     max-inline-size: 100%;

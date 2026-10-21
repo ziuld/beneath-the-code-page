@@ -34,6 +34,12 @@ public final class ToolsController {
 		return "base64";
 	}
 
+	@GetMapping("/tools/uuid")
+	public String uuid(Model model, Locale locale) {
+		shared(model, locale);
+		return "uuid";
+	}
+
 	private void shared(Model model, Locale locale) {
 		model.addAttribute("assets", manifest.site());
 		model.addAttribute("language", locale.getLanguage());
