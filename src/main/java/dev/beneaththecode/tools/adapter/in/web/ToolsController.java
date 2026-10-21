@@ -40,6 +40,12 @@ public final class ToolsController {
 		return "uuid";
 	}
 
+	@GetMapping("/tools/jwt")
+	public String jwt(Model model, Locale locale) {
+		shared(model, locale);
+		return "jwt";
+	}
+
 	private void shared(Model model, Locale locale) {
 		model.addAttribute("assets", manifest.site());
 		model.addAttribute("language", locale.getLanguage());

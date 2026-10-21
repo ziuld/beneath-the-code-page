@@ -6,6 +6,13 @@ const workspace = document.querySelector<HTMLElement>(
 const formatter = document.querySelector<HTMLElement>(
   "[data-json-formatter], [data-json-validator], [data-json-minifier]",
 );
+const jwt = document.querySelector<HTMLElement>("[data-jwt]");
+if (jwt)
+  void import("../tools/jwt/workspace")
+    .then((module) => module.enhanceJwt(jwt))
+    .catch(() => {
+      jwt.dataset.jwtReady = "false";
+    });
 const uuid = document.querySelector<HTMLElement>("[data-uuid]");
 if (uuid)
   void import("../tools/uuid/workspace")

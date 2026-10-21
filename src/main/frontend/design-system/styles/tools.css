@@ -98,7 +98,8 @@
   }
   [data-format-output],
   [data-base64-output],
-  [data-uuid-output] {
+  [data-uuid-output],
+  .compact-output {
     min-block-size: 20rem;
     max-block-size: 40rem;
     max-inline-size: 100%;
@@ -107,6 +108,22 @@
     white-space: pre;
     font-family: var(--font-mono);
     font-size: var(--type-small);
+  }
+  .compact-output {
+    min-block-size: 8rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    margin-block-end: var(--space);
+  }
+  .workspace-input textarea {
+    inline-size: 100%;
+    min-block-size: 20rem;
+    resize: vertical;
+    font-family: var(--font-mono);
+    font-size: var(--type-small);
+  }
+  .workspace-page > .workspace-status {
+    margin-block-end: var(--space);
   }
   [data-format-current="false"] .workspace-output,
   [data-base64-current="false"] .workspace-output {

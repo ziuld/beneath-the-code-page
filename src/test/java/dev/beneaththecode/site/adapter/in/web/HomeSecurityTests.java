@@ -33,9 +33,9 @@ class HomeSecurityTests {
 	void productionMapsRealToolsButNoPlaceholderDestinations() {
 		assertThat(mappings.getHandlerMethods().keySet().stream()
 				.flatMap(mapping -> mapping.getPatternValues().stream()).toList())
-				.contains("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid",
+				.contains("/", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid", "/tools/jwt",
 						"/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/{lessonSlug}")
-				.doesNotContain("/tools/jwt", "/__asset-fixture", "/__editor-fixture");
+				.doesNotContain("/tools/yaml", "/__asset-fixture", "/__editor-fixture");
 	}
 
 	@Test

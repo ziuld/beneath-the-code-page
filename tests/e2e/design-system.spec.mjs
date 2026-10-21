@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 test("F18-UH01-AC03: shared control tokens propagate across page families", async ({ page }) => {
-  const routes = ["/", "/learn", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid"];
+  const routes = ["/", "/learn", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid", "/tools/jwt"];
   const secondaryStyles = [];
   const primaryStyles = [];
   const controlStyle = element => {
@@ -13,7 +13,7 @@ test("F18-UH01-AC03: shared control tokens propagate across page families", asyn
     await page.goto(`${route}?lang=en`);
     secondaryStyles.push(await page.locator(".language-preference .button").evaluate(controlStyle));
     if (route.startsWith("/tools/")) {
-      const run = page.locator("[data-format-run], [data-base64-run], [data-uuid-run]");
+      const run = page.locator("[data-format-run], [data-base64-run], [data-uuid-run], [data-jwt-run]");
       await expect(run).toBeEnabled();
     }
     primaryStyles.push(await page.locator(".button--primary").first().evaluate(controlStyle));
@@ -38,12 +38,12 @@ test("F18-UH01-AC03: shared control tokens propagate across page families", asyn
     // Navigation reloads the stylesheet before the next page; no source is mutated.
   }
   for (const style of secondaryStyles) expect(style).toEqual(secondaryStyles[0]);
-  expect(primaryStyles).toHaveLength(7);
+  expect(primaryStyles).toHaveLength(8);
   for (const style of primaryStyles) expect(style).toEqual(primaryStyles[0]);
   expect(primaryStyles[0].backgroundColor).not.toBe(secondaryStyles[0].backgroundColor);
 });
 
-const pageRoutes = ["/", "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/source-to-jvm", "/learn/java-fundamentals/values-types-numeric-limits", "/learn/java-fundamentals/control-flow-tracing", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid"];
+const pageRoutes = ["/", "/learn", "/learn/java-fundamentals", "/learn/java-fundamentals/source-to-jvm", "/learn/java-fundamentals/values-types-numeric-limits", "/learn/java-fundamentals/control-flow-tracing", "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid", "/tools/jwt"];
 for (const locale of ["en", "es", "fr"]) {
   test(`F18-UH01-AC02: ${locale} all page families reflow and retain native navigation`, async ({ page }) => {
     test.setTimeout(90000);

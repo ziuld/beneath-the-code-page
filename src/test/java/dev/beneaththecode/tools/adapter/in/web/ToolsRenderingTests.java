@@ -42,7 +42,7 @@ class ToolsRenderingTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid" })
+	@ValueSource(strings = { "/tools", "/tools/json-formatter", "/tools/json-validator", "/tools/json-minifier", "/tools/base64", "/tools/uuid", "/tools/jwt" })
 	void exactPagesSupportHeadAndSafePreferenceReturn(String path) throws Exception {
 		mvc.perform(head(path)).andExpect(status().isOk());
 		var form = mvc.perform(get(path)).andExpect(status().isOk()).andReturn().getResponse();
@@ -88,6 +88,18 @@ class ToolsRenderingTests {
 		assertBodyMethodsDenied("/tools/uuid");
 	}
 
+	@ParameterizedTest
+	@CsvSource({ "en,JWT Decoder,Signature not verified.", "es,Decodificador JWT,Firma no verificada.", "fr,Décodeur JWT,Signature non vérifiée." })
+	void jwtIsLocalisedInertWithPermanentDisclaimerAndNoSubmittingToolForm(String language, String title, String notice) throws Exception {
+		var result = mvc.perform(get("/tools/jwt").queryParam("lang", language)).andExpect(status().isOk()).andReturn();
+		String html = result.getResponse().getContentAsString(StandardCharsets.UTF_8);
+		assertThat(html).contains(title, notice, "data-jwt-disclaimer", "data-jwt-run disabled", "data-jwt-clear disabled", "autocomplete=\"off\"", "returnTo\" value=\"/tools/jwt\"")
+				.doesNotContain("??", "th:", "onclick");
+		String workspace = html.substring(html.indexOf("<section class=\"tool-workspace\" data-jwt"), html.indexOf("</section>"));
+		assertThat(workspace).doesNotContain("<form", "name=", "data-editor-workspace");
+		assertBodyMethodsDenied("/tools/jwt");
+	}
+
 	private static int workspaceStart(String html, String kind) {
 		var matcher = Pattern.compile("<section\\b[^>]*\\bdata-json-" + kind + "(?:=|\\s|>)[^>]*>").matcher(html);
 		assertThat(matcher.find()).as("native tool workspace exists").isTrue();
@@ -98,7 +110,7 @@ class ToolsRenderingTests {
 	void indexListsAcceptedJsonToolsAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(index).contains("href=\"/tools/json-formatter?lang=en\"", "href=\"/tools/json-validator?lang=en\"", "href=\"/tools/json-minifier?lang=en\"")
-				.contains("href=\"/learn?lang=en\"").contains("href=\"/tools/base64?lang=en\"").contains("href=\"/tools/uuid?lang=en\"");
+				.contains("href=\"/learn?lang=en\"").contains("href=\"/tools/base64?lang=en\"").contains("href=\"/tools/uuid?lang=en\"", "href=\"/tools/jwt?lang=en\"");
 		String home = mvc.perform(get("/")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
 		assertThat(home).contains("href=\"/tools?lang=en\"").contains("href=\"/learn?lang=en\"");
 	}
