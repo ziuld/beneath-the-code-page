@@ -1,28 +1,6 @@
-@layer btc-base {
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-  }
-
-  a {
-    color: inherit;
-    text-underline-offset: 0.3em;
-  }
-
-  a:hover {
-    text-decoration-thickness: 0.15em;
-  }
-
-  :focus-visible {
-    outline: var(--focus-width) solid var(--focus);
-    outline-offset: var(--focus-offset);
-  }
-
+@layer btc-components {
   .page {
-    width: min(var(--page-width), calc(100% - var(--space-xl)));
+    width: min(var(--page-width), calc(100% - var(--space-lg)));
     margin-inline: auto;
   }
 
@@ -50,27 +28,22 @@
   }
 
   .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-transform: uppercase;
+    font-size: var(--type-small);
     font-weight: 700;
     text-decoration: none;
   }
 
   .language-preference {
+    font-size: var(--type-small);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--space-sm);
     max-width: 100%;
-  }
-
-  .language-preference select {
-    max-width: 100%;
-    min-height: 2.75rem;
-    padding: var(--space-sm);
-    border: var(--border-width) solid var(--secondary);
-    border-radius: 0;
-    font: inherit;
-    color: var(--text);
-    background: var(--surface);
   }
 
   .navigation {
@@ -80,6 +53,13 @@
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+
+  .navigation a[aria-current] {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-thickness: var(--focus-width);
+    text-underline-offset: var(--space-sm);
   }
 
   .navigation a,
@@ -92,17 +72,15 @@
     color: var(--secondary);
   }
 
-  h1,
-  h2 {
-    font-family: var(--font-display);
-    font-weight: 400;
-    line-height: var(--leading-heading);
-    overflow-wrap: anywhere;
+  .eyebrow {
+    color: var(--secondary);
+    font-family: var(--font-mono);
+    font-size: var(--type-small);
   }
 
-  h2 {
-    font-size: var(--type-heading);
-    margin-top: 0;
+  .intro {
+    font-size: var(--type-intro);
+    max-width: 48ch;
   }
 
   .status {
@@ -114,6 +92,7 @@
     padding: var(--space-lg);
     background: var(--surface);
     border: var(--border-width) solid var(--border);
+    border-radius: var(--radius-panel);
   }
 
   .section-card p {
@@ -124,24 +103,39 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 0 var(--space);
+    align-items: center;
+    gap: var(--space-md) var(--space);
     border-top: var(--border-width) solid var(--border);
     padding-block: var(--space);
     color: var(--secondary);
     font-size: var(--type-small);
   }
 
+  /* Buttons share one baseline. Add --primary only for the main page action. */
   .button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--control-height);
     max-width: 100%;
-    padding: var(--space-sm) var(--space);
+    padding: var(--space-xs) var(--space-md);
     border: var(--border-width) solid var(--secondary);
-    border-radius: 0;
+    border-radius: var(--radius-control);
     font: inherit;
+    line-height: var(--leading-control);
+    text-align: center;
+    text-decoration: none;
     overflow-wrap: anywhere;
     color: var(--text);
     background: var(--surface);
     cursor: pointer;
+    gap: var(--space-xs);
+  }
+
+  .button--primary {
+    color: var(--on-action);
+    background: var(--action);
+    border-color: var(--action);
   }
 
   .button:hover:not(:disabled) {
@@ -151,16 +145,131 @@
   }
 
   .button:active:not(:disabled) {
-    background: var(--canvas);
+    background: var(--surface-active);
+  }
+
+  .button--primary:active:not(:disabled) {
+    background: var(--action-active);
   }
 
   .button:disabled {
     color: var(--secondary);
+    background: var(--surface);
     border-color: var(--border);
     cursor: not-allowed;
   }
 
+  select,
+  input:not([type="hidden"]),
+  textarea {
+    max-width: 100%;
+    min-height: var(--control-height);
+    padding: var(--space-xs) var(--space-sm);
+    border: var(--border-width) solid var(--secondary);
+    border-radius: var(--radius-control);
+    font: inherit;
+    color: var(--text);
+    background: var(--surface);
+  }
+
+  main.page {
+    padding-block: var(--space-xl) var(--space-section);
+    min-block-size: 65vh;
+  }
+
+  .page-hero {
+    position: relative;
+    padding-block: var(--space-md) var(--space-xl);
+    isolation: isolate;
+  }
+
+  .page-hero h1 {
+    max-inline-size: 24ch;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space) var(--space-lg);
+    margin-block-start: var(--space-lg);
+  }
+  .text-action {
+    text-underline-offset: 0.4em;
+  }
+  .panel-label {
+    font-family: var(--font-mono);
+    font-size: var(--type-small);
+    font-weight: 400;
+    line-height: var(--leading-body);
+    color: var(--secondary);
+  }
+  .brand-mark {
+    font-family: var(--font-display);
+    font-size: var(--type-heading);
+    line-height: 1;
+  }
+  .brand-mark {
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+  .brand-watermark {
+    position: absolute;
+    inset: 0 0 auto auto;
+    font-family: var(--font-display);
+    font-size: clamp(10rem, 25vw, 22rem);
+    line-height: 1;
+    color: var(--border);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .footer-statement {
+    font-family: var(--font-display);
+    font-size: var(--type-intro);
+    color: var(--text);
+  }
+  .error-page {
+    max-inline-size: var(--reading-width);
+  }
+  .back-link {
+    display: inline-block;
+    margin-block-end: var(--space-md);
+  }
+
+  @media (min-width: 64rem) {
+    .page {
+      width: min(var(--page-width), calc(100% - var(--space-section)));
+    }
+  }
   @media (max-width: 48rem) {
+    .site-header {
+      gap: var(--space-md);
+    }
+    .site-header > nav {
+      width: 100%;
+    }
+    .navigation {
+      gap: var(--space);
+    }
+    .site-footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .site-footer p {
+      margin: 0;
+    }
+    .page-hero {
+      padding-block-end: var(--space-lg);
+    }
+    .language-preference label {
+      position: absolute;
+      inline-size: 1px;
+      block-size: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
     .section-card {
       padding: var(--space);
     }

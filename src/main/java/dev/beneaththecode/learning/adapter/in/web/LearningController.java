@@ -40,7 +40,10 @@ public final class LearningController {
 		shared(model, locale, "/learn/java-fundamentals/" + page.unit().slug());
 		var content = page.unit().translations().get(locale.getLanguage());
 		model.addAttribute("unitTitle", content.title());
-		model.addAttribute("bodyHtml", renderer.render(content.markdown()));
+		var rendered = renderer.renderPage(content.markdown());
+		model.addAttribute("bodyHtml", rendered.html());
+		model.addAttribute("lessonSections", rendered.sections());
+		model.addAttribute("unitNumber", pages.catalogue().units().indexOf(page.unit()) + 1);
 		model.addAttribute("previous", page.previous().map(unit -> link(unit, locale)).orElse(null));
 		model.addAttribute("next", page.next().map(unit -> link(unit, locale)).orElse(null));
 		return "learning-unit";

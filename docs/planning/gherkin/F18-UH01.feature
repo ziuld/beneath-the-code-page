@@ -11,5 +11,11 @@ Feature: F18-UH01 — Page-by-page design agreement and implementation
   @F18-UH01-AC02 @F18-UH01-R02
   Scenario: Preserve function during redesign
     Given a page design has been agreed
-    When the shared styles and templates are updated
-    Then spacing and hierarchy improve while existing functionality and quality gates continue to pass
+    When the agreed page styles and templates are implemented and consolidated across Home, Learn, course, lesson, Tools, workspaces and safe errors
+    Then all pages use consistent shared typography, spacing, surfaces, navigation, controls and states while existing functionality and quality gates continue to pass
+
+  @F18-UH01-AC03 @F18-UH01-R03
+  Scenario: Propagate a shared visual change consistently
+    Given the page families use shared design tokens and button variants
+    When a maintainer updates the owning shared button or typography definition
+    Then all matching instances reflect the shared change while page-specific layouts and core behaviour remain intact

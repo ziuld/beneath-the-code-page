@@ -1,5 +1,95 @@
 # Current handoff
 
+F18 owner accepted,2026-10-21: explicit “Reviewed and approved” to the full runtime
+checklist, including EN/ES/FR, keyboard/focus and actual200% browser zoom. T05 done;
+T06 recording the reviewed local revision.175 runtime/test/JAR inputs match the
+passing scan; existing Maven/Chromium142/security0/spec15/policy20 evidence reused.
+No push/PR/deployment/archival. Actual effort unreported.
+
+F18 integrated candidate ready for owner review,2026-10-21: I01–I07 implemented;
+T04 done, T05/story in_review, T06 planned. Shared CSS/Thymeleaf across all10 pages
+and safe errors, original B header asset, new Home SVG, course/readers with native
+section links, three-card catalogue and shared operation-specific workspaces.
+Full lesson content, tool fidelity/privacy/CSP/locale/keyboard semantics preserved.
+Final Maven261+17 Java/185 frontend, Chromium142/142, 768px10-route check, actual
+fresh security0 findings/0 exceptions (policy unchanged), policy20/strict15 specs,
+planning23/integrity/whitespace PASS. Evidence:harness/evidence/F18-global-redesign.md.
+Preview RUNNING http://127.0.0.1:44509/?lang=en, PID46463/session16756, loopback-only
+local profile. Guide:docs/design/f18-owner-review.md. Await owner runtime visual,
+keyboard, actual200%-browser-zoom and EN/ES/FR approval. Concepts alone do not close
+runtime acceptance. After approval record reviewed revision/handoff under T06.
+No commit/push/PR/deployment/archival; actual effort unreported, baseline12/forecast28h.
+F19 browsers and F20 Docker remain later work. Earlier previews/checkpoints below
+are historical; superseded candidate failures are recorded in the evidence.
+
+F18 implementation active,2026-10-21: user requested continuation. T04 in progress;
+I01 complete: central tokens, ordered base/component/layout layers, heading
+ownership, shared native controls/primary buttons and tokenised lazy editor CSS.
+CodeMirror scoped overrides intentionally unlayered against nonce defaults. Wider
+monospace text exposed inaccessible scrolling after Escape; scrollDOM is now
+keyboard focusable, existing Escape-then-Tab behaviour retained. Full Maven260+17
+Java/185 frontend, packaged Chromium138/138, security-policy20, planning23/integrity
+and whitespace PASS. Evidence:harness/evidence/F18-global-redesign.md.
+No fresh vulnerability scan, actual browser zoom/owner runtime approval or feature
+closure claimed. T04/I02–I07, T05/T06 pending; next:I02 shell/navigation/safe errors.
+Baseline12h/forecast28h and unreported actual effort retained. No commit/push/PR.
+
+F18 global plan ready,2026-10-20: owner explicitly approved Tools catalogue/workspace
+with refinements and requested centralised site-wide redesign/homogenisation.
+All concept directions agreed; Home provisional for integrated review. T03 done,
+T04 ready (not started). Plan:docs/design/global-redesign-plan.md. CSS/custom
+properties + shared Thymeleaf, clear ownership/cascade, semantic mobile-first
+layouts, page-family migration then final10-route/errors/locales/state review.
+R03/AC03 adds single-definition shared-style propagation. Baseline12h preserved;
+forecast28h total (14 implementation +6 verification +2 closure remain). Existing
+runtime behaviour/content/privacy/CSP retained; actual owner effort unreported.
+Planning23/integrity/whitespace PASS; no app/CSS/template implementation or runtime
+verification in this planning slice. Next:I01 tokens/cascade/component ownership.
+
+
+F18 steering,2026-10-20: refined Home provisionally accepted (“yes for now yes”),
+with mobile/copy/CTA refinements. Learn/course/reader directions already agreed.
+Owner requests Tools structure next. Actual tool templates/controls inspected;
+tools-catalogue-concept-prompt.md and tools-workspace-concept-prompt.md ready in
+docs/design/. Formatter/Minifier input-output; Validator input/verdict/diagnostics.
+Preserve existing operation controls, busy/errors/stale/no-JS/privacy behaviour.
+T03 active pending Tools concepts/agreement; no UI implementation yet. Final shared
+standardisation/review remains. Planning23/integrity PASS; application unchanged.
+
+
+F18 steering,2026-10-20: owner explicitly approved course and refined lesson-reader
+visual directions, retaining full real content/exercises/answers and readable
+mobile code/navigation. References preserved in docs/design/references/. Owner
+requests Home next: keep established family/header B, replace large hero B with
+layered technical illustration. Home prompt ready:docs/design/home-concept-prompt.md.
+Home agreement and Tools concept remain pending; T03 active, no UI implementation.
+Design decision recorded in docs/design/design-direction.md. Planning23/integrity
+PASS; runtime inputs unchanged. Next: generate/review Home concept, then Tools and
+final cross-page standardisation under the agreed design system.
+
+
+F18 design steering,2026-10-20: owner approved refined Learn direction, explicitly
+requested lesson-reader improvement, supplied Tools workspace styling reference,
+and required final consolidation of all pages into one shared standard. References
+preserved in docs/design/references/; decision:docs/design/design-direction.md.
+T02 complete,T03 active; course-overview and lesson-reader prompts ready. Later
+Tools uses pane/toolbar visual grammar with actual tool functions and B identity;
+pictured analytics/flow/file/account features are not added. Final cross-page
+consistency explicit in canonical R02/AC02/T04/T05. No UI code/templates/CSS changed.
+Planning23/integrity PASS; further page concepts/agreement and implementation pending.
+
+
+F18 design exploration active,2026-10-20: PR10 verified merged; new branch
+feature/F18-design-exploration from origin/main dce47f8. Inspected actual Learn,
+course structure, typography/spacing tokens and B-asset constraints. Learn prompt
+prepared at docs/design/learn-concept-prompt.md; one course/three reviewed units,
+desktop/mobile, optional editorial/technical/library directions. T01 done; T02
+in progress pending owner-generated Nano Banana concepts and explicit agreement.
+No template/CSS/behaviour change or design acceptance. Planning23/integrity PASS;
+no runtime checks required for this prompt-only slice. No new push/PR/archival.
+Evidence:harness/evidence/F18-learn-design-exploration.md. Next: review Learn images.
+
+
 First selected V2 delivery accepted,2026-10-20: F17 maintenance and F15-UH01/UH02
 complete with explicit owner EN/ES/FR content/reading approval. Three units use
 existing ordered navigation. F15 stays planned/open for its five deferred stories,

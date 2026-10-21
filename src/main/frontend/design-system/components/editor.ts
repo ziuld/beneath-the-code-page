@@ -74,6 +74,10 @@ export function createEditor(
     parent: host,
     state: freshState(),
   });
+  // Keep horizontally overflowing code reachable even when Escape temporarily
+  // removes the content's tab stop. The parent precedes the editable content in
+  // tab order, so Escape then Tab still exits to the next workspace control.
+  view.scrollDOM.tabIndex = 0;
   return {
     content: () => view.state.doc.toString(),
     replace: (text: string) => {

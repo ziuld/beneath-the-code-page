@@ -32,7 +32,9 @@ for (const locale of ["en", "es", "fr"]) {
           if (fixture) {
             await expect(page.getByRole("button", { name: copy["action.continue"], exact: true })).toHaveCount(2);
           } else {
-            await expect(page.getByRole("img", { name: copy["brand.logo.alt"], exact: true })).toHaveCount(1);
+            await expect(page.locator(".wordmark img")).toHaveAttribute("src", "/brand/b-composition.png");
+            await expect(page.locator(".wordmark img")).toHaveAttribute("alt", "");
+            await expect(page.locator(".hero .layer-art")).toHaveAttribute("aria-hidden", "true");
             await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", copy["home.description"]);
             await expect(page.getByRole("region", { name: copy["home.sections"], exact: true })).toHaveCount(1);
           }

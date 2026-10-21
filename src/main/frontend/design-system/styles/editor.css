@@ -1,9 +1,11 @@
-/* Loaded with the editor enhancement only. Shared BTC tokens remain authoritative. */
+/* Loaded with the editor enhancement only. Deliberately unlayered: CodeMirror's
+   nonce-generated defaults are unlayered too. Keep overrides inside the host;
+   shared tokens own values, including selection/search and native controls. */
 [data-editor-workspace] {
   min-width: 0;
 }
 [data-editor-host] {
-  border: 1px solid var(--secondary);
+  border: var(--border-width) solid var(--secondary);
   min-width: 0;
 }
 [data-editor-host] .cm-editor {
@@ -13,7 +15,7 @@
 [data-editor-host] .cm-scroller {
   overflow: auto;
   height: 20rem;
-  font-family: monospace;
+  font-family: var(--font-mono);
 }
 [data-editor-host] .cm-content {
   caret-color: var(--text);
@@ -32,7 +34,9 @@
 [data-editor-host] .cm-button {
   background: var(--canvas);
   color: var(--text);
-  border: 1px solid var(--secondary);
+  border: var(--border-width) solid var(--secondary);
+  border-radius: var(--radius-control);
+  font-family: var(--font-body);
 }
 [data-editor-host] .cm-search {
   display: flex;
@@ -52,5 +56,5 @@
 [data-editor-host] .cm-selectionBackground,
 [data-editor-host] .cm-searchMatch,
 [data-editor-host] .cm-selectionMatch {
-  background: #494844;
+  background: var(--editor-highlight);
 }

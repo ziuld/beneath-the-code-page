@@ -40,7 +40,7 @@ for (const language of ["en", "es", "fr"]) {
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${base}/learn/java-fundamentals?lang=${language}`);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(copy[language].course);
-        await page.locator("main > ol a").focus();
+        await page.locator(".learning-grid .unit-list a").focus();
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${base}${unitPath}?lang=${language}`);
         await expect(page.locator("html")).toHaveAttribute("lang", language);
@@ -58,7 +58,7 @@ for (const language of ["en", "es", "fr"]) {
         for (const request of requests) {
           const url = new URL(request.url());
           expect(url.origin).toBe(new URL(base).origin);
-          expect(url.pathname).toMatch(/^\/learn(?:\/java-fundamentals(?:\/fixture-unit)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
+          expect(url.pathname).toMatch(/^\/learn(?:\/java-fundamentals(?:\/fixture-unit)?)?$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
           expect(request.resourceType()).not.toBe("worker");
           expect(request.method()).toBe("GET");
           expect(request.postData()).toBeNull();
@@ -102,8 +102,8 @@ for (const language of ["en", "es", "fr"]) {
         page.on("pageerror", error => errors.push(error.message));
         await context.addCookies([{ name: "BTC_LANGUAGE", value: "en", url: baseURL, httpOnly: true, sameSite: "Lax" }]);
         await page.goto(`${baseURL}/?lang=${language}`);
-        await expect(page.locator(`main a[href="/learn?lang=${language}"]`)).toHaveCount(1);
-        await page.locator(`main a[href="/learn?lang=${language}"]`).click();
+        await expect(page.locator(`.section-grid a[href="/learn?lang=${language}"]`)).toHaveCount(1);
+        await page.locator(`.section-grid a[href="/learn?lang=${language}"]`).click();
         await expect(page).toHaveURL(`${baseURL}/learn?lang=${language}`);
         await page.keyboard.press("Tab");
         await expect(page.locator(".skip-link")).toBeFocused();
@@ -114,9 +114,9 @@ for (const language of ["en", "es", "fr"]) {
         await expect(page).toHaveURL(`${baseURL}/learn/java-fundamentals?lang=${language}`);
         await expect(page.getByRole("heading", { name: realCopy[language].prerequisites, exact: true })).toBeVisible();
         await expect(page.getByRole("heading", { name: realCopy[language].outcomes, exact: true })).toBeVisible();
-        await expect(page.locator("main .status")).toBeVisible();
-        await expect(page.locator("main > ol a")).toHaveCount(3);
-        await page.locator("main > ol a").first().focus();
+        await expect(page.locator("main .status").last()).toBeVisible();
+        await expect(page.locator(".learning-grid .unit-list a")).toHaveCount(3);
+        await page.locator(".learning-grid .unit-list a").first().focus();
         await page.keyboard.press("Enter");
         await expect(page).toHaveURL(`${baseURL}${realPath}?lang=${language}`);
         await expect(page.getByRole("heading", { level: 1 })).toHaveText(realCopy[language].title);
@@ -134,7 +134,7 @@ for (const language of ["en", "es", "fr"]) {
         for (const request of requests) {
           const url = new URL(request.url());
           expect(url.origin).toBe(new URL(baseURL).origin);
-          expect(url.pathname).toMatch(/^\/$|^\/brand\/b-composition\.png$|^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$/);
+          expect(url.pathname).toMatch(/^\/$|^\/brand\/b-composition\.png$|^\/learn(?:\/java-fundamentals(?:\/source-to-jvm)?)?$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
           expect(request.resourceType()).not.toBe("worker");
           expect(request.method()).toBe("GET");
           expect(request.postData()).toBeNull();
@@ -216,7 +216,7 @@ for (const language of ["en", "es", "fr"]) {
           for (const request of requests) {
             const url = new URL(request.url());
             expect(url.origin).toBe(new URL(base).origin);
-            expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits|control-flow-tracing)$|^\/assets\/[\w-]+\.(?:css|js)$/);
+            expect(url.pathname).toMatch(/^\/learn\/java-fundamentals\/(?:source-to-jvm|values-types-numeric-limits|control-flow-tracing)$|^\/assets\/[\w-]+\.(?:css|js)$|^\/brand\/b-composition\.png$/);
             expect(request.resourceType()).not.toBe("worker");
             expect(request.method()).toBe("GET");
             expect(request.postData()).toBeNull();

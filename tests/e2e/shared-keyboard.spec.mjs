@@ -12,7 +12,9 @@ async function visualStates(page, selector, focus = false) {
     };
     return elements.map(element => {
       const style = getComputedStyle(element);
-      let ancestor = element;
+      // A positive-offset outline sits outside the control, against its parent
+      // surface. Text contrast still uses the control's own background.
+      let ancestor = focus && parseFloat(style.outlineOffset) >= 0 ? element.parentElement : element;
       while (getComputedStyle(ancestor).backgroundColor === "rgba(0, 0, 0, 0)") ancestor = ancestor.parentElement;
       const foreground = luminance(focus ? style.outlineColor : style.color);
       const background = luminance(getComputedStyle(ancestor).backgroundColor);
@@ -53,7 +55,7 @@ for (const locale of ["en", "es", "fr"]) {
           const url = fixture ? `${process.env.BTC_COMPONENT_URL}/__shell-fixture` : `${baseURL}/`;
           const response = await page.goto(url);
           const controls = page.locator("a[href], select, button:not(:disabled)");
-          await expect(controls).toHaveCount(fixture ? 8 : 9);
+          await expect(controls).toHaveCount(fixture ? 8 : 11);
           for (let index = 0; index < await controls.count(); index++) {
             await page.keyboard.press("Tab");
             await visibleFocus(controls.nth(index));

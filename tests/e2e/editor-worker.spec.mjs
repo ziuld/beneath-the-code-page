@@ -71,7 +71,7 @@ for (const [locale, messages] of Object.entries(copy)) {
     for (const request of requests) {
       const url = new URL(request.url);
       expect(url.origin).toBe(new URL(fixture).origin);
-      expect(url.pathname === "/__editor-fixture" || url.pathname.startsWith("/assets/")).toBe(true);
+      expect(url.pathname === "/__editor-fixture" || url.pathname === "/brand/b-composition.png" || url.pathname.startsWith("/assets/")).toBe(true);
       expect(request.method).toBe("GET");
       expect(request.body).toBeNull();
       expect(request.url).not.toContain("SYNTHETIC_BTC_WORKER_");

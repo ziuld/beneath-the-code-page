@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <header th:fragment="header(currentPath)" class="site-header page">
-    <a class="wordmark" th:href="@{/(lang=${language})}" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{brand.name}"></a>
+    <a class="wordmark" th:href="@{/(lang=${language})}" th:aria-current="${currentPath == '/' ? 'page' : null}"><img class="brand-mark" src="/brand/b-composition.png" alt="" width="40" height="40"><span th:text="#{brand.name}"></span></a>
     <nav th:aria-label="#{navigation.label}">
         <ul class="navigation">
             <li><a th:href="@{/(lang=${language})}" th:aria-current="${currentPath == '/' ? 'page' : null}" th:text="#{navigation.home}"></a></li>
             <li th:each="section : ${sections}">
-                <a th:if="${section.published}" th:href="@{${section.path}(lang=${language})}" th:aria-current="${currentPath == section.path ? 'page' : null}" th:text="#{${section.titleKey()}}"></a>
+                <a th:if="${section.published}" th:href="@{${section.path}(lang=${language})}" th:aria-current="${currentPath == section.path ? 'page' : (currentPath.startsWith(section.path + '/') ? 'location' : null)}" th:text="#{${section.titleKey()}}"></a>
                 <span th:unless="${section.published}" class="unavailable" th:text="#{${section.titleKey()}}"></span>
             </li>
         </ul>
@@ -25,7 +25,7 @@
 </header>
 <footer th:fragment="footer" class="site-footer page">
     <p th:text="#{brand.name}"></p>
-    <p th:text="#{footer.statement}"></p>
+    <p class="footer-statement" th:text="#{footer.statement}"></p>
 </footer>
 </body>
 </html>

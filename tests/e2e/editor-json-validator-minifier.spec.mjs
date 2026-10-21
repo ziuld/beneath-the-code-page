@@ -7,6 +7,7 @@ const assetPath = (file) => "/" + file.replace(/^static\//, "");
 const workerPath = assetPath(manifest["__json-formatter-worker"].file);
 const lazyPath = assetPath(manifest["tools/json/formatter-workspace.ts"].file);
 const assets = new Set(Object.values(manifest).flatMap((entry) => [entry.file, ...(entry.css || [])]).map(assetPath));
+assets.add("/brand/b-composition.png");
 const failAsset = (route) => route.fulfill({ status: 503, contentType: "text/javascript", headers: { "cache-control": "no-store" }, body: "" });
 const minifierCopy = {
   en: { run: "Minify JSON", current: "Current minified output", stale: "The previous output is no longer current. Minify again to update it.", copied: "Result copied.", cleared: "Workspace cleared." },
@@ -36,7 +37,7 @@ for (const [locale, copy] of Object.entries(messages)) {
     const page = await browser.newPage({ locale, baseURL });
     try {
       await page.goto("/");
-      await page.locator(`main a[href="/tools?lang=${locale}"]`).click();
+      await page.locator(`.section-grid a[href="/tools?lang=${locale}"]`).click();
       await expect(page.locator(`main a[href="/tools/json-formatter?lang=${locale}"]`)).toHaveCount(1);
       await expect(page.locator(`main a[href="/tools/json-minifier?lang=${locale}"]`)).toHaveCount(1);
       await expect(page.locator('a[href^="/tools/base64"]')).toHaveCount(0);
@@ -286,7 +287,7 @@ for (const [locale, copy] of Object.entries(minifierCopy)) {
     const page = await browser.newPage({ locale, baseURL });
     try {
       await page.goto("/");
-      await page.locator(`main a[href="/tools?lang=${locale}"]`).click();
+      await page.locator(`.section-grid a[href="/tools?lang=${locale}"]`).click();
       for (const tool of ["formatter", "validator", "minifier"])
         await expect(page.locator(`main a[href="/tools/json-${tool}?lang=${locale}"]`)).toHaveCount(1);
       await expect(page.locator('a[href^="/tools/base64"]')).toHaveCount(0);

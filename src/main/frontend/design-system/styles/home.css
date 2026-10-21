@@ -1,56 +1,59 @@
-@layer btc-base {
-  .hero {
+@layer btc-layouts {
+  .home-page .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    gap: var(--space-xl);
-    padding-block: var(--space-section);
+    gap: var(--space-lg);
+    padding-block: var(--space-md) var(--space-xl);
   }
-
-  .eyebrow {
-    color: var(--secondary);
-    font-size: var(--type-small);
-  }
-
-  h1 {
+  .hero h1 {
     font-size: var(--type-hero);
+    max-inline-size: 18ch;
     margin-block: var(--space-md);
-    max-width: 18ch;
   }
-
-  .intro {
-    font-size: var(--type-intro);
-    max-width: 48ch;
-  }
-
-  .brand-composition {
+  .layer-art {
     display: block;
     width: 100%;
-    height: auto;
-    max-width: 26rem;
+    max-inline-size: 29rem;
+    color: var(--secondary);
     justify-self: center;
   }
-
+  .layer-art .art-front {
+    stroke-width: 1.5;
+  }
   .section-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space);
-    padding-bottom: var(--space-section);
   }
-
-  @media (max-width: 48rem) {
-    .hero,
+  .section-grid .section-card {
+    min-inline-size: 0;
+  }
+  .card-preview {
+    float: right;
+    width: 9rem;
+    max-inline-size: 40%;
+    margin: 0 0 var(--space) var(--space);
+    color: var(--secondary);
+  }
+  .section-card h2 a {
+    display: inline-block;
+    text-decoration: none;
+  }
+  .section-card h2 a:hover {
+    text-decoration: underline;
+  }
+  @media (min-width: 48rem) {
+    .home-page .hero {
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    }
     .section-grid {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
-    .hero {
-      gap: var(--space);
-      padding-block: var(--space-lg);
-    }
-
-    .brand-composition {
-      max-width: 20rem;
+  }
+  @media (max-width: 47.99rem) {
+    .layer-art {
+      max-inline-size: 19rem;
     }
   }
 }

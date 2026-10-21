@@ -7,6 +7,7 @@ const assetPath = (file) => "/" + file.replace(/^static\//, "");
 const workerPath = assetPath(manifest["__json-formatter-worker"].file);
 const lazyPath = assetPath(manifest["tools/json/formatter-workspace.ts"].file);
 const assets = new Set(Object.values(manifest).flatMap((entry) => [entry.file, ...(entry.css || [])]).map(assetPath));
+assets.add("/brand/b-composition.png");
 const messages = {
   en: { format: "Format JSON", input: "Content editor", success: "Processing completed.", syntax: "Invalid JSON at line {0}, column {1}.", stale: "The previous output is no longer current. Format again to update it.", depth: "JSON exceeds the nesting limit of 128. Your input was kept.", unavailable: "Processing is not available until JavaScript and the editor have loaded." },
   es: { format: "Formatear JSON", input: "Editor de contenido", success: "Procesamiento completado.", syntax: "JSON no válido en la línea {0}, columna {1}.", stale: "La salida anterior ya no está actualizada. Vuelve a formatear para actualizarla.", depth: "El JSON supera el límite de anidamiento de 128. Se conservó la entrada.", unavailable: "El procesamiento no está disponible hasta que se carguen JavaScript y el editor." },
@@ -24,8 +25,8 @@ for (const [locale, copy] of Object.entries(messages)) {
     const page = await browser.newPage({ locale, baseURL });
     try {
       await page.goto("/");
-      await expect(page.locator(`a[href="/learn?lang=${locale}"]`)).toHaveCount(2);
-      await page.locator(`main a[href="/tools?lang=${locale}"]`).click();
+      await expect(page.locator(`a[href="/learn?lang=${locale}"]`)).toHaveCount(3);
+      await page.locator(`.section-grid a[href="/tools?lang=${locale}"]`).click();
       await expect(page).toHaveURL(`${baseURL}/tools?lang=${locale}`);
       await expect(page.locator(`main a[href="/tools/json-formatter?lang=${locale}"]`)).toHaveCount(1);
       await expect(page.locator(`main a[href="/tools/json-validator?lang=${locale}"]`)).toHaveCount(1);

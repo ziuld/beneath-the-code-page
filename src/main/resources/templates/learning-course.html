@@ -4,19 +4,29 @@
 <body>
 <a class="skip-link" href="#main" th:text="#{navigation.skip}"></a>
 <header th:replace="~{fragments/shell :: header(${currentPath})}"></header>
-<main id="main" class="page learning-prose" tabindex="-1">
+<main id="main" class="page course-page" tabindex="-1">
     <nav th:replace="~{fragments/learning :: breadcrumbs}"></nav>
-    <h1 th:text="${course.title}"></h1>
-    <p th:text="${course.summary}"></p>
-    <p class="status" th:text="#{learning.scope}"></p>
-    <h2 th:text="#{learning.prerequisites}"></h2>
-    <p th:text="${course.prerequisites}"></p>
-    <h2 th:text="#{learning.outcomes}"></h2>
-    <p th:text="${course.outcomes}"></p>
-    <h2 th:text="#{learning.units}"></h2>
-    <ol><li th:each="unit : ${units}"><a th:href="${unit.href}" th:text="${unit.title}"></a></li></ol>
-    <a th:href="@{/learn(lang=${language})}" th:text="#{learning.back}"></a>
+    <section class="page-hero learning-hero">
+        <p class="eyebrow" th:text="#{learning.title}"></p>
+        <h1 th:text="${course.title}"></h1>
+        <p class="intro" th:text="${course.summary}"></p>
+        <p class="status" th:text="#{learning.available(${#lists.size(units)})}"></p>
+        <div class="actions">
+            <a class="button button--primary" th:href="${units[0].href}" th:text="#{action.startCourse}"></a>
+            <a th:href="@{/learn(lang=${language})}" th:text="#{learning.back}"></a>
+        </div>
+        <span class="brand-watermark" aria-hidden="true">B</span>
+    </section>
+    <div class="learning-grid">
+        <section class="section-card course-summary">
+            <h2 class="panel-label" th:text="#{learning.prerequisites}"></h2>
+            <p th:text="${course.prerequisites}"></p>
+            <h2 class="panel-label" th:text="#{learning.outcomes}"></h2>
+            <p th:text="${course.outcomes}"></p>
+            <p class="status" th:text="#{learning.scope}"></p>
+        </section>
+        <ol th:replace="~{fragments/learning :: unitList}"></ol>
+    </div>
 </main>
 <footer th:replace="~{fragments/shell :: footer}"></footer>
-</body>
-</html>
+</body></html>

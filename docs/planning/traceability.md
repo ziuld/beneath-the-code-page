@@ -79,7 +79,8 @@ Generated from plan.json. Test methods below are planned, not implemented or pas
 | F17-UH01-R01 | [F17-UH01](features/F17.md#f17-uh01) | F17-UH01-AC01 | F17-UH01-T03 | Run affected verification and fresh security scanning; inspect current-state links and historical qualifications |
 | F17-UH01-R02 | [F17-UH01](features/F17.md#f17-uh01) | F17-UH01-AC02 | F17-UH01-T03 | Inspect negative policy checks, unchanged expiry rules and the actual scanner result |
 | F18-UH01-R01 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC01 | F18-UH01-T05 | Record prompts, returned concepts and owner choices; begin with Learn |
-| F18-UH01-R02 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC02 | F18-UH01-T05 | Run affected functional/Chromium/privacy checks and owner visual, keyboard, zoom and locale review |
+| F18-UH01-R02 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC02 | F18-UH01-T05 | Review cross-page design-system consistency and affected functional/Chromium/privacy checks; obtain owner visual, keyboard, zoom and locale review |
+| F18-UH01-R03 | [F18-UH01](features/F18.md#f18-uh01) | F18-UH01-AC03 | F18-UH01-T05 | Audit style ownership and compare computed styles of the same variants across Home, Learn and tool pages; verify a single shared change without per-page patches |
 | F19-UH01-R01 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC01 | F19-UH01-T03 | Run the existing harness per engine and manual journey checks; preserve meaningful assertions and report unavailable environments |
 | F19-UH01-R02 | [F19-UH01](features/F19.md#f19-uh01) | F19-UH01-AC02 | F19-UH01-T03 | Owner Safari review on available Apple hardware; do not invent device coverage or install system dependencies without approval |
 | F20-UH01-R01 | [F20-UH01](features/F20.md#f20-uh01) | F20-UH01-AC01 | F20-UH01-T03 | Build and start the image; inspect non-root runtime, health, management isolation, local HTTP locale flow, shutdown and image/dependency findings |

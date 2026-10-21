@@ -13,5 +13,11 @@
         <li><a th:href="@{/learn/java-fundamentals(lang=${language})}" th:text="${course.title}"></a></li>
     </ol>
 </nav>
+<ol th:fragment="unitList" class="unit-list" th:aria-label="#{learning.units}">
+    <li th:each="item, position : ${units}">
+        <span class="unit-number" aria-hidden="true" th:text="${#numbers.formatInteger(position.count, 2)}"></span>
+        <a th:href="${item.href}" th:text="${item.title}"></a>
+    </li>
+</ol>
 </body>
 </html>

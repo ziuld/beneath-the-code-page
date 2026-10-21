@@ -13,6 +13,7 @@ vi.mock("@codemirror/view", async (importOriginal) => {
     EditorView: new Proxy(actual.EditorView, {
       construct(_target, [config]) {
         const view = {
+          scrollDOM: { tabIndex: -1 },
           state: config.state as EditorState,
           dispatch(spec: Parameters<EditorState["update"]>[0]) {
             this.state = this.state.update(spec).state;

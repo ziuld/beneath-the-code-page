@@ -38,22 +38,22 @@ class PublishedLearningTests {
 				.andExpect(status().isOk()).andExpect(header().string("Cache-Control", "no-store")).andReturn().getResponse();
 		String html = response.getContentAsString(StandardCharsets.UTF_8);
 		String answer = Map.of("en", "Answer and reasoning", "es", "Respuesta y razonamiento", "fr", "Réponse et raisonnement").get(language);
-		assertThat(html).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>", "public class Main",
+		assertThat(html.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>", "public class Main",
 				"javac -d out Main.java", "java -cp out Main", "Hello, JVM!", "Hello, bytecode!")
 				.doesNotContain("fixture-unit", "window.fixtureExecuted", "rel=\"prev\"", "data-editor-workspace", "data-json-");
-		assertThat(html).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/values-types-numeric-limits?lang=" + language + "\"");
+		assertThat(html.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/values-types-numeric-limits?lang=" + language + "\"");
 		String numeric = mvc.perform(get("/learn/java-fundamentals/values-types-numeric-limits").queryParam("lang", language))
 				.andExpect(status().isOk()).andExpect(header().string("Cache-Control", "no-store"))
 				.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		assertThat(numeric).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
+		assertThat(numeric.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
 				"public class NumericValues", "public class NumericExercise", "-294967296", "4000000000",
 				"rel=\"prev\"", "href=\"/learn/java-fundamentals/source-to-jvm?lang=" + language + "\"")
 				.doesNotContain("data-editor-workspace", "data-json-", "??");
-		assertThat(numeric).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/control-flow-tracing?lang=" + language + "\"");
+		assertThat(numeric.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("rel=\"next\"", "href=\"/learn/java-fundamentals/control-flow-tracing?lang=" + language + "\"");
 		String flow = mvc.perform(get("/learn/java-fundamentals/control-flow-tracing").queryParam("lang", language))
 				.andExpect(status().isOk()).andExpect(header().string("Cache-Control", "no-store"))
 				.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-		assertThat(flow).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
+		assertThat(flow.replaceAll(" id=\"lesson-section-[0-9]+\"", "")).contains("lang=\"" + language + "\"", "<h2>" + answer + "</h2>",
 				"public class ControlFlowTrace", "public class ControlFlowExercise", "rel=\"prev\"",
 				"href=\"/learn/java-fundamentals/values-types-numeric-limits?lang=" + language + "\"")
 				.doesNotContain("rel=\"next\"", "data-editor-workspace", "data-json-", "??");

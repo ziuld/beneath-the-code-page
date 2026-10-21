@@ -33,7 +33,7 @@ class ToolsRenderingTests {
 		String html = response.getContentAsString(StandardCharsets.UTF_8);
 		assertThat(html).contains("lang=\"" + language + "\"", title, action, "data-format-run disabled", "role=\"region\" aria-labelledby=\"formatter-output-label\" tabindex=\"0\"", "<noscript>", "data-format-message=\"ready\"")
 				.doesNotContain("??", "th:", "onclick");
-		String workspace = html.substring(html.indexOf("<section data-json-formatter"), html.indexOf("</section>"));
+		String workspace = html.substring(workspaceStart(html, "formatter"), html.indexOf("</section>"));
 		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea");
 		String nonce = html.split("data-nonce=\"")[1].split("\"")[0];
 		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-" + nonce + "'", "connect-src 'none'", "style-src-attr 'none'").doesNotContain("unsafe-inline", "unsafe-eval");
@@ -60,6 +60,12 @@ class ToolsRenderingTests {
 		mvc.perform(post(path)).andExpect(status().isForbidden());
 	}
 
+	private static int workspaceStart(String html, String kind) {
+		var matcher = Pattern.compile("<section\\b[^>]*\\bdata-json-" + kind + "(?:=|\\s|>)[^>]*>").matcher(html);
+		assertThat(matcher.find()).as("native tool workspace exists").isTrue();
+		return matcher.start();
+	}
+
 	@Test
 	void indexListsAcceptedJsonToolsAndHomePublishesToolsAfterAcceptance() throws Exception {
 		String index = mvc.perform(get("/tools")).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
@@ -78,7 +84,7 @@ class ToolsRenderingTests {
 		assertThat(html).contains("lang=\"" + language + "\"", title, action, valid,
 				"data-format-run disabled", "data-format-cancel disabled", "data-format-clear disabled", "<noscript>", "data-editor-feedback")
 				.doesNotContain("??", "th:", "onclick");
-		String workspace = html.substring(html.indexOf("<section data-json-validator"), html.indexOf("</section>"));
+		String workspace = html.substring(workspaceStart(html, "validator"), html.indexOf("</section>"));
 		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea", "<pre", "data-format-copy", "data-format-indent", "data-format-output=");
 		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-", "connect-src 'none'", "style-src-attr 'none'")
 				.doesNotContain("unsafe-inline", "unsafe-eval");
@@ -100,7 +106,7 @@ class ToolsRenderingTests {
 		String html = response.getContentAsString(StandardCharsets.UTF_8);
 		assertThat(html).contains("lang=\"" + language + "\"", title, action, "data-format-copy disabled", "data-format-clear disabled",
 				"role=\"region\" aria-labelledby=\"minifier-output-label\" tabindex=\"0\"", "<noscript>").doesNotContain("??", "th:", "onclick");
-		String workspace = html.substring(html.indexOf("<section data-json-minifier"), html.indexOf("</section>"));
+		String workspace = html.substring(workspaceStart(html, "minifier"), html.indexOf("</section>"));
 		assertThat(workspace).doesNotContain("<form", "name=\"", "<textarea", "data-format-indent");
 		assertThat(response.getHeader("Cache-Control")).isEqualTo("no-store");
 		assertThat(response.getHeader("Content-Security-Policy")).contains("'nonce-", "connect-src 'none'", "style-src-attr 'none'")

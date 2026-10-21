@@ -1,6 +1,63 @@
-@layer btc-base;
+/* Establish order before eager imports and lazy workspace styles. */
+@layer btc-tokens, btc-base, btc-components, btc-layouts;
 
 @import "./tokens.css";
 @import "./components.css";
 @import "./home.css";
 @import "./learning.css";
+@import "./tools.css";
+
+@layer btc-base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-underline-offset: 0.3em;
+  }
+
+  a:hover {
+    text-decoration-thickness: 0.15em;
+  }
+
+  :focus-visible {
+    outline: var(--focus-width) solid var(--focus);
+    outline-offset: var(--focus-offset);
+    scroll-margin-block: var(--space);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: var(--leading-heading);
+    overflow-wrap: anywhere;
+  }
+
+  h1 {
+    font-size: var(--type-title);
+    margin-block: var(--space-md) var(--space-lg);
+  }
+
+  h2 {
+    font-size: var(--type-heading);
+    margin-top: 0;
+  }
+
+  h3 {
+    font-size: var(--type-intro);
+    line-height: var(--leading-heading);
+  }
+
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
+}
