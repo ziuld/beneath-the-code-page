@@ -86,3 +86,20 @@ profile, PID66355 / exec session26521; log:target/f08-preview.log. Stop that pre
 before rebuilding for subsequent features. The packaged production-profile test
 servers stopped automatically; the preview is for trying the tool.
 Next selected feature:F09. F19 browsers and F20 Docker remain later work.
+
+## Closure — 2026-10-21
+
+Reviewed coherent local implementation:`32dc6f6e1be4aad025dc96bed714b3dd34ac53b6`
+(`feat(F08): add strict browser-local UTF-8 Base64 tool`). All5 tasks, F08-UH01
+and F08 complete against the canonical acceptance scenarios and actual integration
+review above. No additional owner manual review is inferred or claimed. The final
+closure only changes documentation/tracking; runtime/test/JAR hashes remain the
+passing reviewed candidate. Closure planning integrity/23 rule tests and whitespace
+checks pass. Actual owner effort unreported;6h baseline/forecast retained.
+No push, PR, release/deployment or OpenSpec archival. Preview45915 remains running
+for the user to try; stop PID66355/session26521 before the next build. Next:F09 UUID
+Generator, then F10/F11, F19 browser evaluation and F20 Docker portability.
+
+Final closure validation caught missing feature-level dates/evidence above the
+complete story/task records. Added those fields and reran the planning checks
+before final acceptance. No runtime/test/JAR inputs changed.

@@ -1,5 +1,24 @@
 # Current handoff
 
+F08 COMPLETE,2026-10-21: all5 tasks/story/feature accepted against fixture/browser
+criteria and agent diff/integration/visual review. Reviewed implementation:32dc6f6e1be4aad025dc96bed714b3dd34ac53b6.
+UTF-8 Base64 at /tools/base64 in EN/ES/FR, shared F18 workspace/catalogue/styles,
+explicit modes, strict canonical alphabet/padding/bits/fatal UTF-8 and Unicode/BOM/
+CRLF/empty fidelity. One production worker identity retained; shared session at its
+second real consumer, JSON Validator no-Copy/default editor behaviour preserved.
+Full Maven265+17 Java/224 frontend, Chromium153/153, fresh actual security0 findings/
+0 active exceptions (policy unchanged), policy20/strict15 specs/planning23/integrity/
+whitespace PASS.184 runtime/test/JAR hashes checked unchanged. No new owner manual
+acceptance or Firefox/WebKit/Safari coverage claimed; F08 criteria are automated/
+integration review, with F18 owner style acceptance retained.
+Evidence:harness/evidence/F08-base64.md. Branch:feature/F08-base64 from local F18
+handoff50d39cd; F18 branch/commits retained. Scoped local implementation/handoff only;
+no push/PR/deployment/archival. Actual owner effort unreported;6h baseline/forecast.
+Preview RUNNING http://127.0.0.1:45915/tools/base64?lang=en, loopback local profile,
+PID66355/session26521. Stop it before rebuilding for F09. Packaged test servers stopped.
+Next:F09 UUID Generator, then F10/F11, F19 browsers and F20 Docker.
+Earlier pending/preview statements below are historical where superseded.
+
 F08 Base64 verified,2026-10-21: T01–T04 done, T05 recording local revision. Explicit
 strict UTF-8 Encode/Decode with Unicode/BOM/CRLF/empty fidelity, canonical padding,
 limits and shared F18 styles/session/worker. Maven265+17 Java/224 frontend,

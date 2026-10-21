@@ -29,3 +29,7 @@ effort unreported. No push/PR/deploy/archival. Next: implementation T02.
 Implementation/verification complete: Maven265+17/224, Chromium153, fresh security0,
 policy20/spec15 and visual/reflow review PASS. T05 recording local reviewed revision.
 See harness/evidence/F08-base64.md. Preview45915 is running; no push/PR.
+
+Completed2026-10-21: all tasks and canonical scenarios pass. Reviewed local revision
+`32dc6f6e1be4aad025dc96bed714b3dd34ac53b6`; final closure evidence in harness/evidence/F08-base64.md.
+No push/PR. Preview45915 remains available; stop before F09 builds.
